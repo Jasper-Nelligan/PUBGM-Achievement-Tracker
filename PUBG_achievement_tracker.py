@@ -46,6 +46,8 @@ class AppController(tk.Tk):
         tk.Tk.__init__(self)
         # Users cannot resize the window
         self.resizable(width=False, height=False)
+        self.iconbitmap('./Images/icon.ico')
+        self.title("PUBG Achievement Tracker")
         #root.overrideredirect(1)   # Removes window border
 
         # The container is where a bunch of frames will be stacked
@@ -127,7 +129,7 @@ class MainMenu(tk.Frame):
         # Loading main menu images
 
         # Colour for text gradients was DEDF00 for yellow
-        # and DF0D0D for red, using
+        # and DF0D0D for red, using Gradient-Orange-H from
         # https://fontmeme.com/playerunknowns-battlegrounds-font/
         # self. is used so that these images are stored
         # as an instance of this class and can be referenced in other
@@ -138,6 +140,7 @@ class MainMenu(tk.Frame):
         self.achievements_button_image = Image.open('./Images/achievements.png')
         self.completed_button_image = Image.open('./Images/completed.png')
         self.credits_button_image = Image.open('./Images/credits.png')
+        self.exit_button_image = Image.open('./Images/exit.png')
         # Red buttons will be used to indicate when the user 
         # has clicked a button. These images are used in the 
         # change_button_to_red() method
@@ -145,16 +148,19 @@ class MainMenu(tk.Frame):
         self.achievements_red_button_image = Image.open('./Images/achievements_red.png')
         self.completed_red_button_image = Image.open('./Images/completed_red.png')
         self.credits_red_button_image = Image.open('./Images/credits_red.png')
+        self.exit_red_button_image = Image.open('./Images/exit_red.png')
 
         # Shrinking button images
         for img in (self.overview_button_image, 
                    self.achievements_button_image,
                    self.completed_button_image,
                    self.credits_button_image,
+                   self.exit_button_image,
                    self.overview_red_button_image,
                    self.achievements_red_button_image,
                    self.completed_red_button_image,
-                   self.credits_red_button_image):
+                   self.credits_red_button_image,
+                   self.exit_red_button_image):
             img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
 
 
@@ -177,6 +183,8 @@ class MainMenu(tk.Frame):
                                self.completed_button_image)
         self.background_image.paste(self.credits_button_image, (150, 520), 
                                self.credits_button_image)
+        self.background_image.paste(self.exit_button_image, (1300, 40), 
+                               self.exit_button_image)
 
         # Convert the Image object into a TkPhoto object
 
@@ -204,6 +212,13 @@ class MainMenu(tk.Frame):
         elif 75 <= event.x <= 197 and 520 <= event.y <= 565:
             print("clicked credits")
             self.change_button_to_red("Credits")
+        #if Exit is pressed
+        elif 1227 <= event.x <= 1290 and 40 <= event.y <= 83:
+            print("clicked credits")
+            self.change_button_to_red("Exit")
+            self.main_menu_label.bind("<ButtonRelease-1>", lambda event:
+                                      root.destroy())
+
 
     def change_button_to_red(self, button_name):
         """Updates background_image so that passed in button will flicker
@@ -228,11 +243,18 @@ class MainMenu(tk.Frame):
             self.background_image_clicked.paste(self.credits_red_button_image,
                                        (150, 520), 
                                        self.credits_red_button_image)
+        elif button_name == "Exit":
+            self.background_image_clicked.paste(self.exit_red_button_image,
+                                       (1300, 40), 
+                                       self.exit_red_button_image)
 
         self.tk_background_clicked = ImageTk.PhotoImage(self.background_image_clicked)
         #switch images
         self.main_menu_label.configure(image=
                                        self.tk_background_clicked)
+        # ISSUE: I'm not sure about this, but after this code is executed,
+        # I figure that everytime I release the button anywhere on the
+        # screen it'll execute this command? 
         self.main_menu_label.bind("<ButtonRelease-1>", lambda event: 
                                   self.main_menu_label.configure(image=
                                   self.tk_background_image))
