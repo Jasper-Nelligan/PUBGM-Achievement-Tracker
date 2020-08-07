@@ -11,27 +11,30 @@ class ScrollbarFrame(tk.Frame):
     This class is independent from the widgets to be scrolled and 
     can be used to replace a standard tk.Frame
     """
-    def __init__(self, parent, frame_h, frame_w):
-        """ Initiates a scrollable canvas with labels using specified
+    def __init__(self, parent, height, width):
+        """ Initiates a scrollable frame with labels using specified
         height and width. Canvas is scrollable both over canvas and scrollbar.
         """
 
         super().__init__(parent)
 
+        self.height = height
+        self.width = width
+
         # Place the scrollbar on self, layout to the right
-        vsb = tk.Scrollbar(self, orient="vertical")
-        vsb.pack(side="right", fill="y")
+        self.v_scrollbar = tk.Scrollbar(self, orient="vertical")
+        self.v_scrollbar.pack(side="right", fill="y")
 
         # The Canvas which supports the Scrollbar Interface, 
         # placed on self and layed out to the left.
         self.canvas = tk.Canvas(self, borderwidth=0, background="#ffffff", 
-                                height = frame_h, 
-                                width = width_h)
+                                height = height, 
+                                width = width)
         self.canvas.pack(side="left", fill="both", expand=True)
 
         # Attach scrollbar action to scroll of canvas
-        self.canvas.configure(yscrollcommand=vsb.set)
-        vsb.configure(command=self.canvas.yview)
+        self.canvas.configure(yscrollcommand=self.v_scrollbar.set)
+        self.v_scrollbar.configure(command=self.canvas.yview)
 
         # Allow canvas to be scrolled using mousewheel while hovering 
         # over the canvas region.
@@ -41,26 +44,34 @@ class ScrollbarFrame(tk.Frame):
         # All widgets to be scrolled have to use this Frame as parent
         self.scrolled_frame = tk.Frame(self.canvas, background=self.canvas.cget('bg'))
         self.canvas.create_window((0, 0), window=self.scrolled_frame, anchor="nw")
-        
+
         # Configures the scrollregion of the Canvas dynamically
         self.scrolled_frame.bind("<Configure>", self.on_configure)
 
         # Reset the scroll region to encompass the inner frame
-        self.scrolled_frame.bind("<Configure>", self.onFrameConfigure)
+        self.scrolled_frame.bind("<Configure>", self.on_frame_configure)
 
     def on_configure(self, event):
         """Set the scroll region to encompass the scrolled frame"""
         self.canvas.configure(scrollregion=self.canvas.bbox("all"))
     
-    def _on_mousewheel(self, event):
+    def on_mousewheel(self, event):
         """Allows canvas to be scrolled using mousewheel while hovering
-        over canvas.
+        over canvas. Copied from:
+        https://preview.tinyurl.com/stackoverflow162
         """
-        self.canvas.yview_scroll(-1 * (event.delta // 120), "units")
+        scroll_speed = 0.2
+        # n is either 1 or -1 and must be inverted
+        n = -event.delta / abs(event.delta)
+        # Return scrollbar position and adjust it by a fraction
+        p = self.v_scrollbar.get()[0] + (n*scroll_speed)
+        # Apply new position
+        self.canvas.yview_moveto(p)             
 
-    def onFrameConfigure(self, event):
+    def on_frame_configure(self, event):
         """Reset the scroll region to encompass the inner frame"""
         self.canvas.configure(scrollregion=self.canvas.bbox("all"))
+
 
 class App(tk.Tk):
     def __init__(self):
