@@ -260,7 +260,7 @@ class MainMenuFrame(tk.Frame):
         frame. Exits the program if Exit is clicked.
         """
 
-        print("Area clicked was", event.x, event.y, sep=" ")
+        print("Area clicked was (" + event.x + ", " + event.y + ")")
         #if "Overview" was clicked
         if 75 <= event.x <= 240 and 220 <= event.y <= 265:
             #On button click, turn button to red
