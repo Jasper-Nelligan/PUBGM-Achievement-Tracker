@@ -10,14 +10,19 @@ SCROLL_CANVAS_W = 1000
 BUTTON_SIZE = 100, 40
 
 class ScrollbarFrame(tk.Frame):
-    """
-    Extends class tk.Frame to support a scrollable Frame 
+    """Extends class tk.Frame to support a scrollable Frame
+
     This class is independent from the widgets to be scrolled and 
     can be used to replace a standard tk.Frame.
+
     """
     def __init__(self, parent, height, width):
         """ Initiates a scrollable frame with labels using specified
         height and width. Canvas is scrollable both over canvas and scrollbar.
+
+        Args:
+            height (int): height of frame in pixels
+            width (int): width of frame in pixels
         """
 
         super().__init__(parent)

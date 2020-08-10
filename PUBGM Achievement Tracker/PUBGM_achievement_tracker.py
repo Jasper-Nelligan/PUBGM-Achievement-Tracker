@@ -14,8 +14,8 @@ import copy
 
 # Helpful links:
 # 
-# Tkinter events and bindings:
-# http://effbot.org/tkinterbook/tkinter-events-and-bindings.htm
+# Tkinter info:
+# http://effbot.org/tkinterbook
 #
 # PUBG font
 # Colour for PUBG font was DEDF00 for yellow
@@ -37,10 +37,11 @@ BACKGROUND_IMAGE_HEIGHT = 625
 PC_WIDTH = 1366
 
 class AppController(tk.Tk):
-    """This class manages the stacking of frames. It inherits from
-    tk.Tk so that it can have additional methods such as show_frame.
-    This class initializes itself as the root frame onto which all
-    other frames will be placed on.
+    """This class manages the stacking of frames.
+   
+    It inherits from tk.Tk so that it can have additional methods 
+    such as show_frame This class initializes itself as the root 
+    frame onto which all other frames will be placed on.
     """
 
     def __init__(self):
@@ -94,7 +95,7 @@ class MainMenuFrame(tk.Frame):
     def __init__(self, parent, controller):
         """Creates frame for Main Menu
 
-        args: 
+        Args: 
             parent (Frame): the frame onto which this frame will be placed, ie. the root
             controller (Frame): The controller frame is a way for the pages to interact 
                 with each other. For this application, the controller is used 
@@ -314,9 +315,9 @@ class MainMenuFrame(tk.Frame):
 class OverviewFrame(tk.Frame):
 
     def __init__(self, parent, controller):
-        """Creates frame for Main Menu
+        """Creates frame for 'Overview' section
 
-        args: 
+        Args: 
             parent (Frame): the frame onto which this frame will be placed, ie. the root
             controller (Frame): The controller frame is a way for the pages to interact 
                 with each other. For this application, the controller is used 
@@ -400,9 +401,9 @@ class OverviewFrame(tk.Frame):
 class AchievementsFrame(tk.Frame):
     
     def __init__(self, parent, controller):
-        """Creates frame for Main Menu
+        """Creates frame for 'Achievements' section
 
-        args: 
+        Args: 
             parent (Frame): the frame onto which this frame will be placed, ie. the root
             controller (Frame): The controller frame is a way for the pages to interact 
                 with each other. For this application, the controller is used 
@@ -428,9 +429,10 @@ class AchievementsFrame(tk.Frame):
         self.achievements_label.bind('<Button-1>', self.on_click)
 
     def init_images(self):
-            """Initializes the background image, text, and
-            buttons for this frame. Similar code with further
-            explanation can be found in MainMenuFrame class.
+            """Initializes images and text for this frame.
+
+            Similar code with further explanation can be found in 
+            MainMenuFrame class.
             """
 
             self.background_img = Image.open('./Images/background.png')
@@ -486,9 +488,9 @@ class AchievementsFrame(tk.Frame):
 class CompletedFrame(tk.Frame):
     
     def __init__(self, parent, controller):
-        """Creates frame for Main Menu
+        """Creates frame for 'Completed' section
 
-        args: 
+        Args: 
             parent (Frame): the frame onto which this frame will be placed, ie. the root
             controller (Frame): The controller frame is a way for the pages to interact 
                 with each other. For this application, the controller is used 
@@ -573,9 +575,9 @@ class CompletedFrame(tk.Frame):
 class CreditsFrame(tk.Frame):
     
     def __init__(self, parent, controller):
-        """Creates frame for Main Menu
+        """Creates frame for 'Credits' section
 
-        args: 
+        Args: 
             parent (Frame): the frame onto which this frame will be placed, ie. the root
             controller (Frame): The controller frame is a way for the pages to interact 
                 with each other. For this application, the controller is used 
