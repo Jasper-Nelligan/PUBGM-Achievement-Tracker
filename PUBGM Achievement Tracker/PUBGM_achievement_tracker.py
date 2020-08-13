@@ -434,6 +434,7 @@ class AchievementsFrame(tk.Frame):
         # Create scrollable frame to display achievements
         self.sbf = ScrollbarFrame(self, height = 400, width = 702, 
                                   background = '#121111')
+
         scroll_frame = self.sbf.scrolled_frame
 
         # Place at center of parent frame
@@ -502,14 +503,13 @@ class AchievementsFrame(tk.Frame):
 
                 text = "3000 x"
                 desc=tk.Label(frame1, text=text, anchor=E, fg='white',
-                        height=1, width=10,
-                        font=desc_font, 
+                        height=1, width=10, font=desc_font, 
                         bg=self.sbf.scrolled_frame.cget('bg')) \
-                        .grid(row=1, column=4, sticky=NW)
+                        .grid(row=1, column=3, sticky=NW)
 
                 img = tk.Label(frame1, image=self.silver_fragment, anchor=W,
                            borderwidth=0, highlightthickness=0) \
-                           .grid(row=0, rowspan=2, column = 5, sticky=W)
+                           .grid(row=0, rowspan=2, column = 4, sticky=W)
             # Same but with different points and reward
             else:
                 text = ""
@@ -526,12 +526,12 @@ class AchievementsFrame(tk.Frame):
                         height=1, width=10,
                         font=desc_font, 
                         bg=self.sbf.scrolled_frame.cget('bg')) \
-                        .grid(row=1, column=4, sticky=NW)
+                        .grid(row=1, column=3, sticky=NW)
 
                 # rowspan=2 is a way of centering a label between two other rows
                 img = tk.Label(frame1, image=self.premium_crate, anchor=W,
                            borderwidth=0, highlightthickness=0) \
-                           .grid(row=0, rowspan=2, column = 5, sticky=W)
+                           .grid(row=0, rowspan=2, column = 4, sticky=W)
 
             row=row+1
 
