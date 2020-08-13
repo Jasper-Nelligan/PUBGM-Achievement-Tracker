@@ -1,7 +1,10 @@
 import tkinter as tk
 from tkinter import *
+from tkinter import font
 from PIL import Image, ImageTk
 import copy
+
+from scrollable_frame import ScrollbarFrame
 
 
 #**********************************************************************
@@ -91,7 +94,6 @@ class AppController(tk.Tk):
 
 
 class MainMenuFrame(tk.Frame):
-
     def __init__(self, parent, controller):
         """Creates frame for Main Menu
 
@@ -139,7 +141,7 @@ class MainMenuFrame(tk.Frame):
         self.main_menu_label.place(height=BACKGROUND_IMAGE_HEIGHT, 
                                width=1366 - SCREEN_OFFSET)
 
-        # Adding functionality to buttons
+        # Adding functionality to back button
 
         self.main_menu_label.bind('<Button-1>', self.on_click)
 
@@ -261,7 +263,7 @@ class MainMenuFrame(tk.Frame):
         frame. Exits the program if Exit is clicked.
         """
 
-        print("Area clicked was (" + event.x + ", " + event.y + ")")
+        print(f"Area clicked was ({event.x}, {event.y})")
         #if "Overview" was clicked
         if 75 <= event.x <= 240 and 220 <= event.y <= 265:
             #On button click, turn button to red
@@ -335,12 +337,12 @@ class OverviewFrame(tk.Frame):
         # Initialize the background image with buttons/text
         self.init_images()
 
+        #Place image onto frame
         self.overview_label = tk.Label(self, image=self.tk_background_image)
         self.overview_label.place(height=BACKGROUND_IMAGE_HEIGHT, 
                                width=1366 - SCREEN_OFFSET)
 
-        # Adding functionality to buttons
-
+        # Adding functionality to back button
         self.overview_label.bind('<Button-1>', self.on_click)
 
     def init_images(self):
@@ -421,12 +423,80 @@ class AchievementsFrame(tk.Frame):
         # Initialize the background image with buttons/text
         self.init_images()
 
+        # Place image onto frame using label
         self.achievements_label = tk.Label(self, image=self.tk_background_image)
         self.achievements_label.place(height=BACKGROUND_IMAGE_HEIGHT, 
-                               width=1366 - SCREEN_OFFSET)
+                               width=PC_WIDTH - SCREEN_OFFSET)
 
-        # Adding functionality to buttons
+        # Adding functionality to back button
         self.achievements_label.bind('<Button-1>', self.on_click)
+
+        # Create scrollable frame to display achievements
+        self.sbf = ScrollbarFrame(self, height = 400, width = 500, 
+                                  background = 'black')
+        scroll_frame = self.sbf.scrolled_frame
+
+        # Place at center of parent frame
+        self.sbf.place(relx=0.5, rely=0.5, anchor=CENTER)
+
+        # Fonts for achievement information
+        title_font = font.Font(family='Helvetica',
+                                            size=12, weight='bold')
+        desc_font = font.Font(family='Helvetica', 
+                                            size=12)
+
+        # Some example data, layed out onto the sbf.scrolled_frame
+        example_img = Image.open('./Images/silver_fragment.png')
+        example_img.thumbnail((50, 50), Image.BICUBIC)
+        self.example_img = ImageTk.PhotoImage(example_img)
+
+        row = 1
+        while row <= 50:
+            frame1 = tk.Frame(scroll_frame, bd=2, relief = 'solid', 
+                             background=self.sbf.scrolled_frame \
+                             .cget('bg'))
+            frame1.grid(row=row, column=0, sticky='NW')
+            frame1.bind_all('<Button-1>', self.on_click)
+
+            text = "Achievement Title " + str(row)
+            title=tk.Label(frame1, text=text, anchor=W, fg='white',
+                      height=1, font=title_font,
+                      bg=self.sbf.scrolled_frame.cget('bg')) \
+                     .grid(row=0, column=0, sticky=NW)
+
+            text = "How to get achievement\npart 2 of how to get achievement"
+            desc=tk.Label(frame1, text=text, justify=LEFT, anchor=W,
+                     height=2, fg='white',
+                     font=desc_font,
+                     background=self.sbf.scrolled_frame.cget('bg')) \
+                     .grid(row=1, column=0, sticky=NW)
+
+            text = "Reward: "
+            desc=tk.Label(frame1, text=text, anchor=W, fg='white',
+                    height=1, font=desc_font,
+                    bg=self.sbf.scrolled_frame.cget('bg')) \
+                    .grid(row=1, column=1, sticky=NW)
+
+            if (row % 2) == 0:
+                text = "3000 x"
+                desc=tk.Label(frame1, text=text, anchor=E, fg='white',
+                        height=1, width=10,
+                        font=desc_font, 
+                        bg=self.sbf.scrolled_frame.cget('bg')) \
+                        .grid(row=1, column=2, sticky=NW)
+            else:
+                text = "5 x"
+                desc=tk.Label(frame1, text=text, anchor=E, fg='white',
+                         height=1, width=10,
+                         font=desc_font,
+                         background=self.sbf.scrolled_frame.cget('bg')) \
+                         .grid(row=1, column=2, sticky=NW)
+
+            # rowspan=2 is a way of centering a label between two other rows
+            img = tk.Label(frame1, image=self.example_img, anchor=W) \
+                           .grid(row=0, rowspan=2, column = 3, sticky=W)
+
+            row=row+1
 
     def init_images(self):
             """Initializes images and text for this frame.
@@ -508,11 +578,12 @@ class CompletedFrame(tk.Frame):
         # Initialize the background image with buttons/text
         self.init_images()
 
+        #Place image onto frame using label
         self.completed_label = tk.Label(self, image=self.tk_background_image)
         self.completed_label.place(height=BACKGROUND_IMAGE_HEIGHT, 
                                width=1366 - SCREEN_OFFSET)
 
-        # Adding functionality to buttons
+        # Adding functionality to back button
 
         self.completed_label.bind('<Button-1>', self.on_click)
 
@@ -595,11 +666,12 @@ class CreditsFrame(tk.Frame):
         # Initialize the background image with buttons/text
         self.init_images()
 
+        #Place image onto frame using label
         self.credits_label = tk.Label(self, image=self.tk_background_image)
         self.credits_label.place(height=BACKGROUND_IMAGE_HEIGHT, 
                                width=1366 - SCREEN_OFFSET)
 
-        # Adding functionality to buttons
+        # Adding functionality to back button
 
         self.credits_label.bind('<Button-1>', self.on_click)
 
