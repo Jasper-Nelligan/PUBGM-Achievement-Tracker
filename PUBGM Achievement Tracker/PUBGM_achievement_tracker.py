@@ -432,8 +432,8 @@ class AchievementsFrame(tk.Frame):
         self.achievements_label.bind('<Button-1>', self.on_click)
 
         # Create scrollable frame to display achievements
-        self.sbf = ScrollbarFrame(self, height = 400, width = 702, 
-                                  background = '#121111')
+        self.sbf = ScrollbarFrame(self, height = 400, width = 500, 
+                                  background = 'black')
         scroll_frame = self.sbf.scrolled_frame
 
         # Place at center of parent frame
@@ -446,21 +446,9 @@ class AchievementsFrame(tk.Frame):
                                             size=12)
 
         # Some example data, layed out onto the sbf.scrolled_frame
-
-        points_5 = Image.open('./Images/5_points.png')
-        points_30 = Image.open('./Images/30_points.png')
-        silver_fragment = Image.open('./Images/silver_fragment.png')
-        premium_crate = Image.open('./Images/premium_crate.png')
-
-        # Shrinking images
-        for img in (points_5, points_30,
-                    silver_fragment, premium_crate):
-            img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
-
-        self.points_5 = ImageTk.PhotoImage(points_5)
-        self.points_30 = ImageTk.PhotoImage(points_30)
-        self.silver_fragment = ImageTk.PhotoImage(silver_fragment)
-        self.premium_crate = ImageTk.PhotoImage(premium_crate)
+        example_img = Image.open('./Images/silver_fragment.png')
+        example_img.thumbnail((50, 50), Image.BICUBIC)
+        self.example_img = ImageTk.PhotoImage(example_img)
 
         row = 1
         while row <= 50:
@@ -483,50 +471,30 @@ class AchievementsFrame(tk.Frame):
                      background=self.sbf.scrolled_frame.cget('bg')) \
                      .grid(row=1, column=0, sticky=NW)
 
+            text = "Reward: "
+            desc=tk.Label(frame1, text=text, anchor=W, fg='white',
+                    height=1, font=desc_font,
+                    bg=self.sbf.scrolled_frame.cget('bg')) \
+                    .grid(row=1, column=1, sticky=NW)
+
             if (row % 2) == 0:
-                # Padding to seperate achievement info from points
-                text = ""
-                desc=tk.Label(frame1, width=40,
-                        bg=self.sbf.scrolled_frame.cget('bg')) \
-                        .grid(row=1, column=1, sticky=NW)
-
-                # rowspan=2 is a way of centering a label between two other rows
-                img = tk.Label(frame1, image=self.points_5, anchor=W,
-                           borderwidth=0, highlightthickness=0) \
-                           .grid(row=0, rowspan=2, column = 2, sticky=W)
-
                 text = "3000 x"
                 desc=tk.Label(frame1, text=text, anchor=E, fg='white',
                         height=1, width=10,
                         font=desc_font, 
                         bg=self.sbf.scrolled_frame.cget('bg')) \
-                        .grid(row=1, column=4, sticky=NW)
-
-                img = tk.Label(frame1, image=self.silver_fragment, anchor=W,
-                           borderwidth=0, highlightthickness=0) \
-                           .grid(row=0, rowspan=2, column = 5, sticky=W)
-            # Same but with different points and reward
+                        .grid(row=1, column=2, sticky=NW)
             else:
-                text = ""
-                desc=tk.Label(frame1, width=40,
-                        bg=self.sbf.scrolled_frame.cget('bg')) \
-                        .grid(row=1, column=1, sticky=NW)
-
-                img = tk.Label(frame1, image=self.points_30, anchor=W,
-                           borderwidth=0, highlightthickness=0) \
-                           .grid(row=0, rowspan=2, column = 2, sticky=W)
-
                 text = "5 x"
                 desc=tk.Label(frame1, text=text, anchor=E, fg='white',
-                        height=1, width=10,
-                        font=desc_font, 
-                        bg=self.sbf.scrolled_frame.cget('bg')) \
-                        .grid(row=1, column=4, sticky=NW)
+                         height=1, width=10,
+                         font=desc_font,
+                         background=self.sbf.scrolled_frame.cget('bg')) \
+                         .grid(row=1, column=2, sticky=NW)
 
-                # rowspan=2 is a way of centering a label between two other rows
-                img = tk.Label(frame1, image=self.premium_crate, anchor=W,
-                           borderwidth=0, highlightthickness=0) \
-                           .grid(row=0, rowspan=2, column = 5, sticky=W)
+            # rowspan=2 is a way of centering a label between two other rows
+            img = tk.Label(frame1, image=self.example_img, anchor=W) \
+                           .grid(row=0, rowspan=2, column = 3, sticky=W)
 
             row=row+1
 
