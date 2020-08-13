@@ -36,7 +36,7 @@ BUTTON_SIZE = 277, 45
 SCREEN_OFFSET = 16
 
 # Used to create size of window
-BACKGROUND_IMAGE_HEIGHT = 625
+BACKGROUND_IMG_H = 625
 PC_WIDTH = 1366
 
 class AppController(tk.Tk):
@@ -113,7 +113,7 @@ class MainMenuFrame(tk.Frame):
         # Therefore, button clicks are calculated based on this fixed size.
         # Allowing variable window sizes for different screens is a feature 
         # that needs to be added.
-        tk.Frame.__init__(self, parent, height=BACKGROUND_IMAGE_HEIGHT, 
+        tk.Frame.__init__(self, parent, height=BACKGROUND_IMG_H, 
                           width=PC_WIDTH - SCREEN_OFFSET)
 
         # The root, or AppController is the controller for this frame.
@@ -123,7 +123,7 @@ class MainMenuFrame(tk.Frame):
         self.controller = controller
 
         #assigned in init_image()
-        self.tk_background_img = None 
+        self.tk_background = None 
         self.tk_overview_clicked = None
         self.tk_achievements_clicked = None
         self.tk_completed_clicked = None
@@ -137,8 +137,8 @@ class MainMenuFrame(tk.Frame):
 
         # Use self as the parent since we are placing 
         # this label onto the frame
-        self.main_menu_label = tk.Label(self, image=self.tk_background_img)
-        self.main_menu_label.place(height=BACKGROUND_IMAGE_HEIGHT, 
+        self.main_menu_label = tk.Label(self, image=self.tk_background)
+        self.main_menu_label.place(height=BACKGROUND_IMG_H, 
                                width=1366 - SCREEN_OFFSET)
 
         # Adding functionality to back button
@@ -153,7 +153,7 @@ class MainMenuFrame(tk.Frame):
         # self. is used so that background_image is stored
         # as an instance of this class and can be referenced in other
         # methods. 
-        self.background_img = Image.open('./Images/background.png')
+        background_img = Image.open('./Images/background.png')
         program_title_img = Image.open('./Images/program_title.png')
         overview_btn_img = Image.open('./Images/overview.png')
         achievements_btn_img = Image.open('./Images/achievements.png')
@@ -170,16 +170,11 @@ class MainMenuFrame(tk.Frame):
         exit_red_btn_img = Image.open('./Images/exit_red.png')
 
         # Shrinking button images
-        for img in (overview_btn_img, 
-                   achievements_btn_img,
-                   completed_btn_img,
-                   credits_btn_img,
-                   exit_btn_img,
-                   overview_red_btn_img,
-                   achievements_red_btn_img,
-                   completed_red_btn_img,
-                   credits_red_btn_image,
-                   exit_red_btn_img):
+        for img in (overview_btn_img, achievements_btn_img,
+                   completed_btn_img, credits_btn_img,
+                   exit_btn_img, overview_red_btn_img,
+                   achievements_red_btn_img, completed_red_btn_img,
+                   credits_red_btn_image, exit_red_btn_img):
             img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
 
 
@@ -192,17 +187,17 @@ class MainMenuFrame(tk.Frame):
         # then the alpha channel is used as mask.
         # This makes sure that an image with transparent background
         # won't show up with a white background
-        self.background_img.paste(program_title_img, (150, 40), 
+        background_img.paste(program_title_img, (150, 40), 
                                program_title_img)
-        self.background_img.paste(overview_btn_img, (150, 220), 
+        background_img.paste(overview_btn_img, (150, 220), 
                                overview_btn_img)
-        self.background_img.paste(achievements_btn_img, (150, 320), 
+        background_img.paste(achievements_btn_img, (150, 320), 
                                achievements_btn_img)
-        self.background_img.paste(completed_btn_img, (150, 420), 
+        background_img.paste(completed_btn_img, (150, 420), 
                                completed_btn_img)
-        self.background_img.paste(credits_btn_img, (150, 520), 
+        background_img.paste(credits_btn_img, (150, 520), 
                                credits_btn_img)
-        self.background_img.paste(exit_btn_img, (1300, 40), 
+        background_img.paste(exit_btn_img, (1300, 40), 
                                exit_btn_img)
 
         # Convert the Image object into a TkPhoto object
@@ -210,7 +205,7 @@ class MainMenuFrame(tk.Frame):
         # Must use self.tk_background_image to save a
         # reference to the image, otherwise this variable
         # will be garbage collected once the class is exited
-        self.tk_background_img = ImageTk.PhotoImage(self.background_img)
+        self.tk_background = ImageTk.PhotoImage(background_img)
 
         # Placing red buttons over original buttons
 
@@ -226,11 +221,11 @@ class MainMenuFrame(tk.Frame):
 
         # Create copies of background image so button images
         # aren't pasted over the same image
-        overview_clicked = copy.deepcopy(self.background_img)
-        achievements_clicked = copy.deepcopy(self.background_img)
-        completed_clicked = copy.deepcopy(self.background_img)
-        credits_clicked = copy.deepcopy(self.background_img)
-        exit_clicked = copy.deepcopy(self.background_img)
+        overview_clicked = copy.deepcopy(background_img)
+        achievements_clicked = copy.deepcopy(background_img)
+        completed_clicked = copy.deepcopy(background_img)
+        credits_clicked = copy.deepcopy(background_img)
+        exit_clicked = copy.deepcopy(background_img)
 
         # "Overview" is clicked
         overview_clicked.paste(overview_red_btn_img,
@@ -274,7 +269,7 @@ class MainMenuFrame(tk.Frame):
                                       [self.controller.show_frame(
                                           "OverviewFrame"), 
                                        self.main_menu_label.configure(image=
-                                       self.tk_background_img)])
+                                       self.tk_background)])
         #if "Achievements" was clicked 
         elif 75 <= event.x <= 300 and 320 <= event.y <= 365:
             self.main_menu_label.configure(image=
@@ -284,7 +279,7 @@ class MainMenuFrame(tk.Frame):
                                       [self.controller.show_frame(
                                           "AchievementsFrame"), 
                                        self.main_menu_label.configure(image=
-                                       self.tk_background_img)])
+                                       self.tk_background)])
         #if "Completed" was clicked
         elif 75 <= event.x <= 240 and 420 <= event.y <= 465:
             self.main_menu_label.configure(image=
@@ -294,7 +289,7 @@ class MainMenuFrame(tk.Frame):
                                       [self.controller.show_frame(
                                           "CompletedFrame"), 
                                        self.main_menu_label.configure(image=
-                                       self.tk_background_img)])
+                                       self.tk_background)])
         #if "Credits" was clicked
         elif 75 <= event.x <= 197 and 520 <= event.y <= 565:
             self.main_menu_label.configure(image=
@@ -304,7 +299,7 @@ class MainMenuFrame(tk.Frame):
                                       [self.controller.show_frame(
                                           "CreditsFrame"), 
                                        self.main_menu_label.configure(image=
-                                       self.tk_background_img)])
+                                       self.tk_background)])
 
         #if "Exit" is pressed
         elif 1230 <= event.x <= 1290 and 40 <= event.y <= 85:
@@ -325,7 +320,7 @@ class OverviewFrame(tk.Frame):
                 with each other. For this application, the controller is used 
                 to bring a particular frame forward when the user requests it.
         """
-        tk.Frame.__init__(self, parent, height=BACKGROUND_IMAGE_HEIGHT, 
+        tk.Frame.__init__(self, parent, height=BACKGROUND_IMG_H, 
                           width=PC_WIDTH - SCREEN_OFFSET)
 
         self.controller = controller
@@ -338,8 +333,8 @@ class OverviewFrame(tk.Frame):
         self.init_images()
 
         #Place image onto frame
-        self.overview_label = tk.Label(self, image=self.tk_background_image)
-        self.overview_label.place(height=BACKGROUND_IMAGE_HEIGHT, 
+        self.overview_label = tk.Label(self, image=self.tk_background_blur)
+        self.overview_label.place(height=BACKGROUND_IMG_H, 
                                width=1366 - SCREEN_OFFSET)
 
         # Adding functionality to back button
@@ -351,7 +346,7 @@ class OverviewFrame(tk.Frame):
             explanation can be found in MainMenuFrame class.
             """
 
-            self.background_img = Image.open('./Images/background.png')
+            background_blur_img = Image.open('./Images/background_blurred.png')
             back_btn_img = Image.open('./Images/back.png')
 
             # Red buttons will be used to indicate when the user 
@@ -365,22 +360,20 @@ class OverviewFrame(tk.Frame):
                 img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
 
             # Paste button onto background image
-            self.background_img.paste(back_btn_img, (150, 40), 
+            background_blur_img.paste(back_btn_img, (150, 40), 
                                    back_btn_img)
 
             # Convert the Image object into a TkPhoto object
-            self.tk_background_image = ImageTk.PhotoImage(self.background_img)
+            self.tk_background_blur = ImageTk.PhotoImage(background_blur_img)
 
             # Placing red buttons over original buttons
 
             # Create copies of background image so button images
             # aren't pasted over the same image
-            back_clicked = copy.deepcopy(self.background_img)
+            back_clicked = copy.deepcopy(background_blur_img)
         
             # "Back" is clicked
-            back_clicked.paste(back_red_btn_img,
-                                           (150, 40), 
-                                           back_red_btn_img)
+            back_clicked.paste(back_red_btn_img, (150, 40), back_red_btn_img)
             self.tk_back_clicked = ImageTk.PhotoImage(back_clicked)
 
     def on_click(self, event):
@@ -411,34 +404,34 @@ class AchievementsFrame(tk.Frame):
                 with each other. For this application, the controller is used 
                 to bring a particular frame forward when the user requests it.
         """
-        tk.Frame.__init__(self, parent, height=BACKGROUND_IMAGE_HEIGHT, 
+        tk.Frame.__init__(self, parent, height=BACKGROUND_IMG_H, 
                           width=PC_WIDTH - SCREEN_OFFSET)
 
         self.controller = controller
 
         #assigned in init_image()
-        self.tk_background_img = None 
+        self.tk_background_blur = None 
         self.tk_back_clicked = None
 
         # Initialize the background image with buttons/text
         self.init_images()
 
         # Place image onto frame using label
-        self.achievements_label = tk.Label(self, image=self.tk_background_image)
-        self.achievements_label.place(height=BACKGROUND_IMAGE_HEIGHT, 
+        self.achievements_label = tk.Label(self, image=self.tk_background_blur)
+        self.achievements_label.place(height=BACKGROUND_IMG_H, 
                                width=PC_WIDTH - SCREEN_OFFSET)
 
         # Adding functionality to back button
         self.achievements_label.bind('<Button-1>', self.on_click)
 
         # Create scrollable frame to display achievements
-        self.sbf = ScrollbarFrame(self, height = 400, width = 702, 
+        self.sbf = ScrollbarFrame(self, height = 500, width = 702, 
                                   background = '#121111')
 
         scroll_frame = self.sbf.scrolled_frame
 
         # Place at center of parent frame
-        self.sbf.place(relx=0.5, rely=0.5, anchor=CENTER)
+        self.sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
 
         # Fonts for achievement information
         title_font = font.Font(family='Helvetica',
@@ -542,36 +535,70 @@ class AchievementsFrame(tk.Frame):
             MainMenuFrame class.
             """
 
-            self.background_img = Image.open('./Images/background.png')
+            background_blur_img = Image.open('./Images/background_blurred.png')
             back_btn_img = Image.open('./Images/back.png')
-
+            G_M_img = Image.open('./Images/glorious_moments.png')
+            matches_img = Image.open('./Images/matches.png')
+            honor_img = Image.open('./Images/honor.png')
+            progress_img = Image.open('./Images/progress.png')
+            items_img = Image.open('./Images/items.png')
+            social_img = Image.open('./Images/social.png')
+            general_img = Image.open('./Images/general.png')
             # Red buttons will be used to indicate when the user 
             # has clicked a button. These images are used in the 
             # change_button_to_red() method
-            back_red_btn_img = Image.open('./Images/back_red.png')
+            back_btn_red_img = Image.open('./Images/back_red.png')
+            G_M_red_img = Image.open('./Images/glorious_moments_red.png')
+            matches_red_img = Image.open('./Images/matches_red.png')
+            honor_red_img = Image.open('./Images/honor_red.png')
+            progress_red_img = Image.open('./Images/progress_red.png')
+            items_red_img = Image.open('./Images/items_red.png')
+            social_red_img = Image.open('./Images/social_red.png')
+            general_red_img = Image.open('./Images/general_red.png')
 
-            # Shrinking button images
-            for img in (back_btn_img,
-                        back_red_btn_img):
-                img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
+            # shrinking back button
+            back_btn_img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
+            back_btn_red_img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
+
+            # Shrinking category images
+            for img in (G_M_img, G_M_red_img,
+                       matches_img, matches_red_img, honor_img, honor_red_img,
+                       progress_img, progress_red_img, items_img, 
+                       items_red_img, social_img, social_red_img, 
+                       general_img, general_red_img):
+                img.thumbnail((277, 30), Image.BICUBIC)
 
             # Paste button onto background image
-            self.background_img.paste(back_btn_img, (150, 40), 
+            background_blur_img.paste(back_btn_img, (150, 40), 
                                    back_btn_img)
+            background_blur_img.paste(G_M_img, (980, 90),
+                                   G_M_img)
+            background_blur_img.paste(matches_img, (980, 155),
+                                   matches_img)
+            background_blur_img.paste(honor_img, (980, 225),
+                                   honor_img)
+            background_blur_img.paste(progress_img, (980, 295),
+                                   progress_img)
+            background_blur_img.paste(items_img, (980, 365),
+                                   items_img)
+            background_blur_img.paste(social_img, (980, 435),
+                                   social_img)
+            background_blur_img.paste(general_img, (980, 505),
+                                   general_img)
 
             # Convert the Image object into a TkPhoto object
-            self.tk_background_image = ImageTk.PhotoImage(self.background_img)
+            self.tk_background_blur = ImageTk.PhotoImage(background_blur_img)
 
             # Placing red buttons over original buttons
 
             # Create copies of background image so button images
             # aren't pasted over the same image
-            back_clicked = copy.deepcopy(self.background_img)
+            back_clicked = copy.deepcopy(background_blur_img)
         
             # "Back" is clicked
-            back_clicked.paste(back_red_btn_img,
+            back_clicked.paste(back_btn_red_img,
                                            (150, 40), 
-                                           back_red_btn_img)
+                                           back_btn_red_img)
             self.tk_back_clicked = ImageTk.PhotoImage(back_clicked)
 
     def on_click(self, event):
@@ -589,9 +616,28 @@ class AchievementsFrame(tk.Frame):
                                       [self.controller.show_frame(
                                           "MainMenuFrame"), 
                                        self.achievements_label.configure(image=
-                                       self.tk_background_img)])
-
-
+                                       self.tk_background_blur)])
+        # if "Glorious Moments" was clicked
+        if 900 <= event.x <= 1100 and 90 <= event.y <= 120:
+            print("Glorious Moments clicked")
+        # if "Matches" was clicked
+        elif 900 <= event.x <= 1000 and 155 <= event.y <= 185:
+            print("Matches clicked")
+        # if "Honor" was clicked
+        elif 900 <= event.x <= 975 and 225 <= event.y <= 255:
+            print("Honor clicked")
+        # if "Progress" was clicked
+        elif 900 <= event.x <= 1010 and 295 <= event.y <= 325:
+            print("Progress clicked")
+        # if "Items" was clicked
+        elif 900 <= event.x <= 965 and 365 <= event.y <= 395:
+            print("Items clicked")
+        # if "Social" was clicked
+        elif 900 <= event.x <= 975 and 435 <= event.y <= 465:
+            print("Social clicked")
+        # if "General" was clicked
+        elif 900 <= event.x <= 995 and 505 <= event.y <= 535:
+            print("General clicked")
 class CompletedFrame(tk.Frame):
     
     def __init__(self, parent, controller):
@@ -603,7 +649,7 @@ class CompletedFrame(tk.Frame):
                 with each other. For this application, the controller is used 
                 to bring a particular frame forward when the user requests it.
         """
-        tk.Frame.__init__(self, parent, height=BACKGROUND_IMAGE_HEIGHT, 
+        tk.Frame.__init__(self, parent, height=BACKGROUND_IMG_H, 
                           width=PC_WIDTH - SCREEN_OFFSET)
 
         self.controller = controller
@@ -616,8 +662,8 @@ class CompletedFrame(tk.Frame):
         self.init_images()
 
         #Place image onto frame using label
-        self.completed_label = tk.Label(self, image=self.tk_background_image)
-        self.completed_label.place(height=BACKGROUND_IMAGE_HEIGHT, 
+        self.completed_label = tk.Label(self, image=self.tk_background_blur)
+        self.completed_label.place(height=BACKGROUND_IMG_H, 
                                width=1366 - SCREEN_OFFSET)
 
         # Adding functionality to back button
@@ -630,7 +676,7 @@ class CompletedFrame(tk.Frame):
             explanation can be found in MainMenuFrame class.
             """
 
-            self.background_img = Image.open('./Images/background.png')
+            background_blur_img = Image.open('./Images/background_blurred.png')
             back_btn_img = Image.open('./Images/back.png')
 
             # Red buttons will be used to indicate when the user 
@@ -644,17 +690,17 @@ class CompletedFrame(tk.Frame):
                 img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
 
             # Paste button onto background image
-            self.background_img.paste(back_btn_img, (150, 40), 
+            background_blur_img.paste(back_btn_img, (150, 40), 
                                    back_btn_img)
 
             # Convert the Image object into a TkPhoto object
-            self.tk_background_image = ImageTk.PhotoImage(self.background_img)
+            self.tk_background_blur = ImageTk.PhotoImage(background_blur_img)
 
             # Placing red buttons over original buttons
 
             # Create copies of background image so button images
             # aren't pasted over the same image
-            back_clicked = copy.deepcopy(self.background_img)
+            back_clicked = copy.deepcopy(background_blur_img)
         
             # "Back" is clicked
             back_clicked.paste(back_red_btn_img,
@@ -691,7 +737,7 @@ class CreditsFrame(tk.Frame):
                 with each other. For this application, the controller is used 
                 to bring a particular frame forward when the user requests it.
         """
-        tk.Frame.__init__(self, parent, height=BACKGROUND_IMAGE_HEIGHT, 
+        tk.Frame.__init__(self, parent, height=BACKGROUND_IMG_H, 
                           width=PC_WIDTH - SCREEN_OFFSET)
 
         self.controller = controller
@@ -704,8 +750,8 @@ class CreditsFrame(tk.Frame):
         self.init_images()
 
         #Place image onto frame using label
-        self.credits_label = tk.Label(self, image=self.tk_background_image)
-        self.credits_label.place(height=BACKGROUND_IMAGE_HEIGHT, 
+        self.credits_label = tk.Label(self, image=self.tk_background_blur)
+        self.credits_label.place(height=BACKGROUND_IMG_H, 
                                width=1366 - SCREEN_OFFSET)
 
         # Adding functionality to back button
@@ -718,7 +764,7 @@ class CreditsFrame(tk.Frame):
             explanation can be found in MainMenuFrame class.
             """
 
-            self.background_img = Image.open('./Images/background.png')
+            background_blur_img = Image.open('./Images/background.png')
             back_btn_img = Image.open('./Images/back.png')
 
             # Red buttons will be used to indicate when the user 
@@ -732,22 +778,21 @@ class CreditsFrame(tk.Frame):
                 img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
 
             # Paste button onto background image
-            self.background_img.paste(back_btn_img, (150, 40), 
+            background_blur_img.paste(back_btn_img, (150, 40), 
                                    back_btn_img)
 
             # Convert the Image object into a TkPhoto object
-            self.tk_background_image = ImageTk.PhotoImage(self.background_img)
+            self.tk_background_blur = ImageTk.PhotoImage(background_blur_img)
 
             # Placing red buttons over original buttons
 
             # Create copies of background image so button images
             # aren't pasted over the same image
-            back_clicked = copy.deepcopy(self.background_img)
+            back_clicked = copy.deepcopy(background_blur_img)
         
             # "Back" is clicked
-            back_clicked.paste(back_red_btn_img,
-                                           (150, 40), 
-                                           back_red_btn_img)
+            back_clicked.paste(back_red_btn_img, (150, 40), 
+                               back_red_btn_img)
             self.tk_back_clicked = ImageTk.PhotoImage(back_clicked)
 
     def on_click(self, event):
