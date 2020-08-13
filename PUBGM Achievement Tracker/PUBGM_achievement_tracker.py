@@ -457,6 +457,11 @@ class AchievementsFrame(tk.Frame):
                     silver_fragment, premium_crate):
             img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
 
+        points_5.thumbnail((40,40), Image.BICUBIC)
+        points_30.thumbnail((40,40), Image.BICUBIC)
+        silver_fragment.thumbnail((50, 50), Image.BICUBIC)
+        premium_crate.thumbnail((50, 50), Image.BICUBIC)
+
         self.points_5 = ImageTk.PhotoImage(points_5)
         self.points_30 = ImageTk.PhotoImage(points_30)
         self.silver_fragment = ImageTk.PhotoImage(silver_fragment)
