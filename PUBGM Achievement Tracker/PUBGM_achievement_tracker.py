@@ -78,7 +78,7 @@ class AppController(tk.Tk):
             # Create an instance of each frame
             frame = F(parent=container, controller=self)
             # Input frame into dictionary
-            self.frames[page_name] = frame  #input frame into dictionary
+            self.frames[page_name] = frame
 
             # Put all of the pages in the same location;
             # the one on the top of the stacking order
@@ -411,31 +411,38 @@ class AchievementsFrame(tk.Frame):
         # Initialize the background image with buttons/text
         self.init_images()
 
-        # Place image onto frame using label
+        # Place background image onto frame using label
         self.achievements_label = tk.Label(self, image=self.tk_background_blur)
         self.achievements_label.place(height=BACKGROUND_IMG_H, 
                                width=PC_WIDTH - SCREEN_OFFSET)
 
         # Adding functionality to back button
         self.achievements_label.bind('<Button-1>', self.on_click)
+        
+        # assigned in init_categories()
+        self.GM_sbf = None
+        self.matches_sbf = None
+        self.honor_sbf = None
+        self.progress_sbf = None
+        self.items_sbf = None
+        self.social_sbf = None
+        self.general_sbf = None
+        self.cur_category = None
 
-        # Glorious Moments starting category shown
-        # self.achievements_label.configure(image=self.tk_G_M_clicked)
+        self.init_categories()
 
-        # Create scrollable frame to display achievements
-        self.sbf = ScrollbarFrame(self, height = 500, width = 702, 
-                                  background = '#121111')
-
-        scroll_frame = self.sbf.scrolled_frame
-
-        # Place at center of parent frame
-        self.sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
+        # Populating categories with example achievements
 
         # Fonts for achievement information
         title_font = font.Font(family='Helvetica',
                                             size=12, weight='bold')
         desc_font = font.Font(family='Helvetica', 
                                             size=12)
+
+        ## GM is the default category shown 
+        #self.show_category("GM")
+
+        #category_frame.tkraise()
 
         # Some example data, layed out onto the sbf.scrolled_frame
 
@@ -462,190 +469,312 @@ class AchievementsFrame(tk.Frame):
         # Each widget is binded to on click, so that whenver the user clicks
         # anywhere on the achievement, another frame is raised to show 
         # information for this achievement.
+        GM_frame = self.GM_sbf.scrolled_frame
         row = 1
         while row <= 50:
-            frame1 = tk.Frame(scroll_frame, bd=2, relief = 'solid', height = 500, width = 702,
-                             background=self.sbf.scrolled_frame \
-                             .cget('bg'))
-            frame1.grid(row=row, column=0, sticky='NW')
-            frame1.bind('<Button-1>', self.on_click)
-
-            text = "Achievement Title " + str(row)
-            title=tk.Label(frame1, text=text, anchor=W, fg='white',
-                      height=1, font=title_font,
-                      bg=self.sbf.scrolled_frame.cget('bg'))
-            title.grid(row=0, column=0, sticky=NW)
-            title.bind('<Button-1>', self.on_click)
-
-            text = "How to get achievement\npart 2 of how to get achievement"
-            desc=tk.Label(frame1, text=text, justify=LEFT, anchor=W,
-                     height=2, fg='white',
-                     font=desc_font,
-                     background=self.sbf.scrolled_frame.cget('bg'))
-            desc.grid(row=1, column=0, sticky=NW)
-            desc.bind('<Button-1>', self.on_click)
-
             if (row % 2) == 0:
+                achievement = tk.Frame(GM_frame, bd=2, relief = 'solid', 
+                                 height = 500, width = 702,
+                                 background=self.GM_sbf.scrolled_frame \
+                                 .cget('bg'))
+                achievement.grid(row=row, column=0, sticky='NW')
+                achievement.bind('<Button-1>', self.on_click)
+
+                text = "Achievement Title " + str(row)
+                title=tk.Label(achievement, text=text, anchor=W, fg='white',
+                          height=1, font=title_font,
+                          bg=self.GM_sbf.scrolled_frame.cget('bg'))
+                title.grid(row=0, column=0, sticky=NW)
+                title.bind('<Button-1>', self.on_click)
+
+                text = "How to get achievement\npart 2 of how to get achievement"
+                desc=tk.Label(achievement, text=text, justify=LEFT, anchor=W,
+                         height=2, fg='white',
+                         font=desc_font,
+                         background=self.GM_sbf.scrolled_frame.cget('bg'))
+                desc.grid(row=1, column=0, sticky=NW)
+                desc.bind('<Button-1>', self.on_click)
+
                 # Padding to seperate achievement info from points
                 text = ""
-                desc=tk.Label(frame1, width=40,
-                        bg=self.sbf.scrolled_frame.cget('bg'))
+                desc=tk.Label(achievement, width=40,
+                        bg=self.GM_sbf.scrolled_frame.cget('bg'))
                 desc.grid(row=1, column=1, sticky=NW)
                 desc.bind('<Button-1>', self.on_click)
                 # rowspan=2 is a way of centering a label between two other rows
-                img = tk.Label(frame1, image=self.points_5, anchor=W,
+                img = tk.Label(achievement, image=self.points_5, anchor=W,
                            borderwidth=0, highlightthickness=0)
                 img.grid(row=0, rowspan=2, column = 2, sticky=W)
                 img.bind('<Button-1>', self.on_click)
                 text = "3000 x"
-                desc=tk.Label(frame1, text=text, anchor=E, fg='white',
+                desc=tk.Label(achievement, text=text, anchor=E, fg='white',
                         height=1, width=10, font=desc_font, 
-                        bg=self.sbf.scrolled_frame.cget('bg'))
+                        bg=self.GM_sbf.scrolled_frame.cget('bg'))
                 desc.grid(row=1, column=3, sticky=NW)
                 desc.bind('<Button-1>', self.on_click)
-                img = tk.Label(frame1, image=self.silver_fragment, anchor=W,
+                img = tk.Label(achievement, image=self.silver_fragment, anchor=W,
                            borderwidth=0, highlightthickness=0)
                 img.grid(row=0, rowspan=2, column = 4, sticky=W)
                 img.bind('<Button-1>', self.on_click)
             # Same but with different points and reward
             else:
+                achievement = tk.Frame(GM_frame, bd=2, relief = 'solid', height = 500, width = 702,
+                                 background=self.GM_sbf.scrolled_frame.cget('bg'))
+                achievement.grid(row=row, column=0, sticky='NW')
+                achievement.bind('<Button-1>', self.on_click)
+
+                text = "Achievement Title " + str(row)
+                title=tk.Label(achievement, text=text, anchor=W, fg='white',
+                          height=1, font=title_font,
+                          bg=self.GM_sbf.scrolled_frame.cget('bg'))
+                title.grid(row=0, column=0, sticky=NW)
+                title.bind('<Button-1>', self.on_click)
+
+                text = "How to get achievement\npart 2 of how to get achievement"
+                desc=tk.Label(achievement, text=text, justify=LEFT, anchor=W,
+                         height=2, fg='white',
+                         font=desc_font,
+                         background=self.GM_sbf.scrolled_frame.cget('bg'))
+                desc.grid(row=1, column=0, sticky=NW)
+                desc.bind('<Button-1>', self.on_click)
+
                 text = ""
-                desc=tk.Label(frame1, width=40,
-                        bg=self.sbf.scrolled_frame.cget('bg'))
+                desc=tk.Label(achievement, width=40,
+                        bg=self.GM_sbf.scrolled_frame.cget('bg'))
                 desc.grid(row=1, column=1, sticky=NW)
                 desc.bind('<Button-1>', self.on_click)
-                img = tk.Label(frame1, image=self.points_30, anchor=W,
+                img = tk.Label(achievement, image=self.points_30, anchor=W,
                            borderwidth=0, highlightthickness=0)
                 img.grid(row=0, rowspan=2, column = 2, sticky=W)
                 img.bind('<Button-1>', self.on_click)
                 text = "5 x"
-                desc=tk.Label(frame1, text=text, anchor=E, fg='white',
+                desc=tk.Label(achievement, text=text, anchor=E, fg='white',
                         height=1, width=10,
                         font=desc_font, 
-                        bg=self.sbf.scrolled_frame.cget('bg'))
+                        bg=self.GM_sbf.scrolled_frame.cget('bg'))
                 desc.grid(row=1, column=3, sticky=NW)
                 desc.bind('<Button-1>', self.on_click)
                 # rowspan=2 is a way of centering a label between two other rows
-                img = tk.Label(frame1, image=self.premium_crate, anchor=W,
+                img = tk.Label(achievement, image=self.premium_crate, anchor=W,
                            borderwidth=0, highlightthickness=0)
                 img.grid(row=0, rowspan=2, column = 4, sticky=W)
                 img.bind('<Button-1>', self.on_click)
             row=row+1
-
+        
     def init_images(self):
-            """Initializes images and text for this frame.
+        """Initializes images and text for this frame.
 
             Similar code with further explanation can be found in 
             MainMenuFrame class.
             """
 
-            background_blur_img = Image.open('./Images/background_blurred.png')
-            back_btn_img = Image.open('./Images/back.png')
-            G_M_img = Image.open('./Images/glorious_moments.png')
-            matches_img = Image.open('./Images/matches.png')
-            honor_img = Image.open('./Images/honor.png')
-            progress_img = Image.open('./Images/progress.png')
-            items_img = Image.open('./Images/items.png')
-            social_img = Image.open('./Images/social.png')
-            general_img = Image.open('./Images/general.png')
-            # Red buttons will be used to indicate when the user 
-            # has clicked a button. These images are used in the 
-            # change_button_to_red() method
-            back_btn_red_img = Image.open('./Images/back_red.png')
-            G_M_red_img = Image.open('./Images/glorious_moments_red.png')
-            matches_red_img = Image.open('./Images/matches_red.png')
-            honor_red_img = Image.open('./Images/honor_red.png')
-            progress_red_img = Image.open('./Images/progress_red.png')
-            items_red_img = Image.open('./Images/items_red.png')
-            social_red_img = Image.open('./Images/social_red.png')
-            general_red_img = Image.open('./Images/general_red.png')
+        background_blur_img = Image.open('./Images/background_blurred.png')
+        back_btn_img = Image.open('./Images/back.png')
+        GM_img = Image.open('./Images/glorious_moments.png')
+        matches_img = Image.open('./Images/matches.png')
+        honor_img = Image.open('./Images/honor.png')
+        progress_img = Image.open('./Images/progress.png')
+        items_img = Image.open('./Images/items.png')
+        social_img = Image.open('./Images/social.png')
+        general_img = Image.open('./Images/general.png')
+        # Red buttons will be used to indicate when the user 
+        # has clicked a button. These images are used in the 
+        # change_button_to_red() method
+        back_btn_red_img = Image.open('./Images/back_red.png')
+        G_M_red_img = Image.open('./Images/glorious_moments_red.png')
+        matches_red_img = Image.open('./Images/matches_red.png')
+        honor_red_img = Image.open('./Images/honor_red.png')
+        progress_red_img = Image.open('./Images/progress_red.png')
+        items_red_img = Image.open('./Images/items_red.png')
+        social_red_img = Image.open('./Images/social_red.png')
+        general_red_img = Image.open('./Images/general_red.png')
 
-            # shrinking back button
-            back_btn_img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
-            back_btn_red_img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
+        # shrinking back button
+        back_btn_img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
+        back_btn_red_img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
 
-            # Shrinking category images
-            for img in (G_M_img, G_M_red_img,
-                       matches_img, matches_red_img, honor_img, honor_red_img,
-                       progress_img, progress_red_img, items_img, 
-                       items_red_img, social_img, social_red_img, 
-                       general_img, general_red_img):
-                img.thumbnail((277, 30), Image.BICUBIC)
+        # Shrinking category images
+        for img in (GM_img, G_M_red_img,
+                    matches_img, matches_red_img, honor_img, honor_red_img,
+                    progress_img, progress_red_img, items_img, 
+                    items_red_img, social_img, social_red_img, 
+                    general_img, general_red_img):
+            img.thumbnail((277, 30), Image.BICUBIC)
 
-            # Paste button onto background image
-            background_blur_img.paste(back_btn_img, (150, 40), 
-                                   back_btn_img)
-            background_blur_img.paste(G_M_img, (980, 90),
-                                   G_M_img)
-            background_blur_img.paste(matches_img, (980, 155),
-                                   matches_img)
-            background_blur_img.paste(honor_img, (980, 225),
-                                   honor_img)
-            background_blur_img.paste(progress_img, (980, 295),
-                                   progress_img)
-            background_blur_img.paste(items_img, (980, 365),
-                                   items_img)
-            background_blur_img.paste(social_img, (980, 435),
-                                   social_img)
-            background_blur_img.paste(general_img, (980, 505),
-                                   general_img)
+        # Paste button onto background image
+        background_blur_img.paste(back_btn_img, (150, 40), 
+                                back_btn_img)
+        background_blur_img.paste(GM_img, (980, 90),
+                                GM_img)
+        background_blur_img.paste(matches_img, (980, 155),
+                                matches_img)
+        background_blur_img.paste(honor_img, (980, 225),
+                                honor_img)
+        background_blur_img.paste(progress_img, (980, 295),
+                                progress_img)
+        background_blur_img.paste(items_img, (980, 365),
+                                items_img)
+        background_blur_img.paste(social_img, (980, 435),
+                                social_img)
+        background_blur_img.paste(general_img, (980, 505),
+                                general_img)
 
-            # Create copies of background image so button images
-            # aren't pasted over the same image
-            back_clicked = copy.deepcopy(background_blur_img)
-            G_M_clicked = copy.deepcopy(background_blur_img)
-            matches_clicked = copy.deepcopy(background_blur_img)
-            honor_clicked = copy.deepcopy(background_blur_img)
-            progress_clicked = copy.deepcopy(background_blur_img)
-            items_clicked = copy.deepcopy(background_blur_img)
-            social_clicked = copy.deepcopy(background_blur_img)
-            general_clicked = copy.deepcopy(background_blur_img)
+        # Create copies of background image so button images
+        # aren't pasted over the same image
+        back_clicked = copy.deepcopy(background_blur_img)
+        GM_clicked = copy.deepcopy(background_blur_img)
+        matches_clicked = copy.deepcopy(background_blur_img)
+        honor_clicked = copy.deepcopy(background_blur_img)
+        progress_clicked = copy.deepcopy(background_blur_img)
+        items_clicked = copy.deepcopy(background_blur_img)
+        social_clicked = copy.deepcopy(background_blur_img)
+        general_clicked = copy.deepcopy(background_blur_img)
 
-            # Glorious Moments starts off as being clicked (red)
-            background_blur_img.paste(G_M_red_img, (980, 90),
-                                   G_M_red_img)
+        # Glorious Moments starts off as being clicked (red)
+        background_blur_img.paste(G_M_red_img, (980, 90),
+                                G_M_red_img)
 
-            # Convert background image into a TkPhoto object
-            self.tk_background_blur = ImageTk.PhotoImage(background_blur_img)
+        # Convert background image into a TkPhoto object
+        self.tk_background_blur = ImageTk.PhotoImage(background_blur_img)
 
-            # Placing red buttons over original buttons
+        # Placing red buttons over original buttons
         
-            # Pasting button images over original buttons
-            back_clicked.paste(back_btn_red_img,
-                                           (150, 40), 
-                                           back_btn_red_img)
-            self.tk_back_clicked = ImageTk.PhotoImage(back_clicked)
-            G_M_clicked.paste(G_M_red_img,
-                                           (980, 90), 
-                                           G_M_red_img)
-            self.tk_G_M_clicked = ImageTk.PhotoImage(G_M_clicked)
-            matches_clicked.paste(matches_red_img,
-                                           (980, 155), 
-                                           matches_red_img)
-            self.tk_matches_clicked = ImageTk.PhotoImage(matches_clicked)
-            honor_clicked.paste(honor_red_img,
-                                           (980, 225), 
-                                           honor_red_img)
-            self.tk_honor_clicked = ImageTk.PhotoImage(honor_clicked)
-            progress_clicked.paste(progress_red_img,
-                                           (980, 295), 
-                                           progress_red_img)
-            self.tk_progress_clicked = ImageTk.PhotoImage(progress_clicked)
-            items_clicked.paste(items_red_img,
-                                           (980, 365), 
-                                           items_red_img)
-            self.tk_items_clicked = ImageTk.PhotoImage(items_clicked)
-            social_clicked.paste(social_red_img,
-                                           (980, 435), 
-                                           social_red_img)
-            self.tk_social_clicked = ImageTk.PhotoImage(social_clicked)
-            general_clicked.paste(general_red_img,
-                                           (980, 505), 
-                                           general_red_img)
-            self.tk_general_clicked = ImageTk.PhotoImage(general_clicked)
+        # Pasting button images over original buttons
+        back_clicked.paste(back_btn_red_img,
+                                        (150, 40), 
+                                        back_btn_red_img)
+        self.tk_back_clicked = ImageTk.PhotoImage(back_clicked)
+        GM_clicked.paste(G_M_red_img,
+                                        (980, 90), 
+                                        G_M_red_img)
+        self.tk_GM_clicked = ImageTk.PhotoImage(GM_clicked)
+        matches_clicked.paste(matches_red_img,
+                                        (980, 155), 
+                                        matches_red_img)
+        self.tk_matches_clicked = ImageTk.PhotoImage(matches_clicked)
+        honor_clicked.paste(honor_red_img,
+                                        (980, 225), 
+                                        honor_red_img)
+        self.tk_honor_clicked = ImageTk.PhotoImage(honor_clicked)
+        progress_clicked.paste(progress_red_img,
+                                        (980, 295), 
+                                        progress_red_img)
+        self.tk_progress_clicked = ImageTk.PhotoImage(progress_clicked)
+        items_clicked.paste(items_red_img,
+                                        (980, 365), 
+                                        items_red_img)
+        self.tk_items_clicked = ImageTk.PhotoImage(items_clicked)
+        social_clicked.paste(social_red_img,
+                                        (980, 435), 
+                                        social_red_img)
+        self.tk_social_clicked = ImageTk.PhotoImage(social_clicked)
+        general_clicked.paste(general_red_img,
+                                        (980, 505), 
+                                        general_red_img)
+        self.tk_general_clicked = ImageTk.PhotoImage(general_clicked)
+    
+    def init_categories(self):
+        """Initalizes achievement categories"""
 
-            # Glorious Moments starting category shown
-            #self.achievements_label.configure(image=self.tk_G_M_clicked)
+        # Fonts for achievement information
+        title_font = font.Font(family='Helvetica',
+                                            size=12, weight='bold')
+        desc_font = font.Font(family='Helvetica', 
+                                            size=12)
+
+
+        self.GM_sbf = ScrollbarFrame(self, height = 500, width = 702, 
+                                 background = '#121111')
+        self.GM_sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
+
+
+        self.matches_sbf = ScrollbarFrame(self, height = 500, width = 702, 
+                                 background = '#121111')
+        matches_frame = self.matches_sbf.scrolled_frame # line can be deleted
+        self.matches_sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
+        for row in range(50): # can be deleted
+            text = "matches"
+            title=tk.Label(matches_frame, text=text, anchor=W, fg='white',
+                              height=1, font=title_font,
+                              bg=self.matches_sbf.scrolled_frame.cget('bg'))
+            title.grid(row=row, column=0, sticky=NW)
+
+
+        self.honor_sbf = ScrollbarFrame(self, height = 500, width = 702, 
+                                 background = '#121111')
+        honor_frame = self.honor_sbf.scrolled_frame # line can be deleted
+        self.honor_sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
+        for row in range(50): #can be deleted
+            text = "honor"
+            title=tk.Label(honor_frame, text=text, anchor=W, fg='white',
+                              height=1, font=title_font,
+                              bg=self.matches_sbf.scrolled_frame.cget('bg'))
+            title.grid(row=row, column=0, sticky=NW)
+
+
+        self.progress_sbf = ScrollbarFrame(self, height = 500, width = 702, 
+                                 background = '#121111')
+        progress_frame = self.progress_sbf.scrolled_frame # delete later
+        self.progress_sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
+        for row in range(50): #can be deleted
+            text = "progress"
+            title=tk.Label(progress_frame, text=text, anchor=W, fg='white',
+                              height=1, font=title_font,
+                              bg=self.matches_sbf.scrolled_frame.cget('bg'))
+            title.grid(row=row, column=0, sticky=NW)
+
+
+        self.items_sbf = ScrollbarFrame(self, height = 500, width = 702, 
+                                 background = '#121111')
+        items_frame = self.items_sbf.scrolled_frame # delete later
+        self.items_sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
+        for row in range(50): #can be deleted
+            text = "items"
+            title=tk.Label(items_frame, text=text, anchor=W, fg='white',
+                              height=1, font=title_font,
+                              bg=self.matches_sbf.scrolled_frame.cget('bg'))
+            title.grid(row=row, column=0, sticky=NW)
+
+
+        self.social_sbf = ScrollbarFrame(self, height = 500, width = 702, 
+                                 background = '#121111')
+        social_frame = self.social_sbf.scrolled_frame # delete later
+        self.social_sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
+        for row in range(50): #can be deleted
+            text = "social"
+            title=tk.Label(social_frame, text=text, anchor=W, fg='white',
+                              height=1, font=title_font,
+                              bg=self.matches_sbf.scrolled_frame.cget('bg'))
+            title.grid(row=row, column=0, sticky=NW)
+
+
+        self.general_sbf = ScrollbarFrame(self, height = 500, width = 702, 
+                                 background = '#121111')
+        general_frame = self.general_sbf.scrolled_frame # delete later
+        self.general_sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
+        for row in range(50): #can be deleted
+            text = "general"
+            title=tk.Label(general_frame, text=text, anchor=W, fg='white',
+                              height=1, font=title_font,
+                              bg=self.matches_sbf.scrolled_frame.cget('bg'))
+            title.grid(row=row, column=0, sticky=NW)
+
+
+        self.categories = {}
+
+        # Attach a variable to each frame for reference
+        self.categories['GM'] = self.GM_sbf
+        self.categories['matches'] = self.matches_sbf
+        self.categories['honor'] = self.honor_sbf
+        self.categories['progress'] = self.progress_sbf
+        self.categories['items'] = self.items_sbf
+        self.categories['social'] = self.social_sbf
+        self.categories['general'] = self.general_sbf
+
+        # Glorious Moments will always be the starting category
+        self.cur_category = self.GM_sbf
+        self.show_category('GM')
+
 
     def on_click(self, event):
         """Turns the clicked on button to red and raises the corresponding 
@@ -668,31 +797,51 @@ class AchievementsFrame(tk.Frame):
         # if "Glorious Moments" was clicked
         elif 900 <= event.x <= 1100 and 90 <= event.y <= 120:
             print("Glorious Moments clicked")
-            self.achievements_label.configure(image=self.tk_G_M_clicked)
+            self.achievements_label.configure(image=self.tk_GM_clicked)
+            self.show_category("GM")
         # if "Matches" was clicked
         elif 900 <= event.x <= 1000 and 155 <= event.y <= 185:
             print("Matches clicked")
             self.achievements_label.configure(image=self.tk_matches_clicked)
+            self.show_category("matches")
         # if "Honor" was clicked
         elif 900 <= event.x <= 975 and 225 <= event.y <= 255:
             print("Honor clicked")
             self.achievements_label.configure(image=self.tk_honor_clicked)
+            self.show_category("honor")
         # if "Progress" was clicked
         elif 900 <= event.x <= 1010 and 295 <= event.y <= 325:
             print("Progress clicked")
             self.achievements_label.configure(image=self.tk_progress_clicked)
+            self.show_category("progress")
         # if "Items" was clicked
         elif 900 <= event.x <= 965 and 365 <= event.y <= 395:
             print("Items clicked")
             self.achievements_label.configure(image=self.tk_items_clicked)
+            self.show_category("items")
         # if "Social" was clicked
         elif 900 <= event.x <= 975 and 435 <= event.y <= 465:
             print("Social clicked")
             self.achievements_label.configure(image=self.tk_social_clicked)
+            self.show_category("social")
         # if "General" was clicked
         elif 900 <= event.x <= 995 and 505 <= event.y <= 535:
             print("General clicked")
             self.achievements_label.configure(image=self.tk_general_clicked)
+            self.show_category("general")
+
+    def show_category(self, category):
+        """Shows the frame for the given achievement category."""
+        category_to_be_shown = self.categories[category]
+        # The current category needs to be unbound to the mousewheel
+        # so that category_to_be_shown can bind to it instead
+        self.cur_category.unbind_mousewheel()
+        category_to_be_shown.bind_mousewheel()
+        self.cur_category = category_to_be_shown
+        category_to_be_shown.tkraise()
+        
+
+
 class CompletedFrame(tk.Frame):
     
     def __init__(self, parent, controller):

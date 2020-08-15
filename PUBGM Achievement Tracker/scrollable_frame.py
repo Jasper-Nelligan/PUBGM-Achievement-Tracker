@@ -1,14 +1,17 @@
 import tkinter as tk
 from tkinter import *
-from tkinter import font
 from PIL import Image, ImageTk
+
+# Desired sizes for the button images
+BUTTON_SIZE = 277, 45
 
 class ScrollbarFrame(tk.Frame):
     """Extends class tk.Frame to support a scrollable Frame
 
     This class is independent from the widgets to be scrolled and 
-    can be used to replace a standard tk.Frame.
-
+    can be used to replace a standard tk.Frame. It is scrollable using both
+    the scroll bar and using the mousewheel while hovering over the canvas.
+    
     Attributes:
         scrolled_frame: this frame will hold the child widgets.
             All widgets to be scrolled have to use this frame as parent
@@ -49,7 +52,7 @@ class ScrollbarFrame(tk.Frame):
         # All widgets to be scrolled have to use this frame as parent
         # To do this, assign a variable to this attribute after creating
         # an instance of the class
-        self.scrolled_frame = tk.Frame(self.canvas, background=self.canvas.cget('bg'))
+        self.scrolled_frame = tk.Frame(self.canvas, bg=self.canvas.cget('bg'))
         self.canvas.create_window((0, 0), window=self.scrolled_frame, anchor="nw")
 
         # Configures the scrollregion of the Canvas dynamically
@@ -78,3 +81,88 @@ class ScrollbarFrame(tk.Frame):
     def on_frame_configure(self, event):
         """Reset the scroll region to encompass the inner frame"""
         self.canvas.configure(scrollregion=self.canvas.bbox("all"))
+
+        
+    def unbind_mousewheel(self):
+        """Unbinds the mouse-wheel to this instance. This needs to be called
+        every time another scrolled frame is raised.
+        """
+        self.canvas.unbind_all('<MouseWheel>')
+
+    def bind_mousewheel(self):
+        """Re-binds this instance to the mouse-wheel. After unbinding the
+        current scrollable frame shown, this needs to be called on the scrollable
+        frame to be shown next.
+        """
+        self.canvas.bind_all("<MouseWheel>", self.on_mousewheel)
+
+class App(tk.Tk):
+    def __init__(self):
+        #initializes self as root
+        tk.Tk.__init__(self)
+
+        # create a black background frame
+        self.background_frame = tk.Frame(self, bg='black', 
+                                height = 600, width = 1000)
+        self.background_frame.grid(row=0, column=0, sticky = 'NW')
+
+        # add a new scrollable frame in center of background frame
+        self.first_sbf = ScrollbarFrame(self.background_frame, height = 500, 
+                             width = 702, background = 'white')
+        self.first_sbf.place(x=500, y=300, anchor=CENTER)
+        
+        # add the second frame
+        self.second_sbf = ScrollbarFrame(self.background_frame, height = 500, 
+                             width = 702, background = 'white')
+        self.second_sbf.place(x=500, y=300, anchor=CENTER)
+
+        # I want it so that once I click anywhere in the frame,
+        # the scrollable canvas in the middle will switch
+        self.background_frame.bind('<Button-1>', self.on_click)
+        # the first frame is initially behind the second frame
+        self.first_frame_raised = False
+
+        # add example data to first frame
+
+        self.first_frame = self.first_sbf.scrolled_frame
+        for row in range(50):
+            text = "%s" % row
+            tk.Label(self.first_frame, text=text,
+                     width=3, borderwidth="1", relief="solid") \
+                .grid(row=row, column=0)
+
+            text = "This is the first frame"
+            tk.Label(self.first_frame, text=text,
+                     background=self.second_sbf.scrolled_frame.cget('bg')) \
+                .grid(row=row, column=1)
+
+        # add example data to second frame
+        self.second_frame = self.second_sbf.scrolled_frame
+        for row in range(50):
+            text = "%s" % row
+            tk.Label(self.second_frame, text=text,
+                     width=3, borderwidth="1", relief="solid") \
+                .grid(row=row, column=0)
+
+            text = "This is the second frame"
+            tk.Label(self.second_frame, text=text,
+                     background=self.second_sbf.scrolled_frame.cget('bg')) \
+                .grid(row=row, column=1)
+
+    def on_click(self, event):
+        if self.first_frame_raised == False:
+            print("First frame being raised")
+            self.second_sbf.unbind_mousewheel()
+            self.first_sbf.bind_mousewheel()
+            self.first_sbf.tkraise()
+            self.first_frame_raised = True
+        else:
+            print("Second frame being raised")
+            self.first_sbf.unbind_mousewheel()
+            self.second_sbf.bind_mousewheel()
+            self.second_sbf.tkraise()
+            self.first_frame_raised = False
+
+if __name__ == "__main__":
+    root = App()
+    root.mainloop()
