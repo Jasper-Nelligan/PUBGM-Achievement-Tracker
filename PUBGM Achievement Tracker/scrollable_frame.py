@@ -41,7 +41,8 @@ class ScrollbarFrame(tk.Frame):
         self.v_scrollbar.configure(command=self.canvas.yview)
 
         # Allow canvas to be scrolled using mousewheel while hovering 
-        # over the canvas region.
+        # over the canvas region. bind_all is used because just bind
+        # doesn't seem to work for scrolling on the canvas
         self.canvas.bind_all("<MouseWheel>", self.on_mousewheel)
 
         # Place a frame on the canvas, this frame will hold the child widgets
