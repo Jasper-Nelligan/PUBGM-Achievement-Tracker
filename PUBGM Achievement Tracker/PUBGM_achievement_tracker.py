@@ -438,128 +438,377 @@ class AchievementsFrame(tk.Frame):
                                             size=12, weight='bold')
         desc_font = font.Font(family='Helvetica', 
                                             size=12)
-
-        ## GM is the default category shown 
-        #self.show_category("GM")
-
-        #category_frame.tkraise()
-
+        big_title_font = font.Font(family='Helvetica',
+                                            size=20, weight='bold')
         # Some example data, layed out onto the sbf.scrolled_frame
 
         points_5 = Image.open('./Images/5_points.png')
         points_30 = Image.open('./Images/30_points.png')
         silver_fragment = Image.open('./Images/silver_fragment.png')
         premium_crate = Image.open('./Images/premium_crate.png')
+        exit_x = Image.open('./Images/x.png')
 
-        # Shrinking images
-        for img in (points_5, points_30,
-                    silver_fragment, premium_crate):
-            img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
-
+        # shrinking images
         points_5.thumbnail((40,40), Image.BICUBIC)
         points_30.thumbnail((40,40), Image.BICUBIC)
         silver_fragment.thumbnail((50, 50), Image.BICUBIC)
         premium_crate.thumbnail((50, 50), Image.BICUBIC)
+        exit_x.thumbnail((25, 25), Image.BICUBIC)
 
         self.points_5 = ImageTk.PhotoImage(points_5)
         self.points_30 = ImageTk.PhotoImage(points_30)
         self.silver_fragment = ImageTk.PhotoImage(silver_fragment)
         self.premium_crate = ImageTk.PhotoImage(premium_crate)
+        self.exit_x = ImageTk.PhotoImage(exit_x)
 
         # Each widget is binded to on click, so that whenver the user clicks
         # anywhere on the achievement, another frame is raised to show 
         # information for this achievement.
         GM_frame = self.GM_sbf.scrolled_frame
         row = 1
+        self.achievements = {}
+
+        self.level_completed = IntVar()
+        self.level_planned = IntVar()
+        self.list_completed = IntVar()
+        self.list_planned = IntVar()
+
+        total_columns = 6
         while row <= 50:
             if (row % 2) == 0:
+                # Initiating achievement frame
                 achievement = tk.Frame(GM_frame, bd=2, relief = 'solid', 
-                                 height = 500, width = 702,
                                  background=self.GM_sbf.scrolled_frame \
                                  .cget('bg'))
                 achievement.grid(row=row, column=0, sticky='NW')
-                achievement.bind('<Button-1>', self.on_click)
+                achievement.bind('<Button-1>', lambda event: 
+                                 self.show_achievement("Leveled Achievement"))
 
                 text = "Achievement Title " + str(row)
                 title=tk.Label(achievement, text=text, anchor=W, fg='white',
                           height=1, font=title_font,
-                          bg=self.GM_sbf.scrolled_frame.cget('bg'))
+                          bg='#121111')
                 title.grid(row=0, column=0, sticky=NW)
-                title.bind('<Button-1>', self.on_click)
+                title.bind('<Button-1>', lambda event: 
+                           self.show_achievement("Leveled Achievement"))
 
                 text = "How to get achievement\npart 2 of how to get achievement"
                 desc=tk.Label(achievement, text=text, justify=LEFT, anchor=W,
                          height=2, fg='white',
                          font=desc_font,
-                         background=self.GM_sbf.scrolled_frame.cget('bg'))
+                         background='#121111')
                 desc.grid(row=1, column=0, sticky=NW)
-                desc.bind('<Button-1>', self.on_click)
+                desc.bind('<Button-1>', lambda event: 
+                          self.show_achievement("Leveled Achievement"))
 
                 # Padding to seperate achievement info from points
                 text = ""
                 desc=tk.Label(achievement, width=40,
-                        bg=self.GM_sbf.scrolled_frame.cget('bg'))
+                        bg='#121111')
                 desc.grid(row=1, column=1, sticky=NW)
-                desc.bind('<Button-1>', self.on_click)
+                desc.bind('<Button-1>', lambda event: 
+                          self.show_achievement("Leveled Achievement"))
                 # rowspan=2 is a way of centering a label between two other rows
                 img = tk.Label(achievement, image=self.points_5, anchor=W,
                            borderwidth=0, highlightthickness=0)
                 img.grid(row=0, rowspan=2, column = 2, sticky=W)
-                img.bind('<Button-1>', self.on_click)
+                img.bind('<Button-1>', lambda event: 
+                         self.show_achievement("Leveled Achievement"))
                 text = "3000 x"
                 desc=tk.Label(achievement, text=text, anchor=E, fg='white',
                         height=1, width=10, font=desc_font, 
-                        bg=self.GM_sbf.scrolled_frame.cget('bg'))
+                        bg='#121111')
                 desc.grid(row=1, column=3, sticky=NW)
-                desc.bind('<Button-1>', self.on_click)
+                desc.bind('<Button-1>', lambda event: 
+                          self.show_achievement("Leveled Achievement"))
                 img = tk.Label(achievement, image=self.silver_fragment, anchor=W,
                            borderwidth=0, highlightthickness=0)
                 img.grid(row=0, rowspan=2, column = 4, sticky=W)
-                img.bind('<Button-1>', self.on_click)
-            # Same but with different points and reward
+                img.bind('<Button-1>', lambda event: 
+                         self.show_achievement("Leveled Achievement"))
+
+
+
+
+                # Initiating achievement info frame
+                self.leveled_achievement_sbf = ScrollbarFrame(self, height = 500,
+                                                             width = 702, 
+                                                             background = '#121111')
+                leveled_achievement_frame = self.leveled_achievement_sbf.scrolled_frame
+                self.leveled_achievement_sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
+
+                exit_button = tk.Label(leveled_achievement_frame, image=self.exit_x, anchor=E,
+                           borderwidth=0, highlightthickness=0)
+                exit_button.grid(row=0, column = 5, sticky=E, pady = 10)
+                exit_button.bind('<Button-1>', lambda event: self.exit_achievement("Leveled Achievement"))
+
+                text = "  Leveled Achievement"
+                title=tk.Label(leveled_achievement_frame, text=text, anchor=W, fg='white',
+                          height=1, font=big_title_font,
+                          bg=self.leveled_achievement_sbf.scrolled_frame.cget('bg'))
+                title.grid(row=1, column=0, sticky=NW)
+
+                text = ""
+                desc=tk.Label(leveled_achievement_frame, width=5,
+                        bg='#121111')
+                desc.grid(row=1, column=1, sticky=NW)
+
+                planned_button = tk.Checkbutton(leveled_achievement_frame,
+                                                  variable=self.level_planned, activebackground='#121111',
+                                                  bg=self.leveled_achievement_sbf.scrolled_frame.cget('bg'))
+                planned_button.grid(row=1, column=2, sticky=E)
+
+                text = "Planned"
+                checkbox_text = tk.Label(leveled_achievement_frame, text=text, anchor=W, fg='white',
+                                             bg='#121111')
+                checkbox_text.grid(row=1, column=3, sticky=W)
+
+                completed_button = tk.Checkbutton(leveled_achievement_frame,  
+                                                  variable=self.level_completed, activebackground='#121111',
+                                                  bg=self.leveled_achievement_sbf.scrolled_frame.cget('bg'))
+                completed_button.grid(row=1, column=4, sticky=E)
+
+                text = "Completed"
+                checkbox_text = tk.Label(leveled_achievement_frame, text=text, anchor=W, fg='white',
+                                            bg='#121111')
+                checkbox_text.grid(row=1, column=5, sticky=W)
+
+                # Draws a line under achievement title
+                text = "     _________________________________________________________________________"
+                line = tk.Label(leveled_achievement_frame, text=text, anchor=W, fg='white',
+                          height=1, font=title_font,
+                          bg='#121111')
+                line.grid(row=2, column=0, columnspan=total_columns, sticky=NW)
+
+                this_row=3
+                # Adding leveled achivement
+                for level in ('I', 'II', 'III', 'IV', 'V'):
+                    achievement = tk.Frame(leveled_achievement_frame, bd=2, relief = 'solid', 
+                                     background=self.GM_sbf.scrolled_frame \
+                                     .cget('bg'))
+                    achievement.grid(row=this_row, column=0, columnspan=2, sticky=NW)
+
+                    text = "Achievement Title " + level
+                    title=tk.Label(achievement, text=text, anchor=W, fg='white',
+                              height=1, font=title_font,
+                              bg='#121111')
+                    title.grid(row=0, column=0, sticky=NW)
+
+                    text = "How to get achievement\npart 2 of how to get achievement"
+                    desc=tk.Label(achievement, text=text, justify=LEFT, anchor=W,
+                             height=2, fg='white',
+                             font=desc_font,
+                             background='#121111')
+                    desc.grid(row=1, column=0, sticky=NW)
+
+             
+
+                    # Padding to seperate achievement info from points
+                    text = ""
+                    desc=tk.Label(achievement, width=5,
+                            bg='#121111')
+                    desc.grid(row=1, column=1, sticky=NW)
+
+                    # rowspan=2 is a way of centering a label between two other rows
+                    img = tk.Label(achievement, image=self.points_5, anchor=W,
+                               borderwidth=0, highlightthickness=0)
+                    img.grid(row=0, rowspan=2, column = 2, sticky=W)
+
+                    text = "3000 x"
+                    desc=tk.Label(achievement, text=text, anchor=E, fg='white',
+                            height=1, width=9, font=desc_font, 
+                            bg='#121111')
+                    desc.grid(row=1, column=3, sticky=NW)
+
+                    img = tk.Label(achievement, image=self.silver_fragment, anchor=W,
+                               borderwidth=0, highlightthickness=0)
+                    img.grid(row=0, rowspan=2, column = 4, sticky=W)
+
+
+                    planned_button = tk.Checkbutton(leveled_achievement_frame,
+                                                  variable=self.level_planned,
+                                                  bg=self.leveled_achievement_sbf.scrolled_frame.cget('bg'),
+                                                  activebackground='#121111')
+                    planned_button.grid(row=this_row, column=2, sticky=E)
+
+                    text = "Planned"
+                    checkbox_text = tk.Label(leveled_achievement_frame, text=text, anchor=W, fg='white',
+                                             bg='#121111')
+                    checkbox_text.grid(row=this_row, column=3, sticky=W)
+
+                    completed_button = tk.Checkbutton(leveled_achievement_frame,
+                                                  variable=self.level_completed, 
+                                                  bg=self.leveled_achievement_sbf.scrolled_frame.cget('bg'),
+                                                  activebackground='#121111')
+                    completed_button.grid(row=this_row, column=4, sticky=E)
+
+                    text = "Completed"
+                    checkbox_text = tk.Label(leveled_achievement_frame, text=text, anchor=W, fg='white',
+                                             bg='#121111')
+                    checkbox_text.grid(row=this_row, column=5, sticky=W)
+                    this_row = this_row+1
+
+                # Draws a line under achievement title
+                text = "     _________________________________________________________________________"
+                line = tk.Label(leveled_achievement_frame, text=text, anchor=W, fg='white',
+                          font=title_font,
+                          bg='#121111')
+                line.grid(row=this_row, column=0, columnspan=total_columns, sticky=NW)
+
+                this_row = this_row + 1
+
+                text = ("This is where the achievement information will go.\n"
+                "Things like tips and tricks, and the best way to get the achievement will be placed here.\n"
+                "Here is another line as an example. Nice!")
+
+                desc=tk.Label(leveled_achievement_frame, text=text, justify=LEFT, fg='white',
+                            font=desc_font,
+                            bg=self.leveled_achievement_sbf.scrolled_frame.cget('bg'))
+                desc.grid(row=this_row, column=0, columnspan=total_columns, sticky=NW)
+
+                self.achievements["Leveled Achievement"] = self.leveled_achievement_sbf
+
             else:
-                achievement = tk.Frame(GM_frame, bd=2, relief = 'solid', height = 500, width = 702,
-                                 background=self.GM_sbf.scrolled_frame.cget('bg'))
+                achievement = tk.Frame(GM_frame, bd=2, relief = 'solid',
+                                 background='#121111')
                 achievement.grid(row=row, column=0, sticky='NW')
-                achievement.bind('<Button-1>', self.on_click)
+                achievement.bind('<Button-1>', lambda event: 
+                                 self.show_achievement("List Achievement"))
 
                 text = "Achievement Title " + str(row)
                 title=tk.Label(achievement, text=text, anchor=W, fg='white',
                           height=1, font=title_font,
-                          bg=self.GM_sbf.scrolled_frame.cget('bg'))
+                          bg='#121111')
                 title.grid(row=0, column=0, sticky=NW)
-                title.bind('<Button-1>', self.on_click)
+                title.bind('<Button-1>', lambda event: 
+                           self.show_achievement("List Achievement"))
 
                 text = "How to get achievement\npart 2 of how to get achievement"
                 desc=tk.Label(achievement, text=text, justify=LEFT, anchor=W,
                          height=2, fg='white',
                          font=desc_font,
-                         background=self.GM_sbf.scrolled_frame.cget('bg'))
+                         background='#121111')
                 desc.grid(row=1, column=0, sticky=NW)
-                desc.bind('<Button-1>', self.on_click)
+                desc.bind('<Button-1>', lambda event: 
+                          self.show_achievement("List Achievement"))
 
                 text = ""
                 desc=tk.Label(achievement, width=40,
-                        bg=self.GM_sbf.scrolled_frame.cget('bg'))
+                        bg='#121111')
                 desc.grid(row=1, column=1, sticky=NW)
-                desc.bind('<Button-1>', self.on_click)
+                desc.bind('<Button-1>', lambda event: 
+                          self.show_achievement("List Achievement"))
                 img = tk.Label(achievement, image=self.points_30, anchor=W,
                            borderwidth=0, highlightthickness=0)
                 img.grid(row=0, rowspan=2, column = 2, sticky=W)
-                img.bind('<Button-1>', self.on_click)
+                img.bind('<Button-1>', lambda event: 
+                         self.show_achievement("List Achievement"))
                 text = "5 x"
                 desc=tk.Label(achievement, text=text, anchor=E, fg='white',
                         height=1, width=10,
                         font=desc_font, 
-                        bg=self.GM_sbf.scrolled_frame.cget('bg'))
+                        bg='#121111')
                 desc.grid(row=1, column=3, sticky=NW)
-                desc.bind('<Button-1>', self.on_click)
+                desc.bind('<Button-1>', lambda event: 
+                          self.show_achievement("List Achievement"))
                 # rowspan=2 is a way of centering a label between two other rows
                 img = tk.Label(achievement, image=self.premium_crate, anchor=W,
                            borderwidth=0, highlightthickness=0)
                 img.grid(row=0, rowspan=2, column = 4, sticky=W)
-                img.bind('<Button-1>', self.on_click)
+                img.bind('<Button-1>', lambda event: 
+                         self.show_achievement("List Achievement"))
+
+
+
+
+
+
+                # Initiating achievement info frame
+                self.list_achievement_sbf = ScrollbarFrame(self, height = 500,
+                                                             width = 702, 
+                                                             background = '#121111')
+                list_achievement_frame = self.list_achievement_sbf.scrolled_frame
+                self.list_achievement_sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
+                
+                exit_button = tk.Label(list_achievement_frame, image=self.exit_x, anchor=E,
+                           borderwidth=0, highlightthickness=0)
+                exit_button.grid(row=0, column = 5, sticky=E, pady = 10)
+                exit_button.bind('<Button-1>', lambda event: self.exit_achievement("List achievement"))
+
+                text = "  List Achievement"
+                title=tk.Label(list_achievement_frame, text=text, anchor=W, fg='white',
+                          height=1, font=big_title_font,
+                          bg='#121111')
+                title.grid(row=1, column=0, sticky=NW)
+
+                text = ""
+                desc=tk.Label(list_achievement_frame, width=5,
+                        bg='#121111')
+                desc.grid(row=1, column=1, sticky=NW)
+
+                planned_button = tk.Checkbutton(list_achievement_frame, activebackground='#121111',
+                                                  variable=self.level_planned,
+                                                  bg='#121111')
+                planned_button.grid(row=1, column=2, sticky=E)
+
+                text = "Planned"
+                checkbox_text = tk.Label(list_achievement_frame, text=text, anchor=W, fg='white',
+                                             bg='#121111')
+                checkbox_text.grid(row=1, column=3, sticky=W)
+
+                completed_button = tk.Checkbutton(list_achievement_frame, activebackground='#121111',
+                                                  variable=self.level_completed,
+                                                  bg='#121111')
+                completed_button.grid(row=1, column=4, sticky=E)
+
+                text = "Completed"
+                checkbox_text = tk.Label(list_achievement_frame, text=text, anchor=W, fg='white',
+                                            bg='#121111')
+                checkbox_text.grid(row=1, column=5, sticky=W)
+
+                # Draws a line under achievement title
+                text = "     _________________________________________________________________________"
+                line = tk.Label(list_achievement_frame, text=text, anchor=W, fg='white',
+                          height=1, font=title_font,
+                          bg='#121111')
+                line.grid(row=2, column=0, columnspan=total_columns, sticky=NW)
+
+                this_row=3
+
+                for task in range(5):
+                    text="- Do this certain task"
+                    line = tk.Label(list_achievement_frame, text=text, anchor=W, fg='white',
+                          font=desc_font,
+                          bg='#121111')
+                    line.grid(row=this_row, column=0, columnspan=total_columns, sticky=NW)
+                    this_row = this_row+1
+
+                self.achievements["List Achievement"] = self.list_achievement_sbf
+
+                # Draws a line under achievement title
+                text = "     _________________________________________________________________________"
+                line = tk.Label(list_achievement_frame, text=text, anchor=W, fg='white',
+                          height=1, font=title_font,
+                          bg='#121111')
+                line.grid(row=this_row, column=0, columnspan=total_columns, sticky=NW)
+                this_row = this_row+1
+
+                text = ("This is where the achievement information will go.\n"
+                "Things like tips and tricks, and the best way to get the achievement will be placed here.\n"
+                "Here is another line as an example. Nice!")
+
+                desc=tk.Label(list_achievement_frame, text=text, justify=LEFT, fg='white',
+                            font=desc_font,
+                            bg='#121111')
+                desc.grid(row=this_row, column=0, columnspan=total_columns, sticky=NW)
+
+                self.achievements["List achievement"] = self.list_achievement_sbf
+
             row=row+1
+
+        # Glorious Moments will always be the starting category
+        self.cur_category = self.GM_sbf
+        self.show_category('GM')
         
     def init_images(self):
         """Initializes images and text for this frame.
@@ -771,11 +1020,6 @@ class AchievementsFrame(tk.Frame):
         self.categories['social'] = self.social_sbf
         self.categories['general'] = self.general_sbf
 
-        # Glorious Moments will always be the starting category
-        self.cur_category = self.GM_sbf
-        self.show_category('GM')
-
-
     def on_click(self, event):
         """Turns the clicked on button to red and raises the corresponding 
         frame. 
@@ -830,6 +1074,24 @@ class AchievementsFrame(tk.Frame):
             self.achievements_label.configure(image=self.tk_general_clicked)
             self.show_category("general")
 
+    def show_achievement(self, achievement):
+        print(f"{achievement} was clicked")
+        achievement_to_be_shown = self.achievements[achievement]
+        # Unbind mousewheel to achievement list so it can be bound to
+        # achievement information instead
+        self.cur_category.unbind_mousewheel()
+        achievement_to_be_shown.bind_mousewheel()
+        achievement_to_be_shown.tkraise()
+
+    def exit_achievement(self, achievement):
+        print(f"Exiting {achievement}")
+        exited_achievement = self.achievements[achievement]
+        # Unbind mousewheel to achievement info so it can be re-bound
+        # to achievement list
+        exited_achievement.unbind_mousewheel()
+        self.cur_category.bind_mousewheel()
+        self.cur_category.tkraise()
+
     def show_category(self, category):
         """Shows the frame for the given achievement category."""
         category_to_be_shown = self.categories[category]
@@ -839,7 +1101,9 @@ class AchievementsFrame(tk.Frame):
         category_to_be_shown.bind_mousewheel()
         self.cur_category = category_to_be_shown
         category_to_be_shown.tkraise()
-        
+
+    def on_check():
+        pass
 
 
 class CompletedFrame(tk.Frame):
@@ -968,7 +1232,7 @@ class CreditsFrame(tk.Frame):
             explanation can be found in MainMenuFrame class.
             """
 
-            background_blur_img = Image.open('./Images/background.png')
+            background_blur_img = Image.open('./Images/background_blurred.png')
             back_btn_img = Image.open('./Images/back.png')
 
             # Red buttons will be used to indicate when the user 
