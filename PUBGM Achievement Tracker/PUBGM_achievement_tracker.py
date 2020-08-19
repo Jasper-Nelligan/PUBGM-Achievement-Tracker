@@ -3,8 +3,9 @@ from tkinter import *
 from tkinter import font
 from PIL import Image, ImageTk
 import copy
+import csv
 
-from scrollable_frame import ScrollbarFrame
+from scrollable_frame import ScrollableFrame
 
 
 #**********************************************************************
@@ -38,6 +39,7 @@ SCREEN_OFFSET = 16
 # Used to create size of window
 BACKGROUND_IMG_H = 625
 PC_WIDTH = 1366
+
 
 class AppController(tk.Tk):
     """This class manages the stacking of frames.
@@ -389,7 +391,7 @@ class OverviewFrame(tk.Frame):
 
 
 class AchievementsFrame(tk.Frame):
-    
+    """ """
     def __init__(self, parent, controller):
         """Creates frame for 'Achievements' section
 
@@ -531,7 +533,7 @@ class AchievementsFrame(tk.Frame):
 
 
                 # Initiating achievement info frame
-                self.leveled_achievement_sbf = ScrollbarFrame(self, height = 500,
+                self.leveled_achievement_sbf = ScrollableFrame(self, height = 500,
                                                              width = 702, 
                                                              background = '#121111')
                 leveled_achievement_frame = self.leveled_achievement_sbf.scrolled_frame
@@ -724,7 +726,7 @@ class AchievementsFrame(tk.Frame):
 
 
                 # Initiating achievement info frame
-                self.list_achievement_sbf = ScrollbarFrame(self, height = 500,
+                self.list_achievement_sbf = ScrollableFrame(self, height = 500,
                                                              width = 702, 
                                                              background = '#121111')
                 list_achievement_frame = self.list_achievement_sbf.scrolled_frame
@@ -923,94 +925,42 @@ class AchievementsFrame(tk.Frame):
         self.tk_general_clicked = ImageTk.PhotoImage(general_clicked)
     
     def init_categories(self):
-        """Initalizes achievement categories"""
+        """Initiates achievement categories, each as a scrollable frame.
+        Each frame is then stored in a dictionary with the category as
+        its key,
+        which is used to raise the corresponding category frame in the 
+        on_click() method."""
 
-        # Fonts for achievement information
-        title_font = font.Font(family='Helvetica',
-                                            size=12, weight='bold')
-        desc_font = font.Font(family='Helvetica', 
-                                            size=12)
-
-
-        self.GM_sbf = ScrollbarFrame(self, height = 500, width = 702, 
-                                 background = '#121111')
+        self.GM_sbf = ScrollableFrame(self, height = 500, width = 702, 
+                                     bg = '#121111')
         self.GM_sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
 
-
-        self.matches_sbf = ScrollbarFrame(self, height = 500, width = 702, 
-                                 background = '#121111')
-        matches_frame = self.matches_sbf.scrolled_frame # line can be deleted
+        self.matches_sbf = ScrollableFrame(self, height = 500, width = 702, 
+                                     bg = '#121111')
         self.matches_sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
-        for row in range(50): # can be deleted
-            text = "matches"
-            title=tk.Label(matches_frame, text=text, anchor=W, fg='white',
-                              height=1, font=title_font,
-                              bg=self.matches_sbf.scrolled_frame.cget('bg'))
-            title.grid(row=row, column=0, sticky=NW)
 
-
-        self.honor_sbf = ScrollbarFrame(self, height = 500, width = 702, 
-                                 background = '#121111')
-        honor_frame = self.honor_sbf.scrolled_frame # line can be deleted
+        self.honor_sbf = ScrollableFrame(self, height = 500, width = 702, 
+                                     bg = '#121111')
         self.honor_sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
-        for row in range(50): #can be deleted
-            text = "honor"
-            title=tk.Label(honor_frame, text=text, anchor=W, fg='white',
-                              height=1, font=title_font,
-                              bg=self.matches_sbf.scrolled_frame.cget('bg'))
-            title.grid(row=row, column=0, sticky=NW)
 
+        self.progress_sbf = ScrollableFrame(self, height = 500, width = 702, 
+                                     bg = '#121111')
 
-        self.progress_sbf = ScrollbarFrame(self, height = 500, width = 702, 
-                                 background = '#121111')
-        progress_frame = self.progress_sbf.scrolled_frame # delete later
         self.progress_sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
-        for row in range(50): #can be deleted
-            text = "progress"
-            title=tk.Label(progress_frame, text=text, anchor=W, fg='white',
-                              height=1, font=title_font,
-                              bg=self.matches_sbf.scrolled_frame.cget('bg'))
-            title.grid(row=row, column=0, sticky=NW)
 
-
-        self.items_sbf = ScrollbarFrame(self, height = 500, width = 702, 
-                                 background = '#121111')
-        items_frame = self.items_sbf.scrolled_frame # delete later
+        self.items_sbf = ScrollableFrame(self, height = 500, width = 702, 
+                                     bg = '#121111')
         self.items_sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
-        for row in range(50): #can be deleted
-            text = "items"
-            title=tk.Label(items_frame, text=text, anchor=W, fg='white',
-                              height=1, font=title_font,
-                              bg=self.matches_sbf.scrolled_frame.cget('bg'))
-            title.grid(row=row, column=0, sticky=NW)
 
-
-        self.social_sbf = ScrollbarFrame(self, height = 500, width = 702, 
-                                 background = '#121111')
-        social_frame = self.social_sbf.scrolled_frame # delete later
+        self.social_sbf = ScrollableFrame(self, height = 500, width = 702, 
+                                     bg = '#121111')
         self.social_sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
-        for row in range(50): #can be deleted
-            text = "social"
-            title=tk.Label(social_frame, text=text, anchor=W, fg='white',
-                              height=1, font=title_font,
-                              bg=self.matches_sbf.scrolled_frame.cget('bg'))
-            title.grid(row=row, column=0, sticky=NW)
 
-
-        self.general_sbf = ScrollbarFrame(self, height = 500, width = 702, 
-                                 background = '#121111')
-        general_frame = self.general_sbf.scrolled_frame # delete later
+        self.general_sbf = ScrollableFrame(self, height = 500, width = 702, 
+                                     bg = '#121111')
         self.general_sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
-        for row in range(50): #can be deleted
-            text = "general"
-            title=tk.Label(general_frame, text=text, anchor=W, fg='white',
-                              height=1, font=title_font,
-                              bg=self.matches_sbf.scrolled_frame.cget('bg'))
-            title.grid(row=row, column=0, sticky=NW)
-
 
         self.categories = {}
-
         # Attach a variable to each frame for reference
         self.categories['GM'] = self.GM_sbf
         self.categories['matches'] = self.matches_sbf
@@ -1019,6 +969,9 @@ class AchievementsFrame(tk.Frame):
         self.categories['items'] = self.items_sbf
         self.categories['social'] = self.social_sbf
         self.categories['general'] = self.general_sbf
+
+    def init_achievements(self):
+        with open
 
     def on_click(self, event):
         """Turns the clicked on button to red and raises the corresponding 
@@ -1075,7 +1028,7 @@ class AchievementsFrame(tk.Frame):
             self.show_category("general")
 
     def show_achievement(self, achievement):
-        print(f"{achievement} was clicked")
+        """Raises achievement frame to show achievement info"""
         achievement_to_be_shown = self.achievements[achievement]
         # Unbind mousewheel to achievement list so it can be bound to
         # achievement information instead
@@ -1084,7 +1037,7 @@ class AchievementsFrame(tk.Frame):
         achievement_to_be_shown.tkraise()
 
     def exit_achievement(self, achievement):
-        print(f"Exiting {achievement}")
+        """Exits achievement and returns to the current category frame"""
         exited_achievement = self.achievements[achievement]
         # Unbind mousewheel to achievement info so it can be re-bound
         # to achievement list
@@ -1102,8 +1055,7 @@ class AchievementsFrame(tk.Frame):
         self.cur_category = category_to_be_shown
         category_to_be_shown.tkraise()
 
-    def on_check():
-        pass
+    
 
 
 class CompletedFrame(tk.Frame):
@@ -1262,6 +1214,7 @@ class CreditsFrame(tk.Frame):
             back_clicked.paste(back_red_btn_img, (150, 40), 
                                back_red_btn_img)
             self.tk_back_clicked = ImageTk.PhotoImage(back_clicked)
+
 
     def on_click(self, event):
         """Turns the clicked on button to red and raises the corresponding 

@@ -14,7 +14,8 @@
 #    If leveled, will store number of items needed to do for that level
 #List? Y/N
 #Category
-
+#Reward Image
+#    This will be the actual image itself. Passed in to the init_fuction will be the location of where to find it (name must match icon file name)
 
 
 #For class structure for leveled achievements, I was thinking that lower levels should be children of the higher levels. Whenever

@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 # Desired sizes for the button images
 BUTTON_SIZE = 277, 45
 
-class ScrollbarFrame(tk.Frame):
+class ScrollableFrame(tk.Frame):
     """Extends class tk.Frame to support a scrollable Frame
 
     This class is independent from the widgets to be scrolled and 
@@ -97,6 +97,7 @@ class ScrollbarFrame(tk.Frame):
         self.canvas.bind_all("<MouseWheel>", self.on_mousewheel)
 
 class App(tk.Tk):
+    """This was used for testing the scrollable frame with simple example data"""
     def __init__(self):
         #initializes self as root
         tk.Tk.__init__(self)
@@ -107,12 +108,12 @@ class App(tk.Tk):
         self.background_frame.grid(row=0, column=0, sticky = 'NW')
 
         # add a new scrollable frame in center of background frame
-        self.first_sbf = ScrollbarFrame(self.background_frame, height = 500, 
+        self.first_sbf = ScrollableFrame(self.background_frame, height = 500, 
                              width = 702, background = 'white')
         self.first_sbf.place(x=500, y=300, anchor=CENTER)
         
         # add the second frame
-        self.second_sbf = ScrollbarFrame(self.background_frame, height = 500, 
+        self.second_sbf = ScrollableFrame(self.background_frame, height = 500, 
                              width = 702, background = 'white')
         self.second_sbf.place(x=500, y=300, anchor=CENTER)
 

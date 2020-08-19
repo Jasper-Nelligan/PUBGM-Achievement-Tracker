@@ -1,0 +1,5 @@
+achievement name, achievement string, Category: 0-GM 1-Match 2-Hon 3-Prog 4-Item 5-Soc 6-Gen, <(level, planned?Y/N, completed?Y/N, # of tasks needed, reward amount, reward type), (etc...)>
+Leveled Achievement,"I need %s example achievements",0,<(V,N,N,50,500,premium_crate),(IV,N,N,400,premium_scrap),(III,N,N,300,silver),(II,N,N,200,silver),(I,N,N,100,bp)>
+
+
+
