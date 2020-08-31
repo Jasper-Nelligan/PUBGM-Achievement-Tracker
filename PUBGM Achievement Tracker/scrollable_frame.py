@@ -16,14 +16,14 @@ class ScrollableFrame(tk.Frame):
         scrolled_frame: this frame will hold the child widgets.
             All widgets to be scrolled have to use this frame as parent
     """
-    def __init__(self, parent, height, width, background):
+    def __init__(self, parent, height, width, bg):
         """ Initiates a scrollable frame with labels using specified
         height and width. Canvas is scrollable both over canvas and scrollbar.
 
         Args:
             height (int): height of frame in pixels
             width (int): width of frame in pixels
-            background (string): desired colour of background.
+            bg (string): desired colour of background.
                 Color can be passed in by hex code or by name.
         """
 
@@ -35,7 +35,7 @@ class ScrollableFrame(tk.Frame):
 
         # The Canvas which supports the Scrollbar Interface, 
         # placed on self and layed out to the left.
-        self.canvas = tk.Canvas(self, highlightthickness=0, bg=background, 
+        self.canvas = tk.Canvas(self, highlightthickness=0, bg=bg, 
                                 height = height, width = width)
         self.canvas.pack(side="left", fill="both", expand=True)
 
