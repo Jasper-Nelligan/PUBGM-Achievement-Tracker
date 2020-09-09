@@ -1,8 +1,6 @@
 Category,Title,Description,Levels,Overall_completed,Info
-GM,Leveled Achievement,"I need {num_tasks} example achievements",I.0.0.1.10.100.premium_crate+II.0.0.2.20.200.premium_scrap+III.0.0.3.30.300.silver+IV.0.0.4.40.400.silver+V.0.0.5.50.500.bp,0,"
-Trying this and this lol. And once 
-again"
-GM,Not Achievement,"I need {num_tasks} example achievements",I.0.0.1.10.100.premium_crate+II.0.0.2.20.200.premium_scrap+III.0.0.3.30.300.silver+IV.0.0.4.40.400.silver+V.0.0.5.50.500.bp,0,"
-Trying this and this lol. And once 
-again"
+GM,Leveled Achievement,"I need {num_tasks} example achievements",I.0.0.1.10.100.premium_crate+II.0.0.2.20.200.premium_scrap+III.0.0.3.30.300.silver+IV.0.0.4.40.400.silver+V.0.0.5.50.500.bp,0,"This is test info.
+By placing in between quotes, this allowes for newlines to be processed in the file.
+GM,Not Achievement,"I need {num_tasks} example achievements",I.0.0.1.10.100.premium_crate+II.0.0.2.20.200.premium_scrap+III.0.0.3.30.300.silver+IV.0.0.4.40.400.silver+V.0.0.5.50.500.bp,0,"Again, this is where the info will go
+And this is where the second line will go"
 
