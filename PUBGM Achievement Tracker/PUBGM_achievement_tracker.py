@@ -1304,25 +1304,25 @@ class AchievementsFrame(tk.Frame):
         cur_lvl_index = achievement.list_index
         print(cur_lvl_index)
         try:
-            while(self.achievement_list[cur_lvl_index].title == achievement.title):
+            while(self.achievement_list[cur_lvl_index-1].title == achievement.title):
                 cur_lvl_index -= 1
             first_level = self.achievement_list[cur_lvl_index]
-        # If Level I of the achievemenet is at index 0, index -1 will tried
-        # to be accessed which throws an error. First_level will already have
-        # been assigned at this point.
+        # If Level I of the achievement is achievement_list[0], the while loop
+        # condition will try to access achievement_list[-1]. This means that
+        # the first level has been reached already.
         except IndexError:
-            pass
+            first_level = self.achievement_list[cur_lvl_index]
 
         # get a reference to the last level
         cur_lvl_index = achievement.list_index
         try:
-            while (self.achievement_list[cur_lvl_index].title == achievement.title):
+            while (self.achievement_list[cur_lvl_index+1].title == achievement.title):
                 cur_lvl_index += 1
             last_level = self.achievement_list[cur_lvl_index]
-        # reached the end of the list. last_level will already have been 
-        # assigned at this point
+        # reached end of the list, so cur_lvl_index = last_level
         except IndexError:
             last_level = self.achievement_list[cur_lvl_index]
+
 
         # Initiating achievement info frame
         leveled_achievement_sbf = ScrollableFrame(self, height = 500,
@@ -1365,7 +1365,7 @@ class AchievementsFrame(tk.Frame):
         planned_button = tk.Checkbutton(info_frame,
                                             variable=var, activebackground='#121111',
                                             bg='#121111',
-                                            command=achievement.on_planned)
+                                            command=achievement.on_planned_checkbox)
         planned_button.grid(row=1, column=2, sticky=E)
 
         text = "Planned"
@@ -1449,7 +1449,7 @@ class AchievementsFrame(tk.Frame):
                                             variable=var,
                                             bg='#121111',
                                             activebackground='#121111',
-                                            command=achievement.on_planned)
+                                            command=achievement.on_planned_checkbox)
             planned_button.grid(row=next_row, column=2, sticky=E)
 
             text = "Planned"
