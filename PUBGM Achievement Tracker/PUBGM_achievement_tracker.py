@@ -1825,21 +1825,46 @@ class LeveledAchievement(Achievement):
         self.info = info
 
     def on_completed(self):
+        try:
+            if self.completed_var.get() == 1:
+                # get the next lower level of achievement
+                next_lower_lvl = Achievement.achievement_list[self.list_index-1]
+                cur_lvl_index = next_lower_lvl.list_index
+                while (Achievement.achievement_list[cur_lvl_index].title == self.title):
+                    # check checkboxes
+                    next_lower_lvl.completed_var.set(1)
+                    cur_lvl_index -= 1
+                    next_lower_lvl = Achievement.achievement_list[cur_lvl_index]
+            else:
+                next_higher_lvl = Achievement.achievement_list[self.list_index+1]
+                cur_lvl_index = next_higher_lvl.list_index
+                while(Achievement.achievement_list[cur_lvl_index].title == self.title):
+                    next_higher_lvl.completed_var.set(0)
+                    cur_lvl_index += 1
+                    next_higher_lvl = Achievement.achievement_list[cur_lvl_index]
+        # reached the end of the list
+        except IndexError:
+            pass
+
+    def on_planned(self):
         # get the next lower level of achievement
         next_lower_lvl = Achievement.achievement_list[self.list_index-1]
         cur_lvl_index = next_lower_lvl.list_index
         try:
             while (Achievement.achievement_list[cur_lvl_index].title == self.title):
                 # check checkboxes
-                next_lower_lvl.completed_var.set(1)
+                if self.planned_var.get() == 1:
+                    next_lower_lvl.planned_var.set(1)
+                else:
+                    next_lower_lvl.planned_var.set(0)
                 cur_lvl_index -= 1
                 next_lower_lvl = Achievement.achievement_list[cur_lvl_index]
         # reached the end of the list
         except IndexError:
             pass
 
-    def on_planned(self,event):
-        pass
+
+
         
 
 
