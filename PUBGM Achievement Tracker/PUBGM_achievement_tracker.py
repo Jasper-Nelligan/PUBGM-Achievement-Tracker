@@ -1375,7 +1375,8 @@ class AchievementsFrame(tk.Frame):
         var = last_level.planned_var
         planned_button = tk.Checkbutton(info_frame,
                                             variable=var, activebackground='#121111',
-                                            bg='#121111')
+                                            bg='#121111',
+                                            command=achievement.on_planned)
         planned_button.grid(row=1, column=2, sticky=E)
 
         text = "Planned"
@@ -1386,7 +1387,8 @@ class AchievementsFrame(tk.Frame):
         var = last_level.completed_var
         completed_button = tk.Checkbutton(info_frame,  
                                             variable=var, activebackground='#121111',
-                                            bg='#121111')
+                                            bg='#121111', 
+                                            command=last_level.on_completed)
         completed_button.grid(row=1, column=4, sticky=E)
 
         text = "Completed"
@@ -1457,7 +1459,8 @@ class AchievementsFrame(tk.Frame):
             planned_button = tk.Checkbutton(info_frame,
                                             variable=var,
                                             bg='#121111',
-                                            activebackground='#121111')
+                                            activebackground='#121111',
+                                            command=achievement.on_planned)
             planned_button.grid(row=next_row, column=2, sticky=E)
 
             text = "Planned"
@@ -1469,7 +1472,8 @@ class AchievementsFrame(tk.Frame):
             completed_button = tk.Checkbutton(info_frame,
                                             variable=var, 
                                             bg='#121111',
-                                            activebackground='#121111')
+                                            activebackground='#121111',
+                                            command=achievement.on_completed)
             completed_button.grid(row=next_row, column=4, sticky=E)
 
             text = "Completed"
@@ -1820,14 +1824,19 @@ class LeveledAchievement(Achievement):
         self.list_index = list_index
         self.info = info
 
-    def on_completed(self, event):
+    def on_completed(self):
+        # get the next lower level of achievement
+        next_lower_lvl = Achievement.achievement_list[self.list_index-1]
+        cur_lvl_index = next_lower_lvl.list_index
         try:
-            while (self.achievement_list[last_level_index+1].title == last_level.title):
-                print("in while loop")
-                last_level_index += 1
-                last_level = achievement_list[last_level_index]
+            while (Achievement.achievement_list[cur_lvl_index].title == self.title):
+                # check checkboxes
+                next_lower_lvl.completed_var.set(1)
+                cur_lvl_index -= 1
+                next_lower_lvl = Achievement.achievement_list[cur_lvl_index]
+        # reached the end of the list
         except IndexError:
-            print("exception handled")
+            pass
 
     def on_planned(self,event):
         pass
