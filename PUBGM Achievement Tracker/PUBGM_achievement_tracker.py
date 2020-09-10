@@ -274,9 +274,8 @@ class MainMenuFrame(tk.Frame):
         buttons for this frame. 
         """
 
-        # self. is used so that background_image is stored
-        # as an instance of this class and can be referenced in other
-        # methods. 
+        # Initializing background and button images
+
         background_img = Image.open('./Images/background.png')
         program_title_img = Image.open('./Images/program_title.png')
         overview_btn_img = Image.open('./Images/overview.png')
@@ -285,8 +284,7 @@ class MainMenuFrame(tk.Frame):
         credits_btn_img = Image.open('./Images/credits.png')
         exit_btn_img = Image.open('./Images/exit.png')
         # Red buttons will be used to indicate when the user 
-        # has clicked a button. These images are used in the 
-        # change_button_to_red() method
+        # has clicked a button. 
         overview_red_btn_img = Image.open('./Images/overview_red.png')
         achievements_red_btn_img = Image.open('./Images/achievements_red.png')
         completed_red_btn_img = Image.open('./Images/completed_red.png')
@@ -301,16 +299,9 @@ class MainMenuFrame(tk.Frame):
                    credits_red_btn_image, exit_red_btn_img):
             img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
 
-
-        # Notes from stackoverflow:
-        # How to use .paste():
-        # First parameter to .paste() is the image to paste.
-        # Second are coordinates.
-        # Third paramater indicates a mask that will be used to 
-        # paste the image.If you pass an image with transparency,
-        # then the alpha channel is used as mask.
-        # This makes sure that an image with transparent background
-        # won't show up with a white background
+        # paste button images onto backgrond
+        # third argument is a mask that allows button
+        # backgrounds to be transparent
         background_img.paste(program_title_img, (150, 40), 
                                program_title_img)
         background_img.paste(overview_btn_img, (150, 220), 
@@ -326,9 +317,6 @@ class MainMenuFrame(tk.Frame):
 
         # Convert the Image object into a TkPhoto object
 
-        # Must use self.tk_background_image to save a
-        # reference to the image, otherwise this variable
-        # will be garbage collected once the class is exited
         self.tk_background = ImageTk.PhotoImage(background_img)
 
         # Placing red buttons over original buttons
@@ -339,9 +327,8 @@ class MainMenuFrame(tk.Frame):
         # image where only that button is red. Once the user clicks on
         # the button, the corresponding image will be placed over the 
         # frame to give this illusion. The image is then removed to
-        # restore the button back to yellow. 
-        # Red button images are pasted and stored now to allow for 
-        # quicker use later.
+        # restore the button back to yellow. Red button images are 
+        # pasted and stored now to allow for quicker access in on_click().
 
         # Create copies of background image so button images
         # aren't pasted over the same image
@@ -393,7 +380,6 @@ class MainMenuFrame(tk.Frame):
         elif 75 <= event.x <= 300 and 320 <= event.y <= 365:
             self.main_menu_label.configure(image=
                                        self.tk_achievements_clicked)
-            #Go to Achievements frame and turn button back to yellow
             self.main_menu_label.bind("<ButtonRelease-1>", lambda event:
                                       [self.controller.show_frame(
                                           "AchievementsFrame"), 
@@ -403,7 +389,6 @@ class MainMenuFrame(tk.Frame):
         elif 75 <= event.x <= 240 and 420 <= event.y <= 465:
             self.main_menu_label.configure(image=
                                        self.tk_completed_clicked)
-            #Go to Completed frame and turn button back to yellow
             self.main_menu_label.bind("<ButtonRelease-1>", lambda event:
                                       [self.controller.show_frame(
                                           "CompletedFrame"), 
@@ -413,7 +398,6 @@ class MainMenuFrame(tk.Frame):
         elif 75 <= event.x <= 197 and 520 <= event.y <= 565:
             self.main_menu_label.configure(image=
                                        self.tk_credits_clicked)
-            #Go to Credits frame and turn button back to yellow
             self.main_menu_label.bind("<ButtonRelease-1>", lambda event:
                                       [self.controller.show_frame(
                                           "CreditsFrame"), 
@@ -512,6 +496,12 @@ class OverviewFrame(tk.Frame):
 
 
 class AchievementsFrame(tk.Frame):
+    """Contains all widgets and info related to uncompleted achievements.
+    
+    This class contains the 7 achievement categories, each a scrollable frame,
+    onto which achievement frames are placed onto. 
+    """
+
     def __init__(self, parent, controller, achievement_list):
         """Creates frame for 'Achievements' section
 
@@ -932,13 +922,13 @@ class AchievementsFrame(tk.Frame):
 
         #    row=row+1   
     def init_images(self):
-        """Initializes images and text for this frame.
-
-        Similar code with further explanation can be found in 
-        MainMenuFrame class.
+        """Initializes images and buttons for this frame.
+        
+        Refer to init_images() in MainMenuFrame for a more detailed
+        description on red button use.
         """
 
-        # Initiating background images
+        # Initializing background and button images
 
         background_blur_img = Image.open('./Images/background_blurred.png')
         back_btn_img = Image.open('./Images/back.png')
@@ -1039,7 +1029,7 @@ class AchievementsFrame(tk.Frame):
         """Initializes achievement categories, each as a scrollable frame.
 
         This method loops through the category names and creates a scrollable frame
-        for each. There's two dictionary initialized here:
+        for each. Two dictionaries are initialized here:
 
         self.categories:
             stores a reference to each category frame under the category name.
@@ -1062,9 +1052,7 @@ class AchievementsFrame(tk.Frame):
             self.categories[category] = category_frame
 
     def init_achievement_frame(self, achievement):
-        """Initiates an achievement frame in it's corresponding category 
-        frame.
-        """
+        """Initiates an achievement frame in it's corresponding category"""
 
         # Get a reference to the corresponding category frame
         category_frame = self.categories[achievement.category].scrolled_frame
@@ -1298,7 +1286,7 @@ class AchievementsFrame(tk.Frame):
         pass
 
     def init_leveled_info_frame(self,achievement):
-        """Creates a frame containing info for the passed in achievement.
+        """Creates an info frame for the passed in achievement.
         
         This method works by passing in an achievement, getting
         a reference to the first and last levels of the achievement, 
@@ -1308,30 +1296,31 @@ class AchievementsFrame(tk.Frame):
         as the parent. The info frame is deleted upon clicking 'X'.
 
         Args:
-            achievement (Achievement): a reference to an instance of 
-                Achievement.
+            achievement (Achievement): a reference an instance of
+            LeveledAchievement
         """
 
         # get a reference to the first level 
         cur_lvl_index = achievement.list_index
         print(cur_lvl_index)
         try:
-            while(self.achievement_list[cur_lvl_index-1].title == achievement.title):
+            while(self.achievement_list[cur_lvl_index].title == achievement.title):
                 cur_lvl_index -= 1
             first_level = self.achievement_list[cur_lvl_index]
-        # If Level I of the achievement is achievement_list[0], the while loop
-        # condition will try to access achievement_list[-1]. This means that
-        # the first level has been reached already.
+        # If Level I of the achievemenet is at index 0, index -1 will tried
+        # to be accessed which throws an error. First_level will already have
+        # been assigned at this point.
         except IndexError:
-            first_level = self.achievement_list[cur_lvl_index]
+            pass
 
         # get a reference to the last level
         cur_lvl_index = achievement.list_index
         try:
-            while (self.achievement_list[cur_lvl_index+1].title == achievement.title):
+            while (self.achievement_list[cur_lvl_index].title == achievement.title):
                 cur_lvl_index += 1
             last_level = self.achievement_list[cur_lvl_index]
-        # reached end of the list, so cur_lvl_index = last_level
+        # reached the end of the list. last_level will already have been 
+        # assigned at this point
         except IndexError:
             last_level = self.achievement_list[cur_lvl_index]
 
@@ -1768,8 +1757,14 @@ class CreditsFrame(tk.Frame):
 
 
 class Achievement():
+    """Contains static dictionaries and lists which both LeveledAchievement
+    and ListAchievement can access.
+    """
+    # a dictionary mapping point amount to an image
     points_images = {}
+    # a dictionary mapping reward type to a reward image
     reward_images = {}
+    # a list containing a reference to every achievement
     achievement_list = []
 
     @staticmethod
@@ -1801,11 +1796,29 @@ class Achievement():
             Achievement.reward_images[reward] = img
 
 
-
-
-
 class LeveledAchievement(Achievement):
+    """Each level for a leveled achievement will be stored as an instance
+    of this class.
 
+    Args:
+        category (string): achievement category
+        title (string): achievement title
+        desc (string): achievement description
+        level_rom_num (string): a roman numeral representing the level of 
+            the achievement
+        is_planned (int): 1 for planned, 0 for not planned
+        is_completed (int): 1 for completed, 0 for not completed
+        num_tasks (int): the number of tasks required to complete
+            the the level of the achievement. The task is described in
+            achievement description.
+        points_img (int): amount of points awarded upon level completion.
+        reward_amount (int): amount of reward awarded upon level completion
+        reward_img (string): name of reward.
+        list_index (int): the index at which this level will be placed in
+            achievement_list.
+        info (string): contains tips and tricks about the achievement. Only
+            stored in the first level of each achievement.
+    """
     def __init__(self, category, title, desc,
                  level_rom_num, is_planned, is_completed, num_tasks, points_img, 
                  reward_amount, reward_img, list_index, info = None):
@@ -1818,9 +1831,10 @@ class LeveledAchievement(Achievement):
         self.planned_var = IntVar(value=is_planned)
         self.completed_var = IntVar(value=is_completed)
         self.num_tasks = num_tasks
+        # initiate points_img and reward_img using static dictionaries
         self.points_img = Achievement.points_images[points_img]
-        self.reward_amount = reward_amount
         self.reward_img = Achievement.reward_images[reward_img]
+        self.reward_amount = reward_amount
         self.list_index = list_index
         self.info = info
 
@@ -1882,10 +1896,6 @@ class LeveledAchievement(Achievement):
         # list may go out of bounds if at the end or beginning of list
         except IndexError:
             pass
-
-
-
-        
 
 
 if __name__ == "__main__":
