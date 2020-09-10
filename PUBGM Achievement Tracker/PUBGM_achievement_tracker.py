@@ -1377,7 +1377,7 @@ class AchievementsFrame(tk.Frame):
         completed_button = tk.Checkbutton(info_frame,  
                                             variable=var, activebackground='#121111',
                                             bg='#121111', 
-                                            command=last_level.on_completed)
+                                            command=last_level.on_completed_checkbox)
         completed_button.grid(row=1, column=4, sticky=E)
 
         text = "Completed"
@@ -1462,7 +1462,7 @@ class AchievementsFrame(tk.Frame):
                                             variable=var, 
                                             bg='#121111',
                                             activebackground='#121111',
-                                            command=achievement.on_completed)
+                                            command=achievement.on_completed_checkbox)
             completed_button.grid(row=next_row, column=4, sticky=E)
 
             text = "Completed"
@@ -1876,11 +1876,11 @@ class LeveledAchievement(Achievement):
         except IndexError:
             pass
 
-    def on_planned(self):
+    def on_planned_checkbox(self):
         """Automatically checks or unchecks "planned" checkboxes in other 
         levels of achievement.
 
-        See on_completed() for a more detailed description of method behaviour.
+        See on_completed_checkbox() for a more detailed description of method behaviour.
         """
 
         next_lower_lvl = Achievement.achievement_list[self.list_index-1]
