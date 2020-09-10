@@ -1824,8 +1824,21 @@ class LeveledAchievement(Achievement):
         self.list_index = list_index
         self.info = info
 
-    def on_completed(self):
+    def on_completed_checkbox(self):
+        """Automatically checks or unchecks "completed" checkboxes in other levels
+        of achievement.
+
+        Called when checking or unchecking a "completed" checkbox.
+
+        If checking, this method will automatically check every level lower
+        than the current level. Ex. If lvl III is checked, this method
+        will check off "completed" for lvl II and lvl I.
+
+        Similarly, if unchecking, this method will automatically uncheck
+        every level higher than the current level.
+        """
         try:
+            # if checking
             if self.completed_var.get() == 1:
                 # get the next lower level of achievement
                 next_lower_lvl = Achievement.achievement_list[self.list_index-1]
@@ -1835,31 +1848,38 @@ class LeveledAchievement(Achievement):
                     next_lower_lvl.completed_var.set(1)
                     cur_lvl_index -= 1
                     next_lower_lvl = Achievement.achievement_list[cur_lvl_index]
+            # else, uncheck every higher level
             else:
+                # get next higher level
                 next_higher_lvl = Achievement.achievement_list[self.list_index+1]
                 cur_lvl_index = next_higher_lvl.list_index
                 while(Achievement.achievement_list[cur_lvl_index].title == self.title):
+
                     next_higher_lvl.completed_var.set(0)
                     cur_lvl_index += 1
                     next_higher_lvl = Achievement.achievement_list[cur_lvl_index]
-        # reached the end of the list
+        # list may go out of bounds if at the end or beginning of list
         except IndexError:
             pass
 
     def on_planned(self):
-        # get the next lower level of achievement
+        """Automatically checks or unchecks "planned" checkboxes in other 
+        levels of achievement.
+
+        See on_completed() for a more detailed description of method behaviour.
+        """
+
         next_lower_lvl = Achievement.achievement_list[self.list_index-1]
         cur_lvl_index = next_lower_lvl.list_index
         try:
             while (Achievement.achievement_list[cur_lvl_index].title == self.title):
-                # check checkboxes
                 if self.planned_var.get() == 1:
                     next_lower_lvl.planned_var.set(1)
                 else:
                     next_lower_lvl.planned_var.set(0)
                 cur_lvl_index -= 1
                 next_lower_lvl = Achievement.achievement_list[cur_lvl_index]
-        # reached the end of the list
+        # list may go out of bounds if at the end or beginning of list
         except IndexError:
             pass
 
