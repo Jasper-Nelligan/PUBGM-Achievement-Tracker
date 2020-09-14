@@ -690,6 +690,11 @@ class AchievementsFrame(tk.Frame):
         background_blur_img.paste(general_img, (980, 505),
                                 general_img)
 
+        # add text at bottom right of category_frame
+        text = Image.open('./Images/click_on_achievement_txt.png')
+        text.thumbnail((200, 30), Image.BICUBIC)
+        background_blur_img.paste(text, (760, 565), text)
+
         # Pasting red buttons over original buttons
 
         # Create copies of background image so button images
@@ -1182,6 +1187,7 @@ class AchievementsFrame(tk.Frame):
         """Turns the clicked on button to red and raises the corresponding 
         frame. 
         """
+        print(event.x, event.y)
 
         # if "Back" was clicked
         if 80 <= event.x <= 155 and 40 <= event.y <= 85:
