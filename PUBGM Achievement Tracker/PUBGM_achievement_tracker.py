@@ -42,6 +42,9 @@ BACKGROUND_IMG_H = 625
 PC_WIDTH = 1366
 
 
+
+
+
 class AppController(tk.Tk):
     """This class is a way for different frames to communicate with each other.
    
@@ -89,15 +92,11 @@ class AppController(tk.Tk):
 
         # All frames will be stored in a dictionary for quick access
         self.frames = {}
-        for F in (MainMenuFrame, OverviewFrame, AchievementsFrame, 
-                  CompletedFrame, CreditsFrame):
+
+        for F in (MainMenuFrame, OverviewFrame, CreditsFrame):
             page_name = F.__name__
             # Create an instance of each frame
-            # AchievementsFrame and CompletedFrame require a reference to the list of achievements
-            if (page_name == "AchievementsFrame" or page_name == "CompletedFrame"):
-                frame = F(parent=container, controller=self, achievement_list=self.achievement_list)
-            else:
-                frame = F(parent=container, controller=self)
+            frame = F(parent=container, controller=self)
             # Input frame into dictionary
             self.frames[page_name] = frame
 
@@ -106,8 +105,20 @@ class AppController(tk.Tk):
             # will be the one that is visible.
             frame.grid(row=0, column=0, sticky="nsew")
 
+        # In the case of AchievementsFrame, initialize two frames:
+        # one for completed achievements, the other for uncompleted
+
+        # first initialize static variables
+        AchievementsFrame.static_init(parent=container, controller=self,
+                                    achievement_list=self.achievement_list)
+
+        for F in ("UncompletedAchievements", "CompletedAchievements"):
+            frame = AchievementsFrame()
+            self.frames[F] = frame
+            frame.grid(row=0, column=0, sticky="nsew")
+
         # Initialize the reward images used for each achievement
-        Achievement.__init__(self.achievement_list)
+        Achievement.static_init(AchievementsFrame.achievement_list)
 
         # Initialize achievements from csv file
         self.init_leveled_achievements()
@@ -118,10 +129,8 @@ class AppController(tk.Tk):
 
     def init_leveled_achievements(self):
         """Reads in leveled achievement information from csv file and initiates each one.
-
         Achievement will be initiated in either AchievementsFrame or 
         CompletedFrame, depending on if it's been completed or not.
-
         The leveled_achievements.csv file is formatted in the following way:
         row[0] = category (int)
         row[1] = title (string)
@@ -194,10 +203,11 @@ class AppController(tk.Tk):
                     self.achievement_list.append(achievement)
                     self.list_index += 1
 
-                    # if achievement is completed, initiate frame in CompletedFrame
+                    # if achievement is completed, initiate frame in CompletedAchievements
                     if overall_completed == 1:
-                        self.frames["CompletedFrame"].init_achievement_frame(achievement)
-                    # else initiate in AchievementsFrame
+                        self.frames["CompletedAchievements"].init_achievement_frame(achievement)
+                        break
+                    # else initiate in UncompletedAchievements
                     else:
                         # Only the first level of the achievement to not be completed
                         # will be shown in the category frame. Therefore, if the 
@@ -207,19 +217,17 @@ class AppController(tk.Tk):
                         # if this is the next level to be completed, initialize it 
                         # as a frame in AchievementsFrame
                         if frame_initialized == False:
-                            self.frames["AchievementsFrame"].init_achievement_frame(achievement)
+                            self.frames["UncompletedAchievements"].init_achievement_frame(achievement)
                             frame_initialized = True
                         # else achievement level has not been completed yet, and a lower level
-                        # has already been initialized as a frame in AchievementFrame
+                        # has already been initialized as a frame
                         else:
                             pass
 
     def init_list_achievements(self):
         """Reads in list achievement information from csv file and initiates each one.
-
         Achievement will be initiated in either AchievementsFrame or 
         CompletedFrame, depending on if it's been completed or not.
-
         The list_achievement.csv file is formatted in the following way:
         row[0] = category (int)
         row[1] = title (string)
@@ -240,12 +248,9 @@ class AppController(tk.Tk):
             self.list_index = 0
 
             for row in csvReader:
-                # Starts by initializing the first level
                 category = row['Category']
                 title = row['Title']
                 desc = row['Description']
-                # levels_string contains info specific to each level
-                tasks_string = row['Tasks']
                 is_planned = row['Planned']
                 is_completed = row['Completed']
                 points = row['Points']
@@ -253,7 +258,8 @@ class AppController(tk.Tk):
                 reward = row['Reward']
                 info = row['Info']
 
-                # Seperate tasks_strings into individual tasks
+                # Seperate tasks into a list of individual tasks
+                tasks_string = row['Tasks']
                 task_list = tasks_string.split('+')
 
                 achievement = ListAchievement(category, title, desc, task_list, is_planned,
@@ -264,12 +270,12 @@ class AppController(tk.Tk):
                 self.achievement_list.append(achievement)
                 self.list_index += 1
 
-                # if achievement is completed, initiate frame in CompletedFrame
+                # if achievement is completed, initiate frame in CompletedAchievements
                 if is_completed == 1:
-                    self.frames["CompletedFrame"].init_achievement_frame(achievement)
-                # else initiate in AchievementsFrame
+                    self.frames["CompletedAchievements"].init_achievement_frame(achievement)
+                # else initiate in AchievementsAchievements
                 else:
-                    self.frames["AchievementsFrame"].init_achievement_frame(achievement)
+                    self.frames["UncompletedAchievements"].init_achievement_frame(achievement)
 
     def show_frame(self, page_name):
             """Shows a frame for the given page name"""
@@ -280,7 +286,6 @@ class AppController(tk.Tk):
 class MainMenuFrame(tk.Frame):
     def __init__(self, parent, controller):
         """Creates frame for Main Menu
-
         Args: 
             parent (Frame): the frame onto which this frame will be placed, ie. the root
             controller (Frame): The controller frame is a way for the pages to interact 
@@ -441,7 +446,7 @@ class MainMenuFrame(tk.Frame):
                                        self.tk_achievements_clicked)
             self.main_menu_label.bind("<ButtonRelease-1>", lambda event:
                                       [self.controller.show_frame(
-                                          "AchievementsFrame"), 
+                                          "UncompletedAchievements"), 
                                        self.main_menu_label.configure(image=
                                        self.tk_background)])
         #if "Completed" was clicked
@@ -450,7 +455,7 @@ class MainMenuFrame(tk.Frame):
                                        self.tk_completed_clicked)
             self.main_menu_label.bind("<ButtonRelease-1>", lambda event:
                                       [self.controller.show_frame(
-                                          "CompletedFrame"), 
+                                          "CompletedAchievements"), 
                                        self.main_menu_label.configure(image=
                                        self.tk_background)])
         #if "Credits" was clicked
@@ -475,7 +480,6 @@ class OverviewFrame(tk.Frame):
 
     def __init__(self, parent, controller):
         """Creates frame for 'Overview' section
-
         Args: 
             parent (Frame): the frame onto which this frame will be placed, ie. the root
             controller (Frame): The controller frame is a way for the pages to interact 
@@ -555,82 +559,86 @@ class OverviewFrame(tk.Frame):
 
 
 class AchievementsFrame(tk.Frame):
-    """Contains all widgets and info related to uncompleted achievements.
+    """Contains all widgets related to achievements, uncompleted or completed.
     
     This class contains the 7 achievement categories, each a scrollable frame,
-    onto which achievement frames are placed onto. 
-    """
+    onto which achievement frames are placed onto. Users will be able to 
+    scroll through the achievements and interact with them. Upon clicking an
+    achievement, more info about it will be brought up as another frame. 
+    The user can then check off if they have already completed the achievement
+    or if they're planning to complete it via the checkboxes.
 
-    def __init__(self, parent, controller, achievement_list):
-        """Creates frame for 'Achievements' section
+    There will be two instances of this class. One will be for uncompleted 
+    achievements, the other for completed. These two instances will pass 
+    achievements to each other. ie. When the user checks the 'completed' 
+    button, this achievements will be passed to the 'Completed instance'
+    and initialized as a frame there. Passing achievements will be done 
+    through the Appcontroller.
+
+    For a leveled achievement, it is considered completed when all levels
+    are completed.
+    """
+    
+    # a list containing a reference to every achievement
+    achievement_list = None
+    # The parent and controller should be the same for each instance
+    parent = None
+    controller = None
+
+    # images shared between each instance
+
+    # These contain the background image but with a specific 
+    # button turned red to indicate it has been selected.
+    tk_back_clicked = None
+    tk_GM_clicked = None
+    tk_matches_clicked = None
+    tk_honor_clicked = None
+    tk_progress_clicked = None
+    tk_items_clicked = None
+    tk_social_clicked = None
+    tk_general_clicked = None
+    # exit button for info frame
+    exit_x = None
+
+    # fonts for achievement information
+    title_font = None
+    desc_font = None
+    big_title_font = None
+
+
+
+    @staticmethod
+    def static_init(parent, controller, achievement_list):
+        """Initializes static variables used in class.
+
+        THe program is set up so that both instances of this class (completed
+        and uncompleted achievements) share the same parent and controller.
 
         Args: 
-            parent (Frame): the frame onto which this frame will be placed, 
-                ie. the root
-            controller (Frame): The controller frame is a way for the pages 
-                to interact with each other. For this application, the 
-                controller is used to bring a particular frame forward when 
-                the user requests it.
+            parent (Frame): the frame onto all instances of this class 
+                will be placed
+            controller (Frame): The controller frame is a way for other frames
+                to interact with each other. 
             achievements_list (List): a reference to the list containing all 
                 achievements.
         """
-        tk.Frame.__init__(self, parent, height=BACKGROUND_IMG_H, 
-                          width=PC_WIDTH - SCREEN_OFFSET)
+        AchievementsFrame.achievement_list = achievement_list
+        AchievementsFrame.parent = parent
+        AchievementsFrame.controller = controller
 
-        self.controller = controller
+        AchievementsFrame.init_images()
 
-        self.achievement_list = achievement_list
+        AchievementsFrame.title_font = font.Font(family='Helvetica',
+                                        size=12, weight='bold')
+        AchievementsFrame.desc_font = font.Font(family='Helvetica', 
+                                        size=12)
+        AchievementsFrame.big_title_font = font.Font(family='Helvetica',
+                                        size=20, weight='bold')
 
-        # Assigned in init_images()
-        # These contain the background image but with a specific 
-        # button turned red to indicate it has been selected.
-        self.tk_back_clicked = None
-        self.tk_GM_clicked = None
-        self.tk_matches_clicked = None
-        self.tk_honor_clicked = None
-        self.tk_progress_clicked = None
-        self.tk_items_clicked = None
-        self.tk_social_clicked = None
-        self.tk_general_clicked = None
-        # exit button for info frame
-        self.exit_x = None
 
-        # Initialize the background image with buttons/text
-        self.init_images()
-
-        # Place background image onto frame using label. 'GM' is clicked
-        # by default.
-        self.bg_image_label = tk.Label(self, image=self.tk_GM_clicked)
-        self.bg_image_label.place(height=BACKGROUND_IMG_H, 
-                               width=PC_WIDTH - SCREEN_OFFSET)
-
-        # Adding functionality to buttons
-        self.bg_image_label.bind('<Button-1>', self.on_click)
-        
-        # categories{} contains a reference to each category frame
-        # category_row{} keeps track of which row to place next achievement
-        # Initialized in init_categories()
-        self.categories = {}
-        self.category_row = {}
-
-        # iniate category frames
-        self.init_categories()
-
-        # fonts for achievement information
-        self.title_font = font.Font(family='Helvetica',
-                                            size=12, weight='bold')
-        self.desc_font = font.Font(family='Helvetica', 
-                                            size=12)
-        self.big_title_font = font.Font(family='Helvetica',
-                                            size=20, weight='bold')
-         
-        # cur_category will reference the currently shown category
-        # Glorious Moments will always be the starting category
-        self.cur_category = self.categories['GM']
-        self.show_category('GM')
-
-    def init_images(self):
-        """Initializes images and buttons for this frame.
+    @staticmethod
+    def init_images():
+        """Initializes images and buttons for use in this class
         
         Refer to init_images() in MainMenuFrame for a more detailed
         description on red button use.
@@ -707,49 +715,91 @@ class AchievementsFrame(tk.Frame):
         general_clicked = copy.deepcopy(background_blur_img)
         
         # Pasting button images over original buttons
-        back_clicked.paste(back_btn_red_img,
-                                        (150, 40), 
-                                        back_btn_red_img)
-        self.tk_back_clicked = ImageTk.PhotoImage(back_clicked)
+        back_clicked.paste(back_btn_red_img, (150, 40), back_btn_red_img)
+        AchievementsFrame.tk_back_clicked = \
+            ImageTk.PhotoImage(back_clicked)
 
         GM_clicked.paste(G_M_red_img, (980, 90), G_M_red_img)
-        self.tk_GM_clicked = ImageTk.PhotoImage(GM_clicked)
+        AchievementsFrame.tk_GM_clicked = \
+            ImageTk.PhotoImage(GM_clicked)
 
         matches_clicked.paste(matches_red_img, (980, 155), matches_red_img)
-        self.tk_matches_clicked = ImageTk.PhotoImage(matches_clicked)
+        AchievementsFrame.tk_matches_clicked = \
+            ImageTk.PhotoImage(matches_clicked)
 
         honor_clicked.paste(honor_red_img, (980, 225), honor_red_img)
-        self.tk_honor_clicked = ImageTk.PhotoImage(honor_clicked)
+        AchievementsFrame.tk_honor_clicked = \
+            ImageTk.PhotoImage(honor_clicked)
 
         progress_clicked.paste(progress_red_img, (980, 295), progress_red_img)
-        self.tk_progress_clicked = ImageTk.PhotoImage(progress_clicked)
+        AchievementsFrame.tk_progress_clicked = \
+            ImageTk.PhotoImage(progress_clicked)
 
         items_clicked.paste(items_red_img, (980, 365), items_red_img)
-        self.tk_items_clicked = ImageTk.PhotoImage(items_clicked)
+        AchievementsFrame.tk_items_clicked = \
+            ImageTk.PhotoImage(items_clicked)
 
         social_clicked.paste(social_red_img, (980, 435), social_red_img)
-        self.tk_social_clicked = ImageTk.PhotoImage(social_clicked)
+        AchievementsFrame.tk_social_clicked = \
+            ImageTk.PhotoImage(social_clicked)
 
         general_clicked.paste(general_red_img, (980, 505), general_red_img)
-        self.tk_general_clicked = ImageTk.PhotoImage(general_clicked)
+        AchievementsFrame.tk_general_clicked = \
+            ImageTk.PhotoImage(general_clicked)
 
         # exit button for achievement info frame
         exit_x_img = Image.open('./Images/x.png')
         exit_x_img.thumbnail((30,30))
-        self.exit_x = ImageTk.PhotoImage(exit_x_img)
+        AchievementsFrame.exit_x = ImageTk.PhotoImage(exit_x_img)
+
+    def __init__(self):
+        """Initializes a frame to contain achievements"""
+        tk.Frame.__init__(self, AchievementsFrame.parent, 
+                          height=BACKGROUND_IMG_H, 
+                          width=PC_WIDTH - SCREEN_OFFSET)
+
+        # Place background image onto frame using label. 
+        # 'GM' is clicked by default.
+        self.bg_image_label = tk.Label(self, image=
+                                       AchievementsFrame.tk_GM_clicked)
+        self.bg_image_label.place(height=BACKGROUND_IMG_H, 
+                                  width=PC_WIDTH - SCREEN_OFFSET)
+
+        # Adding functionality to buttons
+        self.bg_image_label.bind('<Button-1>', self.on_click)
+        
+        # categories{} contains a reference to each category frame
+        # category_row{} keeps track of which row to place next achievement
+        # Initialized in init_categories()
+        self.categories = {}
+
+        self.category_row = {}
+
+        # initialize category frames
+        self.init_categories()
+
+        # fonts for achievement information
+        self.title_font = font.Font(family='Helvetica',
+                                            size=12, weight='bold')
+        self.desc_font = font.Font(family='Helvetica', 
+                                            size=12)
+        self.big_title_font = font.Font(family='Helvetica',
+                                            size=20, weight='bold')
+         
+        # cur_category will reference the currently shown category
+        # Glorious Moments will always be the starting category
+        self.cur_category = self.categories['GM']
+        self.show_category('GM')
 
     def init_categories(self):
         """Initializes achievement categories, each as a scrollable frame.
-
         This method loops through the category names and creates a scrollable 
         frame for each. Two dictionaries are initialized here:
-
         self.categories:
             stores a reference to each category frame under the category name.
             Any achievements will need to be placed onto the scrolled_frame 
             attribute, which is accessed as 
             self.categories[category].scrolled_frame
-
         self.category_row:
             keeps track of which row to place the next achievement
         """
@@ -787,7 +837,8 @@ class AchievementsFrame(tk.Frame):
         else:
             text = achievement.title
         frame_title=tk.Label(self.achievement_frame, text=text, anchor=W, 
-                            fg='white', font=self.title_font, bg='#121111')
+                            fg='white', font=AchievementsFrame.title_font, 
+                            bg='#121111')
         frame_title.grid(row=0, column=0, sticky=NW)
         frame_title.bind('<Button-1>', lambda event: 
                     self.init_info_frame(achievement))
@@ -797,7 +848,7 @@ class AchievementsFrame(tk.Frame):
         text = textwrap.fill(achievement.desc, width=72)
         frame_desc=tk.Label(self.achievement_frame, text=text, justify=LEFT, 
                             anchor=W, height=2, width=56, fg='white',
-                            font=self.desc_font, bg='#121111')
+                            font=AchievementsFrame.desc_font, bg='#121111')
         frame_desc.grid(row=1, column=0, sticky=NW)
         frame_desc.bind('<Button-1>', lambda event: 
                     self.init_info_frame(achievement))
@@ -812,15 +863,16 @@ class AchievementsFrame(tk.Frame):
 
         # reward amount
         text = achievement.reward_amount + " x "
-        frame_amount=tk.Label(self.achievement_frame, text=text, anchor=E, fg='white',
-                height=1, width=10, font=self.desc_font, bg='#121111')
+        frame_amount=tk.Label(self.achievement_frame, text=text, anchor=E, 
+                              fg='white', height=1, width=10, 
+                              font=AchievementsFrame.desc_font, bg='#121111')
         frame_amount.grid(row=1, column=3, sticky=NW)
         frame_amount.bind('<Button-1>', lambda event: 
                     self.init_info_frame(achievement))
 
         img = achievement.reward_img
         frame_reward = tk.Label(self.achievement_frame, image=img, anchor=W,
-                    borderwidth=0, highlightthickness=0)
+                                borderwidth=0, highlightthickness=0)
         frame_reward.grid(row=0, rowspan=2, column = 4, sticky=W)
         frame_reward.bind('<Button-1>', lambda event: 
                     self.init_info_frame(achievement))
@@ -828,9 +880,7 @@ class AchievementsFrame(tk.Frame):
     def init_info_frame(self, achievement):
         """Calls init_leveled_info_frame() or init_list_info_frame() depending
         on type of achievement.
-
         This simplifies code in init_achievement_frame().
-
         Args:
             achievement (LeveledAchievement or ListAchievement): a reference 
             to an instance of a LeveledAchievement or ListAchievement
@@ -850,7 +900,6 @@ class AchievementsFrame(tk.Frame):
         achievement info frame. This frame is then placed over 
         top of the current category frame, with AchievementFrame 
         as the parent. The info frame is deleted upon clicking 'X'.
-
         Args:
             achievement (LeveledAchievement): a reference to an instance of
             LeveledAchievement
@@ -860,43 +909,43 @@ class AchievementsFrame(tk.Frame):
         cur_lvl_index = achievement.list_index
         print(cur_lvl_index)
         try:
-            while(self.achievement_list[cur_lvl_index-1].title 
+            while(AchievementsFrame.achievement_list[cur_lvl_index-1].title 
                   == achievement.title):
                 cur_lvl_index -= 1
-            first_level = self.achievement_list[cur_lvl_index]
+            first_level = AchievementsFrame.achievement_list[cur_lvl_index]
         # If Level I of the achievement is achievement_list[0], the while loop
         # condition will try to access achievement_list[-1]. This means that
         # the first level has been reached already.
         except IndexError:
-            first_level = self.achievement_list[cur_lvl_index]
+            first_level = AchievementsFrame.achievement_list[cur_lvl_index]
 
         # get a reference to the last level
         cur_lvl_index = achievement.list_index
         try:
-            while (self.achievement_list[cur_lvl_index+1].title 
+            while (AchievementsFrame.achievement_list[cur_lvl_index+1].title 
                    == achievement.title):
                 cur_lvl_index += 1
-            last_level = self.achievement_list[cur_lvl_index]
+            last_level = AchievementsFrame.achievement_list[cur_lvl_index]
         # reached end of the list, so cur_lvl_index = last_level
         except IndexError:
-            last_level = self.achievement_list[cur_lvl_index]
+            last_level = AchievementsFrame.achievement_list[cur_lvl_index]
 
 
         # Initiating achievement info frame
         leveled_achievement_sbf = ScrollableFrame(self, height = 500,
-                                                  width = 702, bg = '#121111')
+                                                  width = 702, bg='#121111')
         # use info_frame as the parent
         info_frame = leveled_achievement_sbf.scrolled_frame
         leveled_achievement_sbf.place(x=527, y=BACKGROUND_IMG_H/2, 
                                       anchor=CENTER)
 
-        # the total columns used in creating the info frame. Used for column span
+        # total columns used in creating the info frame. Used for columnspan
         total_columns = 6
 
         # initiating information at top for all levels
 
         # the exit button removes the frame from view and destroys it
-        img = self.exit_x
+        img = AchievementsFrame.exit_x
         exit_button = tk.Label(info_frame, image=img, anchor=E,
                     borderwidth=0, highlightthickness=0)
         exit_button.grid(row=0, column = 5, sticky=E, pady = 10)
@@ -907,7 +956,8 @@ class AchievementsFrame(tk.Frame):
         # The collective title for all levels
         text = first_level.title
         title=tk.Label(info_frame, text=text, anchor=W, fg='white',
-                       height=1, width=20, font=self.big_title_font,
+                       height=1, width=20, 
+                       font=AchievementsFrame.big_title_font,
                        bg='#121111')
         title.grid(row=1, column=0, sticky=NW)
 
@@ -940,7 +990,7 @@ class AchievementsFrame(tk.Frame):
         # Draws a line under achievement title
         text = "     _________________________________________________________________________"
         line = tk.Label(info_frame, text=text, anchor=W, fg='white',
-                    height=1, font=self.title_font, bg='#121111')
+                    height=1, font=AchievementsFrame.title_font, bg='#121111')
         line.grid(row=2, column=0, columnspan=total_columns, sticky=NW)
 
         # next_row is the next row for an achievement frame to be placed
@@ -948,7 +998,7 @@ class AchievementsFrame(tk.Frame):
 
         # Adding a frame for each level, starting with the first level
         cur_lvl_index = first_level.list_index
-        achievement = self.achievement_list[cur_lvl_index]
+        achievement = AchievementsFrame.achievement_list[cur_lvl_index]
         # set this to True once all levels have been initialized
         last_level_initialized = False
         while (last_level_initialized == False):
@@ -963,7 +1013,8 @@ class AchievementsFrame(tk.Frame):
 
             text = achievement.title + " " + achievement.level_rom_num
             frame_title=tk.Label(self.achievement_frame, text=text, anchor=W, 
-                                 fg='white', height=1, font=self.title_font,
+                                 fg='white', height=1, 
+                                 font=AchievementsFrame.title_font, 
                                  bg='#121111')
             frame_title.grid(row=0, column=0, sticky=NW)
 
@@ -971,7 +1022,8 @@ class AchievementsFrame(tk.Frame):
             text = textwrap.fill(achievement.desc, width=44)
             frame_desc=tk.Label(self.achievement_frame, text=text, 
                                 justify=LEFT, anchor=W, height=3, width=35, 
-                                fg='white', font=self.desc_font, bg='#121111')
+                                fg='white', font=AchievementsFrame.desc_font, 
+                                bg='#121111')
             frame_desc.grid(row=1, column=0, sticky=NW)
             
             img = achievement.points_img
@@ -983,7 +1035,7 @@ class AchievementsFrame(tk.Frame):
             text = achievement.reward_amount + " x "
             frame_amount=tk.Label(self.achievement_frame, text=text, anchor=E,
                                   fg='white', height=1, width=9, 
-                                  font=self.desc_font, bg='#121111')
+                                  font=AchievementsFrame.desc_font, bg='#121111')
             frame_amount.grid(row=1, column=3, sticky=NW)
 
             img = achievement.reward_img
@@ -1023,21 +1075,21 @@ class AchievementsFrame(tk.Frame):
             cur_lvl_index += 1
             # prevents an index error if at the end of the list
             try:
-                achievement = self.achievement_list[cur_lvl_index]
+                achievement = AchievementsFrame.achievement_list[cur_lvl_index]
             except IndexError:
                 pass
 
         # draws a line under the achievement frames
         text = "     _________________________________________________________________________"
         line = tk.Label(info_frame, text=text, anchor=W, fg='white',
-                    font=self.title_font, bg='#121111')
+                    font=AchievementsFrame.title_font, bg='#121111')
         line.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
         next_row += 1
 
         # information on how to get the achievement
         text = textwrap.fill(first_level.info, width=101)
         info=tk.Label(info_frame, text=text, justify=LEFT, fg='white',
-                    font=self.desc_font, bg='#121111')
+                    font=AchievementsFrame.desc_font, bg='#121111')
         info.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
 
     def init_list_info_frame(self, achievement):
@@ -1058,7 +1110,7 @@ class AchievementsFrame(tk.Frame):
         # the total columns used in creating the info frame. Used for columnspan
         total_columns = 6
 
-        img = self.exit_x
+        img = AchievementsFrame.exit_x
         exit_button = tk.Label(info_frame, image=img, anchor=E,
                                borderwidth=0, highlightthickness=0)
         exit_button.grid(row=0, column = 5, sticky=E, pady = 10)
@@ -1068,7 +1120,7 @@ class AchievementsFrame(tk.Frame):
 
         text = achievement.title
         title=tk.Label(info_frame, text=text, anchor=W, fg='white',
-                    height=1, font=self.big_title_font, width=20,
+                    height=1, font=AchievementsFrame.big_title_font, width=20,
                     bg='#121111')
         title.grid(row=1, column=0, sticky=NW)
 
@@ -1104,7 +1156,7 @@ class AchievementsFrame(tk.Frame):
         # Draws a line under achievement title
         text = "     _________________________________________________________________________"
         line = tk.Label(info_frame, text=text, anchor=W, fg='white',
-                        height=1, font=self.title_font,
+                        height=1, font=AchievementsFrame.title_font,
                         bg='#121111')
         line.grid(row=2, column=0, columnspan=total_columns, sticky=NW)
 
@@ -1115,37 +1167,26 @@ class AchievementsFrame(tk.Frame):
             text = textwrap.fill("- " + task, width=84)
             text = text.replace("\n", "\n   ")
             line = tk.Label(info_frame, text=text, anchor=W, fg='white', justify=LEFT,
-                    font=self.desc_font, bg='#121111')
+                    font=AchievementsFrame.desc_font, bg='#121111')
             line.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
             next_row = next_row+1
 
         # Draws a line under achievement title
         text = "     _________________________________________________________________________"
         line = tk.Label(info_frame, text=text, anchor=W, fg='white',
-                    height=1, font=self.title_font, bg='#121111')
+                    height=1, font=AchievementsFrame.title_font, bg='#121111')
         line.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
         next_row += 1
 
         text = textwrap.fill(achievement.info, width=101)
         desc=tk.Label(info_frame, text=text, justify=LEFT, fg='white',
-                    font=self.desc_font, bg='#121111')
+                    font=AchievementsFrame.desc_font, bg='#121111')
         desc.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
-
-    def show_achievement(self, achievement):
-        """Raises achievement frame to show achievement info
-        Args:
-            achievement: a string containing the name of the achievement
-        """
-        achievement_to_be_shown = self.achievements[achievement]
-        # Unbind mousewheel to achievement list so it can be bound to
-        # achievement information instead
-        self.cur_category.unbind_mousewheel()
-        achievement_to_be_shown.bind_mousewheel()
-        achievement_to_be_shown.tkraise()
 
     def exit_achievement(self, achievement):
         """Exits achievement and returns to the current category frame"""
-        exited_achievement = self.achievement_list[achievement.list_index]
+        exited_achievement = \
+            AchievementsFrame.achievement_list[achievement.list_index]
         # Unbind mousewheel to achievement info so it can be re-bound
         # to achievement list
         exited_achievement.unbind_mousewheel()
@@ -1159,43 +1200,51 @@ class AchievementsFrame(tk.Frame):
 
         # if "Back" was clicked
         if 80 <= event.x <= 155 and 40 <= event.y <= 85:
-            self.bg_image_label.configure(image=self.tk_back_clicked)
+            self.bg_image_label.configure(image=
+                                          AchievementsFrame.tk_back_clicked)
             # Go to Main Menu frame and return back-button to yellow
             # 'GM' is turned back to red since it's the default category
             self.bg_image_label.bind('<ButtonRelease-1>', lambda event:
-                                      [self.controller.show_frame(
-                                          "MainMenuFrame"), 
-                                       self.bg_image_label.configure(image=
-                                       self.tk_GM_clicked), 
-                                       self.bg_image_label.unbind(
-                                           '<ButtonRelease-1>')])
+                                     [AchievementsFrame.controller.show_frame(
+                                         "MainMenuFrame"), 
+                                      self.bg_image_label.configure(image=
+                                      self.tk_GM_clicked), 
+                                      self.bg_image_label.unbind(
+                                          '<ButtonRelease-1>')])
         # if "Glorious Moments" was clicked
         elif 900 <= event.x <= 1100 and 90 <= event.y <= 120:
-            self.bg_image_label.configure(image=self.tk_GM_clicked)
+            self.bg_image_label.configure(image=
+                                          AchievementsFrame.tk_GM_clicked)
             self.show_category("GM")
         # if "Matches" was clicked
         elif 900 <= event.x <= 1000 and 155 <= event.y <= 185:
-            self.bg_image_label.configure(image=self.tk_matches_clicked)
+            self.bg_image_label.configure(image=
+                                          AchievementsFrame.tk_matches_clicked)
             self.show_category("matches")
         # if "Honor" was clicked
         elif 900 <= event.x <= 975 and 225 <= event.y <= 255:
-            self.bg_image_label.configure(image=self.tk_honor_clicked)
+            self.bg_image_label.configure(image=
+                                          AchievementsFrame.tk_honor_clicked)
             self.show_category("honor")
         # if "Progress" was clicked
         elif 900 <= event.x <= 1010 and 295 <= event.y <= 325:
-            self.bg_image_label.configure(image=self.tk_progress_clicked)
+            self.bg_image_label.configure(image=
+                                          AchievementsFrame.tk_progress_clicked)
             self.show_category("progress")
         # if "Items" was clicked
         elif 900 <= event.x <= 965 and 365 <= event.y <= 395:
-            self.bg_image_label.configure(image=self.tk_items_clicked)
+            self.bg_image_label.configure(image=
+                                          AchievementsFrame.tk_items_clicked)
             self.show_category("items")
         # if "Social" was clicked
         elif 900 <= event.x <= 975 and 435 <= event.y <= 465:
-            self.bg_image_label.configure(image=self.tk_social_clicked)
+            self.bg_image_label.configure(image=
+                                          AchievementsFrame.tk_social_clicked)
             self.show_category("social")
         # if "General" was clicked
         elif 900 <= event.x <= 995 and 505 <= event.y <= 535:
-            self.bg_image_label.configure(image=self.tk_general_clicked)
+            self.bg_image_label.configure(image=
+                                          AchievementsFrame.tk_general_clicked)
             self.show_category("general")
 
     def show_category(self, category):
@@ -1217,7 +1266,6 @@ class CompletedFrame(tk.Frame):
     
     def __init__(self, parent, controller, achievement_list):
         """Creates frame for 'Completed' section
-
         Args: 
             parent (Frame): the frame onto which this frame will be placed, ie. the root
             controller (Frame): The controller frame is a way for the pages to interact 
@@ -1305,7 +1353,6 @@ class CreditsFrame(tk.Frame):
     
     def __init__(self, parent, controller):
         """Creates frame for 'Credits' section
-
         Args: 
             parent (Frame): the frame onto which this frame will be placed, ie. the root
             controller (Frame): The controller frame is a way for the pages to interact 
@@ -1401,7 +1448,7 @@ class Achievement():
     achievement_list = []
 
     @staticmethod
-    def __init__(achievement_list):
+    def static_init(achievement_list):
         Achievement.achievement_list = achievement_list
         Achievement.init_reward_images()
 
@@ -1409,7 +1456,6 @@ class Achievement():
     def init_reward_images():
         """Initializes images for reward and reward points and places
         into a static dictionary.
-
         Each instance of an Achievement will contains an image for the reward
         and reward points. Each instance will be passed in a string specifying
         the associated reward and reward points. An image is assigned to the
@@ -1432,7 +1478,6 @@ class Achievement():
 class LeveledAchievement(Achievement):
     """Contains information and methods needed for each level of 
     an achievement.
-
     A leveled achievement is any achievement that has multiple levels to it.
     Each level has the player complete an increased amount of tasks from the
     last level (ie. winning once, then 10 times, then 20, and then 50). 
@@ -1440,8 +1485,6 @@ class LeveledAchievement(Achievement):
     representing the level, variables for planned and completed checkboxes,
     and the associated reward and achievement points for completing that 
     level.
-
-
     Args:
         category (string): achievement category
         title (string): achievement title
@@ -1483,13 +1526,10 @@ class LeveledAchievement(Achievement):
     def on_completed_checkbox(self):
         """Automatically checks or unchecks "completed" checkboxes in other levels
         of achievement.
-
         Called when checking or unchecking a "completed" checkbox.
-
         If checking, this method will automatically check every level lower
         than the current level. Ex. If lvl III is checked, this method
         will check off "completed" for lvl II and lvl I.
-
         Similarly, if unchecking, this method will automatically uncheck
         every level higher than the current level.
         """
@@ -1521,7 +1561,6 @@ class LeveledAchievement(Achievement):
     def on_planned_checkbox(self):
         """Automatically checks or unchecks "planned" checkboxes in other 
         levels of achievement.
-
         See on_completed_checkbox() for a more detailed description of method behaviour.
         """
 
@@ -1543,7 +1582,6 @@ class LeveledAchievement(Achievement):
 class ListAchievement(Achievement):
     """Contains information and methods related to any achivement
     that requires the user to complete a list of tasks.
-
     Args:
         category (string): achievement category
         title (string): achievement title
