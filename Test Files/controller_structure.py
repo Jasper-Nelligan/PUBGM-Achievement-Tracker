@@ -19,7 +19,7 @@ class SampleApp(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (StartPage, PageOne, PageTwo):
+        for F in (StartPage, PageTwo):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -28,6 +28,12 @@ class SampleApp(tk.Tk):
             # the one on the top of the stacking order
             # will be the one that is visible.
             frame.grid(row=0, column=0, sticky="nsew")
+
+        page_name = "PageOne"
+        frame=PageOne(parent=container, controller=self, reference=self.frames["PageTwo"])
+        frame.grid(row=0, column=0, sticky="nsew")
+        
+        self.frames[page_name] = frame
 
         self.show_frame("StartPage")
 
@@ -55,15 +61,16 @@ class StartPage(tk.Frame):
 
 class PageOne(tk.Frame):
 
-    def __init__(self, parent, controller):
+    def __init__(self, parent, controller, reference):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         label = tk.Label(self, text="This is page 1", font=controller.title_font)
         label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Go to the start page",
+        button1 = tk.Button(self, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
-        button.pack()
-
+        button1.pack()
+        button2 = tk.Button(self, text="test", command = lambda: reference.frame.tkraise())
+        button2.pack(side="right")
 
 class PageTwo(tk.Frame):
 
@@ -75,6 +82,10 @@ class PageTwo(tk.Frame):
         button = tk.Button(self, text="Go to the start page",
                            command=lambda: controller.show_frame("StartPage"))
         button.pack()
+        self.frame = tk.Frame(self)
+        self.frame.pack(side="bottom",fill='x')
+        label = tk.Label(self.frame, text ="test")
+        label.pack()
 
 
 if __name__ == "__main__":
