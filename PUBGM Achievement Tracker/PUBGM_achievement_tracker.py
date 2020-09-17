@@ -987,7 +987,7 @@ class AchievementsFrame(tk.Frame):
         var = last_lvl.planned_var
         planned_btn = tk.Checkbutton(info_frame, variable=var, 
                                      activebackground='#121111', bg='#121111',
-                                     command=achievement.on_planned_checkbox)
+                                     command=last_lvl.on_planned_checkbox)
         planned_btn.grid(row=1, column=2, sticky=E)
 
         text = "Planned"
@@ -1599,8 +1599,9 @@ class LeveledAchievement(Achievement):
                 # get the next lower level of achievement
                 next_lower_lvl = Achievement.achievement_list[self.list_index-1]
                 cur_lvl_index = next_lower_lvl.list_index
-                while (Achievement.achievement_list[cur_lvl_index].title \
-                       == self.title):
+                # loop through all levels of achievement
+                while (Achievement.achievement_list[cur_lvl_index].shared_attrs \
+                    == self.shared_attrs):
                     # check checkboxes
                     next_lower_lvl.completed_var.set(1)
                     cur_lvl_index -= 1
@@ -1610,13 +1611,14 @@ class LeveledAchievement(Achievement):
                 # get next higher level
                 next_higher_lvl = Achievement.achievement_list[self.list_index+1]
                 cur_lvl_index = next_higher_lvl.list_index
-                while(Achievement.achievement_list[cur_lvl_index].title == \
-                    self.title):
+                while(Achievement.achievement_list[cur_lvl_index].shared_attrs \
+                    == self.shared_attrs):
                     next_higher_lvl.completed_var.set(0)
                     cur_lvl_index += 1
                     next_higher_lvl = Achievement.achievement_list[cur_lvl_index]
         # list may go out of bounds if at the end or beginning of list
-        except IndexError:
+        # it may also reach a ListAchievement, which would throw an AttributeError
+        except (IndexError, AttributeError):
             pass
 
     def on_planned_checkbox(self):
@@ -1624,20 +1626,32 @@ class LeveledAchievement(Achievement):
         levels of achievement.
         See on_completed_checkbox() for a more detailed description of method behaviour.
         """
-
-        next_lower_lvl = Achievement.achievement_list[self.list_index-1]
-        cur_lvl_index = next_lower_lvl.list_index
         try:
-            while (Achievement.achievement_list[cur_lvl_index].title == \
-                   self.title):
-                if self.planned_var.get() == 1:
+            # if checking
+            if self.planned_var.get() == 1:
+                # get the next lower level of achievement
+                next_lower_lvl = Achievement.achievement_list[self.list_index-1]
+                cur_lvl_index = next_lower_lvl.list_index
+                # loop through all levels of achievement
+                while (Achievement.achievement_list[cur_lvl_index].shared_attrs \
+                    == self.shared_attrs):
+                    # check checkboxes
                     next_lower_lvl.planned_var.set(1)
-                else:
-                    next_lower_lvl.planned_var.set(0)
-                cur_lvl_index -= 1
-                next_lower_lvl = Achievement.achievement_list[cur_lvl_index]
+                    cur_lvl_index -= 1
+                    next_lower_lvl = Achievement.achievement_list[cur_lvl_index]
+            # else, uncheck every higher level
+            else:
+                # get next higher level
+                next_higher_lvl = Achievement.achievement_list[self.list_index+1]
+                cur_lvl_index = next_higher_lvl.list_index
+                while(Achievement.achievement_list[cur_lvl_index].shared_attrs \
+                    == self.shared_attrs):
+                    next_higher_lvl.planned_var.set(0)
+                    cur_lvl_index += 1
+                    next_higher_lvl = Achievement.achievement_list[cur_lvl_index]
         # list may go out of bounds if at the end or beginning of list
-        except IndexError:
+        # it may also reach a ListAchievement, which would throw an AttributeError
+        except (IndexError, AttributeError):
             pass
 
 
