@@ -109,12 +109,12 @@ class App(tk.Tk):
 
         # add a new scrollable frame in center of background frame
         self.first_sbf = ScrollableFrame(self.background_frame, height = 500, 
-                             width = 702, background = 'white')
+                             width = 702, bg = 'white')
         self.first_sbf.place(x=500, y=300, anchor=CENTER)
         
         # add the second frame
         self.second_sbf = ScrollableFrame(self.background_frame, height = 500, 
-                             width = 702, background = 'white')
+                             width = 702, bg = 'white')
         self.second_sbf.place(x=500, y=300, anchor=CENTER)
 
         # I want it so that once I click anywhere in the frame,
@@ -139,16 +139,12 @@ class App(tk.Tk):
 
         # add example data to second frame
         self.second_frame = self.second_sbf.scrolled_frame
-        for row in range(50):
-            text = "%s" % row
-            tk.Label(self.second_frame, text=text,
-                     width=3, borderwidth="1", relief="solid") \
-                .grid(row=row, column=0)
-
-            text = "This is the second frame"
-            tk.Label(self.second_frame, text=text,
-                     background=self.second_sbf.scrolled_frame.cget('bg')) \
-                .grid(row=row, column=1)
+        tk.Label(self.second_frame, text="Second label",
+                 borderwidth='1', relief='solid') \
+                 .grid(row=1, column=0)
+        tk.Label(self.second_frame, text="First label",
+                 borderwidth='0', relief='solid') \
+                 .grid(row=1, column=0)
 
     def on_click(self, event):
         if self.first_frame_raised == False:
