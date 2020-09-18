@@ -115,7 +115,8 @@ class AppController(tk.Tk):
             frame.grid(row=0, column=0, sticky="nsew")
 
         # Initialize the reward images used for each achievement
-        Achievement.static_init(AchievementsFrame.achievement_list)
+        Achievement.static_init(AchievementsFrame.achievement_list, 
+                                controller = self)
 
         # Initialize achievements from csv file
         self.init_leveled_achievements()
@@ -167,14 +168,15 @@ class AppController(tk.Tk):
                 # LeveledAttributes class
                 first_lvl = None
                 last_lvl = None
-                # To save RAM, the category, title, description, info,
-                # frame, and a reference to the first and last levels
-                # are stored in a seperate class that all levels of
+                # To save RAM, category, title, desc, info,
+                # overall_completed, and a reference to the first and last
+                # levels are stored in a seperate class that all levels of
                 # the achievement can access. The first and last level
                 # references are assigned to shared_attrs in the loop
                 # below
                 shared_attrs = LeveledAttributes(category, title, desc,
-                                                 info, first_lvl, last_lvl)
+                                                 info, overall_completed,
+                                                 first_lvl, last_lvl)
 
                 # Set to true once the achievement has been initialized onto
                 # its one of the category frames. Only the highest level to 
@@ -284,11 +286,28 @@ class AppController(tk.Tk):
                     self.frames["UncompletedAchievements"].init_achievement_frame(achievement)
 
     def complete_achievement(self, achievement):
-        """Initializes given achievement in CompletedAchievements"""
+        """Initializes given achievement in CompletedAchievements.
+        
+        For leveled achievements, the last level must be passed in.
+        """
         self.frames["CompletedAchievements"].init_achievement_frame(achievement)
 
-    def revert_achievement(self, achievement):
-        """Initializes achievement back into UncompletedAchievements"""
+    def update_achievement_lvl(self, achievement):
+        """Updates achievement frame in UncompletedAchievements.
+        
+        This is called when the user completes one of the levels of the 
+        achievement. The frame is reinitialized onto UncompletedAchievements
+        containing updated info about the next level, ie. creates frame with
+        new levels lvl_rom_num and num_tasks.
+        
+        This method can also be called in the likely event that the user
+        unchecks the completed checkbox after the achievement is marked as 
+        completed. This method would move that achievement back onto
+        UncompletedAchievements.
+
+        In both cases, the achievement passed must be the next level that
+        the user has to complete next.
+        """
         self.frames["UncompletedAchievements"].init_achievement_frame(achievement)
         
     def show_frame(self, page_name):
@@ -1213,6 +1232,20 @@ class AchievementsFrame(tk.Frame):
         self.cur_category.bind_mousewheel()
         self.cur_category.tkraise()
 
+    def show_category(self, category):
+        """Shows the frame for the given achievement category.
+        Args:
+            category: a string containing the name of the category
+                to be shown.
+        """
+        category_to_be_shown = self.categories[category]
+        # The current category needs to be unbound to the mousewheel
+        # so that category_to_be_shown can bind to it instead
+        self.cur_category.unbind_mousewheel()
+        category_to_be_shown.bind_mousewheel()
+        self.cur_category = category_to_be_shown
+        category_to_be_shown.tkraise()
+
     def on_click(self, event):
         """Turns the clicked on button to red and raises the corresponding 
         frame. 
@@ -1267,19 +1300,6 @@ class AchievementsFrame(tk.Frame):
                                           AchievementsFrame.tk_general_clicked)
             self.show_category("general")
 
-    def show_category(self, category):
-        """Shows the frame for the given achievement category.
-        Args:
-            category: a string containing the name of the category
-                to be shown.
-        """
-        category_to_be_shown = self.categories[category]
-        # The current category needs to be unbound to the mousewheel
-        # so that category_to_be_shown can bind to it instead
-        self.cur_category.unbind_mousewheel()
-        category_to_be_shown.bind_mousewheel()
-        self.cur_category = category_to_be_shown
-        category_to_be_shown.tkraise()
 
 
 class CompletedFrame(tk.Frame):
@@ -1466,11 +1486,14 @@ class Achievement():
     reward_images = {}
     # a list containing a reference to every achievement
     achievement_list = []
+    # a reference to the AppController
+    controller = None
 
     @staticmethod
-    def static_init(achievement_list):
+    def static_init(achievement_list, controller):
         Achievement.achievement_list = achievement_list
         Achievement.init_reward_images()
+        Achievement.controller = controller
 
     @staticmethod
     def init_reward_images():
@@ -1500,9 +1523,9 @@ class LeveledAttributes():
     an achievement.
     
     These shared attributes include the category, title, description,
-    info, frame, and a reference to the first and last levels.
-    Achievements levels will be able to access these attributes by 
-    storing a reference to the instance of this class.
+    info, frame, if it's overall completed, and a reference to the 
+    first and last levels. Achievements levels will be able to access 
+    these attributes by storing a reference to the instance of this class.
 
     Args:
         category (string): achievement category
@@ -1510,24 +1533,26 @@ class LeveledAttributes():
         desc (string): achievement description
         info (string): contains tips and tricks about the achievement. Only
             stored in the first level of each achievement.
-        frame (Frame): a reference to the frame displaying the achievement.
-            This frame can either be in the completed or uncompleted 
-            AchievementsFrame. frame is given a value once a frame for
-            the achievement has been initialized.
+        overall_completed (int): 1 if all levels are completed, 0 if not
         first_level (LeveledAchievement): a reference to the first level
             of the achievement. This is needed when initializing the achievements
             info frame.
         last_level (LeveledAchievement): a reference to the last level. Needed
             for checking if the achievement has been completed and for
             initializing the info frame.
+        frame (Frame): a reference to the frame displaying the achievement.
+            This frame can either be in the completed or uncompleted 
+            AchievementsFrame. frame is given a value once a frame for
+            the achievement has been initialized.
     """
 
-    def __init__(self, category, title, desc, info, first_lvl, last_lvl, 
-                 frame = None):
+    def __init__(self, category, title, desc, info, overall_completed,
+                 first_lvl, last_lvl, frame = None):
         self.category = category
         self.title = title
         self.desc = desc
         self.info = info
+        self.overall_completed = overall_completed
         self.first_lvl = first_lvl
         self.last_lvl = last_lvl
         self.frame = frame
@@ -1584,76 +1609,142 @@ class LeveledAchievement(Achievement):
         self.shared_attrs = shared_attrs
 
     def on_completed_checkbox(self):
-        """Automatically checks or unchecks "completed" checkboxes in other levels
+        """Checks to see if the user is checking or unchecking the completed
+        checkbox.
+        """
+        if self.completed_var.get() == 1:
+            self.check_completed_checkbox()
+        else:
+            self.uncheck_completed_checkbox()
+
+    def check_completed_checkbox(self):
+        """Automatically checks "completed" checkboxes in lower levels
         of achievement.
-        Called when checking or unchecking a "completed" checkbox.
-        If checking, this method will automatically check every level lower
-        than the current level. Ex. If lvl III is checked, this method
-        will check off "completed" for lvl II and lvl I.
-        Similarly, if unchecking, this method will automatically uncheck
-        every level higher than the current level.
+
+        Called when checking a "completed" checkbox. This method will 
+        automatically check every level lower than the current level.
+        Ex. If lvl III is checked, this method will check off "completed" 
+        for lvl II and lvl I.
         """
         try:
-            # if checking
-            if self.completed_var.get() == 1:
-                # get the next lower level of achievement
-                next_lower_lvl = Achievement.achievement_list[self.list_index-1]
-                cur_lvl_index = next_lower_lvl.list_index
-                # loop through all levels of achievement
-                while (Achievement.achievement_list[cur_lvl_index].shared_attrs \
-                    == self.shared_attrs):
-                    # check checkboxes
-                    next_lower_lvl.completed_var.set(1)
-                    cur_lvl_index -= 1
-                    next_lower_lvl = Achievement.achievement_list[cur_lvl_index]
-            # else, uncheck every higher level
-            else:
-                # get next higher level
-                next_higher_lvl = Achievement.achievement_list[self.list_index+1]
-                cur_lvl_index = next_higher_lvl.list_index
-                while(Achievement.achievement_list[cur_lvl_index].shared_attrs \
-                    == self.shared_attrs):
-                    next_higher_lvl.completed_var.set(0)
-                    cur_lvl_index += 1
-                    next_higher_lvl = Achievement.achievement_list[cur_lvl_index]
+            # get the next lower level of achievement
+            next_lower_lvl = Achievement.achievement_list[self.list_index-1]
+            cur_lvl_index = next_lower_lvl.list_index
+            # loop through all levels of achievement
+            while (Achievement.achievement_list[cur_lvl_index].shared_attrs \
+                == self.shared_attrs):
+                # check checkboxes
+                next_lower_lvl.completed_var.set(1)
+                cur_lvl_index -= 1
+                next_lower_lvl = Achievement.achievement_list[cur_lvl_index]
         # list may go out of bounds if at the end or beginning of list
         # it may also reach a ListAchievement, which would throw an AttributeError
         except (IndexError, AttributeError):
             pass
+        
+        # if completing the last level
+        if (self == self.shared_attrs.last_lvl):
+            self.on_completion()
+        # else reinitialize achievement frame as next level to complete
+        else:
+            self.shared_attrs.frame.grid_forget()
+            next_lvl = Achievement.achievement_list[self.list_index+1]
+            Achievement.controller.update_achievement_lvl(next_lvl)
+
+    def uncheck_completed_checkbox(self):
+        """Automatically unchecks "completed" checkboxes in higher levels
+        of achievement.
+
+        Called when unchecking a "completed" checkbox. This method will 
+        automatically uncheck every higher level than the current level.
+        """
+        next_higher_lvl = Achievement.achievement_list[self.list_index+1]
+        cur_lvl_index = next_higher_lvl.list_index
+        while(Achievement.achievement_list[cur_lvl_index].shared_attrs \
+            == self.shared_attrs):
+            next_higher_lvl.completed_var.set(0)
+            cur_lvl_index += 1
+            next_higher_lvl = Achievement.achievement_list[cur_lvl_index]
+
+        # update achievement frame so that it shows info for next level
+        # to be completed. This is done both when unchecking from
+        # ComletedAchievements and UncompletedAchievements
+
+        # remove the currently shown frame
+        self.shared_attrs.frame.grid_forget()
+        # Reinitialize frame with updated level information
+        Achievement.controller.update_achievement_lvl(self)
+        
+        if (self.shared_attrs.overall_completed == 1):
+            self.shared_attrs.overall_completed = 0
+
+    def on_completion(self):
+        """Moves achievement to CompletedAchievements"""
+        self.shared_attrs.overall_completed = 1
+        # achievement can't be planned if it's completed
+        # Unchecking planned checkboxes
+        cur_lvl = self
+        while(cur_lvl != self.shared_attrs.first_lvl):
+            cur_lvl.planned_var.set(0)
+            cur_lvl = Achievement.achievement_list[cur_lvl.list_index-1]
+        cur_lvl.planned_var.set(0)
+        # remove from UncompletedAchievements
+        self.shared_attrs.frame.grid_forget()
+        # regrid in CompletedAchievements
+        Achievement.controller.complete_achievement(self)
 
     def on_planned_checkbox(self):
-        """Automatically checks or unchecks "planned" checkboxes in other 
-        levels of achievement.
-        See on_completed_checkbox() for a more detailed description of method behaviour.
+        """Checks to see if the user is checking or unchecking the planned
+        checkbox.
         """
+        if self.planned_var.get() == 1:
+            self.check_planned_checkbox()
+        else:
+            self.uncheck_planned_checkbox()
+
+    def check_planned_checkbox(self):
+        """Automatically checks "planned" checkboxes in lower
+        levels of achievement.
+
+        See check_completed_checkbox() for a more similar, more detailed 
+        description of method behaviour.
+        """
+        # if the achievement has been completed, then it makes
+        # no sense to have it planned. Therefore uncheck
+        # the plan button if it has been checked.
+        if self.shared_attrs.overall_completed == 1:
+            self.planned_var.set(0)
+            return
         try:
-            # if checking
-            if self.planned_var.get() == 1:
-                # get the next lower level of achievement
-                next_lower_lvl = Achievement.achievement_list[self.list_index-1]
-                cur_lvl_index = next_lower_lvl.list_index
-                # loop through all levels of achievement
-                while (Achievement.achievement_list[cur_lvl_index].shared_attrs \
-                    == self.shared_attrs):
-                    # check checkboxes
-                    next_lower_lvl.planned_var.set(1)
-                    cur_lvl_index -= 1
-                    next_lower_lvl = Achievement.achievement_list[cur_lvl_index]
-            # else, uncheck every higher level
-            else:
-                # get next higher level
-                next_higher_lvl = Achievement.achievement_list[self.list_index+1]
-                cur_lvl_index = next_higher_lvl.list_index
-                while(Achievement.achievement_list[cur_lvl_index].shared_attrs \
-                    == self.shared_attrs):
-                    next_higher_lvl.planned_var.set(0)
-                    cur_lvl_index += 1
-                    next_higher_lvl = Achievement.achievement_list[cur_lvl_index]
+            # get the next lower level of achievement
+            next_lower_lvl = Achievement.achievement_list[self.list_index-1]
+            cur_lvl_index = next_lower_lvl.list_index
+            # loop through all levels of achievement
+            while (Achievement.achievement_list[cur_lvl_index].shared_attrs \
+                == self.shared_attrs):
+                # check checkboxes
+                next_lower_lvl.planned_var.set(1)
+                cur_lvl_index -= 1
+                next_lower_lvl = Achievement.achievement_list[cur_lvl_index]
         # list may go out of bounds if at the end or beginning of list
         # it may also reach a ListAchievement, which would throw an AttributeError
         except (IndexError, AttributeError):
             pass
 
+    def uncheck_planned_checkbox(self):
+        """Automatically unchecks "planned" checkboxes in higher
+        levels of achievement.
+
+        See uncheck_completed_checkbox() for a more similar, more detailed 
+        description of method behaviour.
+        """
+        next_higher_lvl = Achievement.achievement_list[self.list_index+1]
+        cur_lvl_index = next_higher_lvl.list_index
+        while(Achievement.achievement_list[cur_lvl_index].shared_attrs \
+            == self.shared_attrs):
+            next_higher_lvl.planned_var.set(0)
+            cur_lvl_index += 1
+            next_higher_lvl = Achievement.achievement_list[cur_lvl_index]
 
 class ListAchievement(Achievement):
     """Contains information and methods related to any achivement
@@ -1696,12 +1787,27 @@ class ListAchievement(Achievement):
         self.info = info
         self.frame = frame
 
-    def on_planned_checkbox(self):
-        pass
-
     def on_completed_checkbox(self):
-        pass
+        # achivement can't be planned if it's completed
+        self.planned_var.set(0)
+        # remove from UncompletedAchievements
+        self.frame.grid_forget()
+        # regrid in CompletedAchievements
+        Achievement.controller.complete_achievement(self)
 
+    def on_planned_checkbox(self):
+        # if checkbox has been checked
+        if self.planned_var.get() == 1:
+            # if the achievement has been completed, then it makes
+            # no sense to have it planned. Therefore uncheck
+            # the plan button if it has been checked.
+            if self.completed_var.get() == 1:
+                self.planned_var.set(0)
+                return
+            #TODO: update overview stats
+        else:
+            #TODO: update overview stats
+            pass
 
 if __name__ == "__main__":
     root = AppController()
