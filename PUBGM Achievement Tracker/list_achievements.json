@@ -1,0 +1,36 @@
+{
+  "list_achievements": [
+    {
+      "category": "GM",
+      "title": "List Achievement 1",
+      "description": "This is a list achievement",
+      "task_list": [
+        "This is task one",
+        "This is task two",
+        "This is task three"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "10",
+      "reward_amount": "100",
+      "reward": "bp",
+      "info": "This is the info on how to get the achievement. This is where the tips and tricks will go"
+    },
+    {
+      "category": "GM",
+      "title": "List Achievement 2",
+      "description": "This is a list achievement",
+      "task_list": [
+        "This is task one",
+        "This is task two",
+        "This is task three"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "200",
+      "reward": "silver",
+      "info": "This is the info on how to get the achievement. This is where the tips and tricks will go"
+    }
+  ]
+}

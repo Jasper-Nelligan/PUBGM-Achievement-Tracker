@@ -1,0 +1,112 @@
+{
+  "leveled_achievements": [
+    {
+      "category": "GM",
+      "title": "Leveled Achievement 1",
+      "description": "This is where the description will go. I need {num_tasks} to complete this",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1",
+          "points": "10",
+          "reward_amount": "100",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "2",
+          "points": "20",
+          "reward_amount": "200",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "3",
+          "points": "30",
+          "reward_amount": "300",
+          "reward": "classic_scrap"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "4",
+          "points": "40",
+          "reward_amount": "400",
+          "reward": "classic_crate"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5",
+          "points": "50",
+          "reward_amount": "500",
+          "reward": "premium_crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": "This is the info on how to get the achievement. This is where the tips and tricks will go"
+    },
+    {
+      "category": "GM",
+      "title": "Leveled Achievement 2",
+      "description": "This is where the description will go. I need {num_tasks} to complete this",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1",
+          "points": "10",
+          "reward_amount": "100",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "2",
+          "points": "20",
+          "reward_amount": "200",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "3",
+          "points": "30",
+          "reward_amount": "300",
+          "reward": "classic_scrap"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "4",
+          "points": "40",
+          "reward_amount": "400",
+          "reward": "classic_crate"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5",
+          "points": "50",
+          "reward_amount": "500",
+          "reward": "premium_crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": "This is the info on how to get the achievement. This is where the tips and tricks will go"
+    }
+  ]
+}

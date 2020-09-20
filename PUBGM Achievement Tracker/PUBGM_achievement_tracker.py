@@ -3,7 +3,7 @@ from tkinter import *
 from tkinter import font
 from PIL import Image, ImageTk
 import copy
-import csv
+import json
 import textwrap
 
 from scrollable_frame import ScrollableFrame
@@ -85,6 +85,10 @@ class AppController(tk.Tk):
         # next achievement will be placed
         self.list_index = 0
 
+        # dictionaries for reading in achievement data from file
+        self.leveled_achievement_data = {}
+        self.list_achievement_data = {}
+
         # Initializing all frames
 
         # All frames will be stored in a dictionary for quick access
@@ -109,6 +113,10 @@ class AppController(tk.Tk):
         AchievementsFrame.static_init(parent=container, controller=self,
                                     achievement_list=self.achievement_list)
 
+        # Initialize the reward images used for each achievement
+        Achievement.static_init(AchievementsFrame.achievement_list, 
+                                controller = self)
+
         for F in ("UncompletedAchievements", "CompletedAchievements"):
             frame = AchievementsFrame()
             self.frames[F] = frame
@@ -118,7 +126,7 @@ class AppController(tk.Tk):
         Achievement.static_init(AchievementsFrame.achievement_list, 
                                 controller = self)
 
-        # Initialize achievements from csv file
+        # Initialize achievements from json file
         self.init_leveled_achievements()
         self.init_list_achievements()
 
@@ -143,65 +151,53 @@ class AppController(tk.Tk):
         level's attributes, and a + separates each level.
         """
         # Initiating leveled achievements
-        with open('./PUBGM Achievement Tracker/leveled_achievements.csv','r') as csv_file:
-            csvReader = csv.DictReader(csv_file, delimiter=',')
+        with open('./PUBGM Achievement Tracker/leveled_achievements.json','r') as json_file:
+            # read in achievement data into a dictionary.
+            self.leveled_achievement_data = json.load(json_file)
 
-            # Keeps track of the index in achievement_list where the
-            # next achievement will be placed
-            self.list_index = 0
+            for leveled_achievement in self.leveled_achievement_data['leveled_achievements']:
+                # read in attributes
+                category = leveled_achievement['category']
+                title = leveled_achievement['title']
+                desc = leveled_achievement['description']
+                overall_completed = leveled_achievement['overall_completed']
+                info = leveled_achievement['info']
 
-            for row in csvReader:
-                # Starts by initializing the first level
-                category = row['Category']
-                title = row['Title']
-                desc = row['Description']
-                # levels_string contains info specific to each level
-                levels_string = row['Levels']
-                overall_completed = row['Overall_completed']
-                info = row['Info']
-
-                # Split levels string into a list of levels
-                levels_list = levels_string.split('+')
-
-                # reference to the first and last level of achievement
-                # these are used for creating an instance of the
-                # LeveledAttributes class
+                # Reference to the first and last level of achievement.
+                # These are used for creating an instance of the
+                # LeveledAttributes class.
                 first_lvl = None
                 last_lvl = None
                 # To save RAM, category, title, desc, info,
                 # overall_completed, and a reference to the first and last
                 # levels are stored in a seperate class that all levels of
                 # the achievement can access. The first and last level
-                # references are assigned to shared_attrs in the loop
-                # below
+                # references are assigned in the loop below.
                 shared_attrs = LeveledAttributes(category, title, desc,
                                                  info, overall_completed,
                                                  first_lvl, last_lvl)
 
                 # Set to true once the achievement has been initialized onto
-                # its one of the category frames. Only the highest level to 
-                # not be completed will be initialized as a frame
+                # it's category frame. Only the highest level to not be 
+                # completed will be initialized as a frame.
                 frame_initialized = False
-                for level in levels_list:
-                    # Split each level into its attributes
-                    lvl_attrs = level.split('.')
-                    lvl_rom_num = lvl_attrs[0]
-                    is_planned = lvl_attrs[1]
-                    is_completed = lvl_attrs[2]
-                    num_tasks = lvl_attrs[3]
-                    points = lvl_attrs[4]
-                    reward_amount = lvl_attrs[5]
-                    reward = lvl_attrs[6]
-
+                for level in leveled_achievement['levels']:
+                    rom_num = level['rom_num']
+                    is_planned = level['is_planned']
+                    is_completed = level['is_completed']
+                    num_tasks = level['num_tasks']
+                    points = level['points']
+                    reward_amount = level['reward_amount']
+                    reward = level['reward']
                     
                     achievement = LeveledAchievement \
-                        (lvl_rom_num, is_planned, is_completed, num_tasks, 
+                        (rom_num, is_planned, is_completed, num_tasks, 
                          points, reward_amount, reward, self.list_index, 
                          shared_attrs)
 
-                    if (lvl_rom_num == "I"):
+                    if (rom_num == "I"):
                         shared_attrs.first_lvl = achievement
-                    if (level == levels_list[-1]):
+                    if (level == leveled_achievement['levels'][-1]):
                         shared_attrs.last_lvl = achievement
                             
                     # add achievement to list
@@ -245,29 +241,22 @@ class AppController(tk.Tk):
         each task.
         """
         # Initiating list achievements
-        with open('./PUBGM Achievement Tracker/list_achievements.csv','r') as csv_file:
-            csvReader = csv.DictReader(csv_file, delimiter=',')
+        with open('./PUBGM Achievement Tracker/list_achievements.json','r') as json_file:
+            self.list_achievement_data = json.load(json_file)
 
-            # Keeps track of the index in achievement_list where the
-            # next achievement will be placed
-            self.list_index = 0
+            for list_achievement in self.list_achievement_data['list_achievements']:
+                category = list_achievement['category']
+                title = list_achievement['title']
+                desc = list_achievement['description']
+                task_list = list_achievement['task_list']
+                is_planned = list_achievement['is_planned']
+                is_completed = list_achievement['is_completed']
+                points = list_achievement['points']
+                reward_amount = list_achievement['reward_amount']
+                reward = list_achievement['reward']
+                info = list_achievement['info']
 
-            for row in csvReader:
-                category = row['Category']
-                title = row['Title']
-                desc = row['Description']
-                is_planned = row['Planned']
-                is_completed = row['Completed']
-                points = row['Points']
-                reward_amount = row['Reward Amount']
-                reward = row['Reward']
-                info = row['Info']
-
-                # Seperate tasks into a list of individual tasks
-                tasks_string = row['Tasks']
-                task_list = tasks_string.split('+')
-
-                # frame has not yet been initialized
+                # a Frame has not yet been initialized
                 frame = None
 
                 achievement = ListAchievement(category, title, desc, task_list, is_planned,
@@ -1056,9 +1045,9 @@ class AchievementsFrame(tk.Frame):
                                  bg='#121111')
             frame_title.grid(row=0, column=0, sticky=NW)
 
-            text = textwrap.fill(desc, width=44)
-            # input number of tasks needed in level into description string
             text = desc.format(num_tasks=achievement.num_tasks)
+            text = textwrap.fill(desc, width=45)
+            # input number of tasks needed in level into description string
             frame_desc=tk.Label(achievement_frame, text=text, 
                                 justify=LEFT, anchor=W, height=3, width=35, 
                                 fg='white', font=AchievementsFrame.desc_font, 
@@ -1299,7 +1288,6 @@ class AchievementsFrame(tk.Frame):
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_general_clicked)
             self.show_category("general")
-
 
 
 class CompletedFrame(tk.Frame):
