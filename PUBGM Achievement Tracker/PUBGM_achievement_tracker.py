@@ -183,6 +183,7 @@ class AppController(tk.Tk):
                 # it's category frame. Only the highest level to not be 
                 # completed will be initialized as a frame.
                 frame_initialized = False
+
                 for level in leveled_achievement['levels']:
                     rom_num = level['rom_num']
                     is_planned = level['is_planned']
@@ -206,17 +207,24 @@ class AppController(tk.Tk):
                     self.achievement_list.append(achievement)
                     self.list_index += 1
 
-                    # if achievement is completed, initiate frame in CompletedAchievements
-                    if overall_completed == 1:
-                        self.frames["CompletedAchievements"].init_achievement_frame(achievement)
-                        break
+                    # if achievement is completed, initiate last level frame
+                    # in CompletedAchievements
+                    if (overall_completed == "1"):
+                        # if last level has been initialized as a
+                        # LeveledAchievement
+                        if (level == leveled_achievement['levels'][-1]):
+                            self.frames["CompletedAchievements"].init_achievement_frame(achievement)
+                            break
+                        # else loop through until the last level has been initialized
+                        else:
+                            continue
                     # else initiate in UncompletedAchievements
                     else:
                         # Only the first level of the achievement to not be completed
                         # will be shown in the category frame. Therefore, if the 
                         # level has been completed, skip to the next level.
                         if is_completed == 1:
-                            pass
+                            continue
                         # if this is the next level to be completed, initialize it 
                         # as a frame in AchievementsFrame
                         if frame_initialized == False:
@@ -225,7 +233,7 @@ class AppController(tk.Tk):
                         # else achievement level has not been completed yet, and a lower level
                         # has already been initialized as a frame
                         else:
-                            pass
+                            continue
 
     def init_list_achievements(self):
         """Reads in list achievement information from csv file and initiates each one.
@@ -270,7 +278,7 @@ class AppController(tk.Tk):
                 self.list_index += 1
 
                 # if achievement is completed, initiate frame in CompletedAchievements
-                if is_completed == 1:
+                if is_completed == '1':
                     self.frames["CompletedAchievements"].init_achievement_frame(achievement)
                 # else initiate in AchievementsAchievements
                 else:
@@ -323,13 +331,15 @@ class AppController(tk.Tk):
                         == self.write_achievements[achievement["title"]].shared_attrs):
                         print("In loop, level = ", level)
                         achievement["levels"][level]["is_planned"] = \
-                            self.write_achievements[achievement["title"]].planned_var.get()
+                            str(self.write_achievements[achievement["title"]].planned_var.get())
                         achievement["levels"][level]["is_completed"] = \
-                            self.write_achievements[achievement["title"]].completed_var.get()
+                            str(self.write_achievements[achievement["title"]].completed_var.get())
 
                         level += 1
                         cur_lvl_index += 1
                         next_higher_lvl = self.achievement_list[cur_lvl_index]
+                    achievement["overall_completed"] = \
+                        str(self.write_achievements[achievement["title"]].shared_attrs.overall_completed)
                 # list may go out of bounds if at the end or beginning of list
                 # it may also reach a ListAchievement, which would throw an AttributeError
                 except (IndexError, AttributeError):
@@ -339,18 +349,16 @@ class AppController(tk.Tk):
         for achievement in self.list_achievement_data["list_achievements"]:
             if(self.write_achievements.__contains__(achievement["title"])):
                 achievement["is_planned"] = \
-                    self.write_achievements[achievement["title"]].planned_var.get()
+                    str(self.write_achievements[achievement["title"]].planned_var.get())
                 achievement["is_completed"] = \
-                    self.write_achievements[achievement["title"]].completed_var.get()
+                    str(self.write_achievements[achievement["title"]].completed_var.get())
+        # write data to file
+        with open('./PUBGM Achievement Tracker/leveled_achievements.json','w') as json_file:
+            json.dump(self.leveled_achievement_data, json_file, indent=2)
 
-        #with open('./PUBGM Achievement Tracker/leveled_achievements.json','w') as json_file:
-        #    json.dump(self.leveled_achievement_data, json_file, indent=2)
+        with open('./PUBGM Achievement Tracker/list_achievements.json','w') as json_file:
+            json.dump(self.list_achievement_data, json_file, indent=2)
 
-        #with open('./PUBGM Achievement Tracker/list_achievements.json','w') as json_file:
-        #    json.dump(self.list_achievement_data, json_file, indent=2)
-
-        print(self.leveled_achievement_data["leveled_achievements"][0])
-        print(self.list_achievement_data["list_achievements"][0])
 
     def show_frame(self, page_name):
             """Shows a frame for the given page name"""
@@ -392,6 +400,7 @@ class MainMenuFrame(tk.Frame):
         self.tk_achievements_clicked = None
         self.tk_completed_clicked = None
         self.tk_credits_clicked = None
+        self.tk_save_clicked = None
         self.tk_exit_clicked = None
 
         # Initialize the frame with buttons/text
@@ -501,7 +510,7 @@ class MainMenuFrame(tk.Frame):
                                        credits_red_btn_img)
         self.tk_credits_clicked = ImageTk.PhotoImage(credits_clicked)
         save_clicked.paste(save_red_btn_img,
-                                       (150, 520), 
+                                       (1200, 40), 
                                        save_red_btn_img)
         self.tk_save_clicked = ImageTk.PhotoImage(save_clicked)
         exit_clicked.paste(exit_red_btn_img,
@@ -684,6 +693,7 @@ class AchievementsFrame(tk.Frame):
     # These contain the background image but with a specific 
     # button turned red to indicate it has been selected.
     tk_back_clicked = None
+    tk_save_clicked = None
     tk_GM_clicked = None
     tk_matches_clicked = None
     tk_honor_clicked = None
@@ -730,7 +740,6 @@ class AchievementsFrame(tk.Frame):
         AchievementsFrame.big_title_font = font.Font(family='Helvetica',
                                         size=20, weight='bold')
 
-
     @staticmethod
     def init_images():
         """Initializes images and buttons for use in this class
@@ -743,6 +752,7 @@ class AchievementsFrame(tk.Frame):
 
         background_blur_img = Image.open('./Images/background_blurred.png')
         back_btn_img = Image.open('./Images/back.png')
+        save_btn_img = Image.open('./Images/save.png')
         GM_img = Image.open('./Images/glorious_moments.png')
         matches_img = Image.open('./Images/matches.png')
         honor_img = Image.open('./Images/honor.png')
@@ -753,6 +763,7 @@ class AchievementsFrame(tk.Frame):
         # Red buttons will be used to indicate when the user 
         # has clicked a button.
         back_btn_red_img = Image.open('./Images/back_red.png')
+        save_btn_red_img = Image.open('./Images/save_red.png')
         G_M_red_img = Image.open('./Images/glorious_moments_red.png')
         matches_red_img = Image.open('./Images/matches_red.png')
         honor_red_img = Image.open('./Images/honor_red.png')
@@ -765,17 +776,23 @@ class AchievementsFrame(tk.Frame):
         back_btn_img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
         back_btn_red_img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
 
+        for img in (back_btn_img, back_btn_red_img, save_btn_img, 
+                    save_btn_red_img):
+            img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
+
         # Shrinking category images
-        for img in (GM_img, G_M_red_img,
-                    matches_img, matches_red_img, honor_img, honor_red_img,
-                    progress_img, progress_red_img, items_img, 
-                    items_red_img, social_img, social_red_img, 
-                    general_img, general_red_img):
+        for img in (GM_img, G_M_red_img, matches_img, matches_red_img, 
+                    honor_img, honor_red_img, progress_img, 
+                    progress_red_img, items_img, items_red_img, 
+                    social_img, social_red_img, general_img, 
+                    general_red_img):
             img.thumbnail((277, 30), Image.BICUBIC)
 
         # Paste button onto background image
         background_blur_img.paste(back_btn_img, (150, 40), 
                                 back_btn_img)
+        background_blur_img.paste(save_btn_img, (1200, 40), 
+                                save_btn_img)
         background_blur_img.paste(GM_img, (980, 90),
                                 GM_img)
         background_blur_img.paste(matches_img, (980, 155),
@@ -801,6 +818,7 @@ class AchievementsFrame(tk.Frame):
         # Create copies of background image so button images
         # aren't pasted over the same image
         back_clicked = copy.deepcopy(background_blur_img)
+        save_clicked = copy.deepcopy(background_blur_img)
         GM_clicked = copy.deepcopy(background_blur_img)
         matches_clicked = copy.deepcopy(background_blur_img)
         honor_clicked = copy.deepcopy(background_blur_img)
@@ -813,6 +831,10 @@ class AchievementsFrame(tk.Frame):
         back_clicked.paste(back_btn_red_img, (150, 40), back_btn_red_img)
         AchievementsFrame.tk_back_clicked = \
             ImageTk.PhotoImage(back_clicked)
+
+        save_clicked.paste(save_btn_red_img, (1200, 40), save_btn_red_img)
+        AchievementsFrame.tk_save_clicked = \
+            ImageTk.PhotoImage(save_clicked)
 
         GM_clicked.paste(G_M_red_img, (980, 90), G_M_red_img)
         AchievementsFrame.tk_GM_clicked = \
@@ -870,6 +892,7 @@ class AchievementsFrame(tk.Frame):
 
         self.category_row = {}
 
+
         # initialize category frames
         self.init_categories()
 
@@ -884,6 +907,8 @@ class AchievementsFrame(tk.Frame):
         # cur_category will reference the currently shown category
         # Glorious Moments will always be the starting category
         self.cur_category = self.categories['GM']
+        # cur_category_img holds a referene to the current displayed bg image
+        self.cur_category_img = self.tk_GM_clicked
         self.show_category('GM')
 
     def init_categories(self):
@@ -1326,40 +1351,56 @@ class AchievementsFrame(tk.Frame):
                                       self.tk_GM_clicked), 
                                       self.bg_image_label.unbind(
                                           '<ButtonRelease-1>')])
+        # if "Save" was clicked
+        elif 1120 <= event.x <= 1200 and 40 <= event.y <= 85:
+            self.bg_image_label.configure(image=
+                                       self.tk_save_clicked)
+            self.bg_image_label.bind("<ButtonRelease-1>", lambda event:
+                                      [AchievementsFrame.controller. \
+                                          save_achievement_data(),
+                                       self.bg_image_label.configure(image=
+                                       self.cur_category_img)])
         # if "Glorious Moments" was clicked
         elif 900 <= event.x <= 1100 and 90 <= event.y <= 120:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_GM_clicked)
+            self.cur_category_img = tk_GM_clicked
             self.show_category("GM")
         # if "Matches" was clicked
         elif 900 <= event.x <= 1000 and 155 <= event.y <= 185:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_matches_clicked)
+            self.cur_category_img = tk_matches_clicked
             self.show_category("matches")
         # if "Honor" was clicked
         elif 900 <= event.x <= 975 and 225 <= event.y <= 255:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_honor_clicked)
+            self.cur_category_img = tk_honor_clicked
             self.show_category("honor")
         # if "Progress" was clicked
         elif 900 <= event.x <= 1010 and 295 <= event.y <= 325:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_progress_clicked)
+            self.cur_category_img = tk_progress_clicked
             self.show_category("progress")
         # if "Items" was clicked
         elif 900 <= event.x <= 965 and 365 <= event.y <= 395:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_items_clicked)
+            self.cur_category_img = tk_items_clicked
             self.show_category("items")
         # if "Social" was clicked
         elif 900 <= event.x <= 975 and 435 <= event.y <= 465:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_social_clicked)
+            self.cur_category_img = tk_social_clicked
             self.show_category("social")
         # if "General" was clicked
         elif 900 <= event.x <= 995 and 505 <= event.y <= 535:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_general_clicked)
+            self.cur_category_img = tk_general_clicked
             self.show_category("general")
 
 
@@ -1679,9 +1720,8 @@ class LeveledAchievement(Achievement):
         # achievement checkbox values will be updated in file
         Achievement.write_achievements[self.shared_attrs.title] = \
             self.shared_attrs.first_lvl
-        for key in Achievement.write_achievements:
-            print(key)
 
+        print("completed var is: ", self.completed_var.get())
         if self.completed_var.get() == 1:
             self.check_completed_checkbox()
         else:
@@ -1696,21 +1736,23 @@ class LeveledAchievement(Achievement):
         Ex. If lvl III is checked, this method will check off "completed" 
         for lvl II and lvl I.
         """
-        try:
-            # get the next lower level of achievement
-            next_lower_lvl = Achievement.achievement_list[self.list_index-1]
-            cur_lvl_index = next_lower_lvl.list_index
-            # loop through all levels of achievement
-            while (Achievement.achievement_list[cur_lvl_index].shared_attrs \
-                == self.shared_attrs):
-                # check checkboxes
-                next_lower_lvl.completed_var.set(1)
-                cur_lvl_index -= 1
-                next_lower_lvl = Achievement.achievement_list[cur_lvl_index]
-        # list may go out of bounds if at the end or beginning of list
-        # it may also reach a ListAchievement, which would throw an AttributeError
-        except (IndexError, AttributeError):
-            pass
+        # skip checking if first lvl
+        if (self != self.shared_attrs.first_lvl):
+            try:
+                # get the next lower level of achievement
+                next_lower_lvl = Achievement.achievement_list[self.list_index-1]
+                cur_lvl_index = next_lower_lvl.list_index
+                # loop through all levels of achievement
+                while (Achievement.achievement_list[cur_lvl_index].shared_attrs \
+                    == self.shared_attrs):
+                    # check checkboxes
+                    next_lower_lvl.completed_var.set(1)
+                    cur_lvl_index -= 1
+                    next_lower_lvl = Achievement.achievement_list[cur_lvl_index]
+            # list may go out of bounds if at the end or beginning of list
+            # it may also reach a ListAchievement, which would throw an AttributeError
+            except (IndexError, AttributeError):
+                pass
         
         # if completing the last level
         if (self == self.shared_attrs.last_lvl):
@@ -1719,7 +1761,7 @@ class LeveledAchievement(Achievement):
         else:
             self.shared_attrs.frame.grid_forget()
             next_lvl = Achievement.achievement_list[self.list_index+1]
-            Achievement.controller.update_achievement_lvl(next_lvl)
+            Achievement.controller.update_achievement(next_lvl)
 
     def uncheck_completed_checkbox(self):
         """Automatically unchecks "completed" checkboxes in higher levels
@@ -1728,13 +1770,21 @@ class LeveledAchievement(Achievement):
         Called when unchecking a "completed" checkbox. This method will 
         automatically uncheck every higher level than the current level.
         """
-        next_higher_lvl = Achievement.achievement_list[self.list_index+1]
-        cur_lvl_index = next_higher_lvl.list_index
-        while(Achievement.achievement_list[cur_lvl_index].shared_attrs \
-            == self.shared_attrs):
-            next_higher_lvl.completed_var.set(0)
-            cur_lvl_index += 1
-            next_higher_lvl = Achievement.achievement_list[cur_lvl_index]
+
+        print("unchecking")
+        if (int(self.shared_attrs.overall_completed) == 1):
+            print("Overall set to 0")
+            self.shared_attrs.overall_completed = 0
+        
+        # skip unchecking if last lvl
+        if (self != self.shared_attrs.last_lvl):
+            next_higher_lvl = Achievement.achievement_list[self.list_index+1]
+            cur_lvl_index = next_higher_lvl.list_index
+            while(Achievement.achievement_list[cur_lvl_index].shared_attrs \
+                == self.shared_attrs):
+                next_higher_lvl.completed_var.set(0)
+                cur_lvl_index += 1
+                next_higher_lvl = Achievement.achievement_list[cur_lvl_index]
 
         # Update achievement frame so that it shows info for next level
         # to be completed. This is done both when unchecking from
@@ -1746,12 +1796,10 @@ class LeveledAchievement(Achievement):
         self.shared_attrs.frame.grid_forget()
         # Reinitialize frame with updated level information
         Achievement.controller.update_achievement(self)
-        
-        if (self.shared_attrs.overall_completed == 1):
-            self.shared_attrs.overall_completed = 0
 
     def on_completion(self):
         """Moves achievement to CompletedAchievements"""
+        print("Setting Overall Completed to 1")
         self.shared_attrs.overall_completed = 1
         # achievement can't be planned if it's completed
         # Unchecking planned checkboxes
@@ -1785,27 +1833,23 @@ class LeveledAchievement(Achievement):
         See check_completed_checkbox() for a more similar, more detailed 
         description of method behaviour.
         """
-        # if the achievement has been completed, then it makes
-        # no sense to have it planned. Therefore uncheck
-        # the plan button if it has been checked.
-        if self.shared_attrs.overall_completed == 1:
-            self.planned_var.set(0)
-            return
-        try:
-            # get the next lower level of achievement
-            next_lower_lvl = Achievement.achievement_list[self.list_index-1]
-            cur_lvl_index = next_lower_lvl.list_index
-            # loop through all levels of achievement
-            while (Achievement.achievement_list[cur_lvl_index].shared_attrs \
-                == self.shared_attrs):
-                # check checkboxes
-                next_lower_lvl.planned_var.set(1)
-                cur_lvl_index -= 1
-                next_lower_lvl = Achievement.achievement_list[cur_lvl_index]
-        # list may go out of bounds if at the end or beginning of list
-        # it may also reach a ListAchievement, which would throw an AttributeError
-        except (IndexError, AttributeError):
-            pass
+        # skip checking if first lvl
+        if (self != self.shared_attrs.first_lvl):
+            try:
+                # get the next lower level of achievement
+                next_lower_lvl = Achievement.achievement_list[self.list_index-1]
+                cur_lvl_index = next_lower_lvl.list_index
+                # loop through all levels of achievement
+                while (Achievement.achievement_list[cur_lvl_index].shared_attrs \
+                    == self.shared_attrs):
+                    # check checkboxes
+                    next_lower_lvl.planned_var.set(1)
+                    cur_lvl_index -= 1
+                    next_lower_lvl = Achievement.achievement_list[cur_lvl_index]
+            # list may go out of bounds if at the end or beginning of list
+            # it may also reach a ListAchievement, which would throw an AttributeError
+            except (IndexError, AttributeError):
+                pass
 
     def uncheck_planned_checkbox(self):
         """Automatically unchecks "planned" checkboxes in higher
@@ -1814,13 +1858,15 @@ class LeveledAchievement(Achievement):
         See uncheck_completed_checkbox() for a more similar, more detailed 
         description of method behaviour.
         """
-        next_higher_lvl = Achievement.achievement_list[self.list_index+1]
-        cur_lvl_index = next_higher_lvl.list_index
-        while(Achievement.achievement_list[cur_lvl_index].shared_attrs \
-            == self.shared_attrs):
-            next_higher_lvl.planned_var.set(0)
-            cur_lvl_index += 1
-            next_higher_lvl = Achievement.achievement_list[cur_lvl_index]
+        # skip checking if first lvl
+        if (self != self.shared_attrs.last_lvl):
+            next_higher_lvl = Achievement.achievement_list[self.list_index+1]
+            cur_lvl_index = next_higher_lvl.list_index
+            while(Achievement.achievement_list[cur_lvl_index].shared_attrs \
+                == self.shared_attrs):
+                next_higher_lvl.planned_var.set(0)
+                cur_lvl_index += 1
+                next_higher_lvl = Achievement.achievement_list[cur_lvl_index]
 
 
 class ListAchievement(Achievement):
