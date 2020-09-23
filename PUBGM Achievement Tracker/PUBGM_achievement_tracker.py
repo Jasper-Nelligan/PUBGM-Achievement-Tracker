@@ -592,6 +592,29 @@ class OverviewFrame(tk.Frame):
 
         self.controller = controller
 
+        # a dictionary of statistics
+        self.stat_dict = {}
+        # intitialize statistics related to points and achievements
+        for adj in ("completed_","planned_","possible_"):
+            for noun in ("points_","achievements_"):
+                for category in ("GM","matches","honor","progress","items","social",
+                         "general"):
+                    key = category + adj + noun
+                    self.stat_dict[key] = 0
+                # overall points and achievements
+                key = adj + noun
+                self.stat_dict[key] = 0
+
+        # initialize reward statistics
+        for adj in ("completed_","planned_","possible_"): 
+            for reward in ("bp","silver", "AG", "supply_scrap", "supply_crate",
+                           "classic_scrap","classic_crate","premium_scrap",
+                           "premium_crate","titles","outfits","weapon_skins",
+                           "misc"):
+                key = adj + reward
+                self.stat_dict[key] = 0
+            
+
         #assigned in init_image()
         self.tk_background_img = None 
         self.tk_back_clicked = None
