@@ -89,13 +89,6 @@ class AppController(tk.Tk):
         # the new checkbutton values of the achievements in the dictionary. 
         self.write_achievements = {}
 
-        # Fonts used throughout program
-        self.title_font = font.Font(family='Helvetica', 
-                                    size=12, weight='bold')
-        self.desc_font = font.Font(family='Helvetica', size=12)
-        self.big_title_font = font.Font(family='Helvetica', 
-                                        size=20, weight='bold')
-
         # Initializing all frames
 
         # All frames will be stored in a dictionary for quick access
@@ -605,9 +598,9 @@ class OverviewFrame(tk.Frame):
         # Place background onto canvas
         # OverviewFrame uses a canvas instead of a frame
         self.overview_canvas = tk.Canvas(self,height=WINDOW_H,width=WINDOW_W,
-                                         highlightthickness=0)
+                                         borderwidth=0,highlightthickness=0)
         self.overview_canvas.pack()
-        self.canvas_bg = self.overview_canvas.create_image((-70,0),
+        self.canvas_bg = self.overview_canvas.create_image((-75,0),
                                           image=self.tk_background_img,
                                           anchor=NW)
 
@@ -617,6 +610,8 @@ class OverviewFrame(tk.Frame):
         # a dictionary of statistics
         self.stat_dict = {}
         self.init_stats()
+
+        self.draw_canvas()
 
 
     def init_images(self):
@@ -676,15 +671,61 @@ class OverviewFrame(tk.Frame):
                 key = adj + reward
                 self.stat_dict[key] = 1000
 
-    def create_canvas(self):
+    def draw_canvas(self):
+        #temporary image
+        img = Image.open('./Images/premium_crate.png')
+        premium_crate_img = ImageTk.PhotoImage(premium_crate_img)
+
+
         # creating lines
-        text = "_________________________________________________________________________"
-        line = tk.Label(self, text=text, anchor=CENTER, fg='white',
-                    height=1, font=self.controller.title_font, bg='#121111')
-        line.place(x=WINDOW_W/2,y=100)
+        coord1 = (750,50)
+        coord2 = (750,170)
+        self.overview_canvas.create_line(coord1,coord2,fill="white")
 
+        completed_achievements = self.stat_dict["completed_achievements"]
+        possible_achievements = self.stat_dict["possible_achievements"]
+        text = f"Achievements Completed: {completed_achievements}/{possible_achievements}"
+        coord = (250,60)
+        self.overview_canvas.create_text(coord, text=text, font=self.controller.big_title_font,
+                                         anchor='nw', fill="white")
 
+        planned_achievements = self.stat_dict["planned_achievements"]
+        text = f"Planned: {planned_achievements}"
+        coord = (250,100)
+        self.overview_canvas.create_text(coord, text=text, font=self.controller.big_title_font,
+                                         anchor='nw', fill="white")
 
+        combined = completed_achievements+planned_achievements
+        text = f"Combined Total: {combined}/{possible_achievements}"
+        coord = (250,140)
+        self.overview_canvas.create_text(coord, text=text, font=self.controller.big_title_font,
+                                         anchor='nw', fill="white")
+
+        # Points
+        completed_points = self.stat_dict["completed_points"]
+        possible_points = self.stat_dict["possible_points"]
+        text = f"Points Completed: {completed_points}/{possible_points}"
+        coord = (775,60)
+        self.overview_canvas.create_text(coord, text=text, font=self.controller.big_title_font,
+                                         anchor='nw', fill="white")
+
+        planned_points = self.stat_dict["planned_points"]
+        text = f"Planned: {planned_points}"
+        coord = (775,100)
+        self.overview_canvas.create_text(coord, text=text, font=self.controller.big_title_font,
+                                         anchor='nw', fill="white")
+
+        combined = completed_points+planned_points
+        text = f"Combined Total: {combined}/{possible_points}"
+        coord = (775,140)
+        self.overview_canvas.create_text(coord, text=text, font=self.controller.big_title_font,
+                                         anchor='nw', fill="white")
+
+        # next reward
+        text = "Next Milestone: 6500      Reward:"
+        coord = (685,190)
+        self.overview_canvas.create_text(coord, text=text, font=AchievementsFrame.title_font,
+                                         anchor='center', fill="white")
 
 
     def on_click(self, event):
@@ -693,7 +734,7 @@ class OverviewFrame(tk.Frame):
         """
         print("Area clicked was", event.x, event.y, sep=" ")
         # if "Back" was clicked
-        if 80 <= event.x <= 155 and 40 <= event.y <= 85:
+        if 75 <= event.x <= 150 and 40 <= event.y <= 85:
             self.overview_canvas.itemconfig(self.canvas_bg, image=self.tk_back_clicked)
             #Go to Main Menu frame and turn button back to yellow
             self.overview_canvas.bind("<ButtonRelease-1>", lambda event:
@@ -750,6 +791,11 @@ class AchievementsFrame(tk.Frame):
     # exit button for info frame
     exit_x = None
 
+    # fonts used for achievement frame and info
+    title_font = None
+    big_title_font = None
+    desc_font = None
+
     @staticmethod
     def static_init(parent, controller, achievement_list, write_achievements):
         """Initializes static variables used in class.
@@ -771,6 +817,13 @@ class AchievementsFrame(tk.Frame):
         AchievementsFrame.write_achievements = write_achievements
 
         AchievementsFrame.init_images()
+
+        # Fonts used throughout program
+        AchievementsFrame.title_font = font.Font(family='Helvetica', 
+                                    size=12, weight='bold')
+        AchievementsFrame.desc_font = font.Font(family='Helvetica', size=12)
+        AchievementsFrame.big_title_font = font.Font(family='Helvetica', 
+                                        size=20, weight='bold')
 
     @staticmethod
     def init_images():
@@ -1009,7 +1062,7 @@ class AchievementsFrame(tk.Frame):
         else:
             text = title
         frame_title=tk.Label(achievement_frame, text=text, anchor=W, 
-                            fg='white', font=self.controller.title_font, 
+                            fg='white', font=AchievementsFrame.title_font, 
                             bg='#121111')
         frame_title.grid(row=0, column=0, sticky=NW)
         frame_title.bind('<Button-1>', lambda event: 
@@ -1020,7 +1073,7 @@ class AchievementsFrame(tk.Frame):
         text = textwrap.fill(desc, width=72)
         frame_desc=tk.Label(achievement_frame, text=text, justify=LEFT, 
                             anchor=W, height=2, width=56, fg='white',
-                            font=self.controller.desc_font, bg='#121111')
+                            font=AchievementsFrame.desc_font, bg='#121111')
         frame_desc.grid(row=1, column=0, sticky=NW)
         frame_desc.bind('<Button-1>', lambda event: 
                     self.init_info_frame(achievement))
@@ -1037,7 +1090,7 @@ class AchievementsFrame(tk.Frame):
         text = achievement.reward_amount + " x "
         frame_amount=tk.Label(achievement_frame, text=text, anchor=E, 
                               fg='white', height=1, width=10, 
-                              font=self.controller.desc_font, bg='#121111')
+                              font=AchievementsFrame.desc_font, bg='#121111')
         frame_amount.grid(row=1, column=3, sticky=NW)
         frame_amount.bind('<Button-1>', lambda event: 
                     self.init_info_frame(achievement))
@@ -1114,7 +1167,7 @@ class AchievementsFrame(tk.Frame):
         text = title
         achievement_title = tk.Label(info_frame, text=text, anchor=W, 
                                      fg='white', height=1, width=20, 
-                                     font=self.controller.big_title_font,
+                                     font=AchievementsFrame.big_title_font,
                                      bg='#121111')
         achievement_title.grid(row=1, column=0, sticky=NW)
 
@@ -1147,7 +1200,7 @@ class AchievementsFrame(tk.Frame):
         # Draws a line under achievement title
         text = "     _________________________________________________________________________"
         line = tk.Label(info_frame, text=text, anchor=W, fg='white',
-                    height=1, font=self.controller.title_font, bg='#121111')
+                    height=1, font=AchievementsFrame.title_font, bg='#121111')
         line.grid(row=2, column=0, columnspan=total_columns, sticky=NW)
 
         # next_row is the next row for an achievement frame to be placed
@@ -1171,7 +1224,7 @@ class AchievementsFrame(tk.Frame):
             text = title + " " + achievement.level_rom_num
             frame_title=tk.Label(achievement_frame, text=text, anchor=W, 
                                  fg='white', height=1, 
-                                 font=self.controller.title_font, 
+                                 font=AchievementsFrame.title_font, 
                                  bg='#121111')
             frame_title.grid(row=0, column=0, sticky=NW)
 
@@ -1180,7 +1233,7 @@ class AchievementsFrame(tk.Frame):
             # input number of tasks needed in level into description string
             frame_desc=tk.Label(achievement_frame, text=text, 
                                 justify=LEFT, anchor=W, height=3, width=35, 
-                                fg='white', font=self.controller.desc_font, 
+                                fg='white', font=AchievementsFrame.desc_font, 
                                 bg='#121111')
             frame_desc.grid(row=1, column=0, sticky=NW)
             
@@ -1193,7 +1246,7 @@ class AchievementsFrame(tk.Frame):
             text = achievement.reward_amount + " x "
             frame_amount=tk.Label(achievement_frame, text=text, anchor=E,
                                   fg='white', height=1, width=9, 
-                                  font=self.controller.desc_font, bg='#121111')
+                                  font=AchievementsFrame.desc_font, bg='#121111')
             frame_amount.grid(row=1, column=3, sticky=NW)
 
             img = achievement.reward_img
@@ -1240,14 +1293,14 @@ class AchievementsFrame(tk.Frame):
         # draws a line under the achievement frames
         text = "     _________________________________________________________________________"
         line = tk.Label(info_frame, text=text, anchor=W, fg='white',
-                    font=self.controller.title_font, bg='#121111')
+                    font=AchievementsFrame.title_font, bg='#121111')
         line.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
         next_row += 1
 
         # information on how to get the achievement
         text = textwrap.fill(info, width=101)
         info=tk.Label(info_frame, text=text, justify=LEFT, fg='white',
-                    font=self.controller.desc_font, bg='#121111')
+                    font=AchievementsFrame.desc_font, bg='#121111')
         info.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
 
     def init_list_info_frame(self, achievement):
@@ -1278,7 +1331,7 @@ class AchievementsFrame(tk.Frame):
 
         text = achievement.title
         title=tk.Label(info_frame, text=text, anchor=W, fg='white',
-                    height=1, font=self.controller.big_title_font, width=20,
+                    height=1, font=AchievementsFrame.big_title_font, width=20,
                     bg='#121111')
         title.grid(row=1, column=0, sticky=NW)
 
@@ -1314,7 +1367,7 @@ class AchievementsFrame(tk.Frame):
         # Draws a line under achievement title
         text = "     _________________________________________________________________________"
         line = tk.Label(info_frame, text=text, anchor=W, fg='white',
-                        height=1, font=self.controller.title_font,
+                        height=1, font=AchievementsFrame.title_font,
                         bg='#121111')
         line.grid(row=2, column=0, columnspan=total_columns, sticky=NW)
 
@@ -1325,20 +1378,20 @@ class AchievementsFrame(tk.Frame):
             text = textwrap.fill("- " + task, width=84)
             text = text.replace("\n", "\n   ")
             line = tk.Label(info_frame, text=text, anchor=W, fg='white', justify=LEFT,
-                    font=self.controller.desc_font, bg='#121111')
+                    font=AchievementsFrame.desc_font, bg='#121111')
             line.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
             next_row = next_row+1
 
         # Draws a line under achievement title
         text = "     _________________________________________________________________________"
         line = tk.Label(info_frame, text=text, anchor=W, fg='white',
-                    height=1, font=self.controller.title_font, bg='#121111')
+                    height=1, font=AchievementsFrame.title_font, bg='#121111')
         line.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
         next_row += 1
 
         text = textwrap.fill(achievement.info, width=101)
         desc=tk.Label(info_frame, text=text, justify=LEFT, fg='white',
-                    font=self.controller.desc_font, bg='#121111')
+                    font=AchievementsFrame.desc_font, bg='#121111')
         desc.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
 
     def exit_achievement(self, achievement):
