@@ -29,13 +29,10 @@ from scrollable_frame import ScrollableFrame
 # Desired sizes for the button images
 BUTTON_SIZE = 277, 45
 
-# Most windows screens have 16 pixels that aren't shown on screen
-# ie. on the edges of the screen where the mouses disappear
-SCREEN_OFFSET = 16
-
 # Used to create size of window
-BACKGROUND_IMG_H = 625
-PC_WIDTH = 1366
+WINDOW_H = 625
+# My PC width - window edge
+WINDOW_W = 1366 - 16
 
 
 class AppController(tk.Tk):
@@ -91,6 +88,13 @@ class AppController(tk.Tk):
         # key. When the user clicks 'Save', the file will be updated to include 
         # the new checkbutton values of the achievements in the dictionary. 
         self.write_achievements = {}
+
+        # Fonts used throughout program
+        self.title_font = font.Font(family='Helvetica', 
+                                    size=12, weight='bold')
+        self.desc_font = font.Font(family='Helvetica', size=12)
+        self.big_title_font = font.Font(family='Helvetica', 
+                                        size=20, weight='bold')
 
         # Initializing all frames
 
@@ -329,7 +333,6 @@ class AppController(tk.Tk):
                     # loop through all levels of achievement
                     while (self.achievement_list[cur_lvl_index].shared_attrs \
                         == self.write_achievements[achievement["title"]].shared_attrs):
-                        print("In loop, level = ", level)
                         achievement["levels"][level]["is_planned"] = \
                             str(self.write_achievements[achievement["title"]].planned_var.get())
                         achievement["levels"][level]["is_completed"] = \
@@ -385,8 +388,8 @@ class MainMenuFrame(tk.Frame):
         # Therefore, button clicks are calculated based on this fixed size.
         # Allowing variable window sizes for different screens is a feature 
         # that needs to be added.
-        tk.Frame.__init__(self, parent, height=BACKGROUND_IMG_H, 
-                          width=PC_WIDTH - SCREEN_OFFSET)
+        tk.Frame.__init__(self, parent, height=WINDOW_H, 
+                          width=WINDOW_W)
 
         # The root, or AppController is the controller for this frame.
         # The controller is a way for the pages to interact with each other.
@@ -411,8 +414,8 @@ class MainMenuFrame(tk.Frame):
         # Use self as the parent since we are placing 
         # this label onto the frame
         self.main_menu_label = tk.Label(self, image=self.tk_background)
-        self.main_menu_label.place(height=BACKGROUND_IMG_H, 
-                               width=1366 - SCREEN_OFFSET)
+        self.main_menu_label.place(height=WINDOW_H, 
+                               width=WINDOW_W)
 
         # Adding functionality to buttons
         self.main_menu_label.bind('<Button-1>', self.on_click)
@@ -587,33 +590,11 @@ class OverviewFrame(tk.Frame):
                 with each other. For this application, the controller is used 
                 to bring a particular frame forward when the user requests it.
         """
-        tk.Frame.__init__(self, parent, height=BACKGROUND_IMG_H, 
-                          width=PC_WIDTH - SCREEN_OFFSET)
+        tk.Frame.__init__(self, parent, height=WINDOW_H, 
+                          width=WINDOW_W)
 
         self.controller = controller
 
-        # a dictionary of statistics
-        self.stat_dict = {}
-        # intitialize statistics related to points and achievements
-        for adj in ("completed_","planned_","possible_"):
-            for noun in ("points_","achievements_"):
-                for category in ("GM","matches","honor","progress","items","social",
-                         "general"):
-                    key = category + adj + noun
-                    self.stat_dict[key] = 0
-                # overall points and achievements
-                key = adj + noun
-                self.stat_dict[key] = 0
-
-        # initialize reward statistics
-        for adj in ("completed_","planned_","possible_"): 
-            for reward in ("bp","silver", "AG", "supply_scrap", "supply_crate",
-                           "classic_scrap","classic_crate","premium_scrap",
-                           "premium_crate","titles","outfits","weapon_skins",
-                           "misc"):
-                key = adj + reward
-                self.stat_dict[key] = 0
-            
 
         #assigned in init_image()
         self.tk_background_img = None 
@@ -624,11 +605,38 @@ class OverviewFrame(tk.Frame):
 
         #Place image onto frame
         self.overview_label = tk.Label(self, image=self.tk_background_blur)
-        self.overview_label.place(height=BACKGROUND_IMG_H, 
-                               width=1366 - SCREEN_OFFSET)
+        self.overview_label.place(height=WINDOW_H, 
+                               width=WINDOW_W)
 
         # Adding functionality to back button
         self.overview_label.bind('<Button-1>', self.on_click)
+
+        # Initializing statistics
+
+        # a dictionary of statistics
+        self.stat_dict = {}
+        # intitialize statistics related to points and achievements
+        for adj in ("completed_","planned_","possible_"):
+            for noun in ("points","achievements"):
+                for category in ("GM_","matches_","honor","progress","items","social",
+                         "general"):
+                    key = category + adj + noun
+                    self.stat_dict[key] = 1000
+                # overall points and achievements
+                key = adj + noun
+                self.stat_dict[key] = 1000
+
+        # initialize reward statistics
+        for adj in ("completed_","planned_","possible_"): 
+            for reward in ("bp","silver", "AG", "supply_scrap", "supply_crate",
+                           "classic_scrap","classic_crate","premium_scrap",
+                           "premium_crate","titles","outfits","weapon_skins",
+                           "misc"):
+                key = adj + reward
+                self.stat_dict[key] = 1000
+
+        self.create_display()
+
 
     def init_images(self):
             """Initializes the background image, text, and
@@ -665,6 +673,20 @@ class OverviewFrame(tk.Frame):
             # "Back" is clicked
             back_clicked.paste(back_red_btn_img, (150, 40), back_red_btn_img)
             self.tk_back_clicked = ImageTk.PhotoImage(back_clicked)
+
+    def create_display(self):
+        pass
+        ## creating lines
+        #text = "_________________________________________________________________________"
+        #line = tk.Label(self, text=text, anchor=CENTER, fg='white',
+        #            height=1, font=self.controller.title_font, bg='#121111')
+        #line.grid(row=2, column=0, columnspan=total_columns, sticky=NW)
+
+
+
+
+
+
 
     def on_click(self, event):
         """Turns the clicked on button to red and raises the corresponding 
@@ -727,13 +749,6 @@ class AchievementsFrame(tk.Frame):
     # exit button for info frame
     exit_x = None
 
-    # fonts for achievement information
-    title_font = None
-    desc_font = None
-    big_title_font = None
-
-
-
     @staticmethod
     def static_init(parent, controller, achievement_list, write_achievements):
         """Initializes static variables used in class.
@@ -755,13 +770,6 @@ class AchievementsFrame(tk.Frame):
         AchievementsFrame.write_achievements = write_achievements
 
         AchievementsFrame.init_images()
-
-        AchievementsFrame.title_font = font.Font(family='Helvetica',
-                                        size=12, weight='bold')
-        AchievementsFrame.desc_font = font.Font(family='Helvetica', 
-                                        size=12)
-        AchievementsFrame.big_title_font = font.Font(family='Helvetica',
-                                        size=20, weight='bold')
 
     @staticmethod
     def init_images():
@@ -895,15 +903,15 @@ class AchievementsFrame(tk.Frame):
     def __init__(self):
         """Initializes a frame to contain achievements"""
         tk.Frame.__init__(self, AchievementsFrame.parent, 
-                          height=BACKGROUND_IMG_H, 
-                          width=PC_WIDTH - SCREEN_OFFSET)
+                          height=WINDOW_H, 
+                          width=WINDOW_W)
 
         # Place background image onto frame using label. 
         # 'GM' is clicked by default.
         self.bg_image_label = tk.Label(self, image=
                                        AchievementsFrame.tk_GM_clicked)
-        self.bg_image_label.place(height=BACKGROUND_IMG_H, 
-                                  width=PC_WIDTH - SCREEN_OFFSET)
+        self.bg_image_label.place(height=WINDOW_H, 
+                                  width=WINDOW_W)
 
         # Adding functionality to buttons
         self.bg_image_label.bind('<Button-1>', self.on_click)
@@ -951,7 +959,7 @@ class AchievementsFrame(tk.Frame):
                          'items', 'social','general'):
             category_frame = ScrollableFrame(self, height = 500, width = 702, 
                                              bg = '#121111')
-            category_frame.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
+            category_frame.place(x=527, y=WINDOW_H/2, anchor=CENTER)
             # First achievement will be placed on row 0
             self.category_row[category] = 0
             # Store a reference to this category's frame in a dictionary
@@ -1000,7 +1008,7 @@ class AchievementsFrame(tk.Frame):
         else:
             text = title
         frame_title=tk.Label(achievement_frame, text=text, anchor=W, 
-                            fg='white', font=AchievementsFrame.title_font, 
+                            fg='white', font=self.controller.title_font, 
                             bg='#121111')
         frame_title.grid(row=0, column=0, sticky=NW)
         frame_title.bind('<Button-1>', lambda event: 
@@ -1011,7 +1019,7 @@ class AchievementsFrame(tk.Frame):
         text = textwrap.fill(desc, width=72)
         frame_desc=tk.Label(achievement_frame, text=text, justify=LEFT, 
                             anchor=W, height=2, width=56, fg='white',
-                            font=AchievementsFrame.desc_font, bg='#121111')
+                            font=self.controller.desc_font, bg='#121111')
         frame_desc.grid(row=1, column=0, sticky=NW)
         frame_desc.bind('<Button-1>', lambda event: 
                     self.init_info_frame(achievement))
@@ -1028,7 +1036,7 @@ class AchievementsFrame(tk.Frame):
         text = achievement.reward_amount + " x "
         frame_amount=tk.Label(achievement_frame, text=text, anchor=E, 
                               fg='white', height=1, width=10, 
-                              font=AchievementsFrame.desc_font, bg='#121111')
+                              font=self.controller.desc_font, bg='#121111')
         frame_amount.grid(row=1, column=3, sticky=NW)
         frame_amount.bind('<Button-1>', lambda event: 
                     self.init_info_frame(achievement))
@@ -1084,7 +1092,7 @@ class AchievementsFrame(tk.Frame):
                                                   width = 702, bg='#121111')
         # use info_frame as the parent
         info_frame = leveled_achievement_sbf.scrolled_frame
-        leveled_achievement_sbf.place(x=527, y=BACKGROUND_IMG_H/2, 
+        leveled_achievement_sbf.place(x=527, y=WINDOW_H/2, 
                                       anchor=CENTER)
 
         # total columns used in creating the info frame. Used for columnspan
@@ -1105,7 +1113,7 @@ class AchievementsFrame(tk.Frame):
         text = title
         achievement_title = tk.Label(info_frame, text=text, anchor=W, 
                                      fg='white', height=1, width=20, 
-                                     font=AchievementsFrame.big_title_font,
+                                     font=self.controller.big_title_font,
                                      bg='#121111')
         achievement_title.grid(row=1, column=0, sticky=NW)
 
@@ -1138,7 +1146,7 @@ class AchievementsFrame(tk.Frame):
         # Draws a line under achievement title
         text = "     _________________________________________________________________________"
         line = tk.Label(info_frame, text=text, anchor=W, fg='white',
-                    height=1, font=AchievementsFrame.title_font, bg='#121111')
+                    height=1, font=self.controller.title_font, bg='#121111')
         line.grid(row=2, column=0, columnspan=total_columns, sticky=NW)
 
         # next_row is the next row for an achievement frame to be placed
@@ -1162,7 +1170,7 @@ class AchievementsFrame(tk.Frame):
             text = title + " " + achievement.level_rom_num
             frame_title=tk.Label(achievement_frame, text=text, anchor=W, 
                                  fg='white', height=1, 
-                                 font=AchievementsFrame.title_font, 
+                                 font=self.controller.title_font, 
                                  bg='#121111')
             frame_title.grid(row=0, column=0, sticky=NW)
 
@@ -1171,7 +1179,7 @@ class AchievementsFrame(tk.Frame):
             # input number of tasks needed in level into description string
             frame_desc=tk.Label(achievement_frame, text=text, 
                                 justify=LEFT, anchor=W, height=3, width=35, 
-                                fg='white', font=AchievementsFrame.desc_font, 
+                                fg='white', font=self.controller.desc_font, 
                                 bg='#121111')
             frame_desc.grid(row=1, column=0, sticky=NW)
             
@@ -1184,7 +1192,7 @@ class AchievementsFrame(tk.Frame):
             text = achievement.reward_amount + " x "
             frame_amount=tk.Label(achievement_frame, text=text, anchor=E,
                                   fg='white', height=1, width=9, 
-                                  font=AchievementsFrame.desc_font, bg='#121111')
+                                  font=self.controller.desc_font, bg='#121111')
             frame_amount.grid(row=1, column=3, sticky=NW)
 
             img = achievement.reward_img
@@ -1231,14 +1239,14 @@ class AchievementsFrame(tk.Frame):
         # draws a line under the achievement frames
         text = "     _________________________________________________________________________"
         line = tk.Label(info_frame, text=text, anchor=W, fg='white',
-                    font=AchievementsFrame.title_font, bg='#121111')
+                    font=self.controller.title_font, bg='#121111')
         line.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
         next_row += 1
 
         # information on how to get the achievement
         text = textwrap.fill(info, width=101)
         info=tk.Label(info_frame, text=text, justify=LEFT, fg='white',
-                    font=AchievementsFrame.desc_font, bg='#121111')
+                    font=self.controller.desc_font, bg='#121111')
         info.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
 
     def init_list_info_frame(self, achievement):
@@ -1254,7 +1262,7 @@ class AchievementsFrame(tk.Frame):
                                                width=702, bg='#121111')
         # use info_frame as the parent
         info_frame = list_achievement_sbf.scrolled_frame
-        list_achievement_sbf.place(x=527, y=BACKGROUND_IMG_H/2, anchor=CENTER)
+        list_achievement_sbf.place(x=527, y=WINDOW_H/2, anchor=CENTER)
         
         # the total columns used in creating the info frame. Used for columnspan
         total_columns = 6
@@ -1269,7 +1277,7 @@ class AchievementsFrame(tk.Frame):
 
         text = achievement.title
         title=tk.Label(info_frame, text=text, anchor=W, fg='white',
-                    height=1, font=AchievementsFrame.big_title_font, width=20,
+                    height=1, font=self.controller.big_title_font, width=20,
                     bg='#121111')
         title.grid(row=1, column=0, sticky=NW)
 
@@ -1305,7 +1313,7 @@ class AchievementsFrame(tk.Frame):
         # Draws a line under achievement title
         text = "     _________________________________________________________________________"
         line = tk.Label(info_frame, text=text, anchor=W, fg='white',
-                        height=1, font=AchievementsFrame.title_font,
+                        height=1, font=self.controller.title_font,
                         bg='#121111')
         line.grid(row=2, column=0, columnspan=total_columns, sticky=NW)
 
@@ -1316,20 +1324,20 @@ class AchievementsFrame(tk.Frame):
             text = textwrap.fill("- " + task, width=84)
             text = text.replace("\n", "\n   ")
             line = tk.Label(info_frame, text=text, anchor=W, fg='white', justify=LEFT,
-                    font=AchievementsFrame.desc_font, bg='#121111')
+                    font=self.controller.desc_font, bg='#121111')
             line.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
             next_row = next_row+1
 
         # Draws a line under achievement title
         text = "     _________________________________________________________________________"
         line = tk.Label(info_frame, text=text, anchor=W, fg='white',
-                    height=1, font=AchievementsFrame.title_font, bg='#121111')
+                    height=1, font=self.controller.title_font, bg='#121111')
         line.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
         next_row += 1
 
         text = textwrap.fill(achievement.info, width=101)
         desc=tk.Label(info_frame, text=text, justify=LEFT, fg='white',
-                    font=AchievementsFrame.desc_font, bg='#121111')
+                    font=self.controller.desc_font, bg='#121111')
         desc.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
 
     def exit_achievement(self, achievement):
@@ -1427,93 +1435,6 @@ class AchievementsFrame(tk.Frame):
             self.show_category("general")
 
 
-class CompletedFrame(tk.Frame):
-    
-    def __init__(self, parent, controller, achievement_list):
-        """Creates frame for 'Completed' section
-        Args: 
-            parent (Frame): the frame onto which this frame will be placed, ie. the root
-            controller (Frame): The controller frame is a way for the pages to interact 
-                with each other. For this application, the controller is used 
-                to bring a particular frame forward when the user requests it.
-        """
-        tk.Frame.__init__(self, parent, height=BACKGROUND_IMG_H, 
-                          width=PC_WIDTH - SCREEN_OFFSET)
-
-        self.controller = controller
-
-        #assigned in init_image()
-        self.tk_background_img = None 
-        self.tk_back_clicked = None
-
-        # Initialize the background image with buttons/text
-        self.init_images()
-
-        #Place image onto frame using label
-        self.completed_label = tk.Label(self, image=self.tk_background_blur)
-        self.completed_label.place(height=BACKGROUND_IMG_H, 
-                               width=1366 - SCREEN_OFFSET)
-
-        # Adding functionality to back button
-
-        self.completed_label.bind('<Button-1>', self.on_click)
-
-    def init_images(self):
-            """Initializes the background image, text, and
-            buttons for this frame. Similar code with further
-            explanation can be found in MainMenuFrame class.
-            """
-
-            background_blur_img = Image.open('./Images/background_blurred.png')
-            back_btn_img = Image.open('./Images/back.png')
-
-            # Red buttons will be used to indicate when the user 
-            # has clicked a button. These images are used in the 
-            # change_button_to_red() method
-            back_red_btn_img = Image.open('./Images/back_red.png')
-
-            # Shrinking button images
-            for img in (back_btn_img,
-                        back_red_btn_img):
-                img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
-
-            # Paste button onto background image
-            background_blur_img.paste(back_btn_img, (150, 40), 
-                                   back_btn_img)
-
-            # Convert the Image object into a TkPhoto object
-            self.tk_background_blur = ImageTk.PhotoImage(background_blur_img)
-
-            # Placing red buttons over original buttons
-
-            # Create copies of background image so button images
-            # aren't pasted over the same image
-            back_clicked = copy.deepcopy(background_blur_img)
-        
-            # "Back" is clicked
-            back_clicked.paste(back_red_btn_img,
-                                           (150, 40), 
-                                           back_red_btn_img)
-            self.tk_back_clicked = ImageTk.PhotoImage(back_clicked)
-
-    def on_click(self, event):
-        """Turns the clicked on button to red and raises the corresponding 
-        frame. 
-        """
-
-        print("Area clicked was", event.x, event.y, sep=" ")
-        # if "Back" was clicked
-        if 80 <= event.x <= 155 and 40 <= event.y <= 85:
-            self.completed_label.configure(image=
-                                       self.tk_back_clicked)
-            #Go to Main Menu frame and turn button back to yellow
-            self.completed_label.bind("<ButtonRelease-1>", lambda event:
-                                      [self.controller.show_frame(
-                                          "MainMenuFrame"), 
-                                       self.completed_label.configure(image=
-                                       self.tk_background_blur)])
-
-
 class CreditsFrame(tk.Frame):
     
     def __init__(self, parent, controller):
@@ -1524,8 +1445,8 @@ class CreditsFrame(tk.Frame):
                 with each other. For this application, the controller is used 
                 to bring a particular frame forward when the user requests it.
         """
-        tk.Frame.__init__(self, parent, height=BACKGROUND_IMG_H, 
-                          width=PC_WIDTH - SCREEN_OFFSET)
+        tk.Frame.__init__(self, parent, height=WINDOW_H, 
+                          width=WINDOW_W)
 
         self.controller = controller
 
@@ -1538,8 +1459,8 @@ class CreditsFrame(tk.Frame):
 
         #Place image onto frame using label
         self.credits_label = tk.Label(self, image=self.tk_background_blur)
-        self.credits_label.place(height=BACKGROUND_IMG_H, 
-                               width=1366 - SCREEN_OFFSET)
+        self.credits_label.place(height=WINDOW_H, 
+                               width=WINDOW_W)
 
         # Adding functionality to back button
 
@@ -1744,7 +1665,6 @@ class LeveledAchievement(Achievement):
         Achievement.write_achievements[self.shared_attrs.title] = \
             self.shared_attrs.first_lvl
 
-        print("completed var is: ", self.completed_var.get())
         if self.completed_var.get() == 1:
             self.check_completed_checkbox()
         else:
@@ -1794,9 +1714,7 @@ class LeveledAchievement(Achievement):
         automatically uncheck every higher level than the current level.
         """
 
-        print("unchecking")
         if (int(self.shared_attrs.overall_completed) == 1):
-            print("Overall set to 0")
             self.shared_attrs.overall_completed = 0
         
         # skip unchecking if last lvl
@@ -1822,7 +1740,6 @@ class LeveledAchievement(Achievement):
 
     def on_completion(self):
         """Moves achievement to CompletedAchievements"""
-        print("Setting Overall Completed to 1")
         self.shared_attrs.overall_completed = 1
         # achievement can't be planned if it's completed
         # Unchecking planned checkboxes
