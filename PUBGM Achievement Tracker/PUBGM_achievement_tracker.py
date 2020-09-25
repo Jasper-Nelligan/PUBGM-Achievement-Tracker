@@ -595,7 +595,6 @@ class OverviewFrame(tk.Frame):
 
         self.controller = controller
 
-
         #assigned in init_image()
         self.tk_background_img = None 
         self.tk_back_clicked = None
@@ -603,39 +602,21 @@ class OverviewFrame(tk.Frame):
         # Initialize the background image with buttons/text
         self.init_images()
 
-        #Place image onto frame
-        self.overview_label = tk.Label(self, image=self.tk_background_blur)
-        self.overview_label.place(height=WINDOW_H, 
-                               width=WINDOW_W)
+        # Place background onto canvas
+        # OverviewFrame uses a canvas instead of a frame
+        self.overview_canvas = tk.Canvas(self,height=WINDOW_H,width=WINDOW_W,
+                                         highlightthickness=0)
+        self.overview_canvas.pack()
+        self.canvas_bg = self.overview_canvas.create_image((-70,0),
+                                          image=self.tk_background_img,
+                                          anchor=NW)
 
         # Adding functionality to back button
-        self.overview_label.bind('<Button-1>', self.on_click)
-
-        # Initializing statistics
+        self.overview_canvas.bind('<Button-1>', self.on_click)
 
         # a dictionary of statistics
         self.stat_dict = {}
-        # intitialize statistics related to points and achievements
-        for adj in ("completed_","planned_","possible_"):
-            for noun in ("points","achievements"):
-                for category in ("GM_","matches_","honor","progress","items","social",
-                         "general"):
-                    key = category + adj + noun
-                    self.stat_dict[key] = 1000
-                # overall points and achievements
-                key = adj + noun
-                self.stat_dict[key] = 1000
-
-        # initialize reward statistics
-        for adj in ("completed_","planned_","possible_"): 
-            for reward in ("bp","silver", "AG", "supply_scrap", "supply_crate",
-                           "classic_scrap","classic_crate","premium_scrap",
-                           "premium_crate","titles","outfits","weapon_skins",
-                           "misc"):
-                key = adj + reward
-                self.stat_dict[key] = 1000
-
-        self.create_display()
+        self.init_stats()
 
 
     def init_images(self):
@@ -662,7 +643,7 @@ class OverviewFrame(tk.Frame):
                                    back_btn_img)
 
             # Convert the Image object into a TkPhoto object
-            self.tk_background_blur = ImageTk.PhotoImage(background_blur_img)
+            self.tk_background_img = ImageTk.PhotoImage(background_blur_img)
 
             # Placing red buttons over original buttons
 
@@ -674,15 +655,33 @@ class OverviewFrame(tk.Frame):
             back_clicked.paste(back_red_btn_img, (150, 40), back_red_btn_img)
             self.tk_back_clicked = ImageTk.PhotoImage(back_clicked)
 
-    def create_display(self):
-        pass
-        ## creating lines
-        #text = "_________________________________________________________________________"
-        #line = tk.Label(self, text=text, anchor=CENTER, fg='white',
-        #            height=1, font=self.controller.title_font, bg='#121111')
-        #line.grid(row=2, column=0, columnspan=total_columns, sticky=NW)
+    def init_stats(self):
+        # intitialize statistics related to points and achievements
+        for adj in ("completed_","planned_","possible_"):
+            for noun in ("points","achievements"):
+                for category in ("GM_","matches_","honor","progress","items","social",
+                         "general"):
+                    key = category + adj + noun
+                    self.stat_dict[key] = 1000
+                # overall points and achievements
+                key = adj + noun
+                self.stat_dict[key] = 1000
 
+        # initialize reward statistics
+        for adj in ("completed_","planned_","possible_"): 
+            for reward in ("bp","silver", "AG", "supply_scrap", "supply_crate",
+                           "classic_scrap","classic_crate","premium_scrap",
+                           "premium_crate","titles","outfits","weapon_skins",
+                           "misc"):
+                key = adj + reward
+                self.stat_dict[key] = 1000
 
+    def create_canvas(self):
+        # creating lines
+        text = "_________________________________________________________________________"
+        line = tk.Label(self, text=text, anchor=CENTER, fg='white',
+                    height=1, font=self.controller.title_font, bg='#121111')
+        line.place(x=WINDOW_W/2,y=100)
 
 
 
@@ -695,13 +694,15 @@ class OverviewFrame(tk.Frame):
         print("Area clicked was", event.x, event.y, sep=" ")
         # if "Back" was clicked
         if 80 <= event.x <= 155 and 40 <= event.y <= 85:
-            self.overview_label.configure(image=self.tk_back_clicked)
+            self.overview_canvas.itemconfig(self.canvas_bg, image=self.tk_back_clicked)
             #Go to Main Menu frame and turn button back to yellow
-            self.overview_label.bind("<ButtonRelease-1>", lambda event:
+            self.overview_canvas.bind("<ButtonRelease-1>", lambda event:
                                       [self.controller.show_frame(
                                           "MainMenuFrame"), 
-                                       self.overview_label.configure(image=
-                                       self.tk_background_blur)])
+                                       self.overview_canvas.itemconfig(
+                                           self.canvas_bg, image=
+                                           self.tk_background_img)])
+            
 
 
 class AchievementsFrame(tk.Frame):
