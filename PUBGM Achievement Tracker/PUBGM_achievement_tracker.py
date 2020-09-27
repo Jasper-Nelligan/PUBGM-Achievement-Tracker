@@ -36,18 +36,14 @@ WINDOW_W = 1366 - 16
 
 
 class AppController(tk.Tk):
-    """This class is a way for different frames to communicate with each other.
-   
-    This class initializes itself as the root frame onto which all other frame
-    classes (MainMenuFrame, OverviewFrame, AchievementsFrame, 
-    and CompletedFrame) will be placed on.
-    This class acts as the controller, meaning that any communication done 
-    between the frame classes is done via this class.
-    """
-
     def __init__(self):
-        """Initializes self as root frame and calls on other frame
-        classes to initialize them.
+        """This class is a way for different frames to communicate with each other.
+   
+        This class initializes itself as the root frame onto which all other frame
+        classes (MainMenuFrame, OverviewFrame, AchievementsFrame, 
+        and CompletedFrame) will be placed on.
+        This class acts as the controller, meaning that any communication done 
+        between the frame classes is done via this class.
         """
 
         # Creates the root. Root is referenced using 'self'
@@ -133,22 +129,18 @@ class AppController(tk.Tk):
         self.show_frame("MainMenuFrame")
 
     def init_leveled_achievements(self):
-        """Reads in leveled achievement information from csv file and initiates each one.
-        Achievement will be initiated in either AchievementsFrame or 
-        CompletedFrame, depending on if it's been completed or not.
-        The leveled_achievements.csv file is formatted in the following way:
-        row[0] = category (int)
-        row[1] = title (string)
-        row[2] = description (string)
-        row[3] = levels (string)(Level.planned?(Y=1,N=0).
-                  completed?(Y=1,N=0).# of tasks needed.points.reward amount.
-                  reward type+etc...)
-        row[4] = overall_completed?(int)(0=No, 1=Yes)
-        row[5] = achievement info (string)
-         
-        Note that in row[3], periods are used as the delimiter between a 
-        level's attributes, and a + separates each level.
+        """Reads in leveled achievement information from json file and 
+        initiates each one. Achievement will be initiated in either 
+        CompletedAchievements or UncompletedAchievements.
+
+        Each achievement is stored as an instance of LeveledAchievement.
+        Attributes such as category, title, desc, overall_completed, and 
+        info will be stored in a seperate class LeveledAttributes, which
+        can be accessed by each level of each achievement. This is done 
+        to save program memory. A reference to each achievement is stored
+        in a list which can be accessed by an index.
         """
+
         # Initiating leveled achievements
         with open('./PUBGM Achievement Tracker/leveled_achievements.json','r') as json_file:
             # read in achievement data into a dictionary.
@@ -233,20 +225,15 @@ class AppController(tk.Tk):
                             continue
 
     def init_list_achievements(self):
-        """Reads in list achievement information from csv file and initiates each one.
-        Achievement will be initiated in either AchievementsFrame or 
-        CompletedFrame, depending on if it's been completed or not.
-        The list_achievement.csv file is formatted in the following way:
-        row[0] = category (int)
-        row[1] = title (string)
-        row[2] = description (string)
-        row[3] = list of tasks(string)
-        row[4] = overall_completed?(int)(0=No, 1=Yes)
-        row[5] = achievement info (string)
-         
-        In row[3], periods are used as the delimiter between a 
-        each task.
+        """Reads in list achievement information from json file and initiates
+        each one. Achievement will be initiated in either CompletedAchievements
+        or UncompletedAchievements.
+
+        Each achievement is stored as an instance of ListAchievement. A 
+        reference to each achievement is stored in a list which can be 
+        accessed by an index.
         """
+
         # Initiating list achievements
         with open('./PUBGM Achievement Tracker/list_achievements.json','r') as json_file:
             self.list_achievement_data = json.load(json_file)
@@ -309,11 +296,16 @@ class AppController(tk.Tk):
         """
         self.frames["UncompletedAchievements"].init_achievement_frame(achievement)
     
+    def update_stats():
+        """Updates statistics, which are displayed in OverviewFrame."""
+        pass
+
     def save_achievement_data(self):
         """Saves achievement data to json file.
 
         Data saved includes planned and completed variable data.
         """
+
         # save leveled achievements first
         for achievement in self.leveled_achievement_data["leveled_achievements"]:
             # if the achievement is set to be saved
@@ -355,7 +347,6 @@ class AppController(tk.Tk):
         with open('./PUBGM Achievement Tracker/list_achievements.json','w') as json_file:
             json.dump(self.list_achievement_data, json_file, indent=2)
 
-
     def show_frame(self, page_name):
             """Shows a frame for the given page name"""
             frame = self.frames[page_name]
@@ -364,7 +355,19 @@ class AppController(tk.Tk):
 
 class MainMenuFrame(tk.Frame):
     def __init__(self, parent, controller):
-        """Creates frame for Main Menu
+        """Creates frame for Main Menu.
+
+        The main menu contains several buttons that the user can click on. 
+        Clicking on a button raises the corresponding frame. The buttons are:
+
+        Overview: Takes the user to the OverviewFrame where achievements 
+            statistics are displayed.
+        Achievements: displays achievements that still need to be completed.
+        Completed: displays the user's completed achievements.
+        Credits: displays credits
+        Save: save achievement data to file
+        Exit: exits the program.
+
         Args: 
             parent (Frame): the frame onto which this frame will be placed, ie. the root
             controller (Frame): The controller frame is a way for the pages to interact 
@@ -515,10 +518,9 @@ class MainMenuFrame(tk.Frame):
         self.tk_exit_clicked = ImageTk.PhotoImage(exit_clicked)
   
     def on_click(self, event):
-        """Turns the clicked on button to red and raises the corresponding 
-        frame. Exits the program if Exit is clicked.
+        """Turns the clicked on button to red and carries out corresponding
+        action.
         """
-        print(f"Clicked ({event.x}, {event.y})")
         #if "Overview" was clicked
         if 75 <= event.x <= 240 and 220 <= event.y <= 265:
             #On button click, turn button to red
@@ -576,7 +578,12 @@ class MainMenuFrame(tk.Frame):
 class OverviewFrame(tk.Frame):
 
     def __init__(self, parent, controller):
-        """Creates frame for 'Overview' section
+        """Creates frame for 'Overview' section.
+
+        This is where achievement statistics are displayed. The display
+        is re-drawn everytime this frame is raised.
+
+
         Args: 
             parent (Frame): the frame onto which this frame will be placed, ie. the root
             controller (Frame): The controller frame is a way for the pages to interact 
@@ -589,7 +596,7 @@ class OverviewFrame(tk.Frame):
         self.controller = controller
 
         #assigned in init_image()
-        self.tk_background_img = None 
+        self.tk_bg_img = None 
         self.tk_back_clicked = None
 
         # Initialize the background image with buttons/text
@@ -601,7 +608,7 @@ class OverviewFrame(tk.Frame):
                                          borderwidth=0,highlightthickness=0)
         self.overview_canvas.pack()
         self.canvas_bg = self.overview_canvas.create_image((-75,0),
-                                          image=self.tk_background_img,
+                                          image=self.tk_bg_img,
                                           anchor=NW)
 
         # Adding functionality to back button
@@ -614,14 +621,13 @@ class OverviewFrame(tk.Frame):
         # draw statistics onto canvas
         self.draw_canvas()
 
-
     def init_images(self):
             """Initializes the background image, text, and
             buttons for this frame. Similar code with further
             explanation can be found in MainMenuFrame class.
             """
 
-            background_blur_img = Image.open('./Images/background_blurred.png')
+            bg_blur_img = Image.open('./Images/background_blurred.png')
             back_btn_img = Image.open('./Images/back.png')
 
             # Red buttons will be used to indicate when the user 
@@ -635,33 +641,34 @@ class OverviewFrame(tk.Frame):
                 img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
 
             # Paste button onto background image
-            background_blur_img.paste(back_btn_img, (150, 40), 
+            bg_blur_img.paste(back_btn_img, (150, 40), 
                                    back_btn_img)
 
             # Convert the Image object into a TkPhoto object
-            self.tk_background_img = ImageTk.PhotoImage(background_blur_img)
+            self.tk_bg_img = ImageTk.PhotoImage(bg_blur_img)
 
             # Placing red buttons over original buttons
 
             # Create copies of background image so button images
             # aren't pasted over the same image
-            back_clicked = copy.deepcopy(background_blur_img)
+            back_clicked = copy.deepcopy(bg_blur_img)
         
             # "Back" is clicked
             back_clicked.paste(back_red_btn_img, (150, 40), back_red_btn_img)
             self.tk_back_clicked = ImageTk.PhotoImage(back_clicked)
 
     def init_stats(self):
+        """Initializes all statistics into a dictionary."""
         # intitialize statistics related to points and achievements
         for adj in ("completed_","planned_","possible_"):
             for noun in ("points","achievements"):
                 for category in ("GM_","matches_","honor_","progress_","items_","social_",
                          "general_"):
                     key = category + adj + noun
-                    self.stat_dict[key] = 1000
+                    self.stat_dict[key] = 0
                 # overall points and achievements
                 key = adj + noun
-                self.stat_dict[key] = 1000
+                self.stat_dict[key] = 0
 
         # initialize reward statistics
         for adj in ("completed_","planned_","possible_"): 
@@ -670,9 +677,14 @@ class OverviewFrame(tk.Frame):
                            "premium_crate","titles","outfits","weapon_skins",
                            "misc"):
                 key = adj + reward
-                self.stat_dict[key] = 1000
+                self.stat_dict[key] = 0
 
     def draw_canvas(self):
+        """Places statistics onto overview_canvas.
+
+        Called every time OverviewFrame is raised so the statistics can
+        be updated on the display.
+        """
 
         #temporary image
         img = Image.open('./Images/premium_crate.png')
@@ -866,10 +878,9 @@ class OverviewFrame(tk.Frame):
                                           "MainMenuFrame"), 
                                        self.overview_canvas.itemconfig(
                                            self.canvas_bg, image=
-                                           self.tk_background_img)])
-            
+                                           self.tk_bg_img)])
 
-
+ 
 class AchievementsFrame(tk.Frame):
     """Contains all widgets related to achievements, uncompleted or completed.
     
