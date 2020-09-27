@@ -37,11 +37,13 @@ WINDOW_W = 1366 - 16
 
 class AppController(tk.Tk):
     def __init__(self):
-        """This class is a way for different frames to communicate with each other.
+        """This class is a way for different frames to communicate with each 
+        other.
    
-        This class initializes itself as the root frame onto which all other frame
-        classes (MainMenuFrame, OverviewFrame, AchievementsFrame, 
+        This class initializes itself as the root frame onto which all other 
+        frame classes (MainMenuFrame, OverviewFrame, AchievementsFrame, 
         and CompletedFrame) will be placed on.
+        
         This class acts as the controller, meaning that any communication done 
         between the frame classes is done via this class.
         """
@@ -66,8 +68,8 @@ class AppController(tk.Tk):
 
         # A list for storing references to each instance of the Achievement 
         # class. Each achievement stores an assigned list index so it can be 
-        # accessed. Achievements are read from the csv file and placed in the 
-        # list when initializing AchievementsFrame.
+        # accessed. Achievements are read from the csv file and placed in 
+        # the list when initializing AchievementsFrame.
         self.achievement_list = []
 
         # Keeps track of the index in achievement_list where the
@@ -75,8 +77,8 @@ class AppController(tk.Tk):
         self.list_index = 0
 
         # dictionaries for reading in achievement data from file
-        self.leveled_achievement_data = {}
-        self.list_achievement_data = {}
+        self.achievement_data = {}
+        self.achievement_data = {}
 
         # A dictionary for storing achievements that need to be updated 
         # in file. Everytime the user clicks the Planned or Completed buttons, 
@@ -142,17 +144,18 @@ class AppController(tk.Tk):
         """
 
         # Initiating leveled achievements
-        with open('./PUBGM Achievement Tracker/leveled_achievements.json','r') as json_file:
+        file = './PUBGM Achievement Tracker/leveled_achievements.json'
+        with open(file,'r') as json_file:
             # read in achievement data into a dictionary.
-            self.leveled_achievement_data = json.load(json_file)
+            self.achievement_data = json.load(json_file)
 
-            for leveled_achievement in self.leveled_achievement_data['leveled_achievements']:
+            for achievement in self.achievement_data['leveled_achievements']:
                 # read in attributes
-                category = leveled_achievement['category']
-                title = leveled_achievement['title']
-                desc = leveled_achievement['description']
-                overall_completed = leveled_achievement['overall_completed']
-                info = leveled_achievement['info']
+                category = achievement['category']
+                title = achievement['title']
+                desc = achievement['description']
+                overall_completed = achievement['overall_completed']
+                info = achievement['info']
 
                 # Reference to the first and last level of achievement.
                 # These are used for creating an instance of the
@@ -173,27 +176,27 @@ class AppController(tk.Tk):
                 # completed will be initialized as a frame.
                 frame_initialized = False
 
-                for level in leveled_achievement['levels']:
-                    rom_num = level['rom_num']
-                    is_planned = level['is_planned']
-                    is_completed = level['is_completed']
-                    num_tasks = level['num_tasks']
-                    points = level['points']
-                    reward_amount = level['reward_amount']
-                    reward = level['reward']
+                for lvl in achievement['levels']:
+                    rom_num = lvl['rom_num']
+                    is_planned = lvl['is_planned']
+                    is_completed = lvl['is_completed']
+                    num_tasks = lvl['num_tasks']
+                    points = lvl['points']
+                    reward_amount = lvl['reward_amount']
+                    reward = lvl['reward']
                     
-                    achievement = LeveledAchievement \
+                    this_lvl = LeveledAchievement \
                         (rom_num, is_planned, is_completed, num_tasks, 
                          points, reward_amount, reward, self.list_index, 
                          shared_attrs)
 
                     if (rom_num == "I"):
-                        shared_attrs.first_lvl = achievement
-                    if (level == leveled_achievement['levels'][-1]):
-                        shared_attrs.last_lvl = achievement
+                        shared_attrs.first_lvl = this_lvl
+                    if (lvl == achievement['levels'][-1]):
+                        shared_attrs.last_lvl = this_lvl
                             
-                    # add achievement to list
-                    self.achievement_list.append(achievement)
+                    # add level to achievement list
+                    self.achievement_list.append(this_lvl)
                     self.list_index += 1
 
                     # if achievement is completed, initiate last level frame
@@ -201,17 +204,19 @@ class AppController(tk.Tk):
                     if (overall_completed == "1"):
                         # if last level has been initialized as a
                         # LeveledAchievement
-                        if (level == leveled_achievement['levels'][-1]):
-                            self.frames["CompletedAchievements"].init_achievement_frame(achievement)
+                        if (lvl == achievement['levels'][-1]):
+                            self.frames["CompletedAchievements"]. \
+                                init_achievement_frame(this_lvl)
                             break
-                        # else loop through until the last level has been initialized
+                        # else loop through until last lvl has been initialized
                         else:
                             continue
                     # else initiate in UncompletedAchievements
                     else:
-                        # Only the first level of the achievement to not be completed
-                        # will be shown in the category frame. Therefore, if the 
-                        # level has been completed, skip to the next level.
+                        # Only the first level of the achievement to not be 
+                        # completed will be shown in the category frame. 
+                        # Therefore, if the level has been completed, skip to
+                        # the next level.
                         if is_completed == 1:
                             continue
                         # if this is the next level to be completed, initialize it 
@@ -235,45 +240,51 @@ class AppController(tk.Tk):
         """
 
         # Initiating list achievements
-        with open('./PUBGM Achievement Tracker/list_achievements.json','r') as json_file:
-            self.list_achievement_data = json.load(json_file)
+        file = './PUBGM Achievement Tracker/list_achievements.json'
+        with open(file,'r') as json_file:
+            self.achievement_data = json.load(json_file)
 
-            for list_achievement in self.list_achievement_data['list_achievements']:
-                category = list_achievement['category']
-                title = list_achievement['title']
-                desc = list_achievement['description']
-                task_list = list_achievement['task_list']
-                is_planned = list_achievement['is_planned']
-                is_completed = list_achievement['is_completed']
-                points = list_achievement['points']
-                reward_amount = list_achievement['reward_amount']
-                reward = list_achievement['reward']
-                info = list_achievement['info']
+            for achievement in self.achievement_data['list_achievements']:
+                category = achievement['category']
+                title = achievement['title']
+                desc = achievement['description']
+                task_list = achievement['task_list']
+                is_planned = achievement['is_planned']
+                is_completed = achievement['is_completed']
+                points = achievement['points']
+                reward_amount = achievement['reward_amount']
+                reward = achievement['reward']
+                info = achievement['info']
 
                 # a Frame has not yet been initialized
                 frame = None
 
-                achievement = ListAchievement(category, title, desc, task_list, is_planned,
-                                              is_completed, points, reward_amount, reward,
-                                              self.list_index, info, frame)
+                list_achievement = ListAchievement(category, title, desc,
+                                                  task_list, is_planned, 
+                                                  is_completed, points, 
+                                                  reward_amount, reward,
+                                                  self.list_index, info, frame)
 
                 # add achievement to list
-                self.achievement_list.append(achievement)
+                self.achievement_list.append(list_achievement)
                 self.list_index += 1
 
                 # if achievement is completed, initiate frame in CompletedAchievements
                 if is_completed == '1':
-                    self.frames["CompletedAchievements"].init_achievement_frame(achievement)
+                    self.frames["CompletedAchievements"]. \
+                        init_achievement_frame(list_achievement)
                 # else initiate in AchievementsAchievements
                 else:
-                    self.frames["UncompletedAchievements"].init_achievement_frame(achievement)
+                    self.frames["UncompletedAchievements"]. \
+                        init_achievement_frame(list_achievement)
 
     def complete_achievement(self, achievement):
         """Initializes given achievement in CompletedAchievements.
         
         For leveled achievements, the last level must be passed in.
         """
-        self.frames["CompletedAchievements"].init_achievement_frame(achievement)
+        self.frames["CompletedAchievements"]. \
+            init_achievement_frame(achievement)
 
     def update_achievement(self, achievement):
         """Updates achievement frame in UncompletedAchievements.
@@ -307,45 +318,53 @@ class AppController(tk.Tk):
         """
 
         # save leveled achievements first
-        for achievement in self.leveled_achievement_data["leveled_achievements"]:
+        for achievement in self.achievement_data["leveled_achievements"]:
             # if the achievement is set to be saved
             if(self.write_achievements.__contains__(achievement["title"])):
                 try:
                     # save leveled data by working up from Level I                   
-                    cur_lvl_index = self.write_achievements[achievement["title"]].list_index
+                    cur_lvl_index = self.write_achievements[
+                        achievement["title"]].list_index
                     # level is the index of the achievement level in the json file
                     level = 0
                     # loop through all levels of achievement
                     while (self.achievement_list[cur_lvl_index].shared_attrs \
-                        == self.write_achievements[achievement["title"]].shared_attrs):
+                        == self.write_achievements[achievement[
+                            "title"]].shared_attrs):
                         achievement["levels"][level]["is_planned"] = \
-                            str(self.write_achievements[achievement["title"]].planned_var.get())
+                            str(self.write_achievements[achievement[
+                                "title"]].planned_var.get())
                         achievement["levels"][level]["is_completed"] = \
-                            str(self.write_achievements[achievement["title"]].completed_var.get())
+                            str(self.write_achievements[achievement[
+                                "title"]].completed_var.get())
 
                         level += 1
                         cur_lvl_index += 1
                         next_higher_lvl = self.achievement_list[cur_lvl_index]
                     achievement["overall_completed"] = \
-                        str(self.write_achievements[achievement["title"]].shared_attrs.overall_completed)
+                        str(self.write_achievements[achievement["title"]]. \
+                            shared_attrs.overall_completed)
                 # list may go out of bounds if at the end or beginning of list
                 # it may also reach a ListAchievement, which would throw an AttributeError
                 except (IndexError, AttributeError):
                     pass
 
         # saving list achievement data
-        for achievement in self.list_achievement_data["list_achievements"]:
+        for achievement in self.achievement_data["list_achievements"]:
             if(self.write_achievements.__contains__(achievement["title"])):
                 achievement["is_planned"] = \
-                    str(self.write_achievements[achievement["title"]].planned_var.get())
+                    str(self.write_achievements[achievement[
+                        "title"]].planned_var.get())
                 achievement["is_completed"] = \
-                    str(self.write_achievements[achievement["title"]].completed_var.get())
+                    str(self.write_achievements[achievement[
+                        "title"]].completed_var.get())
         # write data to file
-        with open('./PUBGM Achievement Tracker/leveled_achievements.json','w') as json_file:
-            json.dump(self.leveled_achievement_data, json_file, indent=2)
-
-        with open('./PUBGM Achievement Tracker/list_achievements.json','w') as json_file:
-            json.dump(self.list_achievement_data, json_file, indent=2)
+        file = './PUBGM Achievement Tracker/leveled_achievements.json'
+        with open(file,'w') as json_file:
+            json.dump(self.achievement_data, json_file, indent=2)
+        file = './PUBGM Achievement Tracker/list_achievements.json'
+        with open(file,'w') as json_file:
+            json.dump(self.achievement_data, json_file, indent=2)
 
     def show_frame(self, page_name):
             """Shows a frame for the given page name"""
@@ -369,10 +388,12 @@ class MainMenuFrame(tk.Frame):
         Exit: exits the program.
 
         Args: 
-            parent (Frame): the frame onto which this frame will be placed, ie. the root
-            controller (Frame): The controller frame is a way for the pages to interact 
-                with each other. For this application, the controller is used 
-                to bring a particular frame forward when the user requests it.
+            parent (Frame): the frame onto which this frame will be placed, 
+                ie. the root
+            controller (Frame): The controller frame is a way for the pages 
+                to interact with each other. For this application, the 
+                controller is used to bring a particular frame forward when 
+                the user requests it.
         """
 
         # tk.Frame.__init__ is used since this class inherits from
@@ -585,10 +606,11 @@ class OverviewFrame(tk.Frame):
 
 
         Args: 
-            parent (Frame): the frame onto which this frame will be placed, ie. the root
-            controller (Frame): The controller frame is a way for the pages to interact 
-                with each other. For this application, the controller is used 
-                to bring a particular frame forward when the user requests it.
+            parent (Frame): the frame onto which this frame will be placed, 
+                ie. the root
+            controller (Frame): The controller frame is a way for the pages to 
+                interact with each other. For this application, the controller 
+                is used to bring a particular frame forward when the user requests it.
         """
         tk.Frame.__init__(self, parent, height=WINDOW_H, 
                           width=WINDOW_W)
@@ -662,8 +684,8 @@ class OverviewFrame(tk.Frame):
         # intitialize statistics related to points and achievements
         for adj in ("completed_","planned_","possible_"):
             for noun in ("points","achievements"):
-                for category in ("GM_","matches_","honor_","progress_","items_","social_",
-                         "general_"):
+                for category in ("GM_","matches_","honor_","progress_",
+                                 "items_","social_","general_"):
                     key = category + adj + noun
                     self.stat_dict[key] = 0
                 # overall points and achievements
@@ -854,7 +876,8 @@ class OverviewFrame(tk.Frame):
         # "misc" reward goes in-between left and right columns
         coord = (972, y+7)
         text = f"{completed_points} + ({planned_points}) / {possible_points} x            "
-        self.overview_canvas.create_text(coord, text=text, fill="white", font=temp_font,anchor='center')
+        self.overview_canvas.create_text(coord, text=text, fill="white", 
+                                         font=temp_font,anchor='center')
         coord = (1075, y+7)
         self.overview_canvas.create_image(coord, image=self.temp_img)
 
@@ -862,7 +885,8 @@ class OverviewFrame(tk.Frame):
         temp_font = font.Font(family='Helvetica', size=10)
         text = "Values in brackets are what you plan to complete"
         coord = (700, 610)
-        self.overview_canvas.create_text(coord, text=text, fill="white", font=temp_font,anchor='center')
+        self.overview_canvas.create_text(coord, text=text, fill="white", 
+                                         font=temp_font,anchor='center')
 
     def on_click(self, event):
         """Turns the clicked on button to red and raises the corresponding 
@@ -1629,10 +1653,11 @@ class CreditsFrame(tk.Frame):
     def __init__(self, parent, controller):
         """Creates frame for 'Credits' section
         Args: 
-            parent (Frame): the frame onto which this frame will be placed, ie. the root
-            controller (Frame): The controller frame is a way for the pages to interact 
-                with each other. For this application, the controller is used 
-                to bring a particular frame forward when the user requests it.
+            parent (Frame): the frame onto which this frame will be placed, 
+                ie. the root
+            controller (Frame): The controller frame is a way for the pages to 
+                interact with each other. For this application, the controller 
+                is used to bring a particular frame forward when the user requests it.
         """
         tk.Frame.__init__(self, parent, height=WINDOW_H, 
                           width=WINDOW_W)
