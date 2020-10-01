@@ -747,10 +747,10 @@ class OverviewFrame(tk.Frame):
 
         # initialize reward statistics
         for adj in ("completed_","planned_","possible_"): 
-            for reward in ("bp","silver", "AG", "supply_scrap", "supply_crate",
+            for reward in ("bp","silver", "ag", "supply_scrap", "supply_crate",
                            "classic_scrap","classic_crate","premium_scrap",
-                           "premium_crate","titles","outfits","weapon_skins",
-                           "misc"):
+                           "premium_crate","titles","outfits","weapon_finishes",
+                           "gear","misc"):
                 key = adj + reward
                 self.stat_dict[key] = 0
 
@@ -907,9 +907,10 @@ class OverviewFrame(tk.Frame):
         # rewards on left side
         y = 285
         count = 0
-        for reward in ("bp","silver", "AG", "supply_scrap", "supply_crate",
+        for reward in ("bp","silver", "ag", "supply_scrap", "supply_crate",
                        "classic_scrap","classic_crate","premium_scrap",
-                       "premium_crate","titles","outfits","weapon_skins"):
+                       "premium_crate","titles","outfits","weapon_finishes",
+                       "gear","misc"):
                 completed = self.stat_dict["completed_" + reward]
                 planned = self.stat_dict["planned_" + reward]
                 possible = self.stat_dict["possible_" + reward]
@@ -930,20 +931,12 @@ class OverviewFrame(tk.Frame):
                     y += 50
                 count += 1
 
-        # "misc" reward goes in-between left and right columns
-        coord = (972, y+7)
-        text = f"{completed_points} + ({planned_points}) / {possible_points} x            "
-        self.overview_canvas.create_text(coord, text=text, fill="white", 
-                                         font=temp_font,anchor='center')
-        coord = (1075, y+7)
-        self.overview_canvas.create_image(coord, image=self.temp_img)
-
         # description at bottom
         temp_font = font.Font(family='Helvetica', size=10)
         text = "Values in brackets are what you plan to complete"
-        coord = (700, 610)
+        coord = (10, 605)
         self.overview_canvas.create_text(coord, text=text, fill="white", 
-                                         font=temp_font,anchor='center')
+                                         font=temp_font,anchor='nw')
 
     def update_stat(self, stat, operator, amount):
         """Adds or subtracts a value in stat_dict.
@@ -962,7 +955,7 @@ class OverviewFrame(tk.Frame):
         """Turns the clicked on button to red and raises the corresponding 
         frame. 
         """
-        # print("Area clicked was", event.x, event.y, sep=" ")
+        print("Area clicked was", event.x, event.y, sep=" ")
         # if "Back" was clicked
         if 75 <= event.x <= 150 and 40 <= event.y <= 85:
             self.overview_canvas.itemconfig(self.canvas_bg, image=self.tk_back_clicked)
@@ -1847,8 +1840,16 @@ class Achievement():
             img.thumbnail((40,40), Image.BICUBIC)
             img = ImageTk.PhotoImage(img)
             Achievement.points_images[points] = img
-        for reward in ('bp','silver','classic_scrap','classic_crate',
-                       'premium_scrap','premium_crate'):
+        for reward in ("bp","silver","ag","supply_scrap","supply_crate",
+                       "classic_scrap","classic_crate","premium_scrap",
+                       "premium_crate","1_title","mythic_fashion_title",
+                       "perseverance_title","perfectionist_title",
+                       "warhorse_title","veteran_title","pacifist_title",
+                       "weapon_master_title","well_liked_title",
+                       "collector_title","maxed_out_title",
+                       "overachiever_title","deadeye_title",
+                       "glass_cannon_title","chicken_master_title",
+                       "on_a_mission_title","unique_destiny_title"):
             img = Image.open('./Images/'+reward+'.png')
             img.thumbnail((50,50), Image.BICUBIC)
             img = ImageTk.PhotoImage(img)
