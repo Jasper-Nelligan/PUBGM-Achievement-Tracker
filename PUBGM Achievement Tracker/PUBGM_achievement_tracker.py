@@ -496,23 +496,23 @@ class MainMenuFrame(tk.Frame):
         """
 
         # Initializing background and button images
-
-        background_img = Image.open('./Images/background.png')
-        program_title_img = Image.open('./Images/program_title.png')
-        overview_btn_img = Image.open('./Images/overview.png')
-        achievements_btn_img = Image.open('./Images/achievements.png')
-        completed_btn_img = Image.open('./Images/completed.png')
-        credits_btn_img = Image.open('./Images/credits.png')
-        save_btn_img = Image.open('./Images/save.png')
-        exit_btn_img = Image.open('./Images/exit.png')
+        path = "./Images/buttons/"
+        background_img = Image.open("./Images/background.png")
+        program_title_img = Image.open(path + "program_title.png")
+        overview_btn_img = Image.open(path + "overview.png")
+        achievements_btn_img = Image.open(path + "achievements.png")
+        completed_btn_img = Image.open(path + "completed.png")
+        credits_btn_img = Image.open(path + "credits.png")
+        save_btn_img = Image.open(path + "save.png")
+        exit_btn_img = Image.open(path + "exit.png")
         # Red buttons will be used to indicate when the user 
         # has clicked a button. 
-        overview_red_btn_img = Image.open('./Images/overview_red.png')
-        achievements_red_btn_img = Image.open('./Images/achievements_red.png')
-        completed_red_btn_img = Image.open('./Images/completed_red.png')
-        credits_red_btn_img = Image.open('./Images/credits_red.png')
-        save_red_btn_img = Image.open('./Images/save_red.png')
-        exit_red_btn_img = Image.open('./Images/exit_red.png')
+        overview_red_btn_img = Image.open(path + "overview_red.png")
+        achievements_red_btn_img = Image.open(path + "achievements_red.png")
+        completed_red_btn_img = Image.open(path + "completed_red.png")
+        credits_red_btn_img = Image.open(path + "credits_red.png")
+        save_red_btn_img = Image.open(path + "save_red.png")
+        exit_red_btn_img = Image.open(path + "exit_red.png")
 
         # Shrinking button images
         for img in (overview_btn_img, achievements_btn_img,
@@ -699,14 +699,14 @@ class OverviewFrame(tk.Frame):
             buttons for this frame. Similar code with further
             explanation can be found in MainMenuFrame class.
             """
-
-            bg_blur_img = Image.open('./Images/background_blurred.png')
-            back_btn_img = Image.open('./Images/back.png')
+            path = "./Images/buttons/"
+            bg_blur_img = Image.open("./Images/background_blurred.png")
+            back_btn_img = Image.open(path + "back.png")
 
             # Red buttons will be used to indicate when the user 
             # has clicked a button. These images are used in the 
             # change_button_to_red() method
-            back_red_btn_img = Image.open('./Images/back_red.png')
+            back_red_btn_img = Image.open(path + "back_red.png")
 
             # Shrinking button images
             for img in (back_btn_img,
@@ -766,7 +766,7 @@ class OverviewFrame(tk.Frame):
                                           image=self.tk_bg_img,
                                           anchor=NW)
         #temporary image
-        img = Image.open('./Images/premium_crate.png')
+        img = Image.open('./Images/rewards/premium_crate.png')
         img.thumbnail((45,45), Image.BICUBIC)
         self.temp_img = ImageTk.PhotoImage(img)
         coord = (855,200)
@@ -1055,28 +1055,28 @@ class AchievementsFrame(tk.Frame):
         """
 
         # Initializing background and button images
-
-        background_blur_img = Image.open('./Images/background_blurred.png')
-        back_btn_img = Image.open('./Images/back.png')
-        save_btn_img = Image.open('./Images/save.png')
-        GM_img = Image.open('./Images/glorious_moments.png')
-        matches_img = Image.open('./Images/matches.png')
-        honor_img = Image.open('./Images/honor.png')
-        progress_img = Image.open('./Images/progress.png')
-        items_img = Image.open('./Images/items.png')
-        social_img = Image.open('./Images/social.png')
-        general_img = Image.open('./Images/general.png')
+        path = "./Images/buttons/"
+        background_blur_img = Image.open("./Images/background_blurred.png")
+        back_btn_img = Image.open(path + "back.png")
+        save_btn_img = Image.open(path + "save.png")
+        GM_img = Image.open(path + "glorious_moments.png")
+        matches_img = Image.open(path + "matches.png")
+        honor_img = Image.open(path + "honor.png")
+        progress_img = Image.open(path + "progress.png")
+        items_img = Image.open(path + "items.png")
+        social_img = Image.open(path + "social.png")
+        general_img = Image.open(path + "general.png")
         # Red buttons will be used to indicate when the user 
         # has clicked a button.
-        back_btn_red_img = Image.open('./Images/back_red.png')
-        save_btn_red_img = Image.open('./Images/save_red.png')
-        G_M_red_img = Image.open('./Images/glorious_moments_red.png')
-        matches_red_img = Image.open('./Images/matches_red.png')
-        honor_red_img = Image.open('./Images/honor_red.png')
-        progress_red_img = Image.open('./Images/progress_red.png')
-        items_red_img = Image.open('./Images/items_red.png')
-        social_red_img = Image.open('./Images/social_red.png')
-        general_red_img = Image.open('./Images/general_red.png')
+        back_btn_red_img = Image.open(path + "back_red.png")
+        save_btn_red_img = Image.open(path + "save_red.png")
+        G_M_red_img = Image.open(path + "glorious_moments_red.png")
+        matches_red_img = Image.open(path + "matches_red.png")
+        honor_red_img = Image.open(path + "honor_red.png")
+        progress_red_img = Image.open(path + "progress_red.png")
+        items_red_img = Image.open(path + "items_red.png")
+        social_red_img = Image.open(path + "social_red.png")
+        general_red_img = Image.open(path + "general_red.png")
 
         # shrinking back button
         back_btn_img.thumbnail(BUTTON_SIZE, Image.BICUBIC)
@@ -1171,7 +1171,7 @@ class AchievementsFrame(tk.Frame):
             ImageTk.PhotoImage(general_clicked)
 
         # exit button for achievement info frame
-        exit_x_img = Image.open('./Images/x.png')
+        exit_x_img = Image.open(path + "x.png")
         exit_x_img.thumbnail((30,30))
         AchievementsFrame.exit_x = ImageTk.PhotoImage(exit_x_img)
 
@@ -1752,14 +1752,14 @@ class CreditsFrame(tk.Frame):
             buttons for this frame. Similar code with further
             explanation can be found in MainMenuFrame class.
             """
-
-            background_blur_img = Image.open('./Images/background_blurred.png')
-            back_btn_img = Image.open('./Images/back.png')
+            path = "./Images/buttons/"
+            background_blur_img = Image.open("./Images/background_blurred.png")
+            back_btn_img = Image.open(path + "back.png")
 
             # Red buttons will be used to indicate when the user 
             # has clicked a button. These images are used in the 
             # change_button_to_red() method
-            back_red_btn_img = Image.open('./Images/back_red.png')
+            back_red_btn_img = Image.open(path + "back_red.png")
 
             # Shrinking button images
             for img in (back_btn_img,
@@ -1836,7 +1836,7 @@ class Achievement():
         and getting a reference to the corresponding image.
         """
         for points in ('5','10','15','20','30','40','50','60'):
-            img = Image.open('./Images/'+points+'_points.png')
+            img = Image.open('./Images/points/'+points+'_points.png')
             img.thumbnail((40,40), Image.BICUBIC)
             img = ImageTk.PhotoImage(img)
             Achievement.points_images[points] = img
@@ -1850,7 +1850,7 @@ class Achievement():
                        "overachiever_title","deadeye_title",
                        "glass_cannon_title","chicken_master_title",
                        "on_a_mission_title","unique_destiny_title"):
-            img = Image.open('./Images/'+reward+'.png')
+            img = Image.open('./Images/rewards/'+reward+'.png')
             img.thumbnail((50,50), Image.BICUBIC)
             img = ImageTk.PhotoImage(img)
             Achievement.reward_images[reward] = img
