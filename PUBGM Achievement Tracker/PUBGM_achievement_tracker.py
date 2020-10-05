@@ -1853,7 +1853,7 @@ class Achievement():
                        "glass_cannon_title","chicken_master_title",
                        "on_a_mission_title","unique_destiny_title",
                        "plague_carrier_set","heart_of_gold_set",
-                       "bestial_instict_set","fiend_huntress_set",
+                       "beastial_instinct_set","fiend_huntress_set",
                        "skeleton_hand_airplane_finish",
                        "blue_neon_punk_airplane_finish",
                        "pan_hot_pizza_finish","scar_sandstorm_finish",
@@ -1873,7 +1873,7 @@ class Achievement():
                        "hamburger_cover_outfit","skeleton_suit_outfit",
                        "hockey_mask_sand_outfit","ghost_scarf_outfit",
                        "mercenary_coat_outfit","evil_mask_outfit",
-                       "high_society_elite_outfit","mechanis_shirt_outfit"
+                       "high_society_hat_outfit","mechanic_shirt_outfit",
                        "spray_paint"):
             img = Image.open('./Images/rewards/'+reward+'.png')
             img.thumbnail((50,50), Image.BICUBIC)
