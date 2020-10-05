@@ -1,6 +1,0 @@
-Category,Title,Description,Levels,Overall_completed,Info
-GM,Commando,"Win {num_tasks} Solo Classic matches while in Platinum tier or above, and not equiping any helmets, vests, or backpacks.",I.0.0.1.10.100.premium_crate+II.0.0.10.20.200.premium_scrap+III.0.0.20.30.300.silver+IV.0.0.50.40.400.silver,0,"This is test info. By placing in between quotes, this allowes for newlines to be processed in the file. Try this longer lolololololololololololololololololololololololol ololololololololololololollololoollollolollololo"
-GM,Shorter description,"Kill {num_tasks} enemies, this is going to be slightly longer lol",I.0.0.1.10.100.premium_crate+II.0.0.10.20.200.premium_scrap+III.0.0.20.30.300.silver+IV.0.0.50.40.400.silver,0,"This is test info. By placing in between quotes, this allowes for newlines to be processed in the file."
-
-
-
