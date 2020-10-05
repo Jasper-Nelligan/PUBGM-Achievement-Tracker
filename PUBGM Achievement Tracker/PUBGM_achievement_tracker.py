@@ -87,6 +87,11 @@ class AppController(tk.Tk):
         # the new checkbutton values of the achievements in the dictionary. 
         self.write_achievements = {}
 
+        # Initialize the reward images used for each achievement
+        Achievement.static_init(achievement_list=self.achievement_list,
+                                controller = self,
+                                write_achievements=self.write_achievements)
+
         # Initializing all frames
 
         # All frames will be stored in a dictionary for quick access
@@ -117,11 +122,6 @@ class AppController(tk.Tk):
             frame = AchievementsFrame()
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
-
-        # Initialize the reward images used for each achievement
-        Achievement.static_init(achievement_list=self.achievement_list,
-                                controller = self,
-                                write_achievements=self.write_achievements)
 
         # Initialize achievements from json file
         self.init_leveled_achievements()
@@ -673,6 +673,8 @@ class OverviewFrame(tk.Frame):
         #assigned in init_image()
         self.tk_bg_img = None 
         self.tk_back_clicked = None
+        # for displaying stats related to rewards
+        self.reward_icons = {}
 
         # Initialize the background image with buttons/text
         self.init_images()
@@ -681,10 +683,63 @@ class OverviewFrame(tk.Frame):
         self.overview_canvas = tk.Canvas(self,height=WINDOW_H,width=WINDOW_W,
                                          borderwidth=0,highlightthickness=0)
 
-        # a dictionary of statistics. Initialized in init_stats()
+        # a dictionary of statistics
         self.stat_dict = {}
 
-        self.init_stats()
+        # intitialize statistics related to points and achievements
+        # References to statistics on the canvas are initialized in 
+        # draw_canvas()
+        for adj in ("completed_","planned_","possible_"):
+            for noun in ("points","achievements"):
+                for category in ("GM_","matches_","honor_","progress_",
+                                 "items_","social_","general_"):
+                    key = category + adj + noun
+                    self.stat_dict[key] = 0
+                # overall points and achievements
+                key = adj + noun
+                self.stat_dict[key] = 0
+
+        # initialize reward statistics
+        for adj in ("completed_","planned_","possible_"): 
+            for reward in ("bp","silver", "ag", "supply_scrap", "supply_crate",
+                           "classic_scrap","classic_crate","premium_scrap",
+                           "premium_crate","title","outfit","finish",
+                           "gear","misc"):
+                key = adj + reward
+                self.stat_dict[key] = 0
+
+        # initialize achievement milestones
+        self.milestones = {"50":(300,"bp"),"100":(30,"silver"),"250":(50,"silver"),
+                           "500":(2,"premium_crate"),"800":(3,"premium_crate"),
+                           "1200":(4,"premium_crate"),
+                           "1600":(5,"premium_crate"),
+                           "2000":(1,"mechanic_shirt_outfit"),
+                           "2400":(1,"high_society_hat_outfit"),
+                           "2800":(5,"premium_crate"),"3200":(5,"premium_crate"),
+                           "3600":(5,"premium_crate"),
+                           "4000":(1,"plague_carrier_mask_outfit"),
+                           "4500":(5,"premium_crate"),"5000":(5,"premium_crate"),
+                           "5500":(5,"premium_crate")}
+
+        self.prev_milestone, self.next_milestone = self.get_milestones()
+
+        # update stats with milestones
+        for key,(amount, reward) in self.milestones.items():
+            try:
+                self.stat_dict["possible_" + reward] += amount
+            # if outfit
+            except KeyError:
+                reward_type = reward.split("_")[-1]
+                self.stat_dict["possible_" + reward_type] += amount
+        
+        for key,(amount, reward) in self.milestones.items():
+            try:
+                self.stat_dict["completed_" + reward] += amount
+            except KeyError:
+                reward_type = reward.split("_")[-1]
+                self.stat_dict["possible_" + reward_type] += amount
+            if (key == self.prev_milestone):
+                break
 
         self.overview_canvas.pack()
         
@@ -730,6 +785,16 @@ class OverviewFrame(tk.Frame):
             back_clicked.paste(back_red_btn_img, (150, 40), back_red_btn_img)
             self.tk_back_clicked = ImageTk.PhotoImage(back_clicked)
 
+            path = "./Images/rewards/icons/"
+            for icon in ("bp","silver", "ag", "supply_scrap", "supply_crate",
+                       "classic_scrap","classic_crate","premium_scrap",
+                       "premium_crate","title","outfit","finish",
+                       "gear","misc"):
+                img = Image.open(path + icon + ".png")
+                img.thumbnail((45,45), Image.BICUBIC)
+                img = ImageTk.PhotoImage(img)
+                self.reward_icons[icon] = img
+
     def init_stats(self):
         """Initializes all statistics into a dictionary."""
         # intitialize statistics related to points and achievements
@@ -765,13 +830,7 @@ class OverviewFrame(tk.Frame):
         self.canvas_bg = self.overview_canvas.create_image((-75,0),
                                           image=self.tk_bg_img,
                                           anchor=NW)
-        #temporary image
-        img = Image.open('./Images/rewards/premium_crate.png')
-        img.thumbnail((45,45), Image.BICUBIC)
-        self.temp_img = ImageTk.PhotoImage(img)
-        coord = (855,200)
-        self.overview_canvas.create_image(coord, image=self.temp_img)
-
+        
         # overall achievement stats
 
         temp_font = font.Font(family='Helvetica', size=20, weight='bold')
@@ -824,11 +883,15 @@ class OverviewFrame(tk.Frame):
 
         temp_font = font.Font(family='Helvetica', size=13, weight='bold')
 
-        # next reward
-        text = "Next Milestone: 6500 points     Reward:  10 x                "
+        # next milestone
+        next_milestone = self.milestones[str(self.next_milestone)]
+        text = f"Next Milestone: {self.next_milestone} points     Reward:  {next_milestone[0]} x                "
         coord = (685,200)
         self.overview_canvas.create_text(coord, text=text, font=temp_font,
                                          anchor='center', fill="white")
+        coord = (855,200)
+        img = Achievement.reward_images[next_milestone[1]]
+        self.overview_canvas.create_image(coord, image=img)
         
         # horizontal line under achievements and points
         coord1 = (155, 230)
@@ -907,14 +970,15 @@ class OverviewFrame(tk.Frame):
         # rewards on left side
         y = 285
         count = 0
-        for reward in ("bp","silver", "ag", "supply_scrap", "supply_crate",
+        for reward in ("bp","silver","supply_scrap","supply_crate",
                        "classic_scrap","classic_crate","premium_scrap",
-                       "premium_crate","titles","outfits","weapon_finishes",
+                       "premium_crate","ag","title","outfit","finish",
                        "gear","misc"):
                 completed = self.stat_dict["completed_" + reward]
                 planned = self.stat_dict["planned_" + reward]
                 possible = self.stat_dict["possible_" + reward]
                 text = f"{completed_points} + ({planned_points}) / {possible_points} x"
+                icon = self.reward_icons[reward]
                 # split rewards into two columns
                 if count % 2 == 0:
                     x1 = 745
@@ -926,7 +990,7 @@ class OverviewFrame(tk.Frame):
                 self.overview_canvas.create_text(coord, text=text, fill="white", 
                                                  font=temp_font, anchor='nw')
                 coord = (x2, y+10)
-                self.overview_canvas.create_image(coord, image=self.temp_img)
+                self.overview_canvas.create_image(coord, image=icon)
                 if count % 2 == 1:
                     y += 50
                 count += 1
@@ -950,6 +1014,61 @@ class OverviewFrame(tk.Frame):
             self.stat_dict[stat] += amount
         else:
             self.stat_dict[stat] -= amount
+
+        points = self.stat_dict["completed_points"]
+        if points > self.next_milestone:
+            milestone = self.milestones[str(self.next_milestone)]
+            self.stat_dict["completed_" + milestone[1]] += milestone[0]
+            self.prev_milestone, self.next_milestone = self.get_milestones()
+        # if user has "uncompleted" some achievements 
+        elif points < self.prev_milestone:
+            milestone = self.milestones[str(self.prev_milestone)]
+            self.stat_dict["completed_" + milestone[1]] -= milestone[0]
+            self.prev_milestone, self.next_milestone = self.get_milestones()
+        else:
+            pass
+        
+    def get_milestones(self):
+        """Returns the prev and next milestones based on users 
+        total achievement points
+
+        Ret:
+            milestones (tuple of ints): (last_milestone,next_milestone)
+        """
+
+        points = self.stat_dict["completed_points"]
+        if points < 50:
+            return (0,50)
+        elif points < 100:
+            return (50,100)
+        elif points < 250:
+            return (100,250)
+        elif points < 500:
+            return (250,500)
+        elif points < 800:
+            return (500,800)
+        elif points < 1200:
+            return (800,1200)
+        elif points < 1600:
+            return (1200,1600)
+        elif points < 2000:
+            return (1600,2000)
+        elif points < 2400:
+            return (2000,2400)
+        elif points < 2800:
+            return (2400,2800)
+        elif point < 3200:
+            return (2800,3200)
+        elif points < 3600:
+            return (3200,3600)
+        elif points < 4000:
+            return (3600,4000)
+        elif points < 4500:
+            return (4000,4500)
+        elif points < 5000:
+            return (4500,5000)
+        else: 
+            return (5000,5500)
 
     def on_click(self, event):
         """Turns the clicked on button to red and raises the corresponding 
