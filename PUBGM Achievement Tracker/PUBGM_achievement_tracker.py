@@ -1840,6 +1840,8 @@ class Achievement():
             img.thumbnail((40,40), Image.BICUBIC)
             img = ImageTk.PhotoImage(img)
             Achievement.points_images[points] = img
+
+
         for reward in ("bp","silver","ag","supply_scrap","supply_crate",
                        "classic_scrap","classic_crate","premium_scrap",
                        "premium_crate","1_title","mythic_fashion_title",
@@ -1849,7 +1851,30 @@ class Achievement():
                        "collector_title","maxed_out_title",
                        "overachiever_title","deadeye_title",
                        "glass_cannon_title","chicken_master_title",
-                       "on_a_mission_title","unique_destiny_title"):
+                       "on_a_mission_title","unique_destiny_title",
+                       "plague_carrier_set","heart_of_gold_set",
+                       "bestial_instict_set","fiend_huntress_set",
+                       "skeleton_hand_airplane_finish",
+                       "blue_neon_punk_airplane_finish",
+                       "pan_hot_pizza_finish","scar_sandstorm_finish",
+                       "the_skulls_airplane_finish",
+                       "scar_glorious_gold_finish",
+                       "m249_witherer_finish","m24_timework_pattern_finish",
+                       "win94_desert_camo_finish","p92_desert_camo_finish",
+                       "pan_no_killing_finish","uzi_desert_camo_finish",
+                       "kar98_desert_camo_finish","m416_desert_camo_finish",
+                       "white_rabbit_parachute_gear","circus_parachute_gear",
+                       "red_and_black_backpack_gear","sanguine_helmet_gear",
+                       "free_roam_parachute_gear","supplies_avatar_frame",
+                       "jinxed_avatar_frame","noble_avatar_frame",
+                       "santa_claus_avatar","melee_champion_avatar_frame",
+                       "mythic_fashion_avatar","domination_avatar",
+                       "unique_avatar","resident_evil_2_avatar",
+                       "hamburger_cover_outfit","skeleton_suit_outfit",
+                       "hockey_mask_sand_outfit","ghost_scarf_outfit",
+                       "mercenary_coat_outfit","evil_mask_outfit",
+                       "high_society_elite_outfit","mechanis_shirt_outfit"
+                       "spray_paint"):
             img = Image.open('./Images/rewards/'+reward+'.png')
             img.thumbnail((50,50), Image.BICUBIC)
             img = ImageTk.PhotoImage(img)
