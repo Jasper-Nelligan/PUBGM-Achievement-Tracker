@@ -56,7 +56,12 @@ class AppController(tk.Tk):
         self.resizable(width=False, height=False)
         self.iconbitmap('./Images/icon.ico')
         self.title("PUBG Achievement Tracker")
-        #root.overrideredirect(1)   # Removes window border
+        # open window near center of screen
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+        x = (screen_width/2) - (WINDOW_W/2) - 8
+        y = (screen_height/2) - (WINDOW_H/2) - 10
+        self.geometry("+%d+%d" % (x, y))
 
         # The container is where a bunch of frames will be stacked
         # on top of each other, then the one wanted to be visible
