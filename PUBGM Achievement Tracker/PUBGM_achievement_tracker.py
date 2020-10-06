@@ -186,6 +186,7 @@ class AppController(tk.Tk):
                     reward = lvl['reward']
 
                     # update stats
+                    reward_type = reward.split("_")[-1]
                     self.update_stat("possible_achievements", '+', 1)
                     self.update_stat("possible_points", '+', points)
                     self.update_stat(category + "_possible_achievements", '+', 1)
@@ -282,6 +283,7 @@ class AppController(tk.Tk):
                 info = achievement['info']
 
                 # update stats
+                reward_type = reward.split("_")[-1]
                 self.update_stat("possible_achievements", '+', 1)
                 self.update_stat("possible_points", '+', points)
                 self.update_stat(category + "_possible_achievements", '+', 1)
@@ -1016,6 +1018,9 @@ class OverviewFrame(tk.Frame):
             operator (string): either '+' or '-'
             amount (int): amount that stat should be updated.
         """
+        print("Overview Frame")
+        print(stat,operator,amount)
+
         if operator == '+':
             self.stat_dict[stat] += amount
         else:
@@ -1966,7 +1971,7 @@ class Achievement():
             img = ImageTk.PhotoImage(img)
             Achievement.points_images[points] = img
 
-
+        # last word in each image name is the reward category it belongs to
         for reward in ("bp","silver","ag","supply_scrap","supply_crate",
                        "classic_scrap","classic_crate","premium_scrap",
                        "premium_crate","1_title","mythic_fashion_title",
@@ -1998,7 +2003,7 @@ class Achievement():
                        "high_society_hat_outfit","mechanic_shirt_outfit",
                        "plague_carrier_outfit","heart_of_gold_outfit",
                        "beastial_instinct_outfit","fiend_huntress_outfit",
-                       "spray_paint"):
+                       "spray_paint_misc"):
             img = Image.open('./Images/rewards/'+reward+'.png')
             img.thumbnail((50,50), Image.BICUBIC)
             img = ImageTk.PhotoImage(img)
