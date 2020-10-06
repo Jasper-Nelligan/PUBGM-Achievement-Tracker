@@ -704,7 +704,7 @@ class OverviewFrame(tk.Frame):
             for reward in ("bp","silver", "ag", "supply_scrap", "supply_crate",
                            "classic_scrap","classic_crate","premium_scrap",
                            "premium_crate","titles","outfits","weapon_finishes",
-                           "parachutes","gear","spray_paint","misc"):
+                           "parachutes","gear","spray_paint","miscellaneous"):
                 key = adj + reward
                 self.stat_dict[key] = 0
 
@@ -789,7 +789,7 @@ class OverviewFrame(tk.Frame):
             for icon in ("bp","silver", "ag", "supply_scrap", "supply_crate",
                        "classic_scrap","classic_crate","premium_scrap",
                        "premium_crate","titles","outfits","weapon_finishes",
-                       "parachutes","gear","spray_paint","misc"):
+                       "parachutes","gear","spray_paint","miscellaneous"):
                 img = Image.open(path + icon + ".png")
                 img.thumbnail((45,45), Image.BICUBIC)
                 img = ImageTk.PhotoImage(img)
@@ -815,7 +815,7 @@ class OverviewFrame(tk.Frame):
             for reward in ("bp","silver", "ag", "supply_scrap", "supply_crate",
                            "classic_scrap","classic_crate","premium_scrap",
                            "premium_crate","titles","outfits","weapon_finishes",
-                           "gear","misc"):
+                           "gear","miscellaneous"):
                 key = adj + reward
                 self.stat_dict[key] = 0
 
@@ -971,7 +971,7 @@ class OverviewFrame(tk.Frame):
         for reward in ("bp","silver","supply_scrap","supply_crate",
                        "classic_scrap","classic_crate","premium_scrap",
                        "premium_crate","ag","titles","outfits","weapon_finishes",
-                       "parachutes","gear","spray_paint","misc"):
+                       "parachutes","gear","spray_paint","miscellaneous"):
                 completed = self.stat_dict["completed_" + reward]
                 planned = self.stat_dict["planned_" + reward]
                 possible = self.stat_dict["possible_" + reward]
@@ -1975,20 +1975,16 @@ class Achievement():
                        "overachiever_title","deadeye_title",
                        "glass_cannon_title","chicken_master_title",
                        "on_a_mission_title","unique_destiny_title",
-                       "plague_carrier_set","heart_of_gold_set",
-                       "beastial_instinct_set","fiend_huntress_set",
-                       "skeleton_hand_airplane_finish",
-                       "blue_neon_punk_airplane_finish",
+                       "skeleton_hand_airplane","blue_neon_punk_airplane",
+                       "the_skulls_airplane", "scar_glorious_gold_finish",
                        "pan_hot_pizza_finish","scar_sandstorm_finish",
-                       "the_skulls_airplane_finish",
-                       "scar_glorious_gold_finish",
                        "m249_witherer_finish","m24_timework_pattern_finish",
                        "win94_desert_camo_finish","p92_desert_camo_finish",
                        "pan_no_killing_finish","uzi_desert_camo_finish",
                        "kar98_desert_camo_finish","m416_desert_camo_finish",
-                       "white_rabbit_parachute_gear","circus_parachute_gear",
-                       "red_and_black_backpack_gear","sanguine_helmet_gear",
-                       "free_roam_parachute_gear","supplies_avatar_frame",
+                       "white_rabbit_parachute","circus_parachute",
+                       "free_roam_parachute","red_and_black_backpack_gear",
+                       "sanguine_helmet_gear","supplies_avatar_frame",
                        "jinxed_avatar_frame","noble_avatar_frame",
                        "santa_claus_avatar","melee_champion_avatar_frame",
                        "mythic_fashion_avatar","domination_avatar",
@@ -1997,6 +1993,8 @@ class Achievement():
                        "hockey_mask_sand_outfit","ghost_scarf_outfit",
                        "mercenary_coat_outfit","evil_mask_outfit",
                        "high_society_hat_outfit","mechanic_shirt_outfit",
+                       "plague_carrier_outfit","heart_of_gold_outfit",
+                       "beastial_instinct_outfit","fiend_huntress_outfit",
                        "spray_paint"):
             img = Image.open('./Images/rewards/'+reward+'.png')
             img.thumbnail((50,50), Image.BICUBIC)
@@ -2131,8 +2129,6 @@ class LeveledAchievement(Achievement):
                 print("level: ",cur_lvl.level_rom_num)
                 # check checkboxes
                 cur_lvl.completed_var.set(1)
-                # achievement can't be planned if it's completed
-                cur_lvl.planned_var.set(0)
                 Achievement.controller.update_stat("completed_achievements", 
                                             '+', 1)
                 Achievement.controller.update_stat("completed_points", 
@@ -2143,16 +2139,19 @@ class LeveledAchievement(Achievement):
                     + "_completed_points", '+', cur_lvl.points)
                 Achievement.controller.update_stat("completed_" + \
                     self.reward, '+', cur_lvl.reward_amount)
-                Achievement.controller.update_stat("planned_achievements", 
-                                            '-', 1)
-                Achievement.controller.update_stat("planned_points", 
-                                                    '-', cur_lvl.points)
-                Achievement.controller.update_stat(self.shared_attrs.category \
-                    + "_planned_achievements", '-', 1)
-                Achievement.controller.update_stat(self.shared_attrs.category \
-                    + "_planned_points", '-', cur_lvl.points)
-                Achievement.controller.update_stat("planned_" + \
-                    self.reward, '-', cur_lvl.reward_amount)
+                if cur_lvl.planned_var.get() == 1:
+                    # achievement can't be planned if it's completed
+                    cur_lvl.planned_var.set(0)
+                    Achievement.controller.update_stat("planned_achievements", 
+                                                '-', 1)
+                    Achievement.controller.update_stat("planned_points", 
+                                                        '-', cur_lvl.points)
+                    Achievement.controller.update_stat(self.shared_attrs.category \
+                        + "_planned_achievements", '-', 1)
+                    Achievement.controller.update_stat(self.shared_attrs.category \
+                        + "_planned_points", '-', cur_lvl.points)
+                    Achievement.controller.update_stat("planned_" + \
+                        self.reward, '-', cur_lvl.reward_amount)
 
                 cur_lvl_index -= 1
                 cur_lvl = Achievement.achievement_list[cur_lvl_index]
