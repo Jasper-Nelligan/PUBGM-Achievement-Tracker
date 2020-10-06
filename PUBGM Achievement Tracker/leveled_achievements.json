@@ -11,8 +11,8 @@
           "is_completed": "0",
           "num_tasks": "1",
           "points": "10",
-          "reward_amount": "100",
-          "reward": "bp"
+          "reward_amount": "1",
+          "reward": "m24_timework_pattern_finish"
         },
         {
           "rom_num": "II",
@@ -20,8 +20,8 @@
           "is_completed": "0",
           "num_tasks": "2",
           "points": "20",
-          "reward_amount": "200",
-          "reward": "silver"
+          "reward_amount": "1",
+          "reward": "blue_neon_punk_airplane_misc"
         },
         {
           "rom_num": "III",
@@ -29,8 +29,8 @@
           "is_completed": "0",
           "num_tasks": "3",
           "points": "30",
-          "reward_amount": "300",
-          "reward": "classic-scrap"
+          "reward_amount": "1",
+          "reward": "maxed_out_title"
         },
         {
           "rom_num": "IV",
@@ -38,8 +38,8 @@
           "is_completed": "0",
           "num_tasks": "4",
           "points": "40",
-          "reward_amount": "400",
-          "reward": "classic-crate"
+          "reward_amount": "1",
+          "reward": "melee_champion_avatar_frame_misc"
         },
         {
           "rom_num": "V",
@@ -47,8 +47,8 @@
           "is_completed": "0",
           "num_tasks": "5",
           "points": "50",
-          "reward_amount": "500",
-          "reward": "premium-crate"
+          "reward_amount": "1",
+          "reward": "mythic_fashion_avatar_misc"
         }
       ],
       "overall_completed": "0",
@@ -65,8 +65,8 @@
           "is_completed": "0",
           "num_tasks": "1",
           "points": "10",
-          "reward_amount": "100",
-          "reward": "bp"
+          "reward_amount": "1",
+          "reward": "mechanic_shirt_outfit"
         },
         {
           "rom_num": "II",
@@ -74,8 +74,8 @@
           "is_completed": "0",
           "num_tasks": "2",
           "points": "20",
-          "reward_amount": "200",
-          "reward": "silver"
+          "reward_amount": "1",
+          "reward": "free_roam_parachute"
         },
         {
           "rom_num": "III",
@@ -91,7 +91,7 @@
           "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "4",
-          "points": "40",
+          "points": "30",
           "reward_amount": "400",
           "reward": "classic-crate"
         },
@@ -100,7 +100,7 @@
           "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "5",
-          "points": "50",
+          "points": "5400",
           "reward_amount": "500",
           "reward": "premium-crate"
         }
