@@ -704,7 +704,7 @@ class OverviewFrame(tk.Frame):
             for reward in ("bp","silver", "ag", "supply_scrap", "supply_crate",
                            "classic_scrap","classic_crate","premium_scrap",
                            "premium_crate","titles","outfits","weapon_finishes",
-                           "parachutes","gear","spray_paint","miscellaneous"):
+                           "parachutes","gear","spray_paint","misc"):
                 key = adj + reward
                 self.stat_dict[key] = 0
 
@@ -789,7 +789,7 @@ class OverviewFrame(tk.Frame):
             for icon in ("bp","silver", "ag", "supply_scrap", "supply_crate",
                        "classic_scrap","classic_crate","premium_scrap",
                        "premium_crate","titles","outfits","weapon_finishes",
-                       "parachutes","gear","spray_paint","miscellaneous"):
+                       "parachutes","gear","spray_paint","misc"):
                 img = Image.open(path + icon + ".png")
                 img.thumbnail((45,45), Image.BICUBIC)
                 img = ImageTk.PhotoImage(img)
@@ -815,7 +815,7 @@ class OverviewFrame(tk.Frame):
             for reward in ("bp","silver", "ag", "supply_scrap", "supply_crate",
                            "classic_scrap","classic_crate","premium_scrap",
                            "premium_crate","titles","outfits","weapon_finishes",
-                           "gear","miscellaneous"):
+                           "gear","misc"):
                 key = adj + reward
                 self.stat_dict[key] = 0
 
@@ -971,7 +971,7 @@ class OverviewFrame(tk.Frame):
         for reward in ("bp","silver","supply_scrap","supply_crate",
                        "classic_scrap","classic_crate","premium_scrap",
                        "premium_crate","ag","titles","outfits","weapon_finishes",
-                       "parachutes","gear","spray_paint","miscellaneous"):
+                       "parachutes","gear","spray_paint","misc"):
                 completed = self.stat_dict["completed_" + reward]
                 planned = self.stat_dict["planned_" + reward]
                 possible = self.stat_dict["possible_" + reward]
@@ -991,6 +991,8 @@ class OverviewFrame(tk.Frame):
                 self.overview_canvas.create_image(coord, image=img)
                 
                 text = reward.replace("_"," ")
+                if text == "misc":
+                    text = "miscellaneous"
                 coord = (x2+35, y)
                 self.overview_canvas.create_text((coord), text=text, fill="white",
                                                  font=size12_bold, anchor='nw')
@@ -1975,20 +1977,21 @@ class Achievement():
                        "overachiever_title","deadeye_title",
                        "glass_cannon_title","chicken_master_title",
                        "on_a_mission_title","unique_destiny_title",
-                       "skeleton_hand_airplane","blue_neon_punk_airplane",
-                       "the_skulls_airplane", "scar_glorious_gold_finish",
+                       "scar_glorious_gold_finish","m416_desert_camo_finish",
                        "pan_hot_pizza_finish","scar_sandstorm_finish",
                        "m249_witherer_finish","m24_timework_pattern_finish",
                        "win94_desert_camo_finish","p92_desert_camo_finish",
                        "pan_no_killing_finish","uzi_desert_camo_finish",
-                       "kar98_desert_camo_finish","m416_desert_camo_finish",
+                       "kar98_desert_camo_finish",
                        "white_rabbit_parachute","circus_parachute",
                        "free_roam_parachute","red_and_black_backpack_gear",
-                       "sanguine_helmet_gear","supplies_avatar_frame",
-                       "jinxed_avatar_frame","noble_avatar_frame",
-                       "santa_claus_avatar","melee_champion_avatar_frame",
-                       "mythic_fashion_avatar","domination_avatar",
-                       "unique_avatar","resident_evil_2_avatar",
+                       "sanguine_helmet_gear","supplies_avatar_frame_misc",
+                       "jinxed_avatar_frame_misc","noble_avatar_frame_misc",
+                       "skeleton_hand_airplane_misc","blue_neon_punk_airplane_misc",
+                       "the_skulls_airplane_misc","santa_claus_avatar_misc",
+                       "melee_champion_avatar_frame_misc",
+                       "mythic_fashion_avatar_misc","domination_avatar_misc",
+                       "unique_avatar_misc","resident_evil_2_avatar_misc",
                        "hamburger_cover_outfit","skeleton_suit_outfit",
                        "hockey_mask_sand_outfit","ghost_scarf_outfit",
                        "mercenary_coat_outfit","evil_mask_outfit",
