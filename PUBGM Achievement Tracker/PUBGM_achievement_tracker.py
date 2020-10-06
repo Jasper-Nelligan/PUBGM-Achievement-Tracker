@@ -194,8 +194,6 @@ class AppController(tk.Tk):
                     self.update_stat("possible_" + reward_type, '+', reward_amount)
 
                     if is_completed == 1:
-                        print("is completed")
-                        print(reward_type)
                         self.update_stat("completed_achievements", '+', 1)
                         self.update_stat("completed_points", '+', points)
                         self.update_stat(category + "_completed_achievements", '+', 1)
@@ -293,8 +291,6 @@ class AppController(tk.Tk):
                 self.update_stat("possible_" + reward_type, '+', reward_amount)
 
                 if is_completed == 1:
-                    print("is completed")
-                    print(reward_type)
                     self.update_stat("completed_achievements", '+', 1)
                     self.update_stat("completed_points", '+', points)
                     self.update_stat(category + "_completed_achievements", '+', 1)
@@ -388,12 +384,10 @@ class AppController(tk.Tk):
                     # loop through all levels of achievement
                     while (cur_lvl.shared_attrs == self.write_achievements[ \
                         achievement["title"]].shared_attrs):
-                        print(f"Completed var for level {level} is {str(cur_lvl.completed_var.get())}")
                         achievement["levels"][level]["is_planned"] = \
                             str(cur_lvl.planned_var.get())
                         achievement["levels"][level]["is_completed"] = \
                             str(cur_lvl.completed_var.get())
-                        print("in dict: " + achievement["levels"][level]["is_completed"])
                         level += 1
                         cur_lvl_index += 1
                         cur_lvl = self.achievement_list[cur_lvl_index]
@@ -1016,7 +1010,6 @@ class OverviewFrame(tk.Frame):
             operator (string): either '+' or '-'
             amount (int): amount that stat should be updated.
         """
-        print(stat, operator, amount)
         if operator == '+':
             self.stat_dict[stat] += amount
         else:
@@ -1081,7 +1074,7 @@ class OverviewFrame(tk.Frame):
         """Turns the clicked on button to red and raises the corresponding 
         frame. 
         """
-        print("Area clicked was", event.x, event.y, sep=" ")
+        #print("Area clicked was", event.x, event.y, sep=" ")
         # if "Back" was clicked
         if 75 <= event.x <= 150 and 40 <= event.y <= 85:
             self.overview_canvas.itemconfig(self.canvas_bg, image=self.tk_back_clicked)
@@ -1873,7 +1866,7 @@ class Achievement():
         instance by passing in the string value into the dictionary
         and getting a reference to the corresponding image.
         """
-        for points in ('5','10','15','20','30','40','50','60','5400'):
+        for points in ('5','10','15','20','30','40','50','60'):
             img = Image.open('./Images/points/'+points+'_points.png')
             img.thumbnail((40,40), Image.BICUBIC)
             img = ImageTk.PhotoImage(img)
@@ -2042,7 +2035,6 @@ class LeveledAchievement(Achievement):
             cur_lvl = self
             # iterate through lower levels of achievement
             while (cur_lvl.shared_attrs == self.shared_attrs):
-                print("level: ",cur_lvl.level_rom_num)
                 # check checkboxes
                 cur_lvl.completed_var.set(1)
                 Achievement.controller.update_stat("completed_achievements", 
@@ -2073,7 +2065,6 @@ class LeveledAchievement(Achievement):
                 cur_lvl_index -= 1
                 cur_lvl = Achievement.achievement_list[cur_lvl_index]
                 if cur_lvl.completed_var.get() == 1:
-                    print("break at lvl ", cur_lvl.level_rom_num)
                     break
         # list may go out of bounds if at the end or beginning of list
         # it may also reach a ListAchievement, which would throw an AttributeError
@@ -2082,11 +2073,9 @@ class LeveledAchievement(Achievement):
         
         # if completing the last level
         if (self == self.shared_attrs.last_lvl):
-            print("last level")
             self.on_completion()
         # else reinitialize achievement frame as next level to complete
         else:
-            print("else reinit")
             self.shared_attrs.frame.grid_forget()
             next_lvl = Achievement.achievement_list[self.list_index+1]
             Achievement.controller.update_achievement(next_lvl)
@@ -2103,12 +2092,10 @@ class LeveledAchievement(Achievement):
         moved back to UncompletedAchievements if the user is unchecking from
         CompletedAchievements.
         """
-        print("Unchecking box")
         if (int(self.shared_attrs.overall_completed) == '1'):
             self.shared_attrs.overall_completed = '0'
 
         try:
-            print("try")
             cur_lvl_index = self.list_index
             cur_lvl = self
             # iterate through higher levels of achievement
@@ -2129,7 +2116,6 @@ class LeveledAchievement(Achievement):
                 cur_lvl_index += 1
                 cur_lvl = Achievement.achievement_list[cur_lvl_index]
                 if cur_lvl.completed_var.get() == 0:
-                    print("break at lvl ", cur_lvl.level_rom_num)
                     break
         # list may go out of bounds if at the end or beginning of list
         # it may also reach a ListAchievement, which would throw an AttributeError
@@ -2199,7 +2185,6 @@ class LeveledAchievement(Achievement):
                 cur_lvl_index -= 1
                 cur_lvl = Achievement.achievement_list[cur_lvl_index]
                 if cur_lvl.planned_var.get() == 1:
-                    print("break at lvl ", cur_lvl.level_rom_num)
                     break
         # list may go out of bounds if at the end or beginning of list
         # it may also reach a ListAchievement, which would throw an AttributeError
@@ -2235,7 +2220,6 @@ class LeveledAchievement(Achievement):
                 cur_lvl_index += 1
                 cur_lvl = Achievement.achievement_list[cur_lvl_index]
                 if cur_lvl.planned_var.get() == 0:
-                    print("break at lvl ", cur_lvl.level_rom_num)
                     break
         # list may go out of bounds if at the end or beginning of list
         # it may also reach a ListAchievement, which would throw an AttributeError

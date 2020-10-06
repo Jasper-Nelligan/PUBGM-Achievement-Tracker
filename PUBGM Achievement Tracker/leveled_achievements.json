@@ -91,7 +91,7 @@
           "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "4",
-          "points": "30",
+          "points": "40",
           "reward_amount": "400",
           "reward": "classic-crate"
         },
@@ -100,7 +100,7 @@
           "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "5",
-          "points": "5400",
+          "points": "50",
           "reward_amount": "500",
           "reward": "premium-crate"
         }
