@@ -703,8 +703,8 @@ class OverviewFrame(tk.Frame):
         for adj in ("completed_","planned_","possible_"): 
             for reward in ("bp","silver", "ag", "supply_scrap", "supply_crate",
                            "classic_scrap","classic_crate","premium_scrap",
-                           "premium_crate","title","outfit","finish",
-                           "gear","misc"):
+                           "premium_crate","titles","outfits","weapon_finishes",
+                           "parachutes","gear","spray_paint","misc"):
                 key = adj + reward
                 self.stat_dict[key] = 0
 
@@ -729,14 +729,14 @@ class OverviewFrame(tk.Frame):
                 self.stat_dict["possible_" + reward] += amount
             # if outfit
             except KeyError:
-                reward_type = reward.split("_")[-1]
+                reward_type = reward.split("_")[-1] + 's'
                 self.stat_dict["possible_" + reward_type] += amount
         
         for key,(amount, reward) in self.milestones.items():
             try:
                 self.stat_dict["completed_" + reward] += amount
             except KeyError:
-                reward_type = reward.split("_")[-1]
+                reward_type = reward.split("_")[-1] + 's'
                 self.stat_dict["possible_" + reward_type] += amount
             if (key == self.prev_milestone):
                 break
@@ -788,8 +788,8 @@ class OverviewFrame(tk.Frame):
             path = "./Images/rewards/icons/"
             for icon in ("bp","silver", "ag", "supply_scrap", "supply_crate",
                        "classic_scrap","classic_crate","premium_scrap",
-                       "premium_crate","title","outfit","finish",
-                       "gear","misc"):
+                       "premium_crate","titles","outfits","weapon_finishes",
+                       "parachutes","gear","spray_paint","misc"):
                 img = Image.open(path + icon + ".png")
                 img.thumbnail((45,45), Image.BICUBIC)
                 img = ImageTk.PhotoImage(img)
@@ -825,6 +825,14 @@ class OverviewFrame(tk.Frame):
         Called every time OverviewFrame is raised so the statistics can
         be updated on the display.
         """
+        # fonts used
+        size20_bold = font.Font(family='Helvetica', size=20, weight='bold')
+        size14_bold = font.Font(family='Helvetica', size=14, weight='bold')
+        size13_bold = font.Font(family='Helvetica', size=13, weight='bold')
+        size12_bold = font.Font(family='Helvetica', size=12, weight='bold')
+        size10 = font.Font(family='Helvetica', size=10)
+
+
         # Place background onto canvas
         self.overview_canvas.pack()
         self.canvas_bg = self.overview_canvas.create_image((-75,0),
@@ -833,26 +841,24 @@ class OverviewFrame(tk.Frame):
         
         # overall achievement stats
 
-        temp_font = font.Font(family='Helvetica', size=20, weight='bold')
-
         completed_achievements = self.stat_dict["completed_achievements"]
         possible_achievements = self.stat_dict["possible_achievements"]
         planned_achievements = self.stat_dict["planned_achievements"]
 
         text = f"Achievements Completed: {completed_achievements}/{possible_achievements}"
-        coord = (195,60)
-        self.overview_canvas.create_text(coord, text=text, font=temp_font,
+        coord = (195, 25)
+        self.overview_canvas.create_text(coord, text=text, font=size20_bold,
                                                 anchor='nw', fill="white")
 
         text = f"Planned: {planned_achievements}"
-        coord = (195,100)
-        self.overview_canvas.create_text(coord, text=text, font=temp_font, 
+        coord = (195, 65)
+        self.overview_canvas.create_text(coord, text=text, font=size20_bold, 
                                                 anchor='nw', fill="white")
 
         combined = completed_achievements+planned_achievements
         text = f"Combined Total: {combined}/{possible_achievements}"
-        coord = (195,140)
-        self.overview_canvas.create_text(coord, text=text, font=temp_font,
+        coord = (195, 105)
+        self.overview_canvas.create_text(coord, text=text, font=size20_bold,
                                          anchor='nw', fill="white")
 
         # overall points stats
@@ -861,85 +867,78 @@ class OverviewFrame(tk.Frame):
         planned_points = self.stat_dict["planned_points"]
 
         text = f"Points Completed: {completed_points}/{possible_points}"
-        coord = (740,60)
-        self.overview_canvas.create_text(coord, text=text, font=temp_font,
+        coord = (740, 25)
+        self.overview_canvas.create_text(coord, text=text, font=size20_bold,
                                          anchor='nw', fill="white")
 
         text = f"Planned: {planned_points}"
-        coord = (740,100)
-        self.overview_canvas.create_text(coord, text=text, font=temp_font,
+        coord = (740, 65)
+        self.overview_canvas.create_text(coord, text=text, font=size20_bold,
                                          anchor='nw', fill="white")
 
         combined = completed_points+planned_points
         text = f"Combined Total: {combined}/{possible_points}"
-        coord = (740,140)
-        self.overview_canvas.create_text(coord, text=text, font=temp_font,
+        coord = (740, 105)
+        self.overview_canvas.create_text(coord, text=text, font=size20_bold,
                                          anchor='nw', fill="white")
 
         # vertical line between achievements and points
-        coord1 = (700,50)
-        coord2 = (700,170)
+        coord1 = (700, 15)
+        coord2 = (700, 135)
         self.overview_canvas.create_line(coord1,coord2,fill="white")
-
-        temp_font = font.Font(family='Helvetica', size=13, weight='bold')
 
         # next milestone
         next_milestone = self.milestones[str(self.next_milestone)]
         text = f"Next Milestone: {self.next_milestone} points     Reward:  {next_milestone[0]} x                "
-        coord = (685,200)
-        self.overview_canvas.create_text(coord, text=text, font=temp_font,
+        coord = (685, 165)
+        self.overview_canvas.create_text(coord, text=text, font=size13_bold,
                                          anchor='center', fill="white")
-        coord = (855,200)
+        coord = (855, 165)
         img = Achievement.reward_images[next_milestone[1]]
         self.overview_canvas.create_image(coord, image=img)
         
         # horizontal line under achievements and points
-        coord1 = (155, 230)
-        coord2 = (1250, 230)
+        coord1 = (155, 195)
+        coord2 = (1250, 195)
         self.overview_canvas.create_line(coord1,coord2,fill="white")
 
-        temp_font = font.Font(family='Helvetica', size=20, weight='bold')
-
         text = "By Category"
-        coord = (427, 250)
-        self.overview_canvas.create_text(coord, text=text, font=temp_font,
+        coord = (310, 215)
+        self.overview_canvas.create_text(coord, text=text, font=size20_bold,
                                          anchor='center', fill="white")
         text = "Rewards"
-        coord = (972, 250)
-        self.overview_canvas.create_text(coord, text=text, font=temp_font,
+        coord = (868, 215)
+        self.overview_canvas.create_text(coord, text=text, font=size20_bold,
                                          anchor='center', fill="white")
 
         # vertical line between categories and rewards
-        coord1 = (700, 250)
-        coord2 = (700, WINDOW_H-30)
+        coord1 = (485, 210)
+        coord2 = (485, 615)
         self.overview_canvas.create_line(coord1, coord2, fill="white")
-
-
-        temp_font = font.Font(family='Helvetica', size=14, weight='bold')
 
         # table headings under "By Category"
         text = "Achievements"
-        coord = (291, 285)
+        coord = (215, 250)
         self.overview_canvas.create_text(coord, text=text, fill="white", 
-                                         font=temp_font, anchor='center')
+                                         font=size14_bold, anchor='center')
         
         text = "Points"
-        coord = (567, 285)
+        coord = (395, 250)
         self.overview_canvas.create_text(coord, text=text, fill="white", 
-                                         font=temp_font, anchor='center')
+                                         font=size14_bold, anchor='center')
 
         # category titles on left side
-        y = 320
+        y = 320-35
         for category in ("GM","Matches","Honor","Progress","Items",
                                  "Social","General"):
             text = category
             coord = (30, y)
             self.overview_canvas.create_text(coord, text=text, fill="white", 
-                                             font=temp_font, anchor='nw')
-            y += 40
+                                             font=size14_bold, anchor='nw')
+            y += 46
 
         # placing category points and achievements in table
-        y = 330
+        y = 295
         for category in ("GM_","matches_","honor_","progress_","items_",
                                  "social_","general_"):
             completed_achievements = self.stat_dict[
@@ -953,54 +952,59 @@ class OverviewFrame(tk.Frame):
             possible_points = self.stat_dict[category + "possible_points"]
 
             text = f"{completed_achievements} + ({planned_achievements}) / {possible_achievements}"
-            coord = (291, y)
+            coord = (215, y)
             self.overview_canvas.create_text(coord, text=text, fill="white", 
-                                             font=temp_font,anchor='center')
+                                             font=size14_bold,anchor='center')
             text = f"{completed_points} + ({planned_points}) / {possible_points}"
-            coord = (567, y)
+            coord = (395, y)
             self.overview_canvas.create_text(coord, text=text, fill="white", 
-                                             font=temp_font,anchor='center')
-            y += 40
+                                             font=size14_bold,anchor='center')
+            y += 46
 
         # vertical line between category achievements and points
-        coord1 = (427, 320)
-        coord2 = (427, WINDOW_H-30)
+        coord1 = (310, 285)
+        coord2 = (310, 582)
         self.overview_canvas.create_line(coord1,coord2,fill="white")
 
-        # rewards on left side
-        y = 285
+        y = 240
         count = 0
         for reward in ("bp","silver","supply_scrap","supply_crate",
                        "classic_scrap","classic_crate","premium_scrap",
-                       "premium_crate","ag","title","outfit","finish",
-                       "gear","misc"):
+                       "premium_crate","ag","titles","outfits","weapon_finishes",
+                       "parachutes","gear","spray_paint","misc"):
                 completed = self.stat_dict["completed_" + reward]
                 planned = self.stat_dict["planned_" + reward]
                 possible = self.stat_dict["possible_" + reward]
-                text = f"{completed_points} + ({planned_points}) / {possible_points} x"
-                icon = self.reward_icons[reward]
                 # split rewards into two columns
                 if count % 2 == 0:
-                    x1 = 745
-                    x2 = 976
+                    x1 = 745-235
+                    x2 = 976-235
                 else:
-                    x1 = 1020
-                    x2 = 1250
+                    x1 = 900+25
+                    x2 = 1130+25
+                text = f"{completed_points} + ({planned_points}) / {possible_points} x"
                 coord = (x1, y)
                 self.overview_canvas.create_text(coord, text=text, fill="white", 
-                                                 font=temp_font, anchor='nw')
+                                                 font=size14_bold, anchor='nw')
+                img = self.reward_icons[reward]
                 coord = (x2, y+10)
-                self.overview_canvas.create_image(coord, image=icon)
+                self.overview_canvas.create_image(coord, image=img)
+                
+                text = reward.replace("_"," ")
+                coord = (x2+35, y)
+                self.overview_canvas.create_text((coord), text=text, fill="white",
+                                                 font=size12_bold, anchor='nw')
+                
                 if count % 2 == 1:
                     y += 50
+
                 count += 1
 
         # description at bottom
-        temp_font = font.Font(family='Helvetica', size=10)
         text = "Values in brackets are what you plan to complete"
         coord = (10, 605)
         self.overview_canvas.create_text(coord, text=text, fill="white", 
-                                         font=temp_font,anchor='nw')
+                                         font=size10,anchor='nw')
 
     def update_stat(self, stat, operator, amount):
         """Adds or subtracts a value in stat_dict.
