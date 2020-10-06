@@ -30,7 +30,7 @@
           "num_tasks": "3",
           "points": "30",
           "reward_amount": "300",
-          "reward": "classic_scrap"
+          "reward": "classic-scrap"
         },
         {
           "rom_num": "IV",
@@ -39,7 +39,7 @@
           "num_tasks": "4",
           "points": "40",
           "reward_amount": "400",
-          "reward": "classic_crate"
+          "reward": "classic-crate"
         },
         {
           "rom_num": "V",
@@ -48,7 +48,7 @@
           "num_tasks": "5",
           "points": "50",
           "reward_amount": "500",
-          "reward": "premium_crate"
+          "reward": "premium-crate"
         }
       ],
       "overall_completed": "0",
@@ -84,7 +84,7 @@
           "num_tasks": "3",
           "points": "30",
           "reward_amount": "300",
-          "reward": "classic_scrap"
+          "reward": "classic-scrap"
         },
         {
           "rom_num": "IV",
@@ -93,7 +93,7 @@
           "num_tasks": "4",
           "points": "40",
           "reward_amount": "400",
-          "reward": "classic_crate"
+          "reward": "classic-crate"
         },
         {
           "rom_num": "V",
@@ -102,7 +102,7 @@
           "num_tasks": "5",
           "points": "50",
           "reward_amount": "500",
-          "reward": "premium_crate"
+          "reward": "premium-crate"
         }
       ],
       "overall_completed": "0",

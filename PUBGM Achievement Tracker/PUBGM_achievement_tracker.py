@@ -283,7 +283,6 @@ class AppController(tk.Tk):
                 info = achievement['info']
 
                 # update stats
-                reward_type = reward.split("_")[-1]
                 self.update_stat("possible_achievements", '+', 1)
                 self.update_stat("possible_points", '+', points)
                 self.update_stat(category + "_possible_achievements", '+', 1)
@@ -703,25 +702,25 @@ class OverviewFrame(tk.Frame):
 
         # initialize reward statistics
         for adj in ("completed_","planned_","possible_"): 
-            for reward in ("bp","silver", "ag", "supply_scrap", "supply_crate",
-                           "classic_scrap","classic_crate","premium_scrap",
-                           "premium_crate","titles","outfits","weapon_finishes",
+            for reward in ("bp","silver", "ag", "supply-scrap", "supply-crate",
+                           "classic-scrap","classic-crate","premium-scrap",
+                           "premium-crate","titles","outfits","weapon_finishes",
                            "parachutes","gear","spray_paint","misc"):
                 key = adj + reward
                 self.stat_dict[key] = 0
 
         # initialize achievement milestones
         self.milestones = {"50":(300,"bp"),"100":(30,"silver"),"250":(50,"silver"),
-                           "500":(2,"premium_crate"),"800":(3,"premium_crate"),
-                           "1200":(4,"premium_crate"),
-                           "1600":(5,"premium_crate"),
+                           "500":(2,"premium-crate"),"800":(3,"premium-crate"),
+                           "1200":(4,"premium-crate"),
+                           "1600":(5,"premium-crate"),
                            "2000":(1,"mechanic_shirt_outfit"),
                            "2400":(1,"high_society_hat_outfit"),
-                           "2800":(5,"premium_crate"),"3200":(5,"premium_crate"),
-                           "3600":(5,"premium_crate"),
+                           "2800":(5,"premium-crate"),"3200":(5,"premium-crate"),
+                           "3600":(5,"premium-crate"),
                            "4000":(1,"plague_carrier_mask_outfit"),
-                           "4500":(5,"premium_crate"),"5000":(5,"premium_crate"),
-                           "5500":(5,"premium_crate")}
+                           "4500":(5,"premium-crate"),"5000":(5,"premium-crate"),
+                           "5500":(5,"premium-crate")}
 
         self.prev_milestone, self.next_milestone = self.get_milestones()
 
@@ -788,9 +787,9 @@ class OverviewFrame(tk.Frame):
             self.tk_back_clicked = ImageTk.PhotoImage(back_clicked)
 
             path = "./Images/rewards/icons/"
-            for icon in ("bp","silver", "ag", "supply_scrap", "supply_crate",
-                       "classic_scrap","classic_crate","premium_scrap",
-                       "premium_crate","titles","outfits","weapon_finishes",
+            for icon in ("bp","silver", "ag", "supply-scrap", "supply-crate",
+                       "classic-scrap","classic-crate","premium-scrap",
+                       "premium-crate","titles","outfits","weapon_finishes",
                        "parachutes","gear","spray_paint","misc"):
                 img = Image.open(path + icon + ".png")
                 img.thumbnail((45,45), Image.BICUBIC)
@@ -814,9 +813,9 @@ class OverviewFrame(tk.Frame):
 
         # initialize reward statistics
         for adj in ("completed_","planned_","possible_"): 
-            for reward in ("bp","silver", "ag", "supply_scrap", "supply_crate",
-                           "classic_scrap","classic_crate","premium_scrap",
-                           "premium_crate","titles","outfits","weapon_finishes",
+            for reward in ("bp","silver", "ag", "supply-scrap", "supply-crate",
+                           "classic-scrap","classic-crate","premium-scrap",
+                           "premium-crate","titles","outfits","weapon_finishes",
                            "gear","misc"):
                 key = adj + reward
                 self.stat_dict[key] = 0
@@ -970,9 +969,9 @@ class OverviewFrame(tk.Frame):
 
         y = 240
         count = 0
-        for reward in ("bp","silver","supply_scrap","supply_crate",
-                       "classic_scrap","classic_crate","premium_scrap",
-                       "premium_crate","ag","titles","outfits","weapon_finishes",
+        for reward in ("bp","silver","supply-scrap","supply-crate",
+                       "classic-scrap","classic-crate","premium-scrap",
+                       "premium-crate","ag","titles","outfits","weapon_finishes",
                        "parachutes","gear","spray_paint","misc"):
                 completed = self.stat_dict["completed_" + reward]
                 planned = self.stat_dict["planned_" + reward]
@@ -1972,9 +1971,9 @@ class Achievement():
             Achievement.points_images[points] = img
 
         # last word in each image name is the reward category it belongs to
-        for reward in ("bp","silver","ag","supply_scrap","supply_crate",
-                       "classic_scrap","classic_crate","premium_scrap",
-                       "premium_crate","1_title","mythic_fashion_title",
+        for reward in ("bp","silver","ag","supply-scrap","supply-crate",
+                       "classic-scrap","classic-crate","premium-scrap",
+                       "premium-crate","1_title","mythic_fashion_title",
                        "perseverance_title","perfectionist_title",
                        "warhorse_title","veteran_title","pacifist_title",
                        "weapon_master_title","well_liked_title",
