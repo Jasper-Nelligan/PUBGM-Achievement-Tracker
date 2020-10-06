@@ -9,7 +9,7 @@
         "This is task two",
         "This is task three"
       ],
-      "is_planned": "0",
+      "is_planned": "1",
       "is_completed": "0",
       "points": "10",
       "reward_amount": "100",
@@ -26,7 +26,7 @@
         "This is task three"
       ],
       "is_planned": "0",
-      "is_completed": "0",
+      "is_completed": "1",
       "points": "20",
       "reward_amount": "200",
       "reward": "silver",

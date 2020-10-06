@@ -199,7 +199,7 @@ class AppController(tk.Tk):
                         self.update_stat(category + "_completed_achievements", '+', 1)
                         self.update_stat(category + "_completed_points", '+', 1)
                         self.update_stat("completed_" + reward_type, '+', reward_amount)
-                    elif is_planned == '1':
+                    elif is_planned == 1:
                         self.update_stat("planned_achievements", '+', 1)
                         self.update_stat("planned_points", '+', points)
                         self.update_stat(category + "_planned_achievements", '+', 1)
@@ -296,7 +296,7 @@ class AppController(tk.Tk):
                     self.update_stat(category + "_completed_achievements", '+', 1)
                     self.update_stat(category + "_completed_points", '+', 1)
                     self.update_stat("completed_" + reward_type, '+', reward_amount)
-                elif is_planned == '1':
+                elif is_planned == 1:
                     self.update_stat("planned_achievements", '+', 1)
                     self.update_stat("planned_points", '+', points)
                     self.update_stat(category + "_planned_achievements", '+', 1)
@@ -317,7 +317,7 @@ class AppController(tk.Tk):
                 self.list_index += 1
 
                 # if achievement is completed, initiate frame in CompletedAchievements
-                if is_completed == '1':
+                if is_completed == 1:
                     self.frames["CompletedAchievements"]. \
                         init_achievement_frame(list_achievement)
                 # else initiate in AchievementsAchievements
@@ -398,6 +398,11 @@ class AppController(tk.Tk):
                 # it may also reach a ListAchievement, which would throw an AttributeError
                 except (IndexError, AttributeError):
                     pass
+
+                achievement["overall_completed"] = str(self.write_achievements[
+                    achievement["title"]].shared_attrs.overall_completed)
+
+
 
         # saving list achievement data
         for achievement in self.list_data["list_achievements"]:
@@ -2092,7 +2097,7 @@ class LeveledAchievement(Achievement):
         moved back to UncompletedAchievements if the user is unchecking from
         CompletedAchievements.
         """
-        if (int(self.shared_attrs.overall_completed) == '1'):
+        if (self.shared_attrs.overall_completed == '1'):
             self.shared_attrs.overall_completed = '0'
 
         try:
