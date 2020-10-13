@@ -1891,6 +1891,8 @@ class Achievement():
                        "overachiever_title","deadeye_title",
                        "glass_cannon_title","chicken_master_title",
                        "on_a_mission_title","unique_destiny_title",
+                       "thank_you_title","dependable_title",
+                       "star_trainer_title","lifelong_learner_title",
                        "scarl_glorious_gold_finish","m416_desert_camo_finish",
                        "pan_hot_pizza_finish","scarl_sandstorm_finish",
                        "m249_witherer_finish","m24_timework_pattern_finish",
@@ -1901,6 +1903,7 @@ class Achievement():
                        "free_roam_parachute","red_and_black_backpack_gear",
                        "sanguine_helmet_gear","supplies_avatar_frame_misc",
                        "jinxed_avatar_frame_misc","noble_avatar_frame_misc",
+                       "marshal_avatar_misc","companion_food_misc",
                        "skeleton_hand_airplane_misc","blue_neon_punk_airplane_misc",
                        "the_skulls_airplane_misc","santa_claus_avatar_misc",
                        "melee_champion_avatar_frame_misc",
@@ -1912,7 +1915,7 @@ class Achievement():
                        "high_society_hat_outfit","mechanic_shirt_outfit",
                        "plague_carrier_outfit","heart_of_gold_outfit",
                        "beastial_instinct_outfit","fiend_huntress_outfit",
-                       "paint"):
+                       "brawler_outfit","paint"):
             img = Image.open('./Images/rewards/'+reward+'.png')
             img.thumbnail((50,50), Image.BICUBIC)
             img = ImageTk.PhotoImage(img)

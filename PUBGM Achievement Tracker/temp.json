@@ -1,0 +1,69 @@
+{
+  "category": "",
+  "title": "",
+  "description": "",
+  "levels": [
+    {
+      "rom_num": "I",
+      "is_planned": "0",
+      "is_completed": "0",
+      "num_tasks": "",
+      "points": "",
+      "reward_amount": "",
+      "reward": ""
+    },
+    {
+      "rom_num": "II",
+      "is_planned": "0",
+      "is_completed": "0",
+      "num_tasks": "",
+      "points": "",
+      "reward_amount": "",
+      "reward": ""
+    },
+    {
+      "rom_num": "III",
+      "is_planned": "0",
+      "is_completed": "0",
+      "num_tasks": "",
+      "points": "",
+      "reward_amount": "",
+      "reward": ""
+    },
+    {
+      "rom_num": "IV",
+      "is_planned": "0",
+      "is_completed": "0",
+      "num_tasks": "",
+      "points": "",
+      "reward_amount": "",
+      "reward": ""
+    },
+    {
+      "rom_num": "V",
+      "is_planned": "0",
+      "is_completed": "0",
+      "num_tasks": "",
+      "points": "",
+      "reward_amount": "",
+      "reward": ""
+    } 
+  ],
+  "overall_completed": "0",
+  "info": ""
+}
+
+{
+  "category": "",
+  "title": "",
+  "description": "",
+  "task_list": [
+    ""
+  ],
+  "is_planned": "0",
+  "is_completed": "0",
+  "points": "",
+  "reward_amount": "",
+  "reward": "",
+  "info": ""
+}

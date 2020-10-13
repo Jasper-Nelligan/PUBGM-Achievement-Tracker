@@ -870,6 +870,205 @@
       "reward_amount": "1000",
       "reward": "bp",
       "info": ""
+    },
+    {
+      "category": "general",
+      "title": "Happy Birthday!",
+      "description": "Light 6 birthday cakes.",
+      "task_list": [
+        "Light 6 birthday cakes"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "10",
+      "reward_amount": "1",
+      "reward": "1_title",
+      "info": ""
+    },
+    {
+      "category": "general",
+      "title": "Snowball Fight",
+      "description": "Hit 6 players with snowballs",
+      "task_list": [
+        "hit 6 players with snowballs"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "5000",
+      "reward": "bp",
+      "info": ""
+    },
+    {
+      "category": "general",
+      "title": "Candy Man",
+      "description": "Hit 6 players with Candy Bombs or candies",
+      "task_list": [
+        ""
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "5000",
+      "reward": "bp",
+      "info": ""
+    },
+    {
+      "category": "general",
+      "title": "Speeding Up",
+      "description": "Use the following items:",
+      "task_list": [
+        "Use the following items:",
+        "A 2x Exp card",
+        "A 2x BP card"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "10",
+      "reward_amount": "800",
+      "reward": "bp",
+      "info": ""
+    },
+    {
+      "category": "general",
+      "title": "Speak Up",
+      "description": "Complete the following missions:",
+      "task_list": [
+        "Write and send anything in the world chat in PUBG Mobile using the chat bar and sending your message to the world.",
+        "Message any one of your friend.",
+        "Send a message to a channel with a specific tag.",
+        "Send 1 team requirement message to the world chat."
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "10",
+      "reward_amount": "1000",
+      "reward": "bp",
+      "info": ""
+    },
+    {
+      "category": "general",
+      "title": "A New Self",
+      "description": "Complete the following missions:",
+      "task_list": [
+        "Complete the following missions:",
+        "Change your Avatar Frame once",
+        "Change your Avatar once",
+        "Reset your character appearance"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "10",
+      "reward_amount": "10",
+      "reward": "silver",
+      "info": ""
+    },
+    {
+      "category": "general",
+      "title": "Witness of the Truth",
+      "description": "Complete the following missions:",
+      "task_list": [
+        "Complete the following missions:",
+        "Witness the A.C.E version evolution.",
+        "Watch the A.C.E Union video in the Spawn Island 5 times."
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "10",
+      "reward_amount": "10",
+      "reward": "ag",
+      "info": ""
+    },
+    {
+      "category": "general",
+      "title": "Marshal",
+      "description": "Complete the following missions:",
+      "task_list": [
+        "Complete the following missions:",
+        "Report 3 Plug-ins",
+        "Recieved a mail on the banning of a cheating player following a succesful player report."
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "10",
+      "reward_amount": "1",
+      "reward": "marshal_avatar_misc",
+      "info": ""
+    },
+    {
+      "category": "general",
+      "title": "Graffiti Artist",
+      "description": "Complete the following missions:",
+      "task_list": [
+        "Complete the following missions:",
+        "Graffiti 10 times in Erangel",
+        "Graffiti 10 times in Miramar",
+        "Graffiti 10 times in Sanhok",
+        "Graffiti 10 times in Vikendi"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "10",
+      "reward_amount": "3000",
+      "reward": "bp",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Payload Powerhouse",
+      "description": "Achieve all of the following in the same match in Payload 2.0:",
+      "task_list": [
+        "Complete all of the following in a single match in Payload 2.0:",
+        "Destroy 1 metal door of a secret room (land the final blow)",
+        "Use a vehicle weapon to defeat 1 player",
+        "Use a UAV/airstrike summoning device to defeat 1 player",
+        "Use the Communication Tower to revive 1 teammate",
+        "Destroy 1 vehicle"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "15",
+      "reward_amount": "3",
+      "reward": "classic-crate",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Desert Tourist",
+      "description": "Complete the following missions in Miramar in Classic mode:",
+      "task_list": [
+        "Complete the following missions in Miramar in Classic mode:",
+        "Drink 1 energy drink in the Oasis",
+        "Throw 1 Molotov Cocktail in the Ruins",
+        "Kill one enemy while driving the Golden Mirado",
+        "Leap of 3 ramps while driving any vehicle",
+        "Get 1 headshot using the Win94",
+        "Obtain 8 drinks from one purchase at a vending machine."
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "15",
+      "reward_amount": "150",
+      "reward": "ag",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Road Rage",
+      "description": "Complete the following missions in RageGear mode:",
+      "task_list": [
+        "Complete the following missions in RageGear mode:",
+        "Destroy 40 vehicles",
+        "Deal 1000 damage",
+        "Use 25 items",
+        "Collect 75 point crates"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "5",
+      "reward": "premium-scrap",
+      "info": ""
     }
   ]
 }
