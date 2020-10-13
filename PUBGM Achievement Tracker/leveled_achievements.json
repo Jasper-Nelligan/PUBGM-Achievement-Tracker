@@ -1,112 +1,1048 @@
 {
   "leveled_achievements": [
     {
-      "category": "GM",
-      "title": "Leveled Achievement 1",
-      "description": "This is where the description will go. I need {num_tasks} to complete this",
+      "category": "matches",
+      "title": "Evil Survivor",
+      "description": "Win {num_tasks} Infection Mode matches",
       "levels": [
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
-          "points": "10",
-          "reward_amount": "1",
-          "reward": "m24_timework_pattern_finish"
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
         },
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
-          "num_tasks": "2",
-          "points": "20",
-          "reward_amount": "1",
-          "reward": "blue_neon_punk_airplane_misc"
-        },
-        {
-          "rom_num": "III",
-          "is_planned": "0",
-          "is_completed": "1",
-          "num_tasks": "3",
-          "points": "30",
-          "reward_amount": "1",
-          "reward": "maxed_out_title"
-        },
-        {
-          "rom_num": "IV",
-          "is_planned": "0",
-          "is_completed": "1",
-          "num_tasks": "4",
-          "points": "40",
-          "reward_amount": "1",
-          "reward": "melee_champion_avatar_frame_misc"
-        },
-        {
-          "rom_num": "V",
-          "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
-          "points": "50",
-          "reward_amount": "1",
-          "reward": "mythic_fashion_avatar_misc"
-        }
-      ],
-      "overall_completed": "1",
-      "info": "This is the info on how to get the achievement. This is where the tips and tricks will go"
-    },
-    {
-      "category": "GM",
-      "title": "Leveled Achievement 2",
-      "description": "This is where the description will go. I need {num_tasks} to complete this",
-      "levels": [
-        {
-          "rom_num": "I",
-          "is_planned": "0",
-          "is_completed": "1",
-          "num_tasks": "1",
           "points": "10",
-          "reward_amount": "1",
-          "reward": "mechanic_shirt_outfit"
-        },
-        {
-          "rom_num": "II",
-          "is_planned": "0",
-          "is_completed": "1",
-          "num_tasks": "2",
-          "points": "20",
-          "reward_amount": "1",
-          "reward": "free_roam_parachute"
+          "reward_amount": "10",
+          "reward": "silver"
         },
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
-          "num_tasks": "3",
-          "points": "30",
-          "reward_amount": "300",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "15",
+          "reward_amount": "3",
           "reward": "classic-scrap"
         },
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
-          "num_tasks": "4",
+          "is_completed": "0",
+          "num_tasks": "20",
+          "points": "20",
+          "reward_amount": "1",
+          "reward": "classic-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": "Get this achievement by winning matches in \"Infection Mode\". Infection mode was introduced in August 2019, but was removed later on. Infection Mode became available again for a short period of time during a halloween special in 2020."
+    },
+    {
+      "category": "matches",
+      "title": "Victory Legion",
+      "description": "Score the final kill {num_tasks} times in Team Deathmatch",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5",
+          "points": "10",
+          "reward_amount": "10",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "15",
+          "reward_amount": "3",
+          "reward": "classic-scrap"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "20",
+          "points": "20",
+          "reward_amount": "1",
+          "reward": "classic-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "A Step Too Far",
+      "description": "Get chased by monsters for {num_tasks} in zombie mode",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1000",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5000",
+          "points": "10",
+          "reward_amount": "3000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10000",
+          "points": "20",
+          "reward_amount": "15",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "20000",
+          "points": "30",
+          "reward_amount": "3",
+          "reward": "classic-scrap"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Ride It Out",
+      "description": "Kill {num_tasks} zombies in Zombie: Survive Till Dawn",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "50",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "200",
+          "points": "10",
+          "reward_amount": "3000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "600",
+          "points": "20",
+          "reward_amount": "10",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1500",
+          "points": "30",
+          "reward_amount": "1",
+          "reward": "resident_evil_2_avatar_misc"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Assault Mastery",
+      "description": "Kill {num_tasks} with assault rifles",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "50",
+          "points": "10",
+          "reward_amount": "5000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "150",
+          "points": "20",
+          "reward_amount": "30",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "500",
           "points": "40",
-          "reward_amount": "400",
+          "reward_amount": "1",
+          "reward": "m416_desert_camo_finish"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "2000",
+          "points": "50",
+          "reward_amount": "5",
+          "reward": "premium-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Sniper Mastery",
+      "description": "Kill {num_tasks} with sniper rifles",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "10",
+          "reward_amount": "5000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "100",
+          "points": "20",
+          "reward_amount": "30",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "300",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "kar98_desert_camo_finish"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1000",
+          "points": "40",
+          "reward_amount": "5",
+          "reward": "premium-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "SMG Mastery",
+      "description": "Kill {num_tasks} with SMG's",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "50",
+          "points": "10",
+          "reward_amount": "5000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "150",
+          "points": "20",
+          "reward_amount": "30",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "500",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "uzi_desert_camo_finish"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "2000",
+          "points": "50",
+          "reward_amount": "5",
+          "reward": "premium-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Melee Mastery",
+      "description": "Kill {num_tasks} with melee weapons",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "10",
+          "reward_amount": "5000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "60",
+          "points": "20",
+          "reward_amount": "30",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "100",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "pan_no_killing_finish"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "200",
+          "points": "40",
+          "reward_amount": "5",
+          "reward": "premium-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Pistol Mastery",
+      "description": "Kill {num_tasks} with pistols",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "10",
+          "reward_amount": "5000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "60",
+          "points": "20",
+          "reward_amount": "30",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "100",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "p92_desert_camo_finish"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "200",
+          "points": "40",
+          "reward_amount": "5",
+          "reward": "premium-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Shotgun Mastery",
+      "description": "Kill {num_tasks} with shotguns",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "10",
+          "reward_amount": "5000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "100",
+          "points": "20",
+          "reward_amount": "30",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "300",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "win94_desert_camo_finish"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1000",
+          "points": "40",
+          "reward_amount": "5",
+          "reward": "premium-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Deathbringer",
+      "description": "",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "5",
+          "reward_amount": "1",
+          "reward": "classic-scrap"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "50",
+          "points": "10",
+          "reward_amount": "3",
+          "reward": "classic-scrap"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "200",
+          "points": "20",
+          "reward_amount": "5",
+          "reward": "classic-scrap"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "800",
+          "points": "40",
+          "reward_amount": "1",
           "reward": "classic-crate"
         },
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
-          "num_tasks": "5",
+          "is_completed": "0",
+          "num_tasks": "2000",
           "points": "50",
-          "reward_amount": "500",
+          "reward_amount": "2",
+          "reward": "classic-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Skull Collector",
+      "description": "Kill {num_tasks} enemies with headshots",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1",
+          "points": "5",
+          "reward_amount": "5",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5",
+          "points": "10",
+          "reward_amount": "10",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "20",
+          "reward_amount": "15",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "40",
+          "reward_amount": "20",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "200",
+          "points": "50",
+          "reward_amount": "2",
+          "reward": "classic-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Field Medic",
+      "description": "Revive {num_tasks} teammates",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5",
+          "points": "5",
+          "reward_amount": "2000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "10",
+          "reward_amount": "5000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "15",
+          "reward_amount": "8000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "100",
+          "points": "20",
+          "reward_amount": "1",
+          "reward": "premium-crate"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "500",
+          "points": "40",
+          "reward_amount": "3",
           "reward": "premium-crate"
         }
       ],
-      "overall_completed": "1",
-      "info": "This is the info on how to get the achievement. This is where the tips and tricks will go"
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Predator",
+      "description": "Kill {num_tasks} enemies in a single Classic match",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "3",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5",
+          "points": "10",
+          "reward_amount": "5",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "15",
+          "reward_amount": "10",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "15",
+          "points": "20",
+          "reward_amount": "1",
+          "reward": "domination_avatar_misc"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "20",
+          "points": "40",
+          "reward_amount": "3",
+          "reward": "premium-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "honor",
+      "title": "Alive At Dawn",
+      "description": "Win {num_tasks} times in Zombie: Darkest Night",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5",
+          "points": "10",
+          "reward_amount": "3000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "15",
+          "reward_amount": "15",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "20",
+          "points": "20",
+          "reward_amount": "3",
+          "reward": "classic-scrap"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "honor",
+      "title": "Until Dawn",
+      "description": "Win {num_tasks} in Zombie: Survive Till Dawn",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5",
+          "points": "10",
+          "reward_amount": "3000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "15",
+          "reward_amount": "15",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "20",
+          "points": "20",
+          "reward_amount": "3",
+          "reward": "classic-scrap"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "honor",
+      "title": "Arctic Fighter",
+      "description": "Win {num_tasks} matches in Vikendi",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "3",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "10",
+          "reward_amount": "5000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "20",
+          "points": "20",
+          "reward_amount": "20",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "50",
+          "points": "40",
+          "reward_amount": "3",
+          "reward": "supply-scrap"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "honor",
+      "title": "Seasoned Soldier",
+      "description": "Complete {num_tasks} crew challenges",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "10",
+          "reward_amount": "10",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "20",
+          "points": "20",
+          "reward_amount": "20",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "30",
+          "reward_amount": "40",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "40",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "premium-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "honor",
+      "title": "Chicken Veteran",
+      "description": "Earn {num_tasks} challenge coins from crew challenges",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "500",
+          "points": "10",
+          "reward_amount": "10",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1000",
+          "points": "20",
+          "reward_amount": "20",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "2000",
+          "points": "30",
+          "reward_amount": "40",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5000",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "premium-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "honor",
+      "title": "Going Commando",
+      "description": "Win {num_tasks} Solo Classic matches while in Platinum tier or above, and not equipping any helments, vests or backpacks.",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5",
+          "points": "10",
+          "reward_amount": "5000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "20",
+          "reward_amount": "5",
+          "reward": "supply-scrap"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "20",
+          "points": "30",
+          "reward_amount": "1",
+          "reward": "supply-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "honor",
+      "title": "Chicken Bucket",
+      "description": "Win {num_tasks} match in any mode",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5",
+          "points": "10",
+          "reward_amount": "3000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "15",
+          "reward_amount": "10",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "20",
+          "points": "20",
+          "reward_amount": "20",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "50",
+          "points": "40",
+          "reward_amount": "2",
+          "reward": "classic-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
     }
   ]
 }

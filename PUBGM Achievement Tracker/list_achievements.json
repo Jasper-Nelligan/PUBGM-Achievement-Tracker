@@ -2,35 +2,746 @@
   "list_achievements": [
     {
       "category": "GM",
-      "title": "List Achievement 1",
-      "description": "This is a list achievement",
+      "title": "Unique Destiny",
+      "description": "Earn 6000 Achievement Points",
       "task_list": [
-        "This is task one",
-        "This is task two",
-        "This is task three"
+        "Earn 6000 Achievement Points"
       ],
-      "is_planned": "1",
+      "is_planned": "0",
       "is_completed": "0",
-      "points": "10",
-      "reward_amount": "100",
-      "reward": "bp",
-      "info": "This is the info on how to get the achievement. This is where the tips and tricks will go"
+      "points": "60",
+      "reward_amount": "1",
+      "reward": "unique_destiny_title",
+      "info": "The Unique Destiny PUBG Mobile Achievement is clearly one of the most time consuming and difficult to achieve. In order to get this glorious achievement you will need to earn 6000 Achievement Points. There is no shortcut to complete this achievement, the more achievements you complete the more you will get closer to the Unique Destiny. This achievement will reward you with the \"Unique Destiny\" title, along with the mythic fiend huntress set (not shown)."
     },
     {
       "category": "GM",
-      "title": "List Achievement 2",
-      "description": "This is a list achievement",
+      "title": "Commando",
+      "description": "Complete any 6 of the following:",
       "task_list": [
-        "This is task one",
-        "This is task two",
-        "This is task three"
+        "Complete all 6 of the following:",
+        "Assault Mastery V",
+        "SMG Mastery V",
+        "Melee Mastery V",
+        "Shotgun Mastery V",
+        "Sniper Mastery V",
+        "Pistol Mastery V"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
+      "points": "60",
+      "reward_amount": "1",
+      "reward": "on_a_mission_title",
+      "info": ""
+    },
+    {
+      "category": "GM",
+      "title": "Chicken Expert",
+      "description": "Win a Solo Classic match in the following ways while in Platinum tier or above.",
+      "task_list": [
+        "Win a Solo Classic match in the following ways while in Platinum tier or above.",
+        "Use Assault Rifle to deal the final blow and win a match",
+        "Use SMG to deal the final blow and win a match",
+        "Use Sniper Rifle to deal the final blow and win a match",
+        "Use Shotgun to deal the final blow and win a match",
+        "Use Light Machine Gun to deal the final blow and win a match",
+        "Use Pistol to deal the final blow and win a match",
+        "Use Crossbow to deal the final blow and win a match",
+        "Use Melee Weapon to deal the final blow and win a match",
+        "Use Throwable to deal the final blow and win a match",
+        "Use Vehicle to deal the final below and win a match"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "50",
+      "reward_amount": "1",
+      "reward": "chicken_master_title",
+      "info": ""
+    },
+    {
+      "category": "GM",
+      "title": "Commando (Glass Cannon)",
+      "description": "Win 50 Solo Classic matches while in Platinum tier or above, and not equipping any helments, vests or backpacks.",
+      "task_list": [
+        "\"Win 50 Solo Classic matches while in Platinum tier or above, and not equipping any helments, vests or backpacks."
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "40",
+      "reward_amount": "1",
+      "reward": "glass_cannon_title",
+      "info": ""
+    },
+    {
+      "category": "GM",
+      "title": "Sharpshooter",
+      "description": "Without missing a single shot, kill 3 enemies 50 meters away in a row by headshot, while in a Solo Classic math in Platinum tier or above.",
+      "task_list": [
+        "Without missing a single shot, kill 3 enemies 50 meters away in a row by headshot, while in a Solo Classic math in Platinum tier or above."
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "40",
+      "reward_amount": "1",
+      "reward": "deadeye_title",
+      "info": ""
+    },
+    {
+      "category": "GM",
+      "title": "Overachiever",
+      "description": "Earn 2800 Achievement Points",
+      "task_list": [
+        "Earn 2800 Achievement Points"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "50",
+      "reward_amount": "1",
+      "reward": "overachiever_title",
+      "info": ""
+    },
+    {
+      "category": "GM",
+      "title": "Maxed Out",
+      "description": "Reach Lv.100",
+      "task_list": [
+        "Reach Lv.100"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "40",
+      "reward_amount": "1",
+      "reward": "maxed_out_title",
+      "info": ""
+    },
+    {
+      "category": "GM",
+      "title": "Collector",
+      "description": "Complete the following missions.",
+      "task_list": [
+        "Own Permanent Outfits x300",
+        "Own Permanent Parachutes x20",
+        "Own Permanent Weapon Finishes x50"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "50",
+      "reward_amount": "1",
+      "reward": "collector_title",
+      "info": ""
+    },
+    {
+      "category": "GM",
+      "title": "Well Liked",
+      "description": "Earn 1000 likes.",
+      "task_list": [
+        "Earn 1000 likes"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "50",
+      "reward_amount": "1",
+      "reward": "well_liked_title",
+      "info": ""
+    },
+    {
+      "category": "GM",
+      "title": "Weapon Master",
+      "description": "Complete all the following kills in a Classic match while in Platinum tier or above.",
+      "task_list": [
+        "Complete all the following kills in a Classic match while in Platinum tier or above:",
+        "Use any Assault Rifle to kill an enemy.",
+        "Use any SMG to kill an enemy.",
+        "Use any Sniper Rifle to kill an enemy.",
+        "Use any Throwable to kill an enemy.",
+        "Use any Vehicle to kill an enemy"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
       "points": "20",
-      "reward_amount": "200",
+      "reward_amount": "1",
+      "reward": "weapon_master_title",
+      "info": ""
+    },
+    {
+      "category": "GM",
+      "title": "Free Chicken Dinner",
+      "description": "Win a Solo Classic match with 0 kills in Platinum tier or above:",
+      "task_list": [
+        "Win a Solo Classic match with 0 kills in Platinum tier or above."
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "1",
+      "reward": "pacifist_title",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Veteran",
+      "description": "Complete any 4 of the following:",
+      "task_list": [
+        "Complete any 4 of the following:",
+        "Assault Mastery V",
+        "SMG Mastery V",
+        "Melee Mastery V",
+        "Shotgun Mastery V",
+        "Sniper Mastery V",
+        "Pistol Mastery V"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "40",
+      "reward_amount": "1",
+      "reward": "veteran_title",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Warhorse",
+      "description": "Complete any 2 of the following:",
+      "task_list": [
+        "Complete any 2 of the following:",
+        "Assault Mastery V",
+        "SMG Mastery V",
+        "Melee Mastery V",
+        "Shotgun Mastery V",
+        "Sniper Mastery V",
+        "Pistol Mastery V"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "1",
+      "reward": "warhorse_title",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Patient Zero",
+      "description": "Complete the following missions:",
+      "task_list": [
+        "Complete the following missions:",
+        "Become the source of infection 20 times",
+        "Infect 50 defenders"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "5",
+      "reward": "premium-scrap",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "The Vanquisher",
+      "description": "Complete the following missions:",
+      "task_list": [
+        "Complete the following missions:",
+        "Become the Vanquisher and kill all the zombies",
+        "Infect 15 Defenders in a single match",
+        "Kill 30 zombies in a single match"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "5",
+      "reward": "premium-scrap",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Avenging Fury",
+      "description": "Complete the following missions:",
+      "task_list": [
+        "Complete the following missions:",
+        "Kill the vanquisher 5 times",
+        "Kill 100 zombies"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "5",
+      "reward": "premium-scrap",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Envoy OF War",
+      "description": "Complete all the following missions in Team Deathmatch:",
+      "task_list": [
+        "Complete all the following missions in Team Deathmatch:",
+        "Get 20 first kills",
+        "Succesfully avenge 20 times",
+        "Get a 5 kill streak 20 times",
+        "Get 20 final blows"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "1",
+      "reward": "premium-crate",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "T-800",
+      "description": "Achieve Terminator 1 time in Team Deathmatch",
+      "task_list": [
+        "Get the winning kill in Team Deathmatch, with the score being 40-39"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "10",
+      "reward_amount": "3",
+      "reward": "classic-scrap",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Alpha & Omega",
+      "description": "Get the first kill and the final blow in a Team Deathmatch game",
+      "task_list": [
+        "Get the first kill and the final blow in a Team Deathmatch game"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "5",
+      "reward": "classic-scrap",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Threat From Above",
+      "description": "Land in the following locations:",
+      "task_list": [
+        "Vikendi – At the red newspaper stand in Cantra.",
+        "Vikendi – At the center of the maze in Dino Park.",
+        "Miramar – Inside the Coliseum in Monte Nuevo.",
+        "Miramar – At the fountain in Los Leones.",
+        "Erangel – Inside the Thickest but hollow pillar in Mylta Power.",
+        "Erangel – The end of Novorepnoye Dock.",
+        "Sanhok – The thickest column of the Quarry.",
+        "Sanhok – The Island in the middle of the river located in the west of Bootcamp."
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "2",
+      "reward": "classic-scrap",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Physical Trainer",
+      "description": "Complete the following:",
+      "task_list": [
+        "Complete the following:",
+        "Crouch 1000 times",
+        "Jump 1000 times",
+        "Go prone 1000 times"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "30",
+      "reward_amount": "1",
+      "reward": "supply-crate",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Eye For An Eye",
+      "description": "Kill 1 enemy that knocked you out in the same match",
+      "task_list": [
+        "Kill 1 enemy that knocked you out in the same match"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "1",
+      "reward": "classic-scrap",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Take Me With You",
+      "description": "Board an enemy vehicle for more than 10 seconds",
+      "task_list": [
+        "Board an enemy vehicle for more than 10 seconds"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "1",
+      "reward": "classic-scrap",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Supreme Marksman",
+      "description": "Complete the following missions:",
+      "task_list": [
+        "Complete the following missions:",
+        "Kill 10 airborne enemies",
+        "Kill 10 enemies in water",
+        "Kill 10 enemies without scoping"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "1",
+      "reward": "classic-crate",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Forager",
+      "description": "Complete the following missions while in Gold tier or above (these don't have to be completed in the same match)",
+      "task_list": [
+        "Complete the following missions while in Gold tier or above (these don't have to be completed in the same match)",
+        "Open 5 airdrop crates before anyone else in a single match",
+        "Loot 20 crates from dead enemies in a single match",
+        "Collect 20 outfits in a single match"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "1",
+      "reward": "supply-crate",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "The Chosen One",
+      "description": "Pick up the following Air Drop items",
+      "task_list": [
+        "Pick up the following Air Drop items:",
+        "Groza",
+        "AUG A3",
+        "AWM",
+        "MK14",
+        "M249",
+        "Ghillie Suit (Green) From Erangel/Sanhok",
+        "Ghillie Suit (Desert) from Miramar",
+        "Ghillie Suit (Snow) from Vikendi",
+        "Ghillie Suit (Dark Brown) Vikendi"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "30",
+      "reward_amount": "20",
       "reward": "silver",
-      "info": "This is the info on how to get the achievement. This is where the tips and tricks will go"
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Life Is Fragile",
+      "description": "Die in the following ways:",
+      "task_list": [
+        "Die in the following ways:",
+        "Killed by a Bullet",
+        "Killed Outside of Safe Zone",
+        "Drowned",
+        "Fell To Death",
+        "Killed in Melee Range",
+        "Killed by a Throwable",
+        "Killed by a Bomb in Red Zone",
+        "Killed by a Vehicle"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "3",
+      "reward": "classic-scrap",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Armor Expert",
+      "description": "Equip all of the following items:",
+      "task_list": [
+        "Equip all of the following items:",
+        "Backpack (Lv.1)",
+        "Backpack (Lv.2)",
+        "Backpack (Lv.3)",
+        "Motorcycle Helmet (Lv.1)",
+        "Military Helmet (Lv.2)",
+        "Spetsnaz Helmet (Lv.3)",
+        "Police Vest (Lv.1)",
+        "Police Vest (Lv.2)",
+        "Military Vest (Lv.3)"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "3",
+      "reward": "classic-scrap",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Suit Up",
+      "description": "Equip all of the following items in a single match:",
+      "task_list": [
+        "Equip all of the following items in a single match:",
+        "Backpack (Lv.1)",
+        "Backpack (Lv.2)",
+        "Backpack (Lv.3)",
+        "Motorcycle Helmet (Lv.1)",
+        "Military Helmet (Lv.2)",
+        "Spetsnaz Helmet (Lv.3)",
+        "Police Vest (Lv.1)",
+        "Police Vest (Lv.2)",
+        "Military Vest (Lv.3)"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "3",
+      "reward": "classic-scrap",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Fire At Will",
+      "description": "Equip the following weapons:",
+      "task_list": [
+        "Equip the following weapons:",
+        "AKM",
+        "M16A4",
+        "SCAR-L",
+        "M416",
+        "UZI",
+        "UMP45",
+        "Vector",
+        "Thompson",
+        "SMG",
+        "Kar98K",
+        "SKS",
+        "VSS",
+        "Mini14",
+        "Win94",
+        "SLR",
+        "S686",
+        "S1897",
+        "S12K",
+        "P92",
+        "P1911",
+        "R1895",
+        "P18C",
+        "R45",
+        "Sawed-Off",
+        "Crossbow",
+        "Machete",
+        "Crowbar",
+        "Sickle",
+        "Pan"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "5",
+      "reward": "premium-scrap",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Perfect 10's",
+      "description": "Kill a number of enemies in the following ways:",
+      "task_list": [
+        "Kill a number of enemies in the following ways:",
+        "Kill 10 Enemies with Assault Rifle (AR)",
+        "Kill 10 Enemies with Sub-Machine Gun (SMG)",
+        "Kill 10 Enemies with Sniper Rifle (DMR/Bolt Action)",
+        "Kill 10 Enemies with Shotgun",
+        "Kill 10 Enemies with Light Machine Gun (DP-28/M249)",
+        "Kill 10 Enemies with Pistol",
+        "Kill 10 Enemies with Crossbow",
+        "Kill 10 Enemies with Melee (Pan, Machete)",
+        "Kill 10 Enemies with Throwable (Frag Grenade, Molotov Cocktail)",
+        "Kill 10 Enemies with Vehicle"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "1",
+      "reward": "unique_avatar_misc",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Fully Armed",
+      "description": "Pick up the following attachments:",
+      "task_list": [
+        "Pick up the following attachments:",
+        "Muzzle (Any of Suppressor, Compensator, Flash Hider)",
+        "Stock (Tact Stock, Cheek Pad, UZI Stock)",
+        "Magazine (Any of Extended, Quickdraw, Extended Quickdraw)",
+        "Scope (Any of 2x, 3x, 4x, 6x, 8x)",
+        "Foregrip (Any of Angled Foregrip, Vertical Foregrip, Lightgrip, Thumb Grip, Half Grip)"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "10",
+      "reward_amount": "2",
+      "reward": "premium-scrap",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Star Support",
+      "description": "Pick up the following items:",
+      "task_list": [
+        "Pick up the following items:",
+        "Energy Drink",
+        "Adrenaline Syringe",
+        "Painkiller",
+        "Bandage",
+        "First Aid Kit",
+        "Med Kit",
+        "Stun Grenade",
+        "Smoke Grenade",
+        "Frag Grenade",
+        "Molotov Cocktail",
+        "Gas Can"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "10",
+      "reward_amount": "1000",
+      "reward": "bp",
+      "info": ""
+    },
+    {
+      "category": "matches",
+      "title": "Run Chicken Run!",
+      "description": "Complete the following:",
+      "task_list": [
+        "Complete the following:",
+        "Walk for a total of 10,000 meters",
+        "Travel/Drive a vehicle for 10,000 meters",
+        "Swim for a total of 5000 meters"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "10",
+      "reward_amount": "8000",
+      "reward": "bp",
+      "info": ""
+    },
+    {
+      "category": "honor",
+      "title": "Triple Chicken",
+      "description": "Win 3 Classic matches in a row in Gold tier or above",
+      "task_list": [
+        "Win 3 Classic matches in a row in Gold tier or above"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "1",
+      "reward": "premium-crate",
+      "info": ""
+    },
+    {
+      "category": "honor",
+      "title": "Triple Chicken Supreme",
+      "description": "Win a classic match in Gold tier or above without taking any damage",
+      "task_list": [
+        "Win a classic match in Gold tier or above without taking any damage"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "1",
+      "reward": "classic-crate",
+      "info": ""
+    },
+    {
+      "category": "honor",
+      "title": "PUBG Hero",
+      "description": "Reach Platinum V or above for 3 seasons in a row",
+      "task_list": [
+        "Reach Platinum V or above for 3 seasons in a row"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "50",
+      "reward": "silver",
+      "info": ""
+    },
+    {
+      "category": "honor",
+      "title": "PUBG Elite I",
+      "description": "Get a rating of A or above 3 times",
+      "task_list": [
+        "Get a rating of A or above 3 times"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "5",
+      "reward_amount": "500",
+      "reward": "bp",
+      "info": ""
+    },
+    {
+      "category": "honor",
+      "title": "PUBG Elite II",
+      "description": "Get a rating of S or above 5 times",
+      "task_list": [
+        "Get a rating of S or above 5 times"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "10",
+      "reward_amount": "2000",
+      "reward": "bp",
+      "info": ""
+    },
+    {
+      "category": "honor",
+      "title": "PUBG Elite III",
+      "description": "Get a rating of SS or above 10 times",
+      "task_list": [
+        "Get a rating of SS or above 10 times"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "15",
+      "reward_amount": "8000",
+      "reward": "bp",
+      "info": ""
+    },
+    {
+      "category": "honor",
+      "title": "PUBG Elite IV",
+      "description": "Get a rating of SSS or above 20 times",
+      "task_list": [
+        "Get a rating of SSS or above 20 times"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "1",
+      "reward": "premium-crate",
+      "info": ""
+    },
+    {
+      "category": "honor",
+      "title": "PUBG Elite IV",
+      "description": "Get a rating of SSS or above 50 times",
+      "task_list": [
+        "Get a rating of SSS or above 50 times"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "40",
+      "reward_amount": "2",
+      "reward": "premium-crate",
+      "info": ""
     }
   ]
 }
