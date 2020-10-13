@@ -1045,6 +1045,60 @@
       "info": ""
     },
     {
+      "category": "honor",
+      "title": "PUBG Elite",
+      "description": "{num_tasks}",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "Get a rating of A or above 3 times",
+          "points": "5",
+          "reward_amount": "500",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "Get a rating of S or above 5 times",
+          "points": "10",
+          "reward_amount": "2000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "Get a rating of SS or above 10 times",
+          "points": "15",
+          "reward_amount": "8000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "Get a rating of SSS or above 20 times",
+          "points": "20",
+          "reward_amount": "1",
+          "reward": "premium-crate"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "Get a rating of SSS or above 50 times",
+          "points": "40",
+          "reward_amount": "2",
+          "reward": "premium-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    }
+    {
       "category": "progress",
       "title": "Evo Tactician",
       "description": "Complete {num_tasks} in EvoGround mode",
@@ -1597,6 +1651,375 @@
           "points": "50",
           "reward_amount": "1",
           "reward": "plague_carrier_outfit"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "items",
+      "title": "Mythic Fashion",
+      "description": "Own {num_tasks} permanent outfits",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1",
+          "points": "5",
+          "reward_amount": "1",
+          "reward": "classic-crate"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5",
+          "points": "10",
+          "reward_amount": "2",
+          "reward": "premium-crate"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "20",
+          "reward_amount": "5",
+          "reward": "premium-crate"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "20",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "mythic_fashion_avatar_misc"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "50",
+          "points": "60",
+          "reward_amount": "1",
+          "reward": "mythic_fashion_title"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "items",
+      "title": "Painter",
+      "description": "{num_tasks}",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "Obtain 1 upgradeable firearm finish",
+          "points": "10",
+          "reward_amount": "1",
+          "reward": "paint"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "Upgrade a firearm finish to Rank 2",
+          "points": "20",
+          "reward_amount": "2",
+          "reward": "paint"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "Upgrade a firearm finish to Rank 3",
+          "points": "30",
+          "reward_amount": "2",
+          "reward": "premium-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "items",
+      "title": "Full Closet",
+      "description": "Own {num_tasks} permanent outfits",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "10",
+          "reward_amount": "30",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "100",
+          "points": "20",
+          "reward_amount": "60",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "300",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "mercenary_coat_outfit"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "items",
+      "title": "Rare Find",
+      "description": "Own {num_tasks} rare permanent outfits",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1",
+          "points": "5",
+          "reward_amount": "500",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5",
+          "points": "10",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "20",
+          "reward_amount": "5",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "40",
+          "reward_amount": "10",
+          "reward": "silver"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "items",
+      "title": "Certified Skydiver",
+      "description": "Own {num_tasks} permanent parachutes",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "3",
+          "points": "5",
+          "reward_amount": "2000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5",
+          "points": "10",
+          "reward_amount": "30",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "20",
+          "reward_amount": "60",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "20",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "free_roam_parachute"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "items",
+      "title": "Epic Find",
+      "description": "Own {num_tasks} epic permanent outfits",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1",
+          "points": "5",
+          "reward_amount": "500",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5",
+          "points": "10",
+          "reward_amount": "2500",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "20",
+          "reward_amount": "10",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "40",
+          "reward_amount": "20",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "100",
+          "points": "50",
+          "reward_amount": "2",
+          "reward": "classic-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "items",
+      "title": "Legendary Find",
+      "description": "Own {num_tasks} legendary permanent outfits",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1",
+          "points": "5",
+          "reward_amount": "1",
+          "reward": "melee_champion_avatar_frame_misc"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "2",
+          "points": "10",
+          "reward_amount": "1",
+          "reward": "sanguine_helmet_gear"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "4",
+          "points": "20",
+          "reward_amount": "1",
+          "reward": "red_and_black_backpack_gear"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "6",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "ghost_scarf_outfit"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "items",
+      "title": "Art Curator",
+      "description": "Own {num_tasks} permanent weapon finishes",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5",
+          "points": "5",
+          "reward_amount": "1",
+          "reward": "premium-crate"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "10",
+          "reward_amount": "2",
+          "reward": "premium-crate"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "25",
+          "points": "20",
+          "reward_amount": "3",
+          "reward": "premium-crate"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "50",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "scarl_sandstorm_finish"
         }
       ],
       "overall_completed": "0",

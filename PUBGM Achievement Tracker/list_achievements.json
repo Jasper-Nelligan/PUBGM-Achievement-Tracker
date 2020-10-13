@@ -674,73 +674,173 @@
       "info": ""
     },
     {
-      "category": "honor",
-      "title": "PUBG Elite I",
-      "description": "Get a rating of A or above 3 times",
+      "category": "items",
+      "title": "Trick or Treat",
+      "description": "Collect the following set:",
       "task_list": [
-        "Get a rating of A or above 3 times"
+        "Vampire Set (Mythic)",
+        "Hellfire UAZ (Epic)",
+        "UMP9 Halloween Part Finish (Epic)",
+        "Count Backpack (Legendary)",
+        "Happy Pumpkin Helmet (Epic)"
       ],
       "is_planned": "0",
       "is_completed": "0",
-      "points": "5",
-      "reward_amount": "500",
-      "reward": "bp",
-      "info": ""
-    },
-    {
-      "category": "honor",
-      "title": "PUBG Elite II",
-      "description": "Get a rating of S or above 5 times",
-      "task_list": [
-        "Get a rating of S or above 5 times"
-      ],
-      "is_planned": "0",
-      "is_completed": "0",
-      "points": "10",
-      "reward_amount": "2000",
-      "reward": "bp",
-      "info": ""
-    },
-    {
-      "category": "honor",
-      "title": "PUBG Elite III",
-      "description": "Get a rating of SS or above 10 times",
-      "task_list": [
-        "Get a rating of SS or above 10 times"
-      ],
-      "is_planned": "0",
-      "is_completed": "0",
-      "points": "15",
-      "reward_amount": "8000",
-      "reward": "bp",
-      "info": ""
-    },
-    {
-      "category": "honor",
-      "title": "PUBG Elite IV",
-      "description": "Get a rating of SSS or above 20 times",
-      "task_list": [
-        "Get a rating of SSS or above 20 times"
-      ],
-      "is_planned": "0",
-      "is_completed": "0",
-      "points": "20",
+      "points": "40",
       "reward_amount": "1",
       "reward": "premium-crate",
       "info": ""
     },
     {
-      "category": "honor",
-      "title": "PUBG Elite IV",
-      "description": "Get a rating of SSS or above 50 times",
+      "category": "items",
+      "title": "Time Traveller",
+      "description": "Collect the following set",
       "task_list": [
-        "Get a rating of SSS or above 50 times"
+        "Time Traveler Set (Mythic)",
+        "Time Traveler Motorcycle (Epic)",
+        "M416 Time Traveler Finish (Epic)",
+        "Kar98K Time Traveler Finish (Epic)",
+        "Pan Time Traveler Finish (Legendary)"
       ],
       "is_planned": "0",
       "is_completed": "0",
       "points": "40",
-      "reward_amount": "2",
-      "reward": "premium-crate",
+      "reward_amount": "1",
+      "reward": "classic-crate",
+      "info": ""
+    },
+    {
+      "category": "items",
+      "title": "To The Stars",
+      "description": "Collect the following set:",
+      "task_list": [
+        "Space Guardian Suit (Mythic)",
+        "S686 Space Travel Skin (Epic)",
+        "S1897 Space Travel Skin (Epic)",
+        "Galactic Helmet (Mythic)"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "40",
+      "reward_amount": "1",
+      "reward": "classic-crate",
+      "info": ""
+    },
+    {
+      "category": "items",
+      "title": "Skeleton Hand",
+      "description": "Collect the following set:",
+      "task_list": [
+        "Skeleton Hand Executioner Hat (Epic)",
+        "Skeleton Hand Suit (Epic)",
+        "Skeleton Hand Dacia Skin (Epic)",
+        "M416 Skeleton Hand Finish (Epic)",
+        "SKS Skeleton Hand Finish (Epic)",
+        "P92 Skeleton Hand Finish (Epic)",
+        "Skeleton Hand Backpack (Rare)"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "50",
+      "reward_amount": "1",
+      "reward": "skeleton_hand_airplane_misc",
+      "info": ""
+    },
+    {
+      "category": "items",
+      "title": "Circus",
+      "description": "Collect the following set:",
+      "task_list": [
+        "Circus Trainer Set (Epic)",
+        "Circus Buggy (Epic)",
+        "AUG-A3 Circus Finish (Epic)",
+        "M249 Circus Finish (Epic)",
+        "P92 Circus Finish (Epic)",
+        "Circus Backpack (Epic)"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "50",
+      "reward_amount": "1",
+      "reward": "circus_parachute",
+      "info": ""
+    },
+    {
+      "category": "items",
+      "title": "Hot Pizza",
+      "description": "Collect the following set:",
+      "task_list": [
+        "Hot Pizza Suit (Epic)",
+        "Hot Pizza Parachute (Epic)",
+        "Hot Pizza Motorcycle Skin (Epic)",
+        "SCAR-L Hot Pizza Finish (Epic)",
+        "UZI Hot Pizza Finish (Epic)",
+        "Hot Pizza Backpack (Rare)",
+        "Hot Pizza Helmet (Rare)"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "50",
+      "reward_amount": "1",
+      "reward": "pan_hot_pizza_finish",
+      "info": ""
+    },
+    {
+      "category": "items",
+      "title": "White Rabbit",
+      "description": "Collect the following set:",
+      "task_list": [
+        "White Rabbit Set (Epic)",
+        "White Rabbit Bus (Miramar) (Epic)",
+        "AUG-A3 White Rabbit Finish (Epic)",
+        "Vector White Rabbit Finish (Epic)",
+        "P18C White Rabbit Finish (Epic)",
+        "White Rabbit Backpack (Epic)",
+        "White Rabbit Helmet (Epic)"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "50",
+      "reward_amount": "1",
+      "reward": "white_rabbit_parachute",
+      "info": ""
+    },
+    {
+      "category": "items",
+      "title": "Neon Punk",
+      "description": "Collect the following set",
+      "task_list": [
+        "Neon Punk Sweats (Epic)",
+        "Neon Punk Motorcycle Skin (Epic)",
+        "UZI Neon Punk Finish (Epic)",
+        "UMP9 Neon Punk Finish (Epic)",
+        "Neon Punk Backpack (Rare)",
+        "Neon Punk Helmet (Rare)"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "50",
+      "reward_amount": "1",
+      "reward": "blue_neon_punk_airplane_misc",
+      "info": ""
+    },
+    {
+      "category": "items",
+      "title": "Death Squad",
+      "description": "Collect the following set:",
+      "task_list": [
+        "The Skulls Shadow Set (Epic)",
+        "The Skulls UZA Skin (Rare)",
+        "GROZA The Skulls Finish (Epic)",
+        "UMP9 The Skulls Finish (Epic)",
+        "The Skulls Backpack (Rare)",
+        "The Skulls Helmet (Rare)"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "50",
+      "reward_amount": "1",
+      "reward": "the_skulls_airplane_misc",
       "info": ""
     }
   ]

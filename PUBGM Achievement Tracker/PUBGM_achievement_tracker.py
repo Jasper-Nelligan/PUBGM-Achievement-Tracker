@@ -690,7 +690,7 @@ class OverviewFrame(tk.Frame):
             for reward in ("bp","silver", "ag", "supply-scrap", "supply-crate",
                            "classic-scrap","classic-crate","premium-scrap",
                            "premium-crate","title","outfit","finish",
-                           "parachute","gear","spray_paint","misc"):
+                           "parachute","gear","paint","misc"):
                 key = adj + reward
                 self.stat_dict[key] = 0
 
@@ -778,7 +778,7 @@ class OverviewFrame(tk.Frame):
             for icon in ("bp","silver", "ag", "supply-scrap", "supply-crate",
                        "classic-scrap","classic-crate","premium-scrap",
                        "premium-crate","title","outfit","finish",
-                       "parachute","gear","spray_paint","misc"):
+                       "parachute","gear","paint","misc"):
                 img = Image.open(path + icon + ".png")
                 img.thumbnail((45,45), Image.BICUBIC)
                 img = ImageTk.PhotoImage(img)
@@ -968,7 +968,7 @@ class OverviewFrame(tk.Frame):
         for reward in ("bp","silver","supply-scrap","supply-crate",
                        "classic-scrap","classic-crate","premium-scrap",
                        "premium-crate","ag","title","outfit","finish",
-                       "parachute","gear","spray_paint","misc"):
+                       "parachute","gear","paint","misc"):
                 completed = self.stat_dict["completed_" + reward]
                 planned = self.stat_dict["planned_" + reward]
                 possible = self.stat_dict["possible_" + reward]
@@ -992,6 +992,8 @@ class OverviewFrame(tk.Frame):
                     text = "miscellaneous"
                 elif text == "finish":
                     text = "weapon finishes"
+                elif text == "outfit":
+                    text = "outfits"
                 coord = (x2+35, y)
                 self.overview_canvas.create_text((coord), text=text, fill="white",
                                                  font=size12_bold, anchor='nw')
@@ -1910,7 +1912,7 @@ class Achievement():
                        "high_society_hat_outfit","mechanic_shirt_outfit",
                        "plague_carrier_outfit","heart_of_gold_outfit",
                        "beastial_instinct_outfit","fiend_huntress_outfit",
-                       "spray_paint_misc"):
+                       "paint"):
             img = Image.open('./Images/rewards/'+reward+'.png')
             img.thumbnail((50,50), Image.BICUBIC)
             img = ImageTk.PhotoImage(img)
