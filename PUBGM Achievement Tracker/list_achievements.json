@@ -317,14 +317,14 @@
       "title": "Threat From Above",
       "description": "Land in the following locations:",
       "task_list": [
-        "Vikendi – At the red newspaper stand in Cantra.",
-        "Vikendi – At the center of the maze in Dino Park.",
-        "Miramar – Inside the Coliseum in Monte Nuevo.",
-        "Miramar – At the fountain in Los Leones.",
-        "Erangel – Inside the Thickest but hollow pillar in Mylta Power.",
-        "Erangel – The end of Novorepnoye Dock.",
-        "Sanhok – The thickest column of the Quarry.",
-        "Sanhok – The Island in the middle of the river located in the west of Bootcamp."
+        "Vikendi \u2013 At the red newspaper stand in Cantra.",
+        "Vikendi \u2013 At the center of the maze in Dino Park.",
+        "Miramar \u2013 Inside the Coliseum in Monte Nuevo.",
+        "Miramar \u2013 At the fountain in Los Leones.",
+        "Erangel \u2013 Inside the Thickest but hollow pillar in Mylta Power.",
+        "Erangel \u2013 The end of Novorepnoye Dock.",
+        "Sanhok \u2013 The thickest column of the Quarry.",
+        "Sanhok \u2013 The Island in the middle of the river located in the west of Bootcamp."
       ],
       "is_planned": "0",
       "is_completed": "0",
@@ -841,6 +841,34 @@
       "points": "50",
       "reward_amount": "1",
       "reward": "the_skulls_airplane_misc",
+      "info": ""
+    },
+    {
+      "category": "social",
+      "title": "Enlisted",
+      "description": "Join 1 clan",
+      "task_list": [
+        "Join 1 clan"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "20",
+      "reward_amount": "1",
+      "reward": "classic-crate",
+      "info": ""
+    },
+    {
+      "category": "social",
+      "title": "Linked",
+      "description": "Link a social network account",
+      "task_list": [
+        "Link a social network account"
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "10",
+      "reward_amount": "1000",
+      "reward": "bp",
       "info": ""
     }
   ]

@@ -1097,7 +1097,7 @@
       ],
       "overall_completed": "0",
       "info": ""
-    }
+    },
     {
       "category": "progress",
       "title": "Evo Tactician",
@@ -2020,6 +2020,357 @@
           "points": "40",
           "reward_amount": "1",
           "reward": "scarl_sandstorm_finish"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "social",
+      "title": "Superstar",
+      "description": "Reach {num_tasks} popularity",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "100",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "500",
+          "points": "10",
+          "reward_amount": "3000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "2000",
+          "points": "20",
+          "reward_amount": "15",
+          "reward": "silver"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "social",
+      "title": "Bargainer",
+      "description": "Bargain for a total of {num_tasks} UC for friends",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1000",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10000",
+          "points": "10",
+          "reward_amount": "5000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30000",
+          "points": "20",
+          "reward_amount": "20",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "100000",
+          "points": "40",
+          "reward_amount": "3",
+          "reward": "classic-scrap"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "social",
+      "title": "Social Butterfly",
+      "description": "Have {num_tasks} in-game friends",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "3",
+          "points": "5",
+          "reward_amount": "500",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "10",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "15",
+          "reward_amount": "3000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "50",
+          "points": "20",
+          "reward_amount": "5000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "120",
+          "points": "30",
+          "reward_amount": "2",
+          "reward": "classic-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "social",
+      "title": "Brother In Arms",
+      "description": "Complete {num_tasks} matches while in a group with friends",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5",
+          "points": "5",
+          "reward_amount": "500",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "10",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "50",
+          "points": "15",
+          "reward_amount": "5",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "250",
+          "points": "20",
+          "reward_amount": "10",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1000",
+          "points": "30",
+          "reward_amount": "2",
+          "reward": "classic-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "social",
+      "title": "Santa Claus",
+      "description": "Gift an items to a friend {num_tasks} times",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1",
+          "points": "5",
+          "reward_amount": "3",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "3",
+          "points": "10",
+          "reward_amount": "10",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "15",
+          "reward_amount": "1",
+          "reward": "classic-crate"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "20",
+          "reward_amount": "1",
+          "reward": "hockey_mask_sand_outfit"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "100",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "santa_claus_avatar_misc"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "social",
+      "title": "Center Of Attention",
+      "description": "Earn {num_tasks} likes",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "20",
+          "points": "5",
+          "reward_amount": "10",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "60",
+          "points": "10",
+          "reward_amount": "20",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "120",
+          "points": "20",
+          "reward_amount": "30",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "300",
+          "points": "30",
+          "reward_amount": "40",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "600",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "classic-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "social",
+      "title": "Happy Training",
+      "description": "Complete {num_tasks} clan trainings",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "10",
+          "reward_amount": "5000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "100",
+          "points": "20",
+          "reward_amount": "1",
+          "reward": "classic-crate"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "300",
+          "points": "40",
+          "reward_amount": "3",
+          "reward": "classic-crate"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1000",
+          "points": "50",
+          "reward_amount": "5",
+          "reward": "premium-crate"
         }
       ],
       "overall_completed": "0",
