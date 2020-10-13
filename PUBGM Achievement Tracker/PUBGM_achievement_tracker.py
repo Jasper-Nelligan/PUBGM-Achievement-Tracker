@@ -185,7 +185,7 @@ class AppController(tk.Tk):
                     rom_num = lvl['rom_num']
                     is_planned = int(lvl['is_planned'])
                     is_completed = int(lvl['is_completed'])
-                    num_tasks = int(lvl['num_tasks'])
+                    num_tasks = lvl['num_tasks']
                     points = int(lvl['points'])
                     reward_amount = int(lvl['reward_amount'])
                     reward = lvl['reward']
@@ -211,11 +211,6 @@ class AppController(tk.Tk):
                         self.update_stat(category + "_planned_points", '+', 1)
                         self.update_stat("planned_" + reward_type, '+', reward_amount)
 
-
-                    #self.update_stat(category + "total_achievements")
-
-
-                    
                     this_lvl = LeveledAchievement \
                         (rom_num, is_planned, is_completed, num_tasks, 
                          points, reward_amount, reward, self.list_index, 
@@ -1489,8 +1484,6 @@ class AchievementsFrame(tk.Frame):
         category = achievement.shared_attrs.category
         title = achievement.shared_attrs.title
         desc = achievement.shared_attrs.desc
-        # input number of tasks needed in level into description string
-        desc = desc.format(num_tasks=achievement.num_tasks)
         info = achievement.shared_attrs.info
         # reference to first and last level
         first_lvl = achievement.shared_attrs.first_lvl
@@ -1562,6 +1555,7 @@ class AchievementsFrame(tk.Frame):
         next_row=3
 
         # Adding a frame for each level, starting with the first level
+
         cur_lvl_index = first_lvl.list_index
         achievement = AchievementsFrame.achievement_list[cur_lvl_index]
         # set this to True once all levels have been initialized
@@ -1583,8 +1577,10 @@ class AchievementsFrame(tk.Frame):
                                  bg='#121111')
             frame_title.grid(row=0, column=0, sticky=NW)
 
-            text = desc.format(num_tasks=achievement.num_tasks)
-            text = textwrap.fill(desc, width=45)
+            print(achievement.num_tasks)
+            desc_copy = copy.copy(desc)
+            desc_copy = desc_copy.format(num_tasks=achievement.num_tasks)
+            text = textwrap.fill(desc_copy, width=45)
             # input number of tasks needed in level into description string
             frame_desc=tk.Label(achievement_frame, text=text, 
                                 justify=LEFT, anchor=W, height=3, width=35, 
@@ -1893,8 +1889,8 @@ class Achievement():
                        "overachiever_title","deadeye_title",
                        "glass_cannon_title","chicken_master_title",
                        "on_a_mission_title","unique_destiny_title",
-                       "scar_glorious_gold_finish","m416_desert_camo_finish",
-                       "pan_hot_pizza_finish","scar_sandstorm_finish",
+                       "scarl_glorious_gold_finish","m416_desert_camo_finish",
+                       "pan_hot_pizza_finish","scarl_sandstorm_finish",
                        "m249_witherer_finish","m24_timework_pattern_finish",
                        "win94_desert_camo_finish","p92_desert_camo_finish",
                        "pan_no_killing_finish","uzi_desert_camo_finish",
@@ -1981,12 +1977,12 @@ class LeveledAchievement(Achievement):
             the achievement
         is_planned (int): 1 for planned, 0 for not planned
         is_completed (int): 1 for completed, 0 for not completed
-        num_tasks (int): the number of tasks required to complete
+        num_tasks (str): the number of tasks required to complete
             the the level of the achievement. The task is described in
             achievement description.
         points (int): amount of points awarded upon level completion.
         reward_amount (int): amount of reward awarded upon level completion
-        reward (string): name of reward.
+        reward (str): name of reward.
         list_index (int): the index at which this level will be placed in
             achievement_list.
         shared_attrs (LeveledAttributes): a reference to the achievements

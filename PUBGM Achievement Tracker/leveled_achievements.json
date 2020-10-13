@@ -1043,6 +1043,564 @@
       ],
       "overall_completed": "0",
       "info": ""
+    },
+    {
+      "category": "progress",
+      "title": "Evo Tactician",
+      "description": "Complete {num_tasks} in EvoGround mode",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "5",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "20",
+          "points": "10",
+          "reward_amount": "10",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "50",
+          "points": "20",
+          "reward_amount": "20",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "100",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "premium-crate"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "200",
+          "points": "50",
+          "reward_amount": "1",
+          "reward": "m24_timework_pattern_finish"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "progress",
+      "title": "Never Ending",
+      "description": "Reach Evo Lv. {num_tasks}",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "5",
+          "reward_amount": "5",
+          "reward": "supply-scrap"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "10",
+          "reward_amount": "5",
+          "reward": "classic-scrap"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "60",
+          "points": "20",
+          "reward_amount": "1",
+          "reward": "premium-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "progress",
+      "title": "Perfectionist",
+      "description": "Reach the highest Royal Pass rank for {num_tasks} seasons in a row",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1",
+          "points": "20",
+          "reward_amount": "1",
+          "reward": "premium-crate"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "2",
+          "points": "30",
+          "reward_amount": "1",
+          "reward": "evil_mask_outfit"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "3",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "m249_witherer_finish"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "4",
+          "points": "50",
+          "reward_amount": "1",
+          "reward": "perseverance_title"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "6",
+          "points": "60",
+          "reward_amount": "1",
+          "reward": "perfectionist_title"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "progress",
+      "title": "Bounty Hunter",
+      "description": "Complete {num_tasks} Royal Pass missions",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "20",
+          "reward_amount": "2000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "100",
+          "points": "30",
+          "reward_amount": "2",
+          "reward": "classic-scrap"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "300",
+          "points": "40",
+          "reward_amount": "2",
+          "reward": "premium-scrap"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "500",
+          "points": "50",
+          "reward_amount": "1",
+          "reward": "classic-crate"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1000",
+          "points": "60",
+          "reward_amount": "2",
+          "reward": "premium-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "progress",
+      "title": "Open Sesame",
+      "description": "Open {num_tasks} Royal Pass Elite crates",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "2",
+          "points": "10",
+          "reward_amount": "3000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "15",
+          "reward_amount": "2",
+          "reward": "premium-scrap"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "20",
+          "points": "20",
+          "reward_amount": "2",
+          "reward": "premium-scrap"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "30",
+          "reward_amount": "1",
+          "reward": "classic-crate"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "100",
+          "points": "40",
+          "reward_amount": "2",
+          "reward": "premium-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "progress",
+      "title": "Dependable",
+      "description": "Log in for a total of {num_tasks} days",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "90",
+          "points": "10",
+          "reward_amount": "50",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "180",
+          "points": "20",
+          "reward_amount": "3",
+          "reward": "classic-crate"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "360",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "scarl_glorious_gold_finish"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "progress",
+      "title": "Road To Glory",
+      "description": "Reach Lv. {num_tasks}",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "5",
+          "reward_amount": "3000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "10",
+          "reward_amount": "1",
+          "reward": "classic-crate"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "60",
+          "points": "15",
+          "reward_amount": "1",
+          "reward": "premium-crate"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "80",
+          "points": "20",
+          "reward_amount": "50",
+          "reward": "silver"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "progress",
+      "title": "Perseverance",
+      "description": "Log in consecutively for {num_tasks} days",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "3",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "7",
+          "points": "10",
+          "reward_amount": "5",
+          "reward": "classic-scrap"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "15",
+          "points": "15",
+          "reward_amount": "1",
+          "reward": "classic-crate"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "30",
+          "points": "20",
+          "reward_amount": "1",
+          "reward": "premium-crate"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "60",
+          "points": "50",
+          "reward_amount": "1",
+          "reward": "beastial_instinct_outfit"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "progress",
+      "title": "Battle Hardened",
+      "description": "Reach {num_tasks} tier",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "Bronze I",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "Gold I",
+          "points": "10",
+          "reward_amount": "5",
+          "reward": "classic-scrap"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "Diamond I",
+          "points": "15",
+          "reward_amount": "1",
+          "reward": "classic-crate"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "Crown I",
+          "points": "20",
+          "reward_amount": "1",
+          "reward": "classic-crate"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "Ace",
+          "points": "40",
+          "reward_amount": "2",
+          "reward": "premium-crate"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "progress",
+      "title": "Fun Times",
+      "description": "Completed {num_tasks} games in Arcade mode",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "50",
+          "points": "10",
+          "reward_amount": "10",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "150",
+          "points": "20",
+          "reward_amount": "20",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "500",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "premium-crate"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "800",
+          "points": "50",
+          "reward_amount": "1",
+          "reward": "heart_of_gold_outfit"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
+    },
+    {
+      "category": "progress",
+      "title": "Classic Lover",
+      "description": "Complete {num_tasks} matches in Classic mode",
+      "levels": [
+        {
+          "rom_num": "I",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "10",
+          "points": "5",
+          "reward_amount": "1000",
+          "reward": "bp"
+        },
+        {
+          "rom_num": "II",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "50",
+          "points": "10",
+          "reward_amount": "10",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "III",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "150",
+          "points": "20",
+          "reward_amount": "20",
+          "reward": "silver"
+        },
+        {
+          "rom_num": "IV",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "500",
+          "points": "40",
+          "reward_amount": "1",
+          "reward": "premium-crate"
+        },
+        {
+          "rom_num": "V",
+          "is_planned": "0",
+          "is_completed": "0",
+          "num_tasks": "1000",
+          "points": "50",
+          "reward_amount": "1",
+          "reward": "plague_carrier_outfit"
+        }
+      ],
+      "overall_completed": "0",
+      "info": ""
     }
   ]
 }
