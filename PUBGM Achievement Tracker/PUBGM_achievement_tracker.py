@@ -1527,8 +1527,7 @@ class AchievementsFrame(tk.Frame):
                     borderwidth=0, highlightthickness=0)
         exit_button.grid(row=0, column = 5, sticky=E, pady = 10)
         exit_button.bind('<Button-1>', lambda event:[
-                        leveled_achievement_sbf.place_forget(),
-                        leveled_achievement_sbf.destroy])
+                        self.exit_achievement(leveled_achievement_sbf)])
 
         # The collective title for all levels
         text = title
@@ -1668,7 +1667,7 @@ class AchievementsFrame(tk.Frame):
         next_row += 1
 
         # information on how to get the achievement
-        text = textwrap.fill(info, width=101)
+        text = textwrap.fill(info, width=99)
         info=tk.Label(info_frame, text=text, justify=LEFT, fg='white',
                     font=AchievementsFrame.desc_font, bg='#121111')
         info.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
@@ -1696,8 +1695,7 @@ class AchievementsFrame(tk.Frame):
                                borderwidth=0, highlightthickness=0)
         exit_button.grid(row=0, column = 5, sticky=E, pady = 10)
         exit_button.bind('<Button-1>', lambda event:
-                         [list_achievement_sbf.place_forget(),
-                         list_achievement_sbf.destroy])
+                         [self.exit_achievement(list_achievement_sbf)])
 
         text = achievement.title
         title=tk.Label(info_frame, text=text, anchor=W, fg='white',
@@ -1764,13 +1762,16 @@ class AchievementsFrame(tk.Frame):
                     font=AchievementsFrame.desc_font, bg='#121111')
         desc.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
 
-    def exit_achievement(self, achievement):
-        """Exits achievement and returns to the current category frame"""
-        exited_achievement = \
-            AchievementsFrame.achievement_list[achievement.list_index]
-        # Unbind mousewheel to achievement info so it can be re-bound
-        # to achievement list
-        exited_achievement.unbind_mousewheel()
+    def exit_achievement(self, achievement_sbf):
+        """Exits achievement info and returns to the current category frame
+        
+        Args:
+            achievement_sbf (ScrollableFrame): the scrollable frame that 
+                is being exited
+        """
+        achievement_sbf.unbind_mousewheel()
+        achievement_sbf.place_forget()
+        achievement_sbf.destroy()
         self.cur_category.bind_mousewheel()
         self.cur_category.tkraise()
 

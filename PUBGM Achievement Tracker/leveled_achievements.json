@@ -507,7 +507,7 @@
     {
       "category": "matches",
       "title": "Deathbringer",
-      "description": "",
+      "description": "Kill {num_tasks} enemies",
       "levels": [
         {
           "rom_num": "I",
