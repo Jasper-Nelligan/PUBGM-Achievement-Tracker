@@ -185,7 +185,7 @@ class AppController(tk.Tk):
                     rom_num = lvl['rom_num']
                     is_planned = int(lvl['is_planned'])
                     is_completed = int(lvl['is_completed'])
-                    num_tasks = int(lvl['num_tasks'])
+                    num_tasks = lvl['num_tasks']
                     points = int(lvl['points'])
                     reward_amount = int(lvl['reward_amount'])
                     reward = lvl['reward']
@@ -211,11 +211,6 @@ class AppController(tk.Tk):
                         self.update_stat(category + "_planned_points", '+', 1)
                         self.update_stat("planned_" + reward_type, '+', reward_amount)
 
-
-                    #self.update_stat(category + "total_achievements")
-
-
-                    
                     this_lvl = LeveledAchievement \
                         (rom_num, is_planned, is_completed, num_tasks, 
                          points, reward_amount, reward, self.list_index, 
@@ -595,8 +590,11 @@ class MainMenuFrame(tk.Frame):
         """Turns the clicked on button to red and carries out corresponding
         action.
         """
+        x = event.x
+        y = event.y
+
         #if "Overview" was clicked
-        if 75 <= event.x <= 245 and 240 <= event.y <= 285:
+        if 75 <= x <= 245 and 240 <= y <= 285:
             #On button click, turn button to red
             self.main_menu_label.configure(image=
                                        self.tk_overview_clicked)
@@ -605,27 +603,37 @@ class MainMenuFrame(tk.Frame):
                                       [self.controller.show_frame(
                                           "OverviewFrame"), 
                                        self.main_menu_label.configure(image=
-                                       self.tk_background)])
+                                       self.tk_background),
+                                       self.main_menu_label.unbind("<ButtonRelease-1>")])
+           
         #if "Achievements" was clicked 
-        elif 75 <= event.x <= 305 and 340 <= event.y <= 385:
+        elif 75 <= x <= 305 and 340 <= y <= 385:
             self.main_menu_label.configure(image=
                                        self.tk_achievements_clicked)
             self.main_menu_label.bind("<ButtonRelease-1>", lambda event:
                                       [self.controller.show_frame(
                                           "UncompletedAchievements"), 
                                        self.main_menu_label.configure(image=
-                                       self.tk_background)])
+                                       self.tk_background),
+                                       self.main_menu_label.unbind("<ButtonRelease-1>")])
+            # fixes bug where starting frame couldn't be scrolled until
+            # a category button was clicked
+            self.controller.frames["UncompletedAchievements"].show_category("GM")
         #if "Completed" was clicked
-        elif 75 <= event.x <= 245 and 440 <= event.y <= 485:
+        elif 75 <= x <= 245 and 440 <= y <= 485:
             self.main_menu_label.configure(image=
                                        self.tk_completed_clicked)
             self.main_menu_label.bind("<ButtonRelease-1>", lambda event:
                                       [self.controller.show_frame(
                                           "CompletedAchievements"), 
                                        self.main_menu_label.configure(image=
-                                       self.tk_background)])
+                                       self.tk_background),
+                                       self.main_menu_label.unbind("<ButtonRelease-1>")])
+            # fixes bug where starting frame couldn't be scrolled until
+            # a category button was clicked
+            self.controller.frames["CompletedAchievements"].show_category("GM")
         # if "Save" was clicked
-        elif 1120 <= event.x <= 1200 and 40 <= event.y <= 85:
+        elif 1120 <= x <= 1200 and 40 <= y <= 85:
             self.main_menu_label.configure(image=
                                        self.tk_save_clicked)
             self.main_menu_label.bind("<ButtonRelease-1>", lambda event:
@@ -633,7 +641,7 @@ class MainMenuFrame(tk.Frame):
                                        self.main_menu_label.configure(image=
                                        self.tk_background)])
         #if "Exit" is pressed
-        elif 1230 <= event.x <= 1290 and 40 <= event.y <= 85:
+        elif 1230 <= x <= 1290 and 40 <= y <= 85:
             self.main_menu_label.configure(image=
                                        self.tk_exit_clicked)
             self.main_menu_label.bind("<ButtonRelease-1>", lambda event:
@@ -695,7 +703,7 @@ class OverviewFrame(tk.Frame):
             for reward in ("bp","silver", "ag", "supply-scrap", "supply-crate",
                            "classic-scrap","classic-crate","premium-scrap",
                            "premium-crate","title","outfit","finish",
-                           "parachute","gear","spray_paint","misc"):
+                           "parachute","gear","paint","misc"):
                 key = adj + reward
                 self.stat_dict[key] = 0
 
@@ -783,7 +791,7 @@ class OverviewFrame(tk.Frame):
             for icon in ("bp","silver", "ag", "supply-scrap", "supply-crate",
                        "classic-scrap","classic-crate","premium-scrap",
                        "premium-crate","title","outfit","finish",
-                       "parachute","gear","spray_paint","misc"):
+                       "parachute","gear","paint","misc"):
                 img = Image.open(path + icon + ".png")
                 img.thumbnail((45,45), Image.BICUBIC)
                 img = ImageTk.PhotoImage(img)
@@ -973,7 +981,7 @@ class OverviewFrame(tk.Frame):
         for reward in ("bp","silver","supply-scrap","supply-crate",
                        "classic-scrap","classic-crate","premium-scrap",
                        "premium-crate","ag","title","outfit","finish",
-                       "parachute","gear","spray_paint","misc"):
+                       "parachute","gear","paint","misc"):
                 completed = self.stat_dict["completed_" + reward]
                 planned = self.stat_dict["planned_" + reward]
                 possible = self.stat_dict["possible_" + reward]
@@ -984,10 +992,23 @@ class OverviewFrame(tk.Frame):
                 else:
                     x1 = 900+25
                     x2 = 1130+25
-                text = f"{completed} + ({planned}) / {possible} x"
+
+                text = f"{completed} + ({planned}) / {possible}"
                 coord = (x1, y)
+                # adjustments for smaller text
+                if reward == "bp":
+                    coord = (x1, y+10)
+                    self.overview_canvas.create_text(coord, text=text, fill="white", 
+                                                     font=size12_bold, anchor='w')
+                else:
+                    self.overview_canvas.create_text(coord, text=text, fill="white", 
+                                                     font=size14_bold, anchor='nw')
+
+                text="x"
+                coord = (x2-35, y+10)
                 self.overview_canvas.create_text(coord, text=text, fill="white", 
-                                                 font=size14_bold, anchor='nw')
+                                                     font=size14_bold, anchor='center')
+
                 img = self.reward_icons[reward]
                 coord = (x2, y+10)
                 self.overview_canvas.create_image(coord, image=img)
@@ -997,6 +1018,8 @@ class OverviewFrame(tk.Frame):
                     text = "miscellaneous"
                 elif text == "finish":
                     text = "weapon finishes"
+                elif text == "outfit":
+                    text = "outfits"
                 coord = (x2+35, y)
                 self.overview_canvas.create_text((coord), text=text, fill="white",
                                                  font=size12_bold, anchor='nw')
@@ -1028,12 +1051,14 @@ class OverviewFrame(tk.Frame):
         points = self.stat_dict["completed_points"]
         if points >= self.next_milestone:
             milestone = self.milestones[str(self.next_milestone)]
-            self.stat_dict["completed_" + milestone[1]] += milestone[0]
+            reward_type = milestone[1].split("_")[-1]
+            self.stat_dict["completed_" + reward_type] += milestone[0]
             self.prev_milestone, self.next_milestone = self.get_milestones()
         # if user has "uncompleted" some achievements 
         elif points < self.prev_milestone:
             milestone = self.milestones[str(self.prev_milestone)]
-            self.stat_dict["completed_" + milestone[1]] -= milestone[0]
+            reward_type = milestone[1].split("_")[-1]
+            self.stat_dict["completed_" + reward_type] -= milestone[0]
             self.prev_milestone, self.next_milestone = self.get_milestones()
         else:
             pass
@@ -1084,16 +1109,20 @@ class OverviewFrame(tk.Frame):
         """Turns the clicked on button to red and raises the corresponding 
         frame. 
         """
-        #print("Area clicked was", event.x, event.y, sep=" ")
+        x = event.x
+        y = event.y
+        #print("Area clicked was", x, y, sep=" ")
         # if "Back" was clicked
-        if 75 <= event.x <= 150 and 40 <= event.y <= 85:
+        if 75 <= x <= 150 and 40 <= y <= 85:
             self.overview_canvas.itemconfig(self.canvas_bg, image=self.tk_back_clicked)
             # Go to Main Menu frame. Everything on the canvas is deleted
             # and re-drawn upon entering OverviewFrame again.
             self.overview_canvas.bind("<ButtonRelease-1>", lambda event:
-                                      [self.controller.show_frame(
+                                      [self.unbind("<ButtonRelease-1>"),
+                                       self.controller.show_frame(
                                           "MainMenuFrame"),
-                                       self.overview_canvas.delete("all")])
+                                       self.overview_canvas.delete("all"),
+                                       self.overview_canvas.unbind("<ButtonRelease-1>")])
 
  
 class AchievementsFrame(tk.Frame):
@@ -1338,13 +1367,13 @@ class AchievementsFrame(tk.Frame):
                                             size=12)
         self.big_title_font = font.Font(family='Helvetica',
                                             size=20, weight='bold')
-         
+
         # cur_category will reference the currently shown category
         # Glorious Moments will always be the starting category
         self.cur_category = self.categories['GM']
         # cur_category_img holds a referene to the current displayed bg image
         self.cur_category_img = self.tk_GM_clicked
-        self.show_category('GM')
+        self.show_category("GM")
 
     def init_categories(self):
         """Initializes achievement categories, each as a scrollable frame.
@@ -1489,8 +1518,6 @@ class AchievementsFrame(tk.Frame):
         category = achievement.shared_attrs.category
         title = achievement.shared_attrs.title
         desc = achievement.shared_attrs.desc
-        # input number of tasks needed in level into description string
-        desc = desc.format(num_tasks=achievement.num_tasks)
         info = achievement.shared_attrs.info
         # reference to first and last level
         first_lvl = achievement.shared_attrs.first_lvl
@@ -1515,8 +1542,7 @@ class AchievementsFrame(tk.Frame):
                     borderwidth=0, highlightthickness=0)
         exit_button.grid(row=0, column = 5, sticky=E, pady = 10)
         exit_button.bind('<Button-1>', lambda event:[
-                        leveled_achievement_sbf.place_forget(),
-                        leveled_achievement_sbf.destroy])
+                        self.exit_achievement(leveled_achievement_sbf)])
 
         # The collective title for all levels
         text = title
@@ -1562,6 +1588,7 @@ class AchievementsFrame(tk.Frame):
         next_row=3
 
         # Adding a frame for each level, starting with the first level
+
         cur_lvl_index = first_lvl.list_index
         achievement = AchievementsFrame.achievement_list[cur_lvl_index]
         # set this to True once all levels have been initialized
@@ -1583,8 +1610,9 @@ class AchievementsFrame(tk.Frame):
                                  bg='#121111')
             frame_title.grid(row=0, column=0, sticky=NW)
 
-            text = desc.format(num_tasks=achievement.num_tasks)
-            text = textwrap.fill(desc, width=45)
+            desc_copy = copy.copy(desc)
+            desc_copy = desc_copy.format(num_tasks=achievement.num_tasks)
+            text = textwrap.fill(desc_copy, width=42)
             # input number of tasks needed in level into description string
             frame_desc=tk.Label(achievement_frame, text=text, 
                                 justify=LEFT, anchor=W, height=3, width=35, 
@@ -1653,7 +1681,7 @@ class AchievementsFrame(tk.Frame):
         next_row += 1
 
         # information on how to get the achievement
-        text = textwrap.fill(info, width=101)
+        text = textwrap.fill(info, width=99)
         info=tk.Label(info_frame, text=text, justify=LEFT, fg='white',
                     font=AchievementsFrame.desc_font, bg='#121111')
         info.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
@@ -1681,8 +1709,7 @@ class AchievementsFrame(tk.Frame):
                                borderwidth=0, highlightthickness=0)
         exit_button.grid(row=0, column = 5, sticky=E, pady = 10)
         exit_button.bind('<Button-1>', lambda event:
-                         [list_achievement_sbf.place_forget(),
-                         list_achievement_sbf.destroy])
+                         [self.exit_achievement(list_achievement_sbf)])
 
         text = achievement.title
         title=tk.Label(info_frame, text=text, anchor=W, fg='white',
@@ -1744,18 +1771,21 @@ class AchievementsFrame(tk.Frame):
         line.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
         next_row += 1
 
-        text = textwrap.fill(achievement.info, width=101)
+        text = textwrap.fill(achievement.info, width=99)
         desc=tk.Label(info_frame, text=text, justify=LEFT, fg='white',
                     font=AchievementsFrame.desc_font, bg='#121111')
         desc.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
 
-    def exit_achievement(self, achievement):
-        """Exits achievement and returns to the current category frame"""
-        exited_achievement = \
-            AchievementsFrame.achievement_list[achievement.list_index]
-        # Unbind mousewheel to achievement info so it can be re-bound
-        # to achievement list
-        exited_achievement.unbind_mousewheel()
+    def exit_achievement(self, achievement_sbf):
+        """Exits achievement info and returns to the current category frame
+        
+        Args:
+            achievement_sbf (ScrollableFrame): the scrollable frame that 
+                is being exited
+        """
+        achievement_sbf.unbind_mousewheel()
+        achievement_sbf.place_forget()
+        achievement_sbf.destroy()
         self.cur_category.bind_mousewheel()
         self.cur_category.tkraise()
 
@@ -1777,9 +1807,11 @@ class AchievementsFrame(tk.Frame):
         """Turns the clicked on button to red and raises the corresponding 
         frame. 
         """
+        x = event.x
+        y = event.y
 
         # if "Back" was clicked
-        if 80 <= event.x <= 155 and 40 <= event.y <= 85:
+        if 80 <= x <= 155 and 40 <= y <= 85:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_back_clicked)
             # Go to Main Menu frame and return back-button to yellow
@@ -1792,7 +1824,7 @@ class AchievementsFrame(tk.Frame):
                                       self.bg_image_label.unbind(
                                           '<ButtonRelease-1>')])
         # if "Save" was clicked
-        elif 1120 <= event.x <= 1200 and 40 <= event.y <= 85:
+        elif 1120 <= x <= 1200 and 40 <= y <= 85:
             self.bg_image_label.configure(image=
                                        self.tk_save_clicked)
             self.bg_image_label.bind("<ButtonRelease-1>", lambda event:
@@ -1801,43 +1833,43 @@ class AchievementsFrame(tk.Frame):
                                        self.bg_image_label.configure(image=
                                        self.cur_category_img)])
         # if "Glorious Moments" was clicked
-        elif 900 <= event.x <= 1100 and 90 <= event.y <= 120:
+        elif 900 <= x <= 1100 and 90 <= y <= 120:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_GM_clicked)
             self.cur_category_img = AchievementsFrame.tk_GM_clicked
             self.show_category("GM")
         # if "Matches" was clicked
-        elif 900 <= event.x <= 1000 and 155 <= event.y <= 185:
+        elif 900 <= x <= 1000 and 155 <= y <= 185:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_matches_clicked)
             self.cur_category_img = AchievementsFrame.tk_matches_clicked
             self.show_category("matches")
         # if "Honor" was clicked
-        elif 900 <= event.x <= 975 and 225 <= event.y <= 255:
+        elif 900 <= x <= 975 and 225 <= y <= 255:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_honor_clicked)
             self.cur_category_img = AchievementsFrame.tk_honor_clicked
             self.show_category("honor")
         # if "Progress" was clicked
-        elif 900 <= event.x <= 1010 and 295 <= event.y <= 325:
+        elif 900 <= x <= 1010 and 295 <= y <= 325:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_progress_clicked)
             self.cur_category_img = AchievementsFrame.tk_progress_clicked
             self.show_category("progress")
         # if "Items" was clicked
-        elif 900 <= event.x <= 965 and 365 <= event.y <= 395:
+        elif 900 <= x <= 965 and 365 <= y <= 395:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_items_clicked)
             self.cur_category_img = AchievementsFrame.tk_items_clicked
             self.show_category("items")
         # if "Social" was clicked
-        elif 900 <= event.x <= 975 and 435 <= event.y <= 465:
+        elif 900 <= x <= 975 and 435 <= y <= 465:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_social_clicked)
             self.cur_category_img = AchievementsFrame.tk_social_clicked
             self.show_category("social")
         # if "General" was clicked
-        elif 900 <= event.x <= 995 and 505 <= event.y <= 535:
+        elif 900 <= x <= 995 and 505 <= y <= 535:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_general_clicked)
             self.cur_category_img = AchievementsFrame.tk_general_clicked
@@ -1893,8 +1925,10 @@ class Achievement():
                        "overachiever_title","deadeye_title",
                        "glass_cannon_title","chicken_master_title",
                        "on_a_mission_title","unique_destiny_title",
-                       "scar_glorious_gold_finish","m416_desert_camo_finish",
-                       "pan_hot_pizza_finish","scar_sandstorm_finish",
+                       "thank_you_title","dependable_title",
+                       "star_trainer_title","lifelong_learner_title",
+                       "scarl_glorious_gold_finish","m416_desert_camo_finish",
+                       "pan_hot_pizza_finish","scarl_sandstorm_finish",
                        "m249_witherer_finish","m24_timework_pattern_finish",
                        "win94_desert_camo_finish","p92_desert_camo_finish",
                        "pan_no_killing_finish","uzi_desert_camo_finish",
@@ -1903,6 +1937,7 @@ class Achievement():
                        "free_roam_parachute","red_and_black_backpack_gear",
                        "sanguine_helmet_gear","supplies_avatar_frame_misc",
                        "jinxed_avatar_frame_misc","noble_avatar_frame_misc",
+                       "marshal_avatar_misc","companion_food_misc",
                        "skeleton_hand_airplane_misc","blue_neon_punk_airplane_misc",
                        "the_skulls_airplane_misc","santa_claus_avatar_misc",
                        "melee_champion_avatar_frame_misc",
@@ -1914,7 +1949,7 @@ class Achievement():
                        "high_society_hat_outfit","mechanic_shirt_outfit",
                        "plague_carrier_outfit","heart_of_gold_outfit",
                        "beastial_instinct_outfit","fiend_huntress_outfit",
-                       "spray_paint_misc"):
+                       "brawler_outfit","paint"):
             img = Image.open('./Images/rewards/'+reward+'.png')
             img.thumbnail((50,50), Image.BICUBIC)
             img = ImageTk.PhotoImage(img)
@@ -1981,12 +2016,12 @@ class LeveledAchievement(Achievement):
             the achievement
         is_planned (int): 1 for planned, 0 for not planned
         is_completed (int): 1 for completed, 0 for not completed
-        num_tasks (int): the number of tasks required to complete
+        num_tasks (str): the number of tasks required to complete
             the the level of the achievement. The task is described in
             achievement description.
         points (int): amount of points awarded upon level completion.
         reward_amount (int): amount of reward awarded upon level completion
-        reward (string): name of reward.
+        reward (str): name of reward.
         list_index (int): the index at which this level will be placed in
             achievement_list.
         shared_attrs (LeveledAttributes): a reference to the achievements
@@ -2293,8 +2328,9 @@ class ListAchievement(Achievement):
                 "_completed_achievements", '+', 1)
             Achievement.controller.update_stat(self.category + \
                 "_completed_points", '+', self.points)
+            reward_type = self.reward.split("_")[-1]
             Achievement.controller.update_stat("completed_" + \
-                self.reward, '+', self.reward_amount)
+                reward_type, '+', self.reward_amount)
             # achievement can't be planned if it's completed
             if self.planned_var.get() == 1:
                 self.planned_var.set(0)
@@ -2306,8 +2342,9 @@ class ListAchievement(Achievement):
                     "_planned_achievements", '-', 1)
                 Achievement.controller.update_stat(self.category + \
                     "_planned_points", '-', self.points)
+                reward_type = self.reward.split("_")[-1]
                 Achievement.controller.update_stat("planned_" + \
-                    self.reward, '-', self.reward_amount)
+                    reward_type, '-', self.reward_amount)
             # remove from UncompletedAchievements
             self.frame.grid_forget()
             # regrid in CompletedAchievements
@@ -2322,8 +2359,9 @@ class ListAchievement(Achievement):
                 "_completed_achievements", '-', 1)
             Achievement.controller.update_stat(self.category + \
                 "_completed_points", '-', self.points)
+            reward_type = self.reward.split("_")[-1]
             Achievement.controller.update_stat("completed_" + \
-                self.reward, '-', self.reward_amount)
+                reward_type, '-', self.reward_amount)
             self.frame.grid_forget()
             Achievement.controller.update_achievement(self)
 
@@ -2346,8 +2384,9 @@ class ListAchievement(Achievement):
                 "_planned_achievements", '+', 1)
             Achievement.controller.update_stat(self.category + \
                 "_planned_points", '+', self.points)
+            reward_type = self.reward.split("_")[-1]
             Achievement.controller.update_stat("planned_" + \
-                self.reward, '+', self.reward_amount)
+                reward_type, '+', self.reward_amount)
         else:
             Achievement.controller.update_stat("planned_achievements", 
                                                '-', 1)
@@ -2357,8 +2396,9 @@ class ListAchievement(Achievement):
                 "_planned_achievements", '-', 1)
             Achievement.controller.update_stat(self.category + \
                 "_planned_points", '-', self.points)
+            reward_type = self.reward.split("_")[-1]
             Achievement.controller.update_stat("planned_" + \
-                self.reward, '-', self.reward_amount)
+                reward_type, '-', self.reward_amount)
             pass
 
 
