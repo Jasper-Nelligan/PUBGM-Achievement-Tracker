@@ -202,13 +202,13 @@ class AppController(tk.Tk):
                         self.update_stat("completed_achievements", '+', 1)
                         self.update_stat("completed_points", '+', points)
                         self.update_stat(category + "_completed_achievements", '+', 1)
-                        self.update_stat(category + "_completed_points", '+', 1)
+                        self.update_stat(category + "_completed_points", '+', points)
                         self.update_stat("completed_" + reward_type, '+', reward_amount)
                     elif is_planned == 1:
                         self.update_stat("planned_achievements", '+', 1)
                         self.update_stat("planned_points", '+', points)
                         self.update_stat(category + "_planned_achievements", '+', 1)
-                        self.update_stat(category + "_planned_points", '+', 1)
+                        self.update_stat(category + "_planned_points", '+', points)
                         self.update_stat("planned_" + reward_type, '+', reward_amount)
 
                     this_lvl = LeveledAchievement \
@@ -294,13 +294,13 @@ class AppController(tk.Tk):
                     self.update_stat("completed_achievements", '+', 1)
                     self.update_stat("completed_points", '+', points)
                     self.update_stat(category + "_completed_achievements", '+', 1)
-                    self.update_stat(category + "_completed_points", '+', 1)
+                    self.update_stat(category + "_completed_points", '+', points)
                     self.update_stat("completed_" + reward_type, '+', reward_amount)
                 elif is_planned == 1:
                     self.update_stat("planned_achievements", '+', 1)
                     self.update_stat("planned_points", '+', points)
                     self.update_stat(category + "_planned_achievements", '+', 1)
-                    self.update_stat(category + "_planned_points", '+', 1)
+                    self.update_stat(category + "_planned_points", '+', points)
                     self.update_stat("planned_" + reward_type, '+', reward_amount)
 
                 # a Frame has not yet been initialized
@@ -1043,6 +1043,9 @@ class OverviewFrame(tk.Frame):
             operator (string): either '+' or '-'
             amount (int): amount that stat should be updated.
         """
+        if stat == "GM_completed_points":
+            print("GM completed points was increased by: ", amount)
+
         if operator == '+':
             self.stat_dict[stat] += amount
         else:
