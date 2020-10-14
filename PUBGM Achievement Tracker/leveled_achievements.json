@@ -2073,7 +2073,7 @@
           "num_tasks": "10000",
           "points": "30",
           "reward_amount": "1",
-          "reward": "classic_crate"
+          "reward": "classic-crate"
         },
         {
           "rom_num": "V",
@@ -3294,6 +3294,5 @@
       "overall_completed": "0",
       "info": ""
     }
-
   ]
 }

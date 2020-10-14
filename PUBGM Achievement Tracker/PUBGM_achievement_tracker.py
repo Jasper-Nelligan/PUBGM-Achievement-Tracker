@@ -590,8 +590,11 @@ class MainMenuFrame(tk.Frame):
         """Turns the clicked on button to red and carries out corresponding
         action.
         """
+        x = event.x
+        y = event.y
+
         #if "Overview" was clicked
-        if 75 <= event.x <= 245 and 240 <= event.y <= 285:
+        if 75 <= x <= 245 and 240 <= y <= 285:
             #On button click, turn button to red
             self.main_menu_label.configure(image=
                                        self.tk_overview_clicked)
@@ -600,27 +603,37 @@ class MainMenuFrame(tk.Frame):
                                       [self.controller.show_frame(
                                           "OverviewFrame"), 
                                        self.main_menu_label.configure(image=
-                                       self.tk_background)])
+                                       self.tk_background),
+                                       self.main_menu_label.unbind("<ButtonRelease-1>")])
+           
         #if "Achievements" was clicked 
-        elif 75 <= event.x <= 305 and 340 <= event.y <= 385:
+        elif 75 <= x <= 305 and 340 <= y <= 385:
             self.main_menu_label.configure(image=
                                        self.tk_achievements_clicked)
             self.main_menu_label.bind("<ButtonRelease-1>", lambda event:
                                       [self.controller.show_frame(
                                           "UncompletedAchievements"), 
                                        self.main_menu_label.configure(image=
-                                       self.tk_background)])
+                                       self.tk_background),
+                                       self.main_menu_label.unbind("<ButtonRelease-1>")])
+            # fixes bug where starting frame couldn't be scrolled until
+            # a category button was clicked
+            self.controller.frames["UncompletedAchievements"].show_category("GM")
         #if "Completed" was clicked
-        elif 75 <= event.x <= 245 and 440 <= event.y <= 485:
+        elif 75 <= x <= 245 and 440 <= y <= 485:
             self.main_menu_label.configure(image=
                                        self.tk_completed_clicked)
             self.main_menu_label.bind("<ButtonRelease-1>", lambda event:
                                       [self.controller.show_frame(
                                           "CompletedAchievements"), 
                                        self.main_menu_label.configure(image=
-                                       self.tk_background)])
+                                       self.tk_background),
+                                       self.main_menu_label.unbind("<ButtonRelease-1>")])
+            # fixes bug where starting frame couldn't be scrolled until
+            # a category button was clicked
+            self.controller.frames["CompletedAchievements"].show_category("GM")
         # if "Save" was clicked
-        elif 1120 <= event.x <= 1200 and 40 <= event.y <= 85:
+        elif 1120 <= x <= 1200 and 40 <= y <= 85:
             self.main_menu_label.configure(image=
                                        self.tk_save_clicked)
             self.main_menu_label.bind("<ButtonRelease-1>", lambda event:
@@ -628,7 +641,7 @@ class MainMenuFrame(tk.Frame):
                                        self.main_menu_label.configure(image=
                                        self.tk_background)])
         #if "Exit" is pressed
-        elif 1230 <= event.x <= 1290 and 40 <= event.y <= 85:
+        elif 1230 <= x <= 1290 and 40 <= y <= 85:
             self.main_menu_label.configure(image=
                                        self.tk_exit_clicked)
             self.main_menu_label.bind("<ButtonRelease-1>", lambda event:
@@ -1081,16 +1094,20 @@ class OverviewFrame(tk.Frame):
         """Turns the clicked on button to red and raises the corresponding 
         frame. 
         """
-        #print("Area clicked was", event.x, event.y, sep=" ")
+        x = event.x
+        y = event.y
+        #print("Area clicked was", x, y, sep=" ")
         # if "Back" was clicked
-        if 75 <= event.x <= 150 and 40 <= event.y <= 85:
+        if 75 <= x <= 150 and 40 <= y <= 85:
             self.overview_canvas.itemconfig(self.canvas_bg, image=self.tk_back_clicked)
             # Go to Main Menu frame. Everything on the canvas is deleted
             # and re-drawn upon entering OverviewFrame again.
             self.overview_canvas.bind("<ButtonRelease-1>", lambda event:
-                                      [self.controller.show_frame(
+                                      [self.unbind("<ButtonRelease-1>"),
+                                       self.controller.show_frame(
                                           "MainMenuFrame"),
-                                       self.overview_canvas.delete("all")])
+                                       self.overview_canvas.delete("all"),
+                                       self.overview_canvas.unbind("<ButtonRelease-1>")])
 
  
 class AchievementsFrame(tk.Frame):
@@ -1335,13 +1352,13 @@ class AchievementsFrame(tk.Frame):
                                             size=12)
         self.big_title_font = font.Font(family='Helvetica',
                                             size=20, weight='bold')
-         
+
         # cur_category will reference the currently shown category
         # Glorious Moments will always be the starting category
         self.cur_category = self.categories['GM']
         # cur_category_img holds a referene to the current displayed bg image
         self.cur_category_img = self.tk_GM_clicked
-        self.show_category('GM')
+        self.show_category("GM")
 
     def init_categories(self):
         """Initializes achievement categories, each as a scrollable frame.
@@ -1742,7 +1759,7 @@ class AchievementsFrame(tk.Frame):
         line.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
         next_row += 1
 
-        text = textwrap.fill(achievement.info, width=101)
+        text = textwrap.fill(achievement.info, width=99)
         desc=tk.Label(info_frame, text=text, justify=LEFT, fg='white',
                     font=AchievementsFrame.desc_font, bg='#121111')
         desc.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
@@ -1775,9 +1792,11 @@ class AchievementsFrame(tk.Frame):
         """Turns the clicked on button to red and raises the corresponding 
         frame. 
         """
+        x = event.x
+        y = event.y
 
         # if "Back" was clicked
-        if 80 <= event.x <= 155 and 40 <= event.y <= 85:
+        if 80 <= x <= 155 and 40 <= y <= 85:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_back_clicked)
             # Go to Main Menu frame and return back-button to yellow
@@ -1790,7 +1809,7 @@ class AchievementsFrame(tk.Frame):
                                       self.bg_image_label.unbind(
                                           '<ButtonRelease-1>')])
         # if "Save" was clicked
-        elif 1120 <= event.x <= 1200 and 40 <= event.y <= 85:
+        elif 1120 <= x <= 1200 and 40 <= y <= 85:
             self.bg_image_label.configure(image=
                                        self.tk_save_clicked)
             self.bg_image_label.bind("<ButtonRelease-1>", lambda event:
@@ -1799,43 +1818,43 @@ class AchievementsFrame(tk.Frame):
                                        self.bg_image_label.configure(image=
                                        self.cur_category_img)])
         # if "Glorious Moments" was clicked
-        elif 900 <= event.x <= 1100 and 90 <= event.y <= 120:
+        elif 900 <= x <= 1100 and 90 <= y <= 120:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_GM_clicked)
             self.cur_category_img = AchievementsFrame.tk_GM_clicked
             self.show_category("GM")
         # if "Matches" was clicked
-        elif 900 <= event.x <= 1000 and 155 <= event.y <= 185:
+        elif 900 <= x <= 1000 and 155 <= y <= 185:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_matches_clicked)
             self.cur_category_img = AchievementsFrame.tk_matches_clicked
             self.show_category("matches")
         # if "Honor" was clicked
-        elif 900 <= event.x <= 975 and 225 <= event.y <= 255:
+        elif 900 <= x <= 975 and 225 <= y <= 255:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_honor_clicked)
             self.cur_category_img = AchievementsFrame.tk_honor_clicked
             self.show_category("honor")
         # if "Progress" was clicked
-        elif 900 <= event.x <= 1010 and 295 <= event.y <= 325:
+        elif 900 <= x <= 1010 and 295 <= y <= 325:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_progress_clicked)
             self.cur_category_img = AchievementsFrame.tk_progress_clicked
             self.show_category("progress")
         # if "Items" was clicked
-        elif 900 <= event.x <= 965 and 365 <= event.y <= 395:
+        elif 900 <= x <= 965 and 365 <= y <= 395:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_items_clicked)
             self.cur_category_img = AchievementsFrame.tk_items_clicked
             self.show_category("items")
         # if "Social" was clicked
-        elif 900 <= event.x <= 975 and 435 <= event.y <= 465:
+        elif 900 <= x <= 975 and 435 <= y <= 465:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_social_clicked)
             self.cur_category_img = AchievementsFrame.tk_social_clicked
             self.show_category("social")
         # if "General" was clicked
-        elif 900 <= event.x <= 995 and 505 <= event.y <= 535:
+        elif 900 <= x <= 995 and 505 <= y <= 535:
             self.bg_image_label.configure(image=
                                           AchievementsFrame.tk_general_clicked)
             self.cur_category_img = AchievementsFrame.tk_general_clicked
