@@ -992,10 +992,23 @@ class OverviewFrame(tk.Frame):
                 else:
                     x1 = 900+25
                     x2 = 1130+25
-                text = f"{completed} + ({planned}) / {possible} x"
+
+                text = f"{completed} + ({planned}) / {possible}"
                 coord = (x1, y)
+                # adjustments for smaller text
+                if reward == "bp":
+                    coord = (x1, y+10)
+                    self.overview_canvas.create_text(coord, text=text, fill="white", 
+                                                     font=size12_bold, anchor='w')
+                else:
+                    self.overview_canvas.create_text(coord, text=text, fill="white", 
+                                                     font=size14_bold, anchor='nw')
+
+                text="x"
+                coord = (x2-35, y+10)
                 self.overview_canvas.create_text(coord, text=text, fill="white", 
-                                                 font=size14_bold, anchor='nw')
+                                                     font=size14_bold, anchor='center')
+
                 img = self.reward_icons[reward]
                 coord = (x2, y+10)
                 self.overview_canvas.create_image(coord, image=img)
@@ -1038,12 +1051,14 @@ class OverviewFrame(tk.Frame):
         points = self.stat_dict["completed_points"]
         if points >= self.next_milestone:
             milestone = self.milestones[str(self.next_milestone)]
-            self.stat_dict["completed_" + milestone[1]] += milestone[0]
+            reward_type = milestone[1].split("_")[-1]
+            self.stat_dict["completed_" + reward_type] += milestone[0]
             self.prev_milestone, self.next_milestone = self.get_milestones()
         # if user has "uncompleted" some achievements 
         elif points < self.prev_milestone:
             milestone = self.milestones[str(self.prev_milestone)]
-            self.stat_dict["completed_" + milestone[1]] -= milestone[0]
+            reward_type = milestone[1].split("_")[-1]
+            self.stat_dict["completed_" + reward_type] -= milestone[0]
             self.prev_milestone, self.next_milestone = self.get_milestones()
         else:
             pass
@@ -1595,10 +1610,9 @@ class AchievementsFrame(tk.Frame):
                                  bg='#121111')
             frame_title.grid(row=0, column=0, sticky=NW)
 
-            print(achievement.num_tasks)
             desc_copy = copy.copy(desc)
             desc_copy = desc_copy.format(num_tasks=achievement.num_tasks)
-            text = textwrap.fill(desc_copy, width=45)
+            text = textwrap.fill(desc_copy, width=42)
             # input number of tasks needed in level into description string
             frame_desc=tk.Label(achievement_frame, text=text, 
                                 justify=LEFT, anchor=W, height=3, width=35, 
@@ -2314,8 +2328,9 @@ class ListAchievement(Achievement):
                 "_completed_achievements", '+', 1)
             Achievement.controller.update_stat(self.category + \
                 "_completed_points", '+', self.points)
+            reward_type = self.reward.split("_")[-1]
             Achievement.controller.update_stat("completed_" + \
-                self.reward, '+', self.reward_amount)
+                reward_type, '+', self.reward_amount)
             # achievement can't be planned if it's completed
             if self.planned_var.get() == 1:
                 self.planned_var.set(0)
@@ -2327,8 +2342,9 @@ class ListAchievement(Achievement):
                     "_planned_achievements", '-', 1)
                 Achievement.controller.update_stat(self.category + \
                     "_planned_points", '-', self.points)
+                reward_type = self.reward.split("_")[-1]
                 Achievement.controller.update_stat("planned_" + \
-                    self.reward, '-', self.reward_amount)
+                    reward_type, '-', self.reward_amount)
             # remove from UncompletedAchievements
             self.frame.grid_forget()
             # regrid in CompletedAchievements
@@ -2343,8 +2359,9 @@ class ListAchievement(Achievement):
                 "_completed_achievements", '-', 1)
             Achievement.controller.update_stat(self.category + \
                 "_completed_points", '-', self.points)
+            reward_type = self.reward.split("_")[-1]
             Achievement.controller.update_stat("completed_" + \
-                self.reward, '-', self.reward_amount)
+                reward_type, '-', self.reward_amount)
             self.frame.grid_forget()
             Achievement.controller.update_achievement(self)
 
@@ -2367,8 +2384,9 @@ class ListAchievement(Achievement):
                 "_planned_achievements", '+', 1)
             Achievement.controller.update_stat(self.category + \
                 "_planned_points", '+', self.points)
+            reward_type = self.reward.split("_")[-1]
             Achievement.controller.update_stat("planned_" + \
-                self.reward, '+', self.reward_amount)
+                reward_type, '+', self.reward_amount)
         else:
             Achievement.controller.update_stat("planned_achievements", 
                                                '-', 1)
@@ -2378,8 +2396,9 @@ class ListAchievement(Achievement):
                 "_planned_achievements", '-', 1)
             Achievement.controller.update_stat(self.category + \
                 "_planned_points", '-', self.points)
+            reward_type = self.reward.split("_")[-1]
             Achievement.controller.update_stat("planned_" + \
-                self.reward, '-', self.reward_amount)
+                reward_type, '-', self.reward_amount)
             pass
 
 
