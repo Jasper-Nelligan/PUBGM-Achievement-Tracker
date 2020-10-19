@@ -8,7 +8,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "1000",
@@ -17,7 +17,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "10",
           "reward_amount": "10",
@@ -25,7 +25,7 @@
         },
         {
           "rom_num": "III",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "10",
           "points": "15",
@@ -34,7 +34,7 @@
         },
         {
           "rom_num": "IV",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "20",
           "points": "20",
@@ -53,7 +53,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "1000",
@@ -62,7 +62,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "10",
           "reward_amount": "10",
@@ -71,7 +71,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "15",
           "reward_amount": "3",
@@ -80,14 +80,14 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "20",
           "points": "20",
           "reward_amount": "1",
           "reward": "classic-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -98,7 +98,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1000",
           "points": "5",
           "reward_amount": "1000",
@@ -107,7 +107,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5000",
           "points": "10",
           "reward_amount": "3000",
@@ -116,7 +116,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10000",
           "points": "20",
           "reward_amount": "15",
@@ -125,14 +125,14 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "20000",
           "points": "30",
           "reward_amount": "3",
           "reward": "classic-scrap"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -143,7 +143,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "50",
           "points": "5",
           "reward_amount": "1000",
@@ -152,7 +152,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "200",
           "points": "10",
           "reward_amount": "3000",
@@ -161,7 +161,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "600",
           "points": "20",
           "reward_amount": "10",
@@ -170,14 +170,14 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1500",
           "points": "30",
           "reward_amount": "1",
           "reward": "resident_evil_2_avatar_misc"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -188,7 +188,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "5",
           "reward_amount": "1000",
@@ -197,7 +197,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "50",
           "points": "10",
           "reward_amount": "5000",
@@ -206,7 +206,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "150",
           "points": "20",
           "reward_amount": "30",
@@ -215,7 +215,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "500",
           "points": "40",
           "reward_amount": "1",
@@ -224,14 +224,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "2000",
           "points": "50",
           "reward_amount": "5",
           "reward": "premium-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -242,7 +242,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "5",
           "reward_amount": "1000",
@@ -251,7 +251,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "10",
           "reward_amount": "5000",
@@ -260,7 +260,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "100",
           "points": "20",
           "reward_amount": "30",
@@ -269,7 +269,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "300",
           "points": "40",
           "reward_amount": "1",
@@ -278,14 +278,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1000",
           "points": "40",
           "reward_amount": "5",
           "reward": "premium-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -296,7 +296,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "5",
           "reward_amount": "1000",
@@ -305,7 +305,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "50",
           "points": "10",
           "reward_amount": "5000",
@@ -314,7 +314,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "150",
           "points": "20",
           "reward_amount": "30",
@@ -323,7 +323,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "500",
           "points": "40",
           "reward_amount": "1",
@@ -332,14 +332,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "2000",
           "points": "50",
           "reward_amount": "5",
           "reward": "premium-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -350,7 +350,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "5",
           "reward_amount": "1000",
@@ -359,7 +359,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "10",
           "reward_amount": "5000",
@@ -368,7 +368,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "60",
           "points": "20",
           "reward_amount": "30",
@@ -377,7 +377,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "100",
           "points": "40",
           "reward_amount": "1",
@@ -386,14 +386,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "200",
           "points": "40",
           "reward_amount": "5",
           "reward": "premium-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -404,7 +404,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "5",
           "reward_amount": "1000",
@@ -413,7 +413,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "10",
           "reward_amount": "5000",
@@ -422,7 +422,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "60",
           "points": "20",
           "reward_amount": "30",
@@ -431,7 +431,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "100",
           "points": "40",
           "reward_amount": "1",
@@ -440,14 +440,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "200",
           "points": "40",
           "reward_amount": "5",
           "reward": "premium-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -458,7 +458,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "5",
           "reward_amount": "1000",
@@ -467,7 +467,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "10",
           "reward_amount": "5000",
@@ -476,7 +476,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "100",
           "points": "20",
           "reward_amount": "30",
@@ -485,7 +485,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "300",
           "points": "40",
           "reward_amount": "1",
@@ -494,14 +494,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1000",
           "points": "40",
           "reward_amount": "5",
           "reward": "premium-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -512,7 +512,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "5",
           "reward_amount": "1",
@@ -521,7 +521,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "50",
           "points": "10",
           "reward_amount": "3",
@@ -530,7 +530,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "200",
           "points": "20",
           "reward_amount": "5",
@@ -539,7 +539,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "800",
           "points": "40",
           "reward_amount": "1",
@@ -548,14 +548,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "2000",
           "points": "50",
           "reward_amount": "2",
           "reward": "classic-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -566,7 +566,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "5",
@@ -575,7 +575,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "10",
           "reward_amount": "10",
@@ -584,7 +584,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "20",
           "reward_amount": "15",
@@ -593,7 +593,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "40",
           "reward_amount": "20",
@@ -602,14 +602,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "200",
           "points": "50",
           "reward_amount": "2",
           "reward": "classic-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -620,7 +620,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "5",
           "reward_amount": "2000",
@@ -629,7 +629,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "10",
           "reward_amount": "5000",
@@ -638,7 +638,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "15",
           "reward_amount": "8000",
@@ -647,7 +647,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "100",
           "points": "20",
           "reward_amount": "1",
@@ -656,14 +656,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "500",
           "points": "40",
           "reward_amount": "3",
           "reward": "premium-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -674,7 +674,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "3",
           "points": "5",
           "reward_amount": "1000",
@@ -683,7 +683,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "10",
           "reward_amount": "5",
@@ -692,7 +692,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "15",
           "reward_amount": "10",
@@ -701,7 +701,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "15",
           "points": "20",
           "reward_amount": "1",
@@ -710,14 +710,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "20",
           "points": "40",
           "reward_amount": "3",
           "reward": "premium-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -773,7 +773,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "1000",
@@ -782,7 +782,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "10",
           "reward_amount": "3000",
@@ -818,7 +818,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "3",
           "points": "5",
           "reward_amount": "1000",
@@ -827,7 +827,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "10",
           "reward_amount": "5000",
@@ -836,7 +836,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "20",
           "points": "20",
           "reward_amount": "20",
@@ -845,14 +845,14 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "50",
           "points": "40",
           "reward_amount": "3",
           "reward": "supply-scrap"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -862,7 +862,7 @@
       "levels": [
         {
           "rom_num": "I",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "10",
           "points": "10",
@@ -907,7 +907,7 @@
       "levels": [
         {
           "rom_num": "I",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "500",
           "points": "10",
@@ -953,7 +953,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "1000",
@@ -962,7 +962,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "10",
           "reward_amount": "5000",
@@ -971,7 +971,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "20",
           "reward_amount": "5",
@@ -980,14 +980,14 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "20",
           "points": "30",
           "reward_amount": "1",
           "reward": "supply-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -998,7 +998,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "1000",
@@ -1007,7 +1007,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "10",
           "reward_amount": "3000",
@@ -1016,7 +1016,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "15",
           "reward_amount": "10",
@@ -1025,7 +1025,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "20",
           "points": "20",
           "reward_amount": "20",
@@ -1034,14 +1034,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "50",
           "points": "40",
           "reward_amount": "2",
           "reward": "classic-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -1052,7 +1052,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "Get a rating of A or above 3 times",
           "points": "5",
           "reward_amount": "500",
@@ -1061,7 +1061,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "Get a rating of S or above 5 times",
           "points": "10",
           "reward_amount": "2000",
@@ -1070,7 +1070,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "Get a rating of SS or above 10 times",
           "points": "15",
           "reward_amount": "8000",
@@ -1079,7 +1079,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "Get a rating of SSS or above 20 times",
           "points": "20",
           "reward_amount": "1",
@@ -1088,14 +1088,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "Get a rating of SSS or above 50 times",
           "points": "40",
           "reward_amount": "2",
           "reward": "premium-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -1106,7 +1106,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "5",
           "reward_amount": "1000",
@@ -1115,7 +1115,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "20",
           "points": "10",
           "reward_amount": "10",
@@ -1124,7 +1124,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "50",
           "points": "20",
           "reward_amount": "20",
@@ -1133,7 +1133,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "100",
           "points": "40",
           "reward_amount": "1",
@@ -1142,14 +1142,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "200",
           "points": "50",
           "reward_amount": "1",
           "reward": "m24_timework_pattern_finish"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -1160,7 +1160,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "5",
           "reward_amount": "5",
@@ -1169,7 +1169,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "10",
           "reward_amount": "5",
@@ -1177,7 +1177,7 @@
         },
         {
           "rom_num": "III",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "60",
           "points": "20",
@@ -1196,7 +1196,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "20",
           "reward_amount": "1",
@@ -1205,7 +1205,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "2",
           "points": "30",
           "reward_amount": "1",
@@ -1213,7 +1213,7 @@
         },
         {
           "rom_num": "III",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "3",
           "points": "40",
@@ -1222,7 +1222,7 @@
         },
         {
           "rom_num": "IV",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "4",
           "points": "50",
@@ -1231,7 +1231,7 @@
         },
         {
           "rom_num": "V",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "6",
           "points": "60",
@@ -1250,7 +1250,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "20",
           "reward_amount": "2000",
@@ -1259,7 +1259,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "100",
           "points": "30",
           "reward_amount": "2",
@@ -1268,7 +1268,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "300",
           "points": "40",
           "reward_amount": "2",
@@ -1277,7 +1277,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "500",
           "points": "50",
           "reward_amount": "1",
@@ -1286,14 +1286,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1000",
           "points": "60",
           "reward_amount": "2",
           "reward": "premium-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -1304,7 +1304,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "2",
           "points": "10",
           "reward_amount": "3000",
@@ -1313,7 +1313,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "15",
           "reward_amount": "2",
@@ -1322,7 +1322,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "20",
           "points": "20",
           "reward_amount": "2",
@@ -1331,7 +1331,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "30",
           "reward_amount": "1",
@@ -1339,7 +1339,7 @@
         },
         {
           "rom_num": "V",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "100",
           "points": "40",
@@ -1358,7 +1358,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "5",
           "reward_amount": "1000",
@@ -1367,7 +1367,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "90",
           "points": "10",
           "reward_amount": "50",
@@ -1376,7 +1376,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "180",
           "points": "20",
           "reward_amount": "3",
@@ -1385,7 +1385,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "360",
           "points": "40",
           "reward_amount": "1",
@@ -1393,7 +1393,7 @@
         },
         {
           "rom_num": "V",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "720",
           "points": "50",
@@ -1412,7 +1412,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "5",
           "reward_amount": "3000",
@@ -1421,7 +1421,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "10",
           "reward_amount": "1",
@@ -1430,7 +1430,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "60",
           "points": "15",
           "reward_amount": "1",
@@ -1438,7 +1438,7 @@
         },
         {
           "rom_num": "IV",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "80",
           "points": "20",
@@ -1457,7 +1457,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "3",
           "points": "5",
           "reward_amount": "1000",
@@ -1466,7 +1466,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "7",
           "points": "10",
           "reward_amount": "5",
@@ -1475,7 +1475,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "15",
           "points": "15",
           "reward_amount": "1",
@@ -1484,7 +1484,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "20",
           "reward_amount": "1",
@@ -1493,14 +1493,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "60",
           "points": "50",
           "reward_amount": "1",
           "reward": "beastial_instinct_outfit"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -1511,7 +1511,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "Bronze I",
           "points": "5",
           "reward_amount": "1000",
@@ -1520,7 +1520,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "Gold I",
           "points": "10",
           "reward_amount": "5",
@@ -1529,7 +1529,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "Diamond I",
           "points": "15",
           "reward_amount": "1",
@@ -1538,7 +1538,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "Crown I",
           "points": "20",
           "reward_amount": "1",
@@ -1547,14 +1547,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "Ace",
           "points": "40",
           "reward_amount": "2",
           "reward": "premium-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -1565,7 +1565,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "5",
           "reward_amount": "1000",
@@ -1574,7 +1574,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "50",
           "points": "10",
           "reward_amount": "10",
@@ -1583,7 +1583,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "150",
           "points": "20",
           "reward_amount": "20",
@@ -1592,7 +1592,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "500",
           "points": "40",
           "reward_amount": "1",
@@ -1601,14 +1601,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "800",
           "points": "50",
           "reward_amount": "1",
           "reward": "heart_of_gold_outfit"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -1619,7 +1619,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "5",
           "reward_amount": "1000",
@@ -1628,7 +1628,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "50",
           "points": "10",
           "reward_amount": "10",
@@ -1637,7 +1637,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "150",
           "points": "20",
           "reward_amount": "20",
@@ -1646,7 +1646,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "500",
           "points": "40",
           "reward_amount": "1",
@@ -1655,14 +1655,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1000",
           "points": "50",
           "reward_amount": "1",
           "reward": "plague_carrier_outfit"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -1673,7 +1673,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "1",
@@ -1682,7 +1682,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "10",
           "reward_amount": "2",
@@ -1690,7 +1690,7 @@
         },
         {
           "rom_num": "III",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "10",
           "points": "20",
@@ -1763,7 +1763,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "5",
           "reward_amount": "1000",
@@ -1772,7 +1772,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "10",
           "reward_amount": "30",
@@ -1781,7 +1781,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "100",
           "points": "20",
           "reward_amount": "60",
@@ -1789,7 +1789,7 @@
         },
         {
           "rom_num": "IV",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "300",
           "points": "40",
@@ -1808,7 +1808,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "500",
@@ -1817,7 +1817,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "10",
           "reward_amount": "1000",
@@ -1826,7 +1826,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "20",
           "reward_amount": "5",
@@ -1835,14 +1835,14 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "40",
           "reward_amount": "10",
           "reward": "silver"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -1853,7 +1853,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "3",
           "points": "5",
           "reward_amount": "2000",
@@ -1862,7 +1862,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "10",
           "reward_amount": "30",
@@ -1871,7 +1871,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "20",
           "reward_amount": "60",
@@ -1880,14 +1880,14 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "20",
           "points": "40",
           "reward_amount": "1",
           "reward": "free_roam_parachute"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -1898,7 +1898,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "500",
@@ -1907,7 +1907,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "10",
           "reward_amount": "2500",
@@ -1916,7 +1916,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "20",
           "reward_amount": "10",
@@ -1925,7 +1925,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "40",
           "reward_amount": "20",
@@ -1934,14 +1934,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "100",
           "points": "50",
           "reward_amount": "2",
           "reward": "classic-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -1952,7 +1952,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "1",
@@ -1961,7 +1961,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "2",
           "points": "10",
           "reward_amount": "1",
@@ -1970,7 +1970,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "4",
           "points": "20",
           "reward_amount": "1",
@@ -1979,14 +1979,14 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "6",
           "points": "40",
           "reward_amount": "1",
           "reward": "ghost_scarf_outfit"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -1997,7 +1997,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "5",
           "reward_amount": "1",
@@ -2006,7 +2006,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "10",
           "reward_amount": "2",
@@ -2015,7 +2015,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "25",
           "points": "20",
           "reward_amount": "3",
@@ -2023,7 +2023,7 @@
         },
         {
           "rom_num": "IV",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "50",
           "points": "40",
@@ -2042,7 +2042,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "100",
           "points": "5",
           "reward_amount": "1000",
@@ -2051,7 +2051,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "500",
           "points": "10",
           "reward_amount": "3000",
@@ -2060,7 +2060,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "2000",
           "points": "20",
           "reward_amount": "15",
@@ -2069,7 +2069,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10000",
           "points": "30",
           "reward_amount": "1",
@@ -2077,7 +2077,7 @@
         },
         {
           "rom_num": "V",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "50000",
           "points": "40",
@@ -2096,7 +2096,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1000",
           "points": "5",
           "reward_amount": "1000",
@@ -2141,7 +2141,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "3",
           "points": "5",
           "reward_amount": "500",
@@ -2150,7 +2150,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "10",
           "reward_amount": "1000",
@@ -2159,7 +2159,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "15",
           "reward_amount": "3000",
@@ -2168,7 +2168,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "50",
           "points": "20",
           "reward_amount": "5000",
@@ -2177,14 +2177,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "120",
           "points": "30",
           "reward_amount": "2",
           "reward": "classic-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -2195,7 +2195,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "5",
           "reward_amount": "500",
@@ -2204,7 +2204,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "10",
           "reward_amount": "1000",
@@ -2213,7 +2213,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "50",
           "points": "15",
           "reward_amount": "5",
@@ -2222,7 +2222,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "250",
           "points": "20",
           "reward_amount": "10",
@@ -2231,14 +2231,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1000",
           "points": "30",
           "reward_amount": "2",
           "reward": "classic-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -2249,7 +2249,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "3",
@@ -2303,7 +2303,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "20",
           "points": "5",
           "reward_amount": "10",
@@ -2312,7 +2312,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "60",
           "points": "10",
           "reward_amount": "20",
@@ -2321,7 +2321,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "120",
           "points": "20",
           "reward_amount": "30",
@@ -2330,7 +2330,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "300",
           "points": "30",
           "reward_amount": "40",
@@ -2339,14 +2339,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "600",
           "points": "40",
           "reward_amount": "1",
           "reward": "classic-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -2357,7 +2357,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "5",
           "reward_amount": "1000",
@@ -2366,7 +2366,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "10",
           "reward_amount": "5000",
@@ -2375,7 +2375,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "100",
           "points": "20",
           "reward_amount": "1",
@@ -2384,7 +2384,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "300",
           "points": "40",
           "reward_amount": "3",
@@ -2392,7 +2392,7 @@
         },
         {
           "rom_num": "V",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "1000",
           "points": "50",
@@ -2411,7 +2411,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "5",
           "reward_amount": "10",
@@ -2419,7 +2419,7 @@
         },
         {
           "rom_num": "II",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "70",
           "points": "10",
@@ -2438,7 +2438,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "200",
           "points": "15",
           "reward_amount": "1",
@@ -2447,14 +2447,14 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "260",
           "points": "20",
           "reward_amount": "1",
           "reward": "jinxed_avatar_frame_misc"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -2465,7 +2465,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10,000",
           "points": "5",
           "reward_amount": "5000",
@@ -2474,7 +2474,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30,000",
           "points": "10",
           "reward_amount": "5",
@@ -2483,7 +2483,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "100,000",
           "points": "15",
           "reward_amount": "1",
@@ -2492,7 +2492,7 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "300,000",
           "points": "20",
           "reward_amount": "1",
@@ -2501,14 +2501,14 @@
         {
           "rom_num": "V",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1,000,000",
           "points": "40",
           "reward_amount": "2",
           "reward": "premium-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -2519,7 +2519,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "5",
           "reward_amount": "3",
@@ -2528,7 +2528,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "50",
           "points": "10",
           "reward_amount": "1",
@@ -2537,7 +2537,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "100",
           "points": "20",
           "reward_amount": "1",
@@ -2546,14 +2546,14 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "150",
           "points": "40",
           "reward_amount": "1",
           "reward": "hamburger_cover_outfit"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -2564,7 +2564,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "1000",
@@ -2609,7 +2609,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "5",
           "reward_amount": "1000",
@@ -2618,7 +2618,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "50",
           "points": "10",
           "reward_amount": "100",
@@ -2626,7 +2626,7 @@
         },
         {
           "rom_num": "III",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "150",
           "points": "20",
@@ -2645,7 +2645,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "10",
           "reward_amount": "1",
@@ -2653,7 +2653,7 @@
         },
         {
           "rom_num": "II",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "2",
           "points": "20",
@@ -2662,7 +2662,7 @@
         },
         {
           "rom_num": "III",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "3",
           "points": "30",
@@ -2681,7 +2681,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "50",
           "points": "10",
           "reward_amount": "5000",
@@ -2690,7 +2690,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "200",
           "points": "15",
           "reward_amount": "30",
@@ -2699,14 +2699,14 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "500",
           "points": "20",
           "reward_amount": "5",
           "reward": "classic-scrap"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -2717,7 +2717,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "1000",
@@ -2726,7 +2726,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "10",
           "reward_amount": "50",
@@ -2735,7 +2735,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "15",
           "reward_amount": "3",
@@ -2743,7 +2743,7 @@
         },
         {
           "rom_num": "IV",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "30",
           "points": "20",
@@ -2762,7 +2762,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "15",
           "points": "5",
           "reward_amount": "1000",
@@ -2771,7 +2771,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "15",
           "points": "10",
           "reward_amount": "3000",
@@ -2779,7 +2779,7 @@
         },
         {
           "rom_num": "III",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "50",
           "points": "15",
@@ -2798,7 +2798,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "1000",
@@ -2806,7 +2806,7 @@
         },
         {
           "rom_num": "II",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "15",
           "points": "10",
@@ -2815,7 +2815,7 @@
         },
         {
           "rom_num": "III",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "50",
           "points": "15",
@@ -2834,7 +2834,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "Have 1 Partner in the game",
           "points": "5",
           "reward_amount": "1000",
@@ -2843,7 +2843,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "Reach 1000 Synergy with a Partner",
           "points": "10",
           "reward_amount": "10",
@@ -2852,7 +2852,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "Reach 2000 Synergy with a partner.",
           "points": "15",
           "reward_amount": "3",
@@ -2860,7 +2860,7 @@
         },
         {
           "rom_num": "IV",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "3000",
           "points": "20",
@@ -2879,7 +2879,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "1000",
@@ -2888,7 +2888,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "10",
           "reward_amount": "10",
@@ -2897,7 +2897,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "15",
           "reward_amount": "3",
@@ -2906,14 +2906,14 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "16",
           "points": "20",
           "reward_amount": "1",
           "reward": "premium-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -2924,7 +2924,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "1000",
@@ -2933,14 +2933,14 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "10",
           "reward_amount": "10",
           "reward": "silver"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -2996,7 +2996,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "5",
           "reward_amount": "1000",
@@ -3005,7 +3005,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "30",
           "points": "10",
           "reward_amount": "100",
@@ -3013,7 +3013,7 @@
         },
         {
           "rom_num": "III",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "100",
           "points": "20",
@@ -3022,7 +3022,7 @@
         },
         {
           "rom_num": "IV",
-          "is_planned": "1",
+          "is_planned": "0",
           "is_completed": "0",
           "num_tasks": "300",
           "points": "30",
@@ -3041,7 +3041,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "3",
           "points": "5",
           "reward_amount": "1000",
@@ -3050,7 +3050,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "10",
           "reward_amount": "50",
@@ -3059,7 +3059,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "20",
           "points": "15",
           "reward_amount": "3",
@@ -3068,14 +3068,14 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "50",
           "points": "20",
           "reward_amount": "1",
           "reward": "classic-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -3086,7 +3086,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "1000",
@@ -3095,7 +3095,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "10",
           "reward_amount": "100",
@@ -3104,14 +3104,14 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "15",
           "reward_amount": "3",
           "reward": "classic-scrap"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -3122,7 +3122,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "1000",
@@ -3167,7 +3167,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "1",
           "points": "5",
           "reward_amount": "1000",
@@ -3176,7 +3176,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "5",
           "points": "10",
           "reward_amount": "10",
@@ -3185,7 +3185,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "15",
           "reward_amount": "3",
@@ -3194,14 +3194,14 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "20",
           "points": "20",
           "reward_amount": "1",
           "reward": "classic-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -3212,7 +3212,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "3",
           "points": "5",
           "reward_amount": "1000",
@@ -3221,7 +3221,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "10",
           "reward_amount": "50",
@@ -3230,7 +3230,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "20",
           "points": "15",
           "reward_amount": "3",
@@ -3239,14 +3239,14 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "50",
           "points": "20",
           "reward_amount": "1",
           "reward": "classic-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     },
     {
@@ -3257,7 +3257,7 @@
         {
           "rom_num": "I",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "10",
           "points": "5",
           "reward_amount": "1000",
@@ -3266,7 +3266,7 @@
         {
           "rom_num": "II",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "50",
           "points": "10",
           "reward_amount": "20",
@@ -3275,7 +3275,7 @@
         {
           "rom_num": "III",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "100",
           "points": "20",
           "reward_amount": "5",
@@ -3284,14 +3284,14 @@
         {
           "rom_num": "IV",
           "is_planned": "0",
-          "is_completed": "1",
+          "is_completed": "0",
           "num_tasks": "500",
           "points": "30",
           "reward_amount": "2",
           "reward": "premium-crate"
         }
       ],
-      "overall_completed": "1",
+      "overall_completed": "0",
       "info": ""
     }
   ]

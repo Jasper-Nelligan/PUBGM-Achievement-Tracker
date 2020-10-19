@@ -28,7 +28,7 @@
         "Pistol Mastery V"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "60",
       "reward_amount": "1",
       "reward": "on_a_mission_title",
@@ -52,7 +52,7 @@
         "Use Vehicle to deal the final below and win a match"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "50",
       "reward_amount": "1",
       "reward": "chicken_master_title",
@@ -66,7 +66,7 @@
         "\"Win 50 Solo Classic matches while in Platinum tier or above, and not equipping any helments, vests or backpacks."
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "40",
       "reward_amount": "1",
       "reward": "glass_cannon_title",
@@ -80,7 +80,7 @@
         "Without missing a single shot, kill 3 enemies 50 meters away in a row by headshot, while in a Solo Classic math in Platinum tier or above."
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "40",
       "reward_amount": "1",
       "reward": "deadeye_title",
@@ -94,7 +94,7 @@
         "Earn 2800 Achievement Points"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "50",
       "reward_amount": "1",
       "reward": "overachiever_title",
@@ -123,7 +123,7 @@
         "Own Permanent Parachutes x20",
         "Own Permanent Weapon Finishes x50"
       ],
-      "is_planned": "1",
+      "is_planned": "0",
       "is_completed": "0",
       "points": "50",
       "reward_amount": "1",
@@ -138,7 +138,7 @@
         "Earn 1000 likes"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "50",
       "reward_amount": "1",
       "reward": "well_liked_title",
@@ -157,7 +157,7 @@
         "Use any Vehicle to kill an enemy"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "1",
       "reward": "weapon_master_title",
@@ -171,7 +171,7 @@
         "Win a Solo Classic match with 0 kills in Platinum tier or above."
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "1",
       "reward": "pacifist_title",
@@ -191,7 +191,7 @@
         "Pistol Mastery V"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "40",
       "reward_amount": "1",
       "reward": "veteran_title",
@@ -211,7 +211,7 @@
         "Pistol Mastery V"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "1",
       "reward": "warhorse_title",
@@ -227,7 +227,7 @@
         "Infect 50 defenders"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "5",
       "reward": "premium-scrap",
@@ -243,7 +243,7 @@
         "Infect 15 Defenders in a single match",
         "Kill 30 zombies in a single match"
       ],
-      "is_planned": "1",
+      "is_planned": "0",
       "is_completed": "0",
       "points": "20",
       "reward_amount": "5",
@@ -260,7 +260,7 @@
         "Kill 100 zombies"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "5",
       "reward": "premium-scrap",
@@ -278,7 +278,7 @@
         "Get 20 final blows"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "1",
       "reward": "premium-crate",
@@ -292,7 +292,7 @@
         "Get the winning kill in Team Deathmatch, with the score being 40-39"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "10",
       "reward_amount": "3",
       "reward": "classic-scrap",
@@ -306,7 +306,7 @@
         "Get the first kill and the final blow in a Team Deathmatch game"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "5",
       "reward": "classic-scrap",
@@ -327,7 +327,7 @@
         "Sanhok \u2013 The Island in the middle of the river located in the west of Bootcamp."
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "2",
       "reward": "classic-scrap",
@@ -344,7 +344,7 @@
         "Go prone 1000 times"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "30",
       "reward_amount": "1",
       "reward": "supply-crate",
@@ -358,7 +358,7 @@
         "Kill 1 enemy that knocked you out in the same match"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "1",
       "reward": "classic-scrap",
@@ -372,7 +372,7 @@
         "Board an enemy vehicle for more than 10 seconds"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "1",
       "reward": "classic-scrap",
@@ -389,7 +389,7 @@
         "Kill 10 enemies without scoping"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "1",
       "reward": "classic-crate",
@@ -406,7 +406,7 @@
         "Collect 20 outfits in a single match"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "1",
       "reward": "supply-crate",
@@ -429,7 +429,7 @@
         "Ghillie Suit (Dark Brown) Vikendi"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "30",
       "reward_amount": "20",
       "reward": "silver",
@@ -451,7 +451,7 @@
         "Killed by a Vehicle"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "3",
       "reward": "classic-scrap",
@@ -474,7 +474,7 @@
         "Military Vest (Lv.3)"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "3",
       "reward": "classic-scrap",
@@ -497,7 +497,7 @@
         "Military Vest (Lv.3)"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "3",
       "reward": "classic-scrap",
@@ -540,7 +540,7 @@
         "Pan"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "5",
       "reward": "premium-scrap",
@@ -564,7 +564,7 @@
         "Kill 10 Enemies with Vehicle"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "1",
       "reward": "unique_avatar_misc",
@@ -583,7 +583,7 @@
         "Foregrip (Any of Angled Foregrip, Vertical Foregrip, Lightgrip, Thumb Grip, Half Grip)"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "10",
       "reward_amount": "2",
       "reward": "premium-scrap",
@@ -608,7 +608,7 @@
         "Gas Can"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "10",
       "reward_amount": "1000",
       "reward": "bp",
@@ -625,7 +625,7 @@
         "Swim for a total of 5000 meters"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "10",
       "reward_amount": "8000",
       "reward": "bp",
@@ -639,7 +639,7 @@
         "Win 3 Classic matches in a row in Gold tier or above"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "1",
       "reward": "premium-crate",
@@ -653,7 +653,7 @@
         "Win a classic match in Gold tier or above without taking any damage"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "1",
       "reward": "classic-crate",
@@ -667,7 +667,7 @@
         "Reach Platinum V or above for 3 seasons in a row"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "50",
       "reward": "silver",
@@ -851,7 +851,7 @@
         "Join 1 clan"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "1",
       "reward": "classic-crate",
@@ -865,7 +865,7 @@
         "Link a social network account"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "10",
       "reward_amount": "1000",
       "reward": "bp",
@@ -879,7 +879,7 @@
         "Light 6 birthday cakes"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "10",
       "reward_amount": "1",
       "reward": "1_title",
@@ -893,7 +893,7 @@
         "hit 6 players with snowballs"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "5000",
       "reward": "bp",
@@ -923,7 +923,7 @@
         "A 2x BP card"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "10",
       "reward_amount": "800",
       "reward": "bp",
@@ -940,7 +940,7 @@
         "Send 1 team requirement message to the world chat."
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "10",
       "reward_amount": "1000",
       "reward": "bp",
@@ -957,7 +957,7 @@
         "Reset your character appearance"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "10",
       "reward_amount": "10",
       "reward": "silver",
@@ -1007,7 +1007,7 @@
         "Graffiti 10 times in Vikendi"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "10",
       "reward_amount": "3000",
       "reward": "bp",
@@ -1026,7 +1026,7 @@
         "Destroy 1 vehicle"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "15",
       "reward_amount": "3",
       "reward": "classic-crate",
@@ -1046,7 +1046,7 @@
         "Obtain 8 drinks from one purchase at a vending machine."
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "15",
       "reward_amount": "150",
       "reward": "ag",
@@ -1064,7 +1064,7 @@
         "Collect 75 point crates"
       ],
       "is_planned": "0",
-      "is_completed": "1",
+      "is_completed": "0",
       "points": "20",
       "reward_amount": "5",
       "reward": "premium-scrap",
