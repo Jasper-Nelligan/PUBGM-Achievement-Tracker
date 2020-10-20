@@ -38,8 +38,6 @@ WINDOW_W = 1366 - 16
 
 path = str(pathlib.Path(__file__).parent.parent.absolute())
 APP_PATH = path.replace("\\","\\\\") + "\\\\"
-print(APP_PATH)
-
 
 class AppController(tk.Tk):
     def __init__(self):
