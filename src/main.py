@@ -1,4 +1,5 @@
 import os
+import pathlib
 import tkinter as tk
 from tkinter import *
 from tkinter import font
@@ -35,7 +36,9 @@ WINDOW_H = 625
 # My PC width - window edge
 WINDOW_W = 1366 - 16
 
-IMG_PATH = "C:\\Users\\Jasper\\Documents\\Code\\PUBGM-Achievement-Tracker\\Images\\"
+path = str(pathlib.Path(__file__).parent.parent.absolute())
+APP_PATH = path.replace("\\","\\\\") + "\\"
+
 
 class AppController(tk.Tk):
     def __init__(self):
@@ -56,7 +59,7 @@ class AppController(tk.Tk):
         # on buttons will be pixel specific, and so resizing the window will
         # cause the buttons not to work.
         self.resizable(width=False, height=False)
-        self.iconbitmap(IMG_PATH + "icon.ico")
+        self.iconbitmap(APP_PATH + "images\\icon.ico")
         self.title("PUBG Achievement Tracker")
         # open window near center of screen
         screen_width = self.winfo_screenwidth()
@@ -151,7 +154,7 @@ class AppController(tk.Tk):
         """
 
         # Initiating leveled achievements
-        file = "C:\\Users\\Jasper\\Documents\\Code\\PUBGM-Achievement-Tracker\\PUBGM Achievement Tracker\\leveled_achievements.json"
+        file = APP_PATH + "src\\leveled_achievements.json"
         with open(file,'r') as json_file:
             # read in achievement data into a dictionary.
             self.leveled_data = json.load(json_file)
@@ -268,7 +271,7 @@ class AppController(tk.Tk):
         """
 
         # Initiating list achievements
-        file = "C:\\Users\\Jasper\\Documents\\Code\\PUBGM-Achievement-Tracker\\PUBGM Achievement Tracker\\list_achievements.json"
+        file = APP_PATH + "src\\list_achievements.json"
         with open(file,'r') as json_file:
             self.list_data = json.load(json_file)
 
@@ -416,10 +419,10 @@ class AppController(tk.Tk):
                     str(self.write_achievements[achievement[
                         "title"]].completed_var.get())
         # write data to file
-        file = "C:\\Users\\Jasper\\Documents\\Code\\PUBGM-Achievement-Tracker\\PUBGM Achievement Tracker\\leveled_achievements.json"
+        file = APP_PATH + "src\\leveled_achievements.json"
         with open(file,'w') as json_file:
             json.dump(self.leveled_data, json_file, indent=2)
-        file = "C:\\Users\\Jasper\\Documents\\Code\\PUBGM-Achievement-Tracker\\PUBGM Achievement Tracker\\list_achievements.json"
+        file = APP_PATH + "src\\list_achievements.json"
         with open(file,'w') as json_file:
             json.dump(self.list_data, json_file, indent=2)
 
@@ -503,8 +506,8 @@ class MainMenuFrame(tk.Frame):
         """
 
         # Initializing background and button images
-        path = IMG_PATH + "buttons\\"
-        background_img = Image.open(IMG_PATH + "background.png")
+        path = APP_PATH + "images\\buttons\\"
+        background_img = Image.open(APP_PATH + "images\\background.png")
         program_title_img = Image.open(path + "program_title.png")
         overview_btn_img = Image.open(path + "overview.png")
         achievements_btn_img = Image.open(path + "achievements.png")
@@ -758,8 +761,8 @@ class OverviewFrame(tk.Frame):
             buttons for this frame. Similar code with further
             explanation can be found in MainMenuFrame class.
             """
-            path = IMG_PATH + "buttons\\"
-            bg_blur_img = Image.open(IMG_PATH + "background_blurred.png")
+            path = APP_PATH + "images\\buttons\\"
+            bg_blur_img = Image.open(APP_PATH + "images\\background_blurred.png")
             back_btn_img = Image.open(path + "back.png")
 
             # Red buttons will be used to indicate when the user 
@@ -789,7 +792,7 @@ class OverviewFrame(tk.Frame):
             back_clicked.paste(back_red_btn_img, (150, 40), back_red_btn_img)
             self.tk_back_clicked = ImageTk.PhotoImage(back_clicked)
 
-            path = IMG_PATH + "rewards\\icons\\"
+            path = APP_PATH + "images\\rewards\\icons\\"
             for icon in ("bp","silver", "ag", "supply-scrap", "supply-crate",
                        "classic-scrap","classic-crate","premium-scrap",
                        "premium-crate","title","outfit","finish",
@@ -1216,8 +1219,8 @@ class AchievementsFrame(tk.Frame):
         """
 
         # Initializing background and button images
-        path = IMG_PATH + "buttons\\"
-        background_blur_img = Image.open(IMG_PATH + "background_blurred.png")
+        path = APP_PATH + "images\\buttons\\"
+        background_blur_img = Image.open(APP_PATH + "images\\background_blurred.png")
         back_btn_img = Image.open(path + "back.png")
         save_btn_img = Image.open(path + "save.png")
         GM_img = Image.open(path + "glorious_moments.png")
@@ -1276,7 +1279,7 @@ class AchievementsFrame(tk.Frame):
                                 general_img)
 
         # add text at bottom right of category frame
-        text = Image.open(IMG_PATH + "/click_on_achievement_txt.png")
+        text = Image.open(APP_PATH + "images\\click_on_achievement_txt.png")
         text.thumbnail((200, 30), Image.BICUBIC)
         background_blur_img.paste(text, (760, 565), text)
 
@@ -1911,14 +1914,14 @@ class Achievement():
         instance by passing in the string value into the dictionary
         and getting a reference to the corresponding image.
         """
-        path = IMG_PATH + "points\\"
+        path = APP_PATH + "images\\points\\"
         for points in ('5','10','15','20','30','40','50','60'):
             img = Image.open(path+points+'_points.png')
             img.thumbnail((40,40), Image.BICUBIC)
             img = ImageTk.PhotoImage(img)
             Achievement.points_images[points] = img
 
-        path = IMG_PATH + "rewards\\"
+        path = APP_PATH + "images\\rewards\\"
         # last word in each image name is the reward category it belongs to
         for reward in ("bp","silver","ag","supply-scrap","supply-crate",
                        "classic-scrap","classic-crate","premium-scrap",
