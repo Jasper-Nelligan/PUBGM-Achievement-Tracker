@@ -42,9 +42,9 @@ Don't forget to save! Clicking on the save button will save your achievement dat
 Contributing:
 
 The main thing this app needs is achievement descriptions! If you want to help provide tips and tricks, contact me 
-so we can get everything set up. Anything in the issues tab needs contributingas well, so if you feel confident with
-your coding skills feel free to solve some of the issues. But for now, I just really need people to add achievement 
-data.
+so we can get everything set up. Anything in the issues tab needs contributing as well, so if you feel confident with
+your coding skills feel free to solve some of those issues. But for now, I just really need people to add achievement 
+data. Big thanks if you decide to contribute!
 
 -----------------------------------------------------------------------------------------------------------------------
 
