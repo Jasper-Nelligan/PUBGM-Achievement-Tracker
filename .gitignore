@@ -476,4 +476,7 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+# Other
 info.txt
+Thumbs.db

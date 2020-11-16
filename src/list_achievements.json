@@ -1069,6 +1069,38 @@
       "reward_amount": "5",
       "reward": "premium-scrap",
       "info": ""
+    },
+    {
+      "category": "GM",
+      "title": "Winter Traveler",
+      "description": "Participate in Winter FEstival Mode in Erangel. (December 10, 2020 to January 10, 2021)",
+      "task_list": [
+        "Use a Frozen Egg/Miniature Snowman 3 times.",
+        "Decorate the pine tree 1 time.",
+        "Step on the floating ice 1 time."
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "10",
+      "reward_amount": "100",
+      "reward": "ag",
+      "info": ""
+    },
+    {
+      "category": "GM",
+      "title": "Metro Hero",
+      "description": "Participate in Metro-themed modes in Erangel. (November 17, 2020 to December 9, 2020)",
+      "task_list": [
+        "Defeat 3 Metro monsters",
+        "Visit underground structure 1 time.",
+        "Visit a Radioactive Zone 1 time."
+      ],
+      "is_planned": "0",
+      "is_completed": "0",
+      "points": "10",
+      "reward_amount": "100",
+      "reward": "ag",
+      "info": ""
     }
   ]
 }
