@@ -480,3 +480,4 @@ healthchecksdb
 # Other
 info.txt
 Thumbs.db
+.vscode/settings.json
