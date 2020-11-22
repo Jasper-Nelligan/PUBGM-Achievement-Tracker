@@ -11,7 +11,7 @@ import textwrap
 from scrollable_frame import ScrollableFrame
 
 
-#**********************************************************************
+# **********************************************************************
 # Implements a GUI for users to track their PUBG MOBILE achievements.
 
 # I made this as a learning experience on making GUI's and using
@@ -26,7 +26,7 @@ from scrollable_frame import ScrollableFrame
 # the orange gradient.
 
 # (C) 2020 Jasper Nelligan
-#**********************************************************************
+# **********************************************************************
 
 # Desired sizes for the button images
 BUTTON_SIZE = 277, 45
@@ -41,14 +41,14 @@ APP_PATH = path.replace("\\","\\\\") + "\\\\"
 
 class AppController(tk.Tk):
     def __init__(self):
-        """This class is a way for different frames to communicate with each 
+        """This class is a way for different frames to communicate with each
         other.
    
-        This class initializes itself as the root frame onto which all other 
-        frame classes (MainMenuFrame, OverviewFrame, AchievementsFrame, 
+        This class initializes itself as the root frame onto which all other
+        frame classes (MainMenuFrame, OverviewFrame, AchievementsFrame,
         and CompletedFrame) will be placed on.
         
-        This class acts as the controller, meaning that any communication done 
+        This class acts as the controller, meaning that any communication done
         between the frame classes is done via this class.
         """
 
@@ -97,9 +97,9 @@ class AppController(tk.Tk):
         self.write_achievements = {}
 
         # Initialize the reward images used for each achievement
-        Achievement.static_init(achievement_list=self.achievement_list,
+        Achievement.static_init(achievement_list = self.achievement_list,
                                 controller = self,
-                                write_achievements=self.write_achievements)
+                                write_achievements = self.write_achievements)
 
         # Initializing all frames
 
@@ -271,7 +271,7 @@ class AppController(tk.Tk):
 
         # Initiating list achievements
         file = APP_PATH + "src\\\\list_achievements.json"
-        with open(file,'r') as json_file:
+        with open(file, 'r') as json_file:
             self.list_data = json.load(json_file)
 
             for achievement in self.list_data['list_achievements']:
@@ -284,7 +284,7 @@ class AppController(tk.Tk):
                 points = int(achievement['points'])
                 reward_amount = int(achievement['reward_amount'])
                 reward = achievement['reward']
-                info = achievement['info']
+                info = str(achievement['info'])
 
                 # update stats
                 reward_type = reward.split("_")[-1]
@@ -433,6 +433,12 @@ class AppController(tk.Tk):
             frame = self.frames[page_name]
             frame.tkraise()
 
+    def insert_newline(self, string):
+        """Reads in a string containg '\n' sequences and converts these into newlines"""
+
+
+
+
 
 class MainMenuFrame(tk.Frame):
     def __init__(self, parent, controller):
@@ -476,7 +482,7 @@ class MainMenuFrame(tk.Frame):
         # frame forward when the user requests it.
         self.controller = controller
 
-        #assigned in init_image()
+        # assigned in init_image()
         self.tk_background = None 
         self.tk_overview_clicked = None
         self.tk_achievements_clicked = None
@@ -488,7 +494,7 @@ class MainMenuFrame(tk.Frame):
         # Initialize the frame with buttons/text
         self.init_images()
 
-        #Placing background image onto main menu frame
+        # Placing background image onto main menu frame
 
         # Use self as the parent since we are placing 
         # this label onto the frame
@@ -1776,7 +1782,12 @@ class AchievementsFrame(tk.Frame):
         line.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
         next_row += 1
 
-        text = textwrap.fill(achievement.info, width=99)
+        text = ''
+        paragraphs = achievement.info.split('\n\n')
+        for par in paragraphs:
+            par = textwrap.fill(par, width=99, replace_whitespace=False)
+            par += '\n\n'
+            text += par
         desc=tk.Label(info_frame, text=text, justify=LEFT, fg='white',
                     font=AchievementsFrame.desc_font, bg='#121111')
         desc.grid(row=next_row, column=0, columnspan=total_columns, sticky=NW)
