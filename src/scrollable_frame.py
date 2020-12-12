@@ -1,21 +1,21 @@
 import tkinter as tk
-from tkinter import *
-from PIL import Image, ImageTk
 
 # Desired sizes for the button images
 BUTTON_SIZE = 277, 45
 
+
 class ScrollableFrame(tk.Frame):
     """Extends class tk.Frame to support a scrollable Frame
 
-    This class is independent from the widgets to be scrolled and 
-    can be used to replace a standard tk.Frame. It is scrollable using both
-    the scroll bar and using the mousewheel while hovering over the canvas.
-    
+    This class is independent from the widgets to be scrolled and can be used
+    to replace a standard tk.Frame. It is scrollable using both the scroll bar
+    and using the mousewheel while hovering over the canvas.
+
     Attributes:
         scrolled_frame: this frame will hold the child widgets.
             All widgets to be scrolled have to use this frame as parent
     """
+
     def __init__(self, parent, height, width, bg):
         """ Initiates a scrollable frame with labels using specified
         height and width. Canvas is scrollable both over canvas and scrollbar.
@@ -33,17 +33,17 @@ class ScrollableFrame(tk.Frame):
         self.v_scrollbar = tk.Scrollbar(self, orient="vertical")
         self.v_scrollbar.pack(side="right", fill="y")
 
-        # The Canvas which supports the Scrollbar Interface, 
+        # The Canvas which supports the Scrollbar Interface,
         # placed on self and layed out to the left.
-        self.canvas = tk.Canvas(self, highlightthickness=0, bg=bg, 
-                                height = height, width = width)
+        self.canvas = tk.Canvas(self, highlightthickness=0, bg=bg,
+                                height=height, width=width)
         self.canvas.pack(side="left", fill="both", expand=True)
 
         # Attach scrollbar action to scroll of canvas
         self.canvas.configure(yscrollcommand=self.v_scrollbar.set)
         self.v_scrollbar.configure(command=self.canvas.yview)
 
-        # Allow canvas to be scrolled using mousewheel while hovering 
+        # Allow canvas to be scrolled using mousewheel while hovering
         # over the canvas region. bind_all is used because just bind
         # doesn't seem to work for scrolling on the canvas
         self.canvas.bind_all("<MouseWheel>", self.on_mousewheel)
@@ -53,7 +53,8 @@ class ScrollableFrame(tk.Frame):
         # To do this, assign a variable to this attribute after creating
         # an instance of the class
         self.scrolled_frame = tk.Frame(self.canvas, bg=self.canvas.cget('bg'))
-        self.canvas.create_window((0, 0), window=self.scrolled_frame, anchor="nw")
+        self.canvas.create_window((0, 0), window=self.scrolled_frame,
+                                  anchor="nw")
 
         # Configures the scrollregion of the Canvas dynamically
         self.scrolled_frame.bind("<Configure>", self.on_configure)
@@ -64,7 +65,7 @@ class ScrollableFrame(tk.Frame):
     def on_configure(self, event):
         """Set the scroll region to encompass the scrolled frame"""
         self.canvas.configure(scrollregion=self.canvas.bbox("all"))
-    
+
     def on_mousewheel(self, event):
         """Allows canvas to be scrolled using mousewheel while hovering
         over canvas. Copied from:
@@ -76,13 +77,12 @@ class ScrollableFrame(tk.Frame):
         # Return scrollbar position and adjust it by a fraction
         p = self.v_scrollbar.get()[0] + (n*scroll_speed)
         # Apply new position
-        self.canvas.yview_moveto(p)             
+        self.canvas.yview_moveto(p)
 
     def on_frame_configure(self, event):
         """Reset the scroll region to encompass the inner frame"""
         self.canvas.configure(scrollregion=self.canvas.bbox("all"))
 
-        
     def unbind_mousewheel(self):
         """Unbinds the mouse-wheel to this instance. This needs to be called
         every time another scrolled frame is raised.
