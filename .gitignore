@@ -5,5 +5,5 @@ info.txt
 Backups/
 .vscode/
 .vs/
-dist/
+.dist/
 src/__pycache__/
