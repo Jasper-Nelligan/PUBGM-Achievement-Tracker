@@ -29,16 +29,16 @@ HOW TO USE:
 
 Browse through achievements:
 
-![alt text](https://i.imgur.com/5vDlvG3.png)
+![Achievements list](https://i.imgur.com/5vDlvG3.png)
 
 Select "planned" on an achievement if you plan to complete it, or check "completed" if already done. 
 You can also see tips and tricks on how to get each achievement at the bottom:
 
-![alt text](https://i.imgur.com/cXsHohQ.png)
+![Achievement info](https://i.imgur.com/cXsHohQ.png)
 
 Get detailed statistics on your achievement progress:
 
-![alt text](https://i.imgur.com/u9U7cfY.png)
+![Achievement statistics](https://i.imgur.com/u9U7cfY.png)
 
 Don't forget to save! Clicking on the save button will save your achievement data for the next time you enter the app.
 
