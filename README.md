@@ -7,6 +7,8 @@ each achievement, and the ability to check off the achievements you plan to comp
 
 HOW TO DOWNLOAD
 
+\*NOTE: App is only supported on Windows
+
 1. Download is in the releases section which should be on the right of the screen. You're going to want to click on the 
 release there, and then make sure you download PUBGM_Achievement_Tracker.zip from it.
 
